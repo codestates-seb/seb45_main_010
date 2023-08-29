@@ -24,11 +24,13 @@ public class Student extends Auditable {
 
     private String password;
 
+    @Column(nullable = false)
     private String name;
 
-    @Column(columnDefinition = "TEXT")
+    @Column(columnDefinition = "TEXT", nullable = false)
     private String introduce;
 
+    @Column(nullable = false)
     private boolean isOauth = false;
 
     @Enumerated(value = EnumType.ORDINAL)
