@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@fontsource/nanum-gothic": "^5.0.7",
     "@material-tailwind/react": "^2.1.1",
     "@reduxjs/toolkit": "^1.9.5",
     "axios": "^1.5.0",

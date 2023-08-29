@@ -3,9 +3,9 @@ const App = () => {
   return (
     <>
       <Badge content="5">
-        <Button className="bg-red-100">Notifications</Button>
+        <Button className="bg-blue-1">Notifications</Button>
       </Badge>
-      <Rating />;<h1 className="mt-10 text-3xl font-bold underline bg-red-100">Hello world!dasd</h1>
+      <Rating />;<h1 className="mt-10 text-3xl font-bold underline bg-mint-3">Hello world!dasd</h1>
     </>
   );
 };
