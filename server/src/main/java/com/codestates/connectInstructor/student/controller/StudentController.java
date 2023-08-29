@@ -7,10 +7,7 @@ import com.codestates.connectInstructor.student.service.StudentService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -32,5 +29,12 @@ public class StudentController {
         Student created = service.createStudent(student);
 
         return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    @GetMapping("/{email}")
+    public ResponseEntity verifyEmail(@PathVariable("email") String email) {
+        service.verifyEmail(email);
+
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
