@@ -1,5 +1,7 @@
 package com.codestates.connectInstructor.student.service;
 
+import com.codestates.connectInstructor.exception.BusinessLogicException;
+import com.codestates.connectInstructor.exception.ExceptionCode;
 import com.codestates.connectInstructor.student.entity.Student;
 import com.codestates.connectInstructor.student.repository.StudentRepository;
 import org.springframework.stereotype.Service;
@@ -31,6 +33,6 @@ public class StudentService {
     private void verifyEmail(String email) {
         Optional<Student> optionalStudent = repository.findByEmail(email);
 
-        if (optionalStudent.isPresent()) throw new RuntimeException();
+        if (optionalStudent.isPresent()) throw new BusinessLogicException(ExceptionCode.USED_EMAIL);
     }
 }
