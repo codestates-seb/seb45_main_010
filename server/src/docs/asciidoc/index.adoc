@@ -1,0 +1,29 @@
+= API 문서
+:sectnums:
+:toc: left
+:toclevels: 4
+:toc-title: Table of Contents
+:source-highlighter: prettify
+
+== StudentController
+=== 회원 등록
+.curl-request
+include::{snippets}/post-student/curl-request.adoc[]
+
+.http-request
+include::{snippets}/post-student/http-request.adoc[]
+
+.httpie-request
+include::{snippets}/post-student/httpie-request.adoc[]
+
+.request-body
+include::{snippets}/post-student/request-body.adoc[]
+
+.request-fields
+include::{snippets}/post-student/request-fields.adoc[]
+
+.http-response
+include::{snippets}/post-student/http-response.adoc[]
+
+.response-body
+include::{snippets}/post-student/response-body.adoc[]
