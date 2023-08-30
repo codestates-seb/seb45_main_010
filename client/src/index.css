@@ -7,5 +7,15 @@
 @layer base {
   html {
     font-family: 'Nanum Gothic', sans-serif;
+    display: flex;
+    justify-content: center;
+    background-color: rgb(209, 209, 209);
+  }
+  body {
+    width: 375px;
+    height: 100vh;
+    background-color: white;
+    border-radius: 10px;
+    box-sizing: border-box;
   }
 }
