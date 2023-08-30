@@ -1,9 +1,14 @@
 package com.codestates.connectInstructor.teacher.dto;
 
+import lombok.Builder;
+import lombok.Getter;
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 
 public class TeacherDto {
+    @Getter
+    @Builder
     public static class Post {
         @Pattern(regexp = "^(?=.{1,30}$)((?!\\.)[\\w\\-_.]*[^.])(@\\w+)(\\.\\w+(\\.\\w+)?[^.\\W])$")
         private String email;

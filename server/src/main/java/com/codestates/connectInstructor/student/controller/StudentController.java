@@ -31,7 +31,7 @@ public class StudentController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @GetMapping("/{email}")
+    @GetMapping("/verify/{email}")
     public ResponseEntity verifyEmail(@PathVariable("email") String email) {
         service.verifyEmail(email);
 

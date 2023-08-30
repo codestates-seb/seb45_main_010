@@ -1,6 +1,7 @@
 package com.codestates.connectInstructor.teacher.controller;
 
 import com.codestates.connectInstructor.student.dto.StudentDto;
+import com.codestates.connectInstructor.teacher.dto.TeacherDto;
 import com.codestates.connectInstructor.teacher.entity.Teacher;
 import com.codestates.connectInstructor.teacher.mapper.TeacherMapper;
 import com.codestates.connectInstructor.teacher.service.TeacherService;
@@ -24,14 +25,14 @@ public class TeacherController {
     }
 
     @PostMapping
-    public ResponseEntity postTeacher(@RequestBody @Valid StudentDto.Post request) {
+    public ResponseEntity postTeacher(@RequestBody @Valid TeacherDto.Post request) {
         Teacher teacher = mapper.postToTeacher(request);
         Teacher created = service.createTeacher(teacher);
 
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @GetMapping("/{email}")
+    @GetMapping("/verify/{email}")
     public ResponseEntity verifyEmail(@PathVariable("email") String email) {
         service.verifyEmail(email);
 

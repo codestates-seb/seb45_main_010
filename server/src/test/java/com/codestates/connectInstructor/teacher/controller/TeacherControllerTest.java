@@ -1,10 +1,9 @@
-package com.codestates.connectInstructor.student.controller;
+package com.codestates.connectInstructor.teacher.controller;
 
-
-import com.codestates.connectInstructor.student.dto.StudentDto;
-import com.codestates.connectInstructor.student.entity.Student;
-import com.codestates.connectInstructor.student.mapper.StudentMapper;
-import com.codestates.connectInstructor.student.service.StudentService;
+import com.codestates.connectInstructor.teacher.dto.TeacherDto;
+import com.codestates.connectInstructor.teacher.entity.Teacher;
+import com.codestates.connectInstructor.teacher.mapper.TeacherMapper;
+import com.codestates.connectInstructor.teacher.service.TeacherService;
 import com.google.gson.Gson;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -35,44 +34,46 @@ import static org.springframework.restdocs.payload.PayloadDocumentation.requestF
 import static org.springframework.restdocs.request.RequestDocumentation.parameterWithName;
 import static org.springframework.restdocs.request.RequestDocumentation.pathParameters;
 
-@WebMvcTest(controllers = StudentController.class)
+@WebMvcTest(controllers = TeacherController.class)
 @MockBean(JpaMetamodelMappingContext.class)
 @AutoConfigureRestDocs
 @AutoConfigureMockMvc(addFilters = false)
-public class StudentControllerTest {
+public class TeacherControllerTest {
     @Autowired
     private MockMvc mockMvc;
     @MockBean
-    private StudentMapper mapper;
+    private TeacherMapper mapper;
     @MockBean
-    private StudentService service;
+    private TeacherService service;
     @Autowired
     private Gson gson;
 
     @Test
     @WithAnonymousUser
-    public void postStudentTest() throws Exception {
-        StudentDto.Post request = StudentDto.Post.builder()
+    public void postTeacherTest() throws Exception {
+        TeacherDto.Post request = TeacherDto.Post.builder()
                 .email("test@example.com")
                 .password("test1234")
                 .name("테스트")
                 .introduction("자기 소개")
+                .career("경력")
+                .address("주소")
                 .build();
 
-        Student student = new Student();
+        Teacher teacher = new Teacher();
 
-        given(mapper.postToStudent(Mockito.any(StudentDto.Post.class))).willReturn(student);
-        given(service.createStudent(Mockito.any(Student.class))).willReturn(student);
+        given(mapper.postToTeacher(Mockito.any(TeacherDto.Post.class))).willReturn(teacher);
+        given(service.createTeacher(Mockito.any(Teacher.class))).willReturn(teacher);
 
         ResultActions actions = mockMvc.perform(
-                RestDocumentationRequestBuilders.post("/students")
+                RestDocumentationRequestBuilders.post("/teachers")
                         .accept(MediaType.APPLICATION_JSON)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(gson.toJson(request))
         );
 
         actions.andExpect(MockMvcResultMatchers.status().isCreated())
-                .andDo(document("post-student",
+                .andDo(document("post-teacher",
                         getRequestPreProcessor(),
                         getResponsePreProcessor(),
                         requestFields(
@@ -80,7 +81,9 @@ public class StudentControllerTest {
                                         fieldWithPath("email").type(JsonFieldType.STRING).description("이메일"),
                                         fieldWithPath("password").type(JsonFieldType.STRING).description("비밀번호"),
                                         fieldWithPath("name").type(JsonFieldType.STRING).description("이름"),
-                                        fieldWithPath("introduction").type(JsonFieldType.STRING).description("자기소개")
+                                        fieldWithPath("introduction").type(JsonFieldType.STRING).description("자기소개"),
+                                        fieldWithPath("career").type(JsonFieldType.STRING).description("경력"),
+                                        fieldWithPath("address").type(JsonFieldType.STRING).description("주소")
                                 )
                         )));
     }
@@ -94,14 +97,14 @@ public class StudentControllerTest {
 
         ResultActions actions = mockMvc.perform(
                 RestDocumentationRequestBuilders
-                        .get("/students/verify/{email}", email)
+                        .get("/teachers/verify/{email}", email)
                         .accept(MediaType.APPLICATION_JSON)
         );
 
         actions.andExpect(MockMvcResultMatchers.status().isOk())
                 .andDo(
                         document(
-                                "verify-student-email",
+                                "verify-teacher-email",
                                 getRequestPreProcessor(),
                                 getResponsePreProcessor(),
                                 pathParameters(
