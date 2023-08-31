@@ -1,10 +1,10 @@
 import Header from 'components/Header/Header';
-import Login from 'pages/Login';
+import SignUp from 'pages/SignUp';
 const App = () => {
   return (
     <main className="h-screen ">
       <Header />
-      <Login />
+      <SignUp />
     </main>
   );
 };
