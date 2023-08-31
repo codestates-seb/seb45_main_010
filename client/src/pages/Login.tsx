@@ -1,6 +1,6 @@
 import React from 'react';
 
-const LoginForm: React.FC = () => {
+const Login: React.FC = () => {
   return (
     <div className="flex flex-col item-center justify-center">
       <div className="text-center font-bold text-2xl my-4">로그인</div>
@@ -49,4 +49,4 @@ const LoginForm: React.FC = () => {
   );
 };
 
-export default LoginForm;
+export default Login;

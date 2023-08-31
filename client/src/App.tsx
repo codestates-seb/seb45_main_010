@@ -1,10 +1,11 @@
 import Header from 'components/Header/Header';
-import SignUp from 'pages/SignUp';
+import { Outlet } from 'react-router-dom';
+
 const App = () => {
   return (
     <main className="h-screen ">
       <Header />
-      <SignUp />
+      <Outlet />
     </main>
   );
 };

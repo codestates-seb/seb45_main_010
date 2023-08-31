@@ -25,15 +25,16 @@ const SignUp: React.FC = () => {
               type="email"
               id="email"
               name="email"
-              className="border border text-xs rounded-lg w-80 p-2"
+              className="border border text-xs rounded-lg w-11/12 p-2"
               placeholder="이메일을 입력하세요"
             />
             <button
               type="submit"
-              className="text-gray-600 h-9 w-8 border bg-gray-300 rounded-lg hover:bg-gray-500 ml-1"
+              className="text-gray-600 h-8 w-8 border bg-gray-300 rounded-lg hover:bg-gray-500 ml-1"
               style={{ fontSize: '8px' }}
             >
-              중복확인
+              <div>중복</div>
+              <div>확인</div>
             </button>
           </div>
 
