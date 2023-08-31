@@ -16,7 +16,7 @@ export default function ProfileHeader() {
           <p className="text-2xl align-middle">홍길동</p>
         </div>
         <div className="flex flex-row gap-4 mt-5 mb-10">
-          <Button className="text-black bg-mint-2 rounded-xl" size="sm">
+          <Button className="h-8 font-normal text-black w-25 bg-mint-2 rounded-xl" size="sm">
             개인정보변경
           </Button>
         </div>
