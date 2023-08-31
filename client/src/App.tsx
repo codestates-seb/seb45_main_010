@@ -1,3 +1,4 @@
+import { Footer } from 'components/Footer/Footer';
 import Header from 'components/Header/Header';
 import { Search } from 'components/Menu/Search';
 import { Sidebar } from 'components/Menu/Sidebar';
@@ -11,11 +12,14 @@ const App = () => {
   const handlerSearch = (): void => setIsSearch(!isSearch);
 
   return (
-    <main className="h-screen ">
-      <Header handlerMenu={handlerMenu} handlerSearch={handlerSearch} />
-      {isMenu && <Sidebar handlerMenu={handlerMenu} />}
-      {isSearch && <Search handlerSearc={handlerSearch} />}
-    </main>
+    <>
+      <main className="h-screen">
+        <Header handlerMenu={handlerMenu} handlerSearch={handlerSearch} />
+        {isMenu && <Sidebar handlerMenu={handlerMenu} />}
+        {isSearch && <Search handlerSearch={handlerSearch} />}
+      </main>
+      <Footer />
+    </>
   );
 };
 
