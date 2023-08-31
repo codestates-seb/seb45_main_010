@@ -1,6 +1,6 @@
 import React from 'react';
 
-const SignUpForm: React.FC = () => {
+const SignUp: React.FC = () => {
   return (
     <div className="flex flex-col item-center justify-center">
       <div className="text-center font-bold text-2xl mb-4">회원가입</div>
@@ -20,13 +20,22 @@ const SignUpForm: React.FC = () => {
           <label htmlFor="email" className="text-sm mt-4">
             이메일
           </label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            className="border border text-xs rounded-lg p-2"
-            placeholder="이메일을 입력하세요"
-          />
+          <div className="flex item-center">
+            <input
+              type="email"
+              id="email"
+              name="email"
+              className="border border text-xs rounded-lg w-80 p-2"
+              placeholder="이메일을 입력하세요"
+            />
+            <button
+              type="submit"
+              className="text-gray-600 h-9 w-8 border bg-gray-300 rounded-lg hover:bg-gray-500 ml-1"
+              style={{ fontSize: '8px' }}
+            >
+              중복확인
+            </button>
+          </div>
 
           <label htmlFor="password" className="text-sm mt-4">
             비밀번호
@@ -66,4 +75,4 @@ const SignUpForm: React.FC = () => {
   );
 };
 
-export default SignUpForm;
+export default SignUp;
