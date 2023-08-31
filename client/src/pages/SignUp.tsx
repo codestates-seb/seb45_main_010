@@ -1,7 +1,4 @@
-import { AiFillCheckSquare } from 'react-icons/ai';
 import React from 'react';
-import CheckImage from '../assets/Check.png';
-//gap4 요소간의 가격을 1rem, p-4은 4방향 패딩을 1rem으로 설정
 
 const SignUpForm: React.FC = () => {
   return (
