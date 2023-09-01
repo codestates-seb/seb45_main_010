@@ -19,7 +19,10 @@ export default function ProfileHeader({ name }: { name: string }) {
           ></img>
           <div className="flex flex-col gap-2 mt-5 mb-5">
             <p className="ml-3 text-2xl">{name}</p>
-            <Button className="font-normal text-black h-7 w-23 bg-mint-2 rounded-xl" size="sm">
+            <Button
+              className="font-normal text-black w-[100px] ml-3 bg-mint-2 rounded-xl"
+              size="sm"
+            >
               개인정보변경
             </Button>
           </div>
