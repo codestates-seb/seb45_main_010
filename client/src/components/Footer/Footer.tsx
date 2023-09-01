@@ -45,25 +45,25 @@ export const Footer = () => {
       </div>
 
       <div className="flex gap-4 p-1 text-blue-gray-900 sm:justify-center">
-        <Typography as="a" href="#" className="transition-opacity opacity-80 hover:opacity-100">
+        <Typography as="i" className="transition-opacity opacity-80 hover:opacity-100">
           <BiLogoTailwindCss />
         </Typography>
-        <Typography as="a" href="#" className="transition-opacity opacity-80 hover:opacity-100">
+        <Typography as="i" className="transition-opacity opacity-80 hover:opacity-100">
           <BiLogoReact />
         </Typography>
-        <Typography as="a" href="#" className="transition-opacity opacity-80 hover:opacity-100">
+        <Typography as="i" className="transition-opacity opacity-80 hover:opacity-100">
           <BiLogoDiscordAlt />
         </Typography>
-        <Typography as="a" href="#" className="transition-opacity opacity-80 hover:opacity-100">
+        <Typography as="i" className="transition-opacity opacity-80 hover:opacity-100">
           <BiLogoTypescript />
         </Typography>
-        <Typography as="a" href="#" className="transition-opacity opacity-80 hover:opacity-100">
+        <Typography as="i" className="transition-opacity opacity-80 hover:opacity-100">
           <BiLogoVisualStudio />
         </Typography>
-        <Typography as="a" href="#" className="transition-opacity opacity-80 hover:opacity-100">
+        <Typography as="i" className="transition-opacity opacity-80 hover:opacity-100">
           <BiLogoGithub />
         </Typography>
-        <Typography as="a" href="#" className="transition-opacity opacity-80 hover:opacity-100">
+        <Typography as="i" className="transition-opacity opacity-80 hover:opacity-100">
           <BiLogoFigma />
         </Typography>
       </div>
