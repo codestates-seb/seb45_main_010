@@ -61,6 +61,8 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(authorize -> authorize
                         .anyRequest().permitAll()
                 );
+        //.antMatchers(HttpMethod.GET, "/students/**").hasRole("---") 테스트 완료
+
         return http.build();
     }
 
