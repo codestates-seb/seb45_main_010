@@ -3,6 +3,7 @@ import { Menu, MenuHandler, MenuList, MenuItem, Button } from '@material-tailwin
 import { BsX, BsChevronDown } from 'react-icons/bs';
 
 export default function ProfileDropdown() {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [selectedCategory, setSelectedCategory] = useState<string>('');
   const [tags, setTags] = useState<string[]>([]);
 
