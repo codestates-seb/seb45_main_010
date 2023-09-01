@@ -13,7 +13,7 @@ const App = () => {
 
   return (
     <>
-      <main className="h-screen">
+      <main className="">
         <Header handlerMenu={handlerMenu} handlerSearch={handlerSearch} />
         {isMenu && <Sidebar handlerMenu={handlerMenu} />}
         {isSearch && <Search handlerSearch={handlerSearch} />}
