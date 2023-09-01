@@ -31,7 +31,7 @@ export default function ProfileDropdown({
 
   return (
     <div>
-      <div className="flex flex-wrap gap-4 mt-4">
+      <div className="flex flex-wrap gap-4 mt-5">
         <Menu placement="bottom-start">
           <MenuHandler>
             <Button

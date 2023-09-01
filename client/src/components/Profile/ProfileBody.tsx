@@ -35,7 +35,7 @@ export default function ProfileBody() {
 
   return (
     <Tabs value="내 강의 조회">
-      <TabsHeader className="mx-5 mb-5 bg-mint-2">
+      <TabsHeader className="mx-5 mb-4 bg-mint-2">
         {data.map((value) => (
           <Tab className="font-semibold" key={value.id} value={value.value}>
             {value.value}
@@ -58,7 +58,7 @@ export default function ProfileBody() {
 export function LectureList() {
   return (
     <div className="flex flex-col flex-wrap">
-      <p className="flex-1 mx-5 mb-5 text-sm font-bold">강의요청목록</p>
+      <p className="flex-1 mx-5 mb-4 text-sm font-bold">강의요청목록</p>
       <div className="flex justify-end text-right">
         <Button
           className="flex items-center mx-1 h-7 p-2 text-[8px] text-gray-700 bg-white rounded-xl border-mint-2"
