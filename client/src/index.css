@@ -9,6 +9,7 @@
     font-family: 'Nanum Gothic', sans-serif;
     display: flex;
     justify-content: center;
+    overflow-y: auto;
     background-color: rgb(209, 209, 209);
   }
   body {
@@ -18,6 +19,7 @@
     min-height: 667px;
     background-color: white;
     border-radius: 10px;
+    overflow: hidden;
     box-sizing: border-box;
   }
 }
