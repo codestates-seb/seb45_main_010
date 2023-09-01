@@ -1,0 +1,70 @@
+import React from 'react';
+
+const TeacherCard = () => {
+  return (
+    <>
+      <div>TeacherCard</div>
+      <div>TeacherCard</div>
+      <div>TeacherCard</div>
+      <div>TeacherCard</div>
+      <div>TeacherCard</div>
+      <div>TeacherCard</div>
+      <div>TeacherCard</div>
+      <div>TeacherCard</div>
+      <div>TeacherCard</div>
+      <div>TeacherCard</div>
+      <div>TeacherCard</div>
+      <div>TeacherCard</div>
+      <div>TeacherCard</div>
+      <div>TeacherCard</div>
+      <div>TeacherCard</div>
+      <div>TeacherCard</div>
+      <div>TeacherCard</div>
+      <div>TeacherCard</div>
+      <div>TeacherCard</div>
+      <div>TeacherCard</div>
+      <div>TeacherCard</div>
+      <div>TeacherCard</div>
+      <div>TeacherCard</div>
+      <div>TeacherCard</div>
+      <div>TeacherCard</div>
+      <div>TeacherCard</div>
+      <div>TeacherCard</div>
+      <div>TeacherCard</div>
+      <div>TeacherCard</div>
+      <div>TeacherCard</div>
+      <div>TeacherCard</div>
+      <div>TeacherCard</div>
+      <div>TeacherCard</div>
+      <div>TeacherCard</div>
+      <div>TeacherCard</div>
+      <div>TeacherCard</div>
+      <div>TeacherCard</div>
+      <div>TeacherCard</div>
+      <div>TeacherCard</div>
+      <div>TeacherCard</div>
+      <div>TeacherCard</div>
+      <div>TeacherCard</div>
+      <div>TeacherCard</div>
+      <div>TeacherCard</div>
+      <div>TeacherCard</div>
+      <div>TeacherCard</div>
+      <div>TeacherCard</div>
+      <div>TeacherCard</div>
+      <div>TeacherCard</div>
+      <div>TeacherCard</div>
+      <div>TeacherCard</div>
+      <div>TeacherCard</div>
+      <div>TeacherCard</div>
+      <div>TeacherCard</div>
+      <div>TeacherCard</div>
+      <div>TeacherCard</div>
+      <div>TeacherCard</div>
+      <div>TeacherCard</div>
+      <div>TeacherCard</div>
+      <div>TeacherCard</div>
+    </>
+  );
+};
+
+export default TeacherCard;
