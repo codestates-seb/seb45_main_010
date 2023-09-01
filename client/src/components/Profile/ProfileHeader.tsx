@@ -3,22 +3,22 @@ import { BsPencil } from 'react-icons/bs';
 import userExampleImage from '../../assets/Image/user-example.png';
 import ProfileDropdown from './ProfileDropdown';
 
-export default function ProfileHeader() {
+export default function ProfileHeader({ name }: { name: string }) {
   return (
     <div className="m-5 my-10">
       <div>
         <div className="flex flex-row items-center gap-6">
           <img
             src={userExampleImage}
-            className="w-12 h-12 border rounded-full border-mint-2"
+            className="border rounded-full w-14 h-14 border-mint-2"
             alt="프로필이미지"
           ></img>
-          <p className="text-2xl align-middle">홍길동</p>
-        </div>
-        <div className="flex flex-row gap-4 mt-5 mb-10">
-          <Button className="h-8 font-normal text-black w-25 bg-mint-2 rounded-xl" size="sm">
-            개인정보변경
-          </Button>
+          <div className="flex flex-col gap-2 mt-5 mb-5">
+            <p className="ml-3 text-2xl">{name}</p>
+            <Button className="font-normal text-black h-7 w-23 bg-mint-2 rounded-xl" size="sm">
+              개인정보변경
+            </Button>
+          </div>
         </div>
       </div>
       <ProfileDropdown />

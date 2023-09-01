@@ -32,7 +32,7 @@ export default function ProfileBody() {
 
   return (
     <Tabs value="내 강의 조회">
-      <TabsHeader className="mx-5 bg-mint-2">
+      <TabsHeader className="mx-5 mb-5 bg-mint-2">
         {data.map(({ label, value }) => (
           <Tab key={value} value={value}>
             {label}
@@ -45,7 +45,7 @@ export default function ProfileBody() {
             <TabPanel className="font-normal text-black" key={value} value={value}>
               {desc}
             </TabPanel>
-            <div className="mt-10 border-b-2 border-grey-1"></div>
+            {/* <div className="mt-10 border-b-2 border-grey-1"></div> */}
           </>
         ))}
       </TabsBody>
@@ -56,14 +56,22 @@ export default function ProfileBody() {
 export function LectureList() {
   return (
     <div className="flex flex-col flex-wrap">
-      <div className="flex flex-row justify-between mx-5 my-2 text-sm font-medium">
-        <p className="flex-1">강의요청목록</p>
-        <div className="flex text-xs border border-grey border-1">
-          <div>과목</div>
-          <div>학생</div>
-        </div>
+      <p className="flex-1 mx-5 mb-5 text-sm">강의요청목록</p>
+      <div className="flex justify-end text-right">
+        <Button
+          className="flex items-center mx-1 h-7 p-2 text-[8px] text-gray-700 bg-white rounded-xl border-mint-2"
+          variant="outlined"
+        >
+          과목
+        </Button>
+        <Button
+          className="flex items-center mx-1 h-7 p-2 text-[8px] text-gray-700 bg-white rounded-xl border-mint-2"
+          variant="outlined"
+        >
+          학생
+        </Button>
       </div>
-      <div className="my-5 border rounded-lg w-320 bg-[#BEDEF1] border-[#BEDEF1] hover:bg-blue-1 hover:border-blue-1 duration-300">
+      <div className="my-5 border rounded-lg w-320 bg-[#BEDEF1] border-[#BEDEF1] cursor-pointer hover:bg-blue-1 hover:border-blue-1 duration-300">
         <div className="flex flex-row items-center justify-between p-4">
           <div className="text-[16px] font-semibold">수업요청</div>
           <div className="flex h-6 text-xs font-semibold bg-white rounded-md">
@@ -106,7 +114,7 @@ export function LectureList() {
 export function ScheduleList() {
   return (
     <>
-      <p className="mb-10 text-sm">수업가능 일정설정</p>
+      <p className="mx-5 mb-5 text-sm">수업가능 일정설정</p>
       <div className="flex flex-col items-center justify-center gap-5">
         <Button
           className="flex items-center justify-between p-2 text-sm font-bold text-black bg-mint-4 rounded-xl w-[230px] border-mint-2"
@@ -146,8 +154,8 @@ export function ScheduleList() {
 export function OptionList() {
   return (
     <>
-      <p className="text-sm">강좌형식</p>
-      <div className="flex flex-row items-center gap-1 mb-10">
+      <p className="mx-5 mb-5 text-sm">강좌형식</p>
+      <div className="flex flex-row items-center gap-1 mt-5 mb-10">
         <Checkbox
           color="green"
           className="text-green bg-green"
@@ -162,14 +170,14 @@ export function OptionList() {
           오프라인
         </div>
       </div>
-      <p className="text-sm">강의료 ( 강사 소개에 노출됩니다 )</p>
+      <p className="mx-5 mb-5 text-sm">강의료 ( 강사 소개에 노출됩니다 )</p>
       <ul>
         <div className="right-0 flex justify-end m-4">
           <BsPencil />
         </div>
         <p className="mx-4 mb-10 text-xs leading-5">강의료 입력 20자 이내 예)1시간 1인 50,000원</p>
       </ul>
-      <p className="text-sm">학력 및 경력</p>
+      <p className="mx-5 text-sm">학력 및 경력</p>
       <ul>
         <div className="right-0 flex justify-end m-4">
           <BsPencil />
@@ -181,7 +189,7 @@ export function OptionList() {
           만점반의 강의를 진행했습니다. 이외에도 다수의 개인과외 경험이 있습니다.
         </p>
       </ul>
-      <p className="text-sm">수업옵션</p>
+      <p className="mx-5 text-sm">수업옵션</p>
       <ul>
         <div className="right-0 flex justify-end m-4">
           <BsPencil />
