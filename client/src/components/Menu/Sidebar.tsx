@@ -1,6 +1,7 @@
 import { Card, Typography, List, ListItem, ListItemPrefix } from '@material-tailwind/react';
 import { PresentationChartBarIcon, UserCircleIcon } from '@heroicons/react/24/solid';
 import { AiOutlineUser, AiOutlineUserAdd } from 'react-icons/ai';
+import { Link } from 'react-router-dom';
 
 type props = {
   handlerMenu: () => void;
@@ -29,12 +30,14 @@ export const Sidebar = ({ handlerMenu }: props) => {
           </ListItem>
         </List>
         <List>
-          <ListItem>
-            <ListItemPrefix>
-              <PresentationChartBarIcon className="w-5 h-5" />
-            </ListItemPrefix>
-            강사 목록
-          </ListItem>
+          <Link to={'/list'} onClick={handlerMenu}>
+            <ListItem>
+              <ListItemPrefix>
+                <PresentationChartBarIcon className="w-5 h-5" />
+              </ListItemPrefix>
+              강사 목록
+            </ListItem>
+          </Link>
           <ListItem>
             <ListItemPrefix>
               <UserCircleIcon className="w-5 h-5" />

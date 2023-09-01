@@ -2,7 +2,9 @@ import { Footer } from 'components/Footer/Footer';
 import Header from 'components/Header/Header';
 import { Search } from 'components/Menu/Search';
 import { Sidebar } from 'components/Menu/Sidebar';
+import ListPage from 'pages/ListPage/ListPage';
 import { useState } from 'react';
+import { Outlet } from 'react-router-dom';
 
 const App = () => {
   const [isMenu, setIsMenu] = useState<boolean>(false);
@@ -17,8 +19,10 @@ const App = () => {
         <Header handlerMenu={handlerMenu} handlerSearch={handlerSearch} />
         {isMenu && <Sidebar handlerMenu={handlerMenu} />}
         {isSearch && <Search handlerSearch={handlerSearch} />}
+        <ListPage />
       </main>
       <Footer />
+      <Outlet />
     </>
   );
 };
