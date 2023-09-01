@@ -16,16 +16,19 @@ export default function ProfileBody() {
     {
       label: '내 강의 조회',
       value: '내 강의 조회',
+      id: 1,
       desc: <LectureList key="lecture" />,
     },
     {
       label: '스케쥴 관리',
       value: '스케쥴 관리',
+      id: 2,
       desc: <ScheduleList key="schedule" />,
     },
     {
       label: 'Profile 관리',
       value: 'Profile 관리',
+      id: 3,
       desc: <OptionList key="profile" />,
     },
   ];
@@ -33,17 +36,17 @@ export default function ProfileBody() {
   return (
     <Tabs value="내 강의 조회">
       <TabsHeader className="mx-5 mb-5 bg-mint-2">
-        {data.map(({ label, value }) => (
-          <Tab key={value} value={value}>
-            {label}
+        {data.map((value) => (
+          <Tab key={value.id} value={value.value}>
+            {value.value}
           </Tab>
         ))}
       </TabsHeader>
       <TabsBody className="text-inherit">
-        {data.map(({ value, desc }) => (
+        {data.map((value) => (
           <>
-            <TabPanel className="font-normal text-black" key={value} value={value}>
-              {desc}
+            <TabPanel className="font-normal text-black" key={value.id} value={value.value}>
+              {value.desc}
             </TabPanel>
           </>
         ))}
