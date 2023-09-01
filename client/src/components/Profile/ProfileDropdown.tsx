@@ -2,12 +2,16 @@ import { useState } from 'react';
 import { Menu, MenuHandler, MenuList, MenuItem, Button } from '@material-tailwind/react';
 import { BsX, BsChevronDown } from 'react-icons/bs';
 
-export default function ProfileDropdown() {
+export default function ProfileDropdown({
+  title,
+  selections,
+}: {
+  title: string;
+  selections: string[];
+}) {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [selectedCategory, setSelectedCategory] = useState<string>('');
   const [tags, setTags] = useState<string[]>([]);
-
-  const category = ['수학', '과학', '외국어', '국사', '사회'];
 
   const handleCategorySelect = (item: string) => {
     setSelectedCategory(item);
@@ -35,12 +39,12 @@ export default function ProfileDropdown() {
               variant="outlined"
               size="sm"
             >
-              과목
+              {title}
               <BsChevronDown />
             </Button>
           </MenuHandler>
           <MenuList className=" border-mint-2">
-            {category.map((item) => (
+            {selections.map((item) => (
               <MenuItem key={item} onClick={() => handleCategorySelect(item)}>
                 {item}
               </MenuItem>
