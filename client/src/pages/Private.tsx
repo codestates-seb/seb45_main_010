@@ -19,17 +19,17 @@ const Private: React.FC = () => {
           <div className="text-2xl m-1">홍길동</div>
         </div>
       </div>
-      <div className="flex-col pl-6">
+      <div className="flex-col pl-10">
         <div className="text-xm">이메일</div>
         <div className="text-xs">ljedoc@gmail.com</div>
       </div>
 
-      <div className="flex-col mx-5 my-5">
+      <div className="flex-col mx-8 my-5">
         <div className="text-xm">이름</div>
         <form className="flex gap-1 rounded-lg">
           <input
             type="test"
-            className="border text-xs  border-blue-800 rounded-lg w-80 p-2"
+            className="border text-xs h-[50px] border-blue-800/60 rounded-lg w-80 p-2"
             placeholder="홍길동"
           />
           <button type="submit" className="">
@@ -38,12 +38,12 @@ const Private: React.FC = () => {
         </form>
       </div>
 
-      <div className="flex-col mx-5 my-5">
+      <div className="flex-col mx-8 my-5">
         <div className="text-xm">비밀번호</div>
         <form className="flex gap-1 rounded-lg">
           <input
             type="test"
-            className="border text-xs  border-blue-800 rounded-lg w-80 p-2"
+            className="border text-xs h-[50px] border-blue-800/60 rounded-lg w-80 p-2"
             placeholder="*********"
           />
           <button type="submit" className="">
@@ -52,12 +52,12 @@ const Private: React.FC = () => {
         </form>
       </div>
 
-      <div className="flex-col mx-5 my-5">
+      <div className="flex-col mx-8 my-5">
         <div className="text-xm">전화번호</div>
         <form className="flex gap-1 rounded-lg">
           <input
             type="test"
-            className="border text-xs  border-blue-800 rounded-lg w-80 p-2"
+            className="border text-xs h-[50px] border-blue-800/60 rounded-lg w-80 p-2"
             placeholder="01023456789"
           />
           <button type="submit" className="">
