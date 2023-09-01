@@ -5,6 +5,9 @@ const ListPage = () => {
   return (
     <>
       <TeacherCard />
+      <TeacherCard />
+      <TeacherCard />
+      <TeacherCard />
     </>
   );
 };
