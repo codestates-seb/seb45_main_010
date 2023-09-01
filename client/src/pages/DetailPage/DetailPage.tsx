@@ -23,11 +23,11 @@ export default function DetailPage() {
           ></img>
           <div className="flex flex-col gap-2">
             <p className="ml-3 text-2xl">홍길동</p>
-            <div className="font-normal text-[#8E98A8] text-xs ml-[43px] mt-[-10px]">강사님</div>
+            <div className="font-normal text-[#8E98A8] text-xs ml-[75px] mt-[-10px]">강사님</div>
           </div>
         </div>
         <div className="flex justify-end gap-5 m-10 mt-5">
-          <div className="flex items-center justify-center text-sm rounded-lg h-7 w-14 bg-mint-3">
+          <div className="flex items-center justify-center p-2 text-sm rounded-lg bg-mint-3">
             온라인
           </div>
         </div>
@@ -126,7 +126,7 @@ export default function DetailPage() {
       </div>
       <div className="fixed bottom-5 h-[50px] flex items-center justify-between px-5 w-[375px] bg-[#008774]">
         <div className="text-sm text-white">1회 50,000원 / 1시간</div>
-        <Button className="h-10 text-sm">강의신청하기</Button>
+        <Button className="flex items-center h-10 text-sm">강의신청하기</Button>
       </div>
     </>
   );
