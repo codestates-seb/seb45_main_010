@@ -1,4 +1,4 @@
-package com.codestates.connectInstructor.student.entity;
+package com.codestates.connectInstructor.teacher.entity;
 
 import com.codestates.connectInstructor.audit.Auditable;
 import com.codestates.connectInstructor.common.MemberStatus;
@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Student extends Auditable {
+public class Teacher extends Auditable {
     //TODO 컬럼 제약 사항(길이 등등)은 프론트와 상의 후 추가
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,11 +24,17 @@ public class Student extends Auditable {
 
     private String password;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 30)
     private String name;
 
     @Column(columnDefinition = "TEXT", nullable = false)
     private String introduction;
+
+    @Column(columnDefinition = "TEXT", nullable = false)
+    private String career;
+
+    @Column(nullable = false, length = 100)
+    private String address;
 
     @Column(nullable = false, name = "is_oauth")
     private boolean isOauth = false;
@@ -38,4 +44,7 @@ public class Student extends Auditable {
 
     @Column(name = "last_login_at")
     private LocalDateTime lastLogin;
+
+    @Column(name = "last_modified_at")
+    private LocalDateTime lastModified;
 }
