@@ -1,12 +1,12 @@
-import { Badge, Button, Rating } from '@material-tailwind/react';
+import Header from 'components/Header/Header';
+import { Outlet } from 'react-router-dom';
+
 const App = () => {
   return (
-    <>
-      <Badge content="5">
-        <Button className="bg-blue-1">Notifications</Button>
-      </Badge>
-      <Rating />;<h1 className="mt-10 text-3xl font-bold underline bg-mint-3">Hello world!dasd</h1>
-    </>
+    <main className="h-screen ">
+      <Header />
+      <Outlet />
+    </main>
   );
 };
 

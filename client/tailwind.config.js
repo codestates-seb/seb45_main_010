@@ -24,6 +24,7 @@ module.exports = withMT({
       grey: {
         1: '#D9D9D9',
         2: '#EEEEEE',
+        3: '#CBCBCB',
       },
     },
   },
