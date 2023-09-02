@@ -44,11 +44,11 @@ export default function ProfileBody() {
       </TabsHeader>
       <TabsBody className="text-inherit">
         {data.map((value) => (
-          <>
-            <TabPanel className="font-normal text-black" key={value.id} value={value.value}>
+          <div key={value.id}>
+            <TabPanel className="font-normal text-black" value={value.value}>
               {value.desc}
             </TabPanel>
-          </>
+          </div>
         ))}
       </TabsBody>
     </Tabs>
