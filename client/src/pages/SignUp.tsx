@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ChangeEvent, FormEvent } from 'react';
 import { Button } from '@material-tailwind/react';
 import axios from 'axios';
@@ -7,10 +7,10 @@ export type Member = {
   name: string;
   email: string;
   password: string;
-  isTeacher: boolean;
+  teacher: boolean;
 };
 
-//이메일 중복확인 (중복:true/등록불가, 미중복:false/등록가능)
+// 이메일 중복확인 (중복:true/등록불가, 미중복:false/등록가능)
 const checkEmailDuplicate = async (email: string): Promise<boolean | undefined> => {
   try {
     const response = await axios.get<boolean>(`http://localhost:8080/students/verify/${email}`); //백엔드 API
@@ -32,19 +32,25 @@ const SignUp: React.FC = () => {
     name: '',
     email: '',
     password: '',
-    isTeacher: false,
+    teacher: false,
   });
 
   const handleUserNameChange = (e: ChangeEvent<HTMLInputElement>) => {
+    console.log(e.target.value);
     setUserName(e.target.value);
+    console.log(userName);
   };
 
   const handleuserEmailChange = (e: ChangeEvent<HTMLInputElement>) => {
+    console.log(e.target.value);
     setUserMail(e.target.value);
+    console.log(userEmail);
   };
 
   const handleuserPasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
+    console.log(e.target.value);
     setUserPassword(e.target.value);
+    console.log(userPassword);
   };
 
   const handleEmailCheck = async () => {
@@ -61,23 +67,47 @@ const SignUp: React.FC = () => {
     }
   };
 
+  useEffect(() => {
+    if (userInfo.name && userInfo.email && userInfo.password) {
+      axios
+        .post('http://localhost:8080/students', userInfo)
+        .then((response) => {
+          console.log('회원가입 비동기요청', response.data);
+        })
+        .catch((error) => {
+          console.log('회원가입 비동기요청', error);
+        });
+    }
+  }, [userInfo]);
+
   const handleTeacherRegister = (e: ChangeEvent<HTMLInputElement>) => {
+    console.log(e.target.checked);
     setIsTeacher(e.target.checked);
+    console.log(isTeacher);
   };
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log('제출될 고객정보', userInfo);
     if (!userName || !userEmail || !userPassword) {
       alert('이름, 이메일, 비밀번호를 모두 입력하세요.');
       return;
     }
+
+    setUserInfo({
+      name: userName,
+      email: userEmail,
+      password: userPassword,
+      teacher: isTeacher,
+    });
+
+    console.log('Submit', userInfo);
+
     if (checkEmail === false) {
       setUserInfo({
         name: userName,
         email: userEmail,
         password: userPassword,
-        isTeacher: isTeacher,
+        teacher: isTeacher,
       });
     } else if (checkEmail === true) {
       alert('기존에 가입된 이메일이며, 중복가입할수 없습니다.');
@@ -117,7 +147,7 @@ const SignUp: React.FC = () => {
               onChange={handleuserEmailChange}
             />
             <button
-              type="submit"
+              type="button"
               className="text-xs text-gray-600 border bg-gray-300 shadow-lg rounded-lg hover:bg-gray-500 hover:text-white h-[40px] w-[40px] mt-1"
               onClick={handleEmailCheck}
             >
@@ -132,6 +162,7 @@ const SignUp: React.FC = () => {
               <div className="text-red-500 ml-2">이미 등록된 이메일입니다.</div>
             ) : null}
           </div>
+
           <label htmlFor="password" className="text-sm mx-4 mt-5">
             비밀번호
           </label>

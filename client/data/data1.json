@@ -1,0 +1,89 @@
+{
+  "teachers": [
+    {
+      "id": "1",
+      "name": "elena",
+      "email": "elena@gmail.com",
+      "password": "test1234"
+    },
+    {
+      "id": "2",
+      "name": "james",
+      "email": "james@gmail.com",
+      "password": "test1234"
+    },
+    {
+      "id": "3",
+      "name": "stefan",
+      "email": "stephan@gmail.com",
+      "password": "test1234"
+    },
+    {
+      "id": "4",
+      "name": "test",
+      "email": "test@test.com",
+      "password": "test1234"
+    },
+    {
+      "name": "elena",
+      "email": "ljedoc@gmail.com",
+      "password": "dlwldms2",
+      "teacher": true,
+      "id": "usMU8Hr"
+    },
+    {
+      "name": "강민영",
+      "email": "kangmin@gmail.com",
+      "password": "test1234",
+      "teacher": true,
+      "id": "WhZZ1ec"
+    }
+  ],
+  "students": [
+    {
+      "id": "1",
+      "name": "kimcoding",
+      "email": "kimcoding@gmail.com",
+      "password": "test123456"
+    },
+    {
+      "id": "2",
+      "name": "parkhacker",
+      "email": "parkhacker@gmail.com",
+      "password": "test123456"
+    },
+    {
+      "id": "3",
+      "name": "hongil",
+      "email": "hongil@gmail.com",
+      "password": "test123456"
+    },
+    {
+      "id": "4",
+      "name": "test",
+      "email": "test@test.com",
+      "password": "test123456"
+    },
+    {
+      "name": "강진영",
+      "email": "kangjin@gmail.com",
+      "password": "test1234",
+      "teacher": false,
+      "id": "IyHq6Xm"
+    },
+    {
+      "name": "정현진",
+      "email": "junghyun@gmail.com",
+      "password": "test1234",
+      "teacher": false,
+      "id": "yHPHHwR"
+    }
+  ],
+  "login": [
+    {
+      "id": "1",
+      "email": "test@test.com",
+      "password": "test1234"
+    }
+  ]
+}
