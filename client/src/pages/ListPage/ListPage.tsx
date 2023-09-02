@@ -1,13 +1,22 @@
+import React, { useState } from 'react';
+import { test } from 'configs/List/config';
 import TeacherCard from 'components/ListPage/TeacherCard';
-import React from 'react';
+import Pagination from 'components/ListPage/Pagination';
 
 const ListPage = () => {
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const limit: number = 5;
+  const offset = (currentPage - 1) * limit;
+
   return (
     <>
-      <TeacherCard />
-      <TeacherCard />
-      <TeacherCard />
-      <TeacherCard />
+      <TeacherCard test={test.slice(offset, offset + limit)} />
+      <Pagination
+        test={test}
+        limit={limit}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+      />
     </>
   );
 };

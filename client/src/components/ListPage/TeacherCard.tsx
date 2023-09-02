@@ -1,14 +1,18 @@
+import { Teacher } from 'configs/List/config';
 import React from 'react';
-import { test } from 'configs/List/config';
 
-const TeacherCard = () => {
+type props = {
+  test: Teacher;
+};
+
+const TeacherCard = ({ test }: props) => {
   return (
     <div className=" w-[375px] flex flex-col items-center">
-      {test.map((teacher, key) => {
+      {test.map((items, key) => {
         const isOnOff: string =
-          teacher.classMethod.onLine && teacher.classMethod.offLine
+          items.classMethod.onLine && items.classMethod.offLine
             ? '온/오프'
-            : teacher.classMethod.onLine
+            : items.classMethod.onLine
             ? '온라인'
             : '오프라인';
 
@@ -25,7 +29,7 @@ const TeacherCard = () => {
             <span className="flex flex-col items-center ">
               <h1 className="mb-2">수업 종류</h1>
               <ul className="grid grid-cols-2 m-1 text-center ">
-                {teacher.category.slice(0, 4).map((category, key) => (
+                {items.category.slice(0, 4).map((category, key) => (
                   <li className="px-1" key={key}>
                     {category.length > 4 ? `${category.slice(0, 4)}...` : category}
                   </li>
@@ -35,7 +39,7 @@ const TeacherCard = () => {
             <span className="flex flex-col items-center ">
               <h1 className="mb-2">지역</h1>
               <ul className="grid grid-cols-2 m-1 text-center ">
-                {teacher.area.slice(0, 4).map((area, key) => (
+                {items.area.slice(0, 4).map((area, key) => (
                   <li className="px-1" key={key}>
                     {area.length > 4 ? `${area.slice(0, 4)}...` : area}
                   </li>
@@ -44,8 +48,8 @@ const TeacherCard = () => {
             </span>
 
             <div className="flex flex-col items-center">
-              <img src={teacher.user} className="w-[25px] h-[25px] rounded-lg" />
-              <span>{teacher.name}</span>
+              <img src={items.user} className="w-[25px] h-[25px] rounded-lg" />
+              <span>{items.name}</span>
             </div>
           </section>
         );
