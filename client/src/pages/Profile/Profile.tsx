@@ -1,4 +1,4 @@
-import ProfileBody from 'components/Profile/ProfileBody';
+import ProfileTabs from 'components/Profile/ProfileTabs';
 import ProfileHeader from 'components/Profile/ProfileHeader';
 
 export default function Profile() {
@@ -9,7 +9,7 @@ export default function Profile() {
   return (
     <>
       <ProfileHeader name={name} introduce={introduce} />
-      <ProfileBody />
+      <ProfileTabs />
     </>
   );
 }

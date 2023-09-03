@@ -34,7 +34,7 @@ export default function ProfileHeader({ name, introduce }: { name: string; intro
         <li className="right-0 flex justify-end m-5">
           <BsPencil />
         </li>
-        <li className="mx-4 text-xs leading-5">{introduce}</li>
+        <li className="mx-4 text-xs leading-5 min-h-[100px]">{introduce}</li>
       </ul>
       <div className="mt-10 border-b-2 border-grey-1"></div>
     </div>

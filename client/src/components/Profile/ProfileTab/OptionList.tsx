@@ -4,8 +4,8 @@ import { BsPencil } from 'react-icons/bs';
 
 export default function OptionList() {
   return (
-    <div>
-      <p className="mx-5 mb-5 text-sm font-bold">강좌형식</p>
+    <div className="m-5">
+      <p className="mb-5 text-sm font-bold ">강좌형식</p>
       <div className="flex flex-row items-center gap-1 mt-5 mb-10">
         <Checkbox
           color="green"
@@ -21,7 +21,7 @@ export default function OptionList() {
           오프라인
         </div>
       </div>
-      <p className="mx-5 mb-5 text-sm font-bold">강의료 ( 강사 소개에 노출됩니다 )</p>
+      <p className="mb-5 text-sm font-bold">강의료 ( 강사 소개에 노출됩니다 )</p>
       <ul>
         <li className="right-0 flex justify-end m-4">
           <BsPencil />
@@ -30,7 +30,7 @@ export default function OptionList() {
           강의료 입력 20자 이내 예)1시간 1인 50,000원
         </li>
       </ul>
-      <p className="mx-5 text-sm font-bold">학력 및 경력</p>
+      <p className="text-sm font-bold">학력 및 경력</p>
       <ul>
         <li className="right-0 flex justify-end m-4">
           <BsPencil />
@@ -42,7 +42,7 @@ export default function OptionList() {
           만점반의 강의를 진행했습니다. 이외에도 다수의 개인과외 경험이 있습니다.
         </li>
       </ul>
-      <p className="mx-5 text-sm font-bold">수업옵션</p>
+      <p className="text-sm font-bold">수업옵션</p>
       <ul>
         <li className="right-0 flex justify-end m-4">
           <BsPencil />
