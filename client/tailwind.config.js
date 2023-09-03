@@ -9,7 +9,9 @@ module.exports = withMT({
       serif: ['Nanum Gothic', 'sans-serif'],
       mono: ['Nanum Gothic', 'sans-serif'],
     },
-    fontSize: {
+
+  fontSize: {
+      xxs: '8px',
       xs: '12px',
       sm: '14px',
       base: '1rem',

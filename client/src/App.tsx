@@ -5,8 +5,6 @@ import { Sidebar } from 'components/Menu/Sidebar';
 import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 
-
-
 const App = () => {
   const [isMenu, setIsMenu] = useState<boolean>(false);
   const [isSearch, setIsSearch] = useState<boolean>(false);
@@ -15,7 +13,7 @@ const App = () => {
   const handlerSearch = (): void => setIsSearch(!isSearch);
 
   return (
-   <>
+    <>
       <main className="">
         <Header handlerMenu={handlerMenu} handlerSearch={handlerSearch} />
         {isMenu && <Sidebar handlerMenu={handlerMenu} />}
