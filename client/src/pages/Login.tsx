@@ -4,7 +4,7 @@ import { Button } from '@material-tailwind/react';
 const Login: React.FC = () => {
   return (
     <div className="flex flex-col item-center justify-center m-[12.5px]">
-      <div className="text-center font-bold text-4xl mb-4">로그인</div>
+      <div className="text-center font-bold text-2xl mb-4">로그인</div>
       <div className="flex flex-col item-center justify-center mx-3 py-3 bg-mint-1 rounded-lg">
         <form className="flex flex-col gap-2 p-4 m-1 rounded-lg">
           <label htmlFor="email" className="text-sm mx-2 mt-10">
@@ -29,7 +29,7 @@ const Login: React.FC = () => {
           />
           <Button
             type="submit"
-            className="text-white text-2xl bg-blue-1 rounded-lg shadow-lg shadow-gray-900/30 p-2 mx-2 mt-7 h-[50px] hover:bg-blue-2"
+            className="text-white text-xl bg-blue-1 rounded-lg shadow-lg shadow-gray-900/30 p-2 mx-2 mt-7 h-[50px] hover:bg-blue-2"
           >
             이메일 회원가입
           </Button>
@@ -41,7 +41,7 @@ const Login: React.FC = () => {
         </div>
         <Button
           type="submit"
-          className="text-2xl text-black bg-koko-1 rounded-lg shadow-lg shadow-gray-900/30 p-2 mb-5 mx-7 h-[50px] hover:bg-koko-2"
+          className="text-xl text-black bg-koko-1 rounded-lg shadow-lg shadow-gray-900/30 p-2 mb-5 mx-7 h-[50px] hover:bg-koko-2"
         >
           카카오 회원가입
         </Button>
