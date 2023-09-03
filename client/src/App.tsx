@@ -14,7 +14,7 @@ const App = () => {
   const handlerSearch = (): void => setIsSearch(!isSearch);
 
   return (
-   <>
+    <>
       <main className="">
         <Header handlerMenu={handlerMenu} handlerSearch={handlerSearch} />
         {isMenu && <Sidebar handlerMenu={handlerMenu} />}
