@@ -2,15 +2,16 @@ import { Card } from '@material-tailwind/react';
 import { Button, Input, Select, Option } from '@material-tailwind/react';
 
 type props = {
-  handlerSearc: () => void;
+
+  handlerSearch: () => void;
 };
 
-export const Search = ({ handlerSearc }: props) => {
+export const Search = ({ handlerSearch }: props) => {
   return (
     <>
       <div
         className="absolute top-0 w-[375px] h-screen bg-black bg-opacity-10 "
-        onClick={handlerSearc}
+        onClick={handlerSearch}
       ></div>
       <Card className="w-[350px] p-1 shadow-xl top-0 absolute">
         <form>
