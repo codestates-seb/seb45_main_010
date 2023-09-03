@@ -12,7 +12,7 @@ import {
 
 export const Footer = () => {
   return (
-    <footer className="absolute bottom-0 bg-grey-1 w-[375px] mt-10">
+    <footer className="absolute bottom-0 bg-grey-1 w-[375px]">
       <div className="grid grid-cols-2 gap-3 py-5">
         {MEMBER.map(({ title, member }, key) => (
           <div key={key} className="flex flex-col items-center">
