@@ -4,13 +4,13 @@ import { Accordion, AccordionHeader, AccordionBody, Button } from '@material-tai
 import { BsChevronDown } from 'react-icons/bs';
 
 export default function DetailPage() {
-  const [openAcc1, setOpenAcc1] = useState(true);
-  const [openAcc2, setOpenAcc2] = useState(true);
-  const [openAcc3, setOpenAcc3] = useState(true);
+  const [openIntroduce, setOpenIntroduce] = useState(true);
+  const [openOption, setOpenOption] = useState(true);
+  const [openCareer, setOpenCareer] = useState(true);
 
-  const handleOpenAcc1 = () => setOpenAcc1((cur) => !cur);
-  const handleOpenAcc2 = () => setOpenAcc2((cur) => !cur);
-  const handleOpenAcc3 = () => setOpenAcc3((cur) => !cur);
+  const handleOpenIntroduce = () => setOpenIntroduce((cur) => !cur);
+  const handleOpenOption = () => setOpenOption((cur) => !cur);
+  const handleOpenCareer = () => setOpenCareer((cur) => !cur);
 
   return (
     <>
@@ -62,8 +62,8 @@ export default function DetailPage() {
         </div>
         <div className="mb-10 border-b-2 border-grey-1"></div>
         <>
-          <Accordion open={openAcc1} className="px-5">
-            <AccordionHeader onClick={handleOpenAcc1} className="my-4 text-sm font-semibold">
+          <Accordion open={openIntroduce} className="px-5">
+            <AccordionHeader onClick={handleOpenIntroduce} className="my-4 text-sm font-semibold">
               자기소개
             </AccordionHeader>
             <AccordionBody className="text-xs font-normal leading-5 text-black">
@@ -72,8 +72,8 @@ export default function DetailPage() {
               내신 대비, 수능시험을 준비를 위한 타켓 수업등을 폭넓게 진행하고 있습니다.
             </AccordionBody>
           </Accordion>
-          <Accordion open={openAcc2} className="px-5">
-            <AccordionHeader onClick={handleOpenAcc2} className="my-4 text-sm font-semibold">
+          <Accordion open={openOption} className="px-5">
+            <AccordionHeader onClick={handleOpenOption} className="my-4 text-sm font-semibold">
               수업설명
             </AccordionHeader>
             <AccordionBody className="text-xs font-normal leading-5 text-black">
@@ -84,8 +84,8 @@ export default function DetailPage() {
               합니다. 테스트 비용이 있으며 수강시에 수강료에 산입하여 정산하여 드립니다.
             </AccordionBody>
           </Accordion>
-          <Accordion open={openAcc3} className="px-5">
-            <AccordionHeader onClick={handleOpenAcc3} className="my-4 text-sm font-semibold">
+          <Accordion open={openCareer} className="px-5">
+            <AccordionHeader onClick={handleOpenCareer} className="my-4 text-sm font-semibold">
               학력 및 경력
             </AccordionHeader>
             <AccordionBody className="text-xs font-normal leading-5 text-black">

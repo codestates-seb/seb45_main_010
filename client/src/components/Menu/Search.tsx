@@ -2,6 +2,7 @@ import { Card } from '@material-tailwind/react';
 import { Button, Input, Select, Option } from '@material-tailwind/react';
 
 type props = {
+
   handlerSearch: () => void;
 };
 
