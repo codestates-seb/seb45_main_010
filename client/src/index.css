@@ -9,13 +9,17 @@
     font-family: 'Nanum Gothic', sans-serif;
     display: flex;
     justify-content: center;
+    overflow-y: auto;
     background-color: rgb(209, 209, 209);
   }
   body {
+    position: relative;
+    padding-bottom: 200px;
     width: 375px;
-    height: auto;
+    min-height: 667px;
     background-color: white;
     border-radius: 10px;
+    overflow: hidden;
     box-sizing: border-box;
   }
 }

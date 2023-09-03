@@ -4,6 +4,20 @@ module.exports = withMT({
   content: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
   theme: {
     extend: {},
+    fontFamily: {
+      sans: ['Nanum Gothic', 'sans-serif'],
+      serif: ['Nanum Gothic', 'sans-serif'],
+      mono: ['Nanum Gothic', 'sans-serif'],
+    },
+
+    fontSize: {
+      xxs: '8px',
+      xs: '12px',
+      sm: '14px',
+      base: '1rem',
+      xl: '24px',
+      '2xl': '36px',
+    },
     colors: {
       mint: {
         1: '#E6F6F4',
