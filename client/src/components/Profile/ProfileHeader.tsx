@@ -3,6 +3,7 @@ import { BsPencil } from 'react-icons/bs';
 import userExampleImage from '../../assets/Image/user-example.png';
 import ProfileDropdown from './ProfileDropdown';
 
+
 export default function ProfileHeader({ name, introduce }: { name: string; introduce: string }) {
   const category = {
     subject: ['수학', '과학', '외국어', '국사', '사회'],
