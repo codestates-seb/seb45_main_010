@@ -18,40 +18,40 @@ export default function RequestList() {
           학생
         </Button>
       </div>
-      <div className="my-5 border rounded-lg w-320 bg-[#BEDEF1] border-[#BEDEF1] cursor-pointer hover:bg-blue-1 hover:border-blue-1 duration-300">
+      <div className="my-5 border rounded-lg w-320 bg-[#BEDEF1] border-blue-3 cursor-pointer hover:bg-blue-1 hover:border-blue-1 duration-300">
         <div className="flex flex-row items-center justify-between p-4">
-          <div className="text-[16px] font-semibold">수업요청</div>
+          <span className="text-[16px] font-semibold">수업요청</span>
           <div className="flex h-6 text-sm font-normal bg-white rounded-md">
-            <div className="flex items-center justify-center flex-1 p-2">수학</div>
-            <div className="flex items-center justify-center flex-1 w-20 p-2">홍길동</div>
+            <span className="flex items-center justify-center flex-1 p-2">수학</span>
+            <span className="flex items-center justify-center flex-1 w-20 p-2">홍길동</span>
           </div>
         </div>
         <div className="flex justify-end p-4 text-right">
-          <div>2023.09.01</div>
+          <span>2023.09.01</span>
         </div>
       </div>
       <div className="my-5 border rounded-lg w-320  bg-mint-2 border-[#BEDEF1] hover:bg-grey-1 duration-300">
         <div className="flex flex-row items-center justify-between p-4">
-          <div className="text-[16px] font-semibold">답변완료</div>
+          <span className="text-[16px] font-semibold">답변완료</span>
           <div className="flex h-6 text-sm font-normal bg-white rounded-md">
-            <div className="flex items-center justify-center flex-1 p-2">수학</div>
-            <div className="flex items-center justify-center flex-1 w-20 p-2">홍길동</div>
+            <span className="flex items-center justify-center flex-1 p-2">수학</span>
+            <span className="flex items-center justify-center flex-1 w-20 p-2">홍길동</span>
           </div>
         </div>
         <div className="flex justify-end p-4 text-right">
-          <div>2023.09.01</div>
+          <span>2023.09.01</span>
         </div>
       </div>
       <div className="my-5 border rounded-lg w-320  bg-mint-2 border-[#BEDEF1] hover:bg-grey-1 duration-300">
         <div className="flex flex-row items-center justify-between p-4">
-          <div className="text-[16px] font-semibold">취소완료</div>
+          <span className="text-[16px] font-semibold">취소완료</span>
           <div className="flex h-6 text-sm font-normal bg-white rounded-md">
-            <div className="flex items-center justify-center flex-1 p-2">과학</div>
-            <div className="flex items-center justify-center flex-1 w-20 p-2">홍길동</div>
+            <span className="flex items-center justify-center flex-1 p-2">과학</span>
+            <span className="flex items-center justify-center flex-1 w-20 p-2">홍길동</span>
           </div>
         </div>
         <div className="flex justify-end p-4 text-right">
-          <div>2023.09.01</div>
+          <span>2023.09.01</span>
         </div>
       </div>
     </div>

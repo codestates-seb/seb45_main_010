@@ -26,6 +26,7 @@ module.exports = withMT({
       blue: {
         1: '#2E93D1',
         2: '#2984BC',
+        3: '#BEDEF1',
       },
       green: '#008774',
       koko: {
