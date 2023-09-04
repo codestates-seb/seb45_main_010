@@ -55,5 +55,4 @@ const RequestList: React.FC<RequestListProps> = ({ requests, teacher }) => {
     </div>
   );
 };
-
 export default RequestList;

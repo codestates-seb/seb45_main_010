@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import RequestList from './ProfileTab/RequestList';
 import ScheduleList from './ProfileTab/ScheduleList';
 import OptionList from './ProfileTab/OptionList';
@@ -40,7 +40,7 @@ const ProfileTabs: React.FC<ProfileTabsProps> = ({
       ),
     },
   ];
-  const [currentId, setCurrentId] = useState<string | null>(null);
+
   const tabContainerHeight = 100;
   const tabsRef = useRef<HTMLDivElement | null>(null);
 
@@ -61,28 +61,17 @@ const ProfileTabs: React.FC<ProfileTabsProps> = ({
       const bottomOfStickyContent = offsetForSticky + tabContainerHeight;
 
       if (window.scrollY < offsetForSticky) {
-        tabsRef.current.style.position = 'relative';
-        tabsRef.current.style.top = '0px';
+        tabsRef.current.classList.remove('fixed');
+        tabsRef.current.classList.add('relative', 'top-0');
+        tabsRef.current.style.top = '0px'; // 위치조정 때문에 인라인 css 사용
       } else if (window.scrollY >= offsetForSticky && window.scrollY <= bottomOfStickyContent) {
-        tabsRef.current.style.position = 'relative';
-        tabsRef.current.style.top = `${window.scrollY - offsetForSticky}px`;
+        tabsRef.current.classList.remove('fixed', 'top-0');
+        tabsRef.current.classList.add('relative');
+        tabsRef.current.style.top = `${window.scrollY - offsetForSticky}px`; // 위치조정 때문에 인라인 css 사용
       } else {
-        tabsRef.current.style.position = 'fixed';
-        tabsRef.current.style.top = '48px';
-      }
-
-      const sections = document.querySelectorAll<HTMLElement>('.et-slide');
-      let newCurrentId: string | null = null;
-      sections.forEach((section) => {
-        if (
-          window.scrollY > section.offsetTop - tabContainerHeight &&
-          window.scrollY < section.offsetTop + section.offsetHeight
-        ) {
-          newCurrentId = section.id;
-        }
-      });
-      if (newCurrentId !== currentId) {
-        setCurrentId(newCurrentId);
+        tabsRef.current.classList.remove('relative');
+        tabsRef.current.classList.add('fixed', 'top-0');
+        tabsRef.current.style.top = '0px'; // 위치조정 때문에 인라인 css 사용
       }
     };
 
@@ -91,12 +80,12 @@ const ProfileTabs: React.FC<ProfileTabsProps> = ({
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [currentId, tabContainerHeight]);
+  }, [tabContainerHeight]);
 
   return (
     <>
       <section className="flex flex-col items-center justify-center text-center">
-        <div ref={tabsRef} className="flex w-[350px] h-10 shadow-md">
+        <div ref={tabsRef} className="flex w-[375px] h-10 shadow-md z-50">
           {tabData.map((tab) => (
             <a
               key={tab.id}

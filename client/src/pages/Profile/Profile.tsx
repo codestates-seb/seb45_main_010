@@ -33,7 +33,6 @@ const Profile = () => {
       setIsTeacher(user.teacher);
     }
   }, [user]);
-
   return (
     <>
       {user ? (

@@ -25,9 +25,9 @@
       "password": "test1234"
     },
     {
-      "name": "elena",
-      "email": "ljedoc@gmail.com",
-      "password": "dlwldms2",
+      "name": "elen",
+      "email": "elen@gmail.com",
+      "password": "test1234",
       "teacher": true,
       "id": "usMU8Hr"
     },
@@ -37,6 +37,76 @@
       "password": "test1234",
       "teacher": true,
       "id": "WhZZ1ec"
+    },
+    {
+      "name": "김웹",
+      "email": "spiderman@gmail.com",
+      "password": "test1234",
+      "teacher": true,
+      "id": "ItPEYJD"
+    },
+    {
+      "name": "김길동",
+      "email": "kildong@gmail.com",
+      "password": "test1234",
+      "teacher": true,
+      "id": "WF4dJAQ"
+    },
+    {
+      "name": "정수학",
+      "email": "jungsoo@gmail.com",
+      "password": "test1234",
+      "teacher": true,
+      "id": "FDWOu0g"
+    },
+    {
+      "name": "정수학",
+      "email": "jungsoo@gmail.com",
+      "password": "test1234",
+      "teacher": true,
+      "id": "xzCy_BQ"
+    },
+    {
+      "name": "황영어",
+      "email": "hwangyoung@gmail.com",
+      "password": "test1234",
+      "teacher": true,
+      "id": "sswn_0h"
+    },
+    {
+      "name": "황영어",
+      "email": "hwangyoung@gmail.com",
+      "password": "test1234",
+      "teacher": true,
+      "id": "tu47NTr"
+    },
+    {
+      "name": "김수학",
+      "email": "kimsoo@gmail.com",
+      "password": "test1234",
+      "teacher": true,
+      "id": "dTe9HHC"
+    },
+    {
+      "name": "김수학",
+      "email": "kimsoo@gmail.com",
+      "password": "test1234",
+      "teacher": true,
+      "id": "PU8vNJv"
+    },
+    {
+      "name": "윤기후",
+      "email": "yun@gmail.com",
+      "password": "53w51234",
+      "teacher": true,
+      "id": "nzvguDU"
+    },
+    {
+      "name": "김기리",
+      "email": "kiri@gmail.com",
+      "password": "test1234",
+      "teacher": true,
+      "id": "4M7lAHH"
     }
   ],
   "students": [
@@ -77,7 +147,137 @@
       "password": "test1234",
       "teacher": false,
       "id": "yHPHHwR"
+    },
+    {
+      "name": "강철",
+      "email": "ironman@gmail.com",
+      "password": "test1234",
+      "teacher": false,
+      "id": "w2Yh_x5"
+    },
+    {
+      "name": "김웹",
+      "email": "spiderman@gmail.com",
+      "password": "test1234",
+      "teacher": true,
+      "id": "tC4OHwm"
+    },
+    {
+      "name": "장미국",
+      "email": "captainAmerica@gmail.com",
+      "password": "test1234",
+      "teacher": false,
+      "id": "G09rYOc"
+    },
+    {
+      "name": "박자바",
+      "email": "parkjava@gmail.com",
+      "password": "test1234",
+      "teacher": false,
+      "id": "CGnfBmF"
+    },
+    {
+      "name": "국영수",
+      "email": "kookYoung@gmail.com",
+      "password": "test1234",
+      "teacher": false,
+      "id": "D9PzsKt"
+    },
+    {
+      "name": "국영수",
+      "email": "kookYoung@gmail.com",
+      "password": "test1234",
+      "teacher": false,
+      "id": "iNv3d_U"
+    },
+    {
+      "name": "김영철",
+      "email": "kimyoungchul@gmail.com",
+      "password": "12341234",
+      "teacher": false,
+      "id": "L2GwLy3"
+    },
+    {
+      "name": "김영철",
+      "email": "kimyoungchul@gmail.com",
+      "password": "12341234",
+      "teacher": false,
+      "id": "dvWHeZ0"
+    },
+    {
+      "name": "김영철",
+      "email": "kimyoungchul@gmail.com",
+      "password": "12341234",
+      "teacher": false,
+      "id": "l5CFO2H"
+    },
+    {
+      "name": "김영철",
+      "email": "kimyoungchul@gmail.com",
+      "password": "12341234",
+      "teacher": false,
+      "id": "WqkLoS9"
+    },
+    {
+      "name": "김영철",
+      "email": "kimyoungchul@gmail.com",
+      "password": "12341234",
+      "teacher": false,
+      "id": "bRIeC6n"
+    },
+    {
+      "name": "김기리",
+      "email": "kiri@gmail.com",
+      "password": "tesd",
+      "teacher": false,
+      "id": "k2lqmDG"
+    },
+    {
+      "name": "김기리",
+      "email": "kiri@gmail.com",
+      "password": "tesd",
+      "teacher": false,
+      "id": "Sc6nsCL"
+    },
+    {
+      "name": "김기리",
+      "email": "kiri2@gmail.com",
+      "password": "test1234",
+      "teacher": false,
+      "id": "LdrvJk-"
+    },
+    {
+      "name": "김기리",
+      "email": "kiri3@gmail.com",
+      "password": "test1234",
+      "teacher": false,
+      "id": "X0oDDNZ"
+    },
+    {
+      "name": "김기리",
+      "email": "kiri3@gmail.com",
+      "password": "test1234",
+      "teacher": false,
+      "id": "zzS79Oe"
+    },
+    {
+      "name": "김기리",
+      "email": "kiri4@gmail.com",
+      "password": "test1234",
+      "teacher": false,
+      "id": "lT6rFJn"
     }
+  ],
+  "verify": [
+    "elena@gmail.com",
+    "json@gmail.com",
+    "stephan@gmail.com",
+    "kimcoding@gmail.com",
+    "parkhacker@gmail.com",
+    "spiderman@gmail.com",
+    "captainAmerica@gmail.com",
+    "kangmin@gmail.com",
+    "ironman@gmail.com"
   ],
   "login": [
     {

@@ -2,7 +2,8 @@ import { Button } from '@material-tailwind/react';
 // import { BsChevronDown } from 'react-icons/bs';
 import Calendar from './Calendar';
 
-export default function ScheduleList() {
+
+const ScheduleList = () => {
   return (
     <div className="my-10">
       <p className="mx-5 mb-5 text-sm font-bold ">수업가능 일정설정</p>
@@ -26,4 +27,6 @@ export default function ScheduleList() {
       </div>
     </div>
   );
-}
+};
+
+export default ScheduleList;

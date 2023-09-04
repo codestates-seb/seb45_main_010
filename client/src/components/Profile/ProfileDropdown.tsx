@@ -2,15 +2,8 @@ import { useState } from 'react';
 import { Menu, MenuHandler, MenuList, MenuItem, Button } from '@material-tailwind/react';
 import { BsX, BsChevronDown } from 'react-icons/bs';
 
-export default function ProfileDropdown({
-  title,
-  selections,
-  categories,
-}: {
-  title: string;
-  selections: string[];
-  categories: string[];
-}) {
+
+const ProfileDropdown = ({ title, selections, categories, }: { title: string; selections: string[]; categories: string[]; }) => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [selectedCategory, setSelectedCategory] = useState<string>('');
   const [tags, setTags] = useState<string[]>(categories || []);
@@ -64,4 +57,6 @@ export default function ProfileDropdown({
       </div>
     </div>
   );
-}
+};
+
+export default ProfileDropdown;

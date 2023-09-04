@@ -6,7 +6,7 @@ const Login: React.FC = () => {
   return (
     <div className="flex flex-col item-center justify-center m-[12.5px]">
       <div className="text-center font-bold text-2xl mb-4">로그인</div>
-      <div className="flex flex-col item-center justify-center mx-3 py-3 bg-mint-1 rounded-lg">
+      <div className="flex flex-col item-center justify-center mx-3 py-3 rounded-lg">
         <form className="flex flex-col gap-2 p-4 m-1 rounded-lg">
           <label htmlFor="email" className="text-sm mx-2 mt-10">
             이메일
