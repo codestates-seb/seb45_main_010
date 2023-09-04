@@ -7,9 +7,12 @@ import { UserRequest } from 'components/Type/User';
 type ProfileTabsProps = {
   requests: UserRequest[];
   job: string;
+  lectureFee: string;
+  career: string;
+  option: string;
 };
 
-const ProfileTabs: React.FC<ProfileTabsProps> = ({ requests, job }) => {
+const ProfileTabs: React.FC<ProfileTabsProps> = ({ requests, job, lectureFee, career, option }) => {
   type tabData = {
     id: string;
     title: string;
@@ -22,8 +25,14 @@ const ProfileTabs: React.FC<ProfileTabsProps> = ({ requests, job }) => {
       title: '내 강의 조회',
       subtitle: <RequestList requests={requests} job={job} />,
     },
-    { id: 'schedule', title: '스케쥴 관리', subtitle: <ScheduleList /> },
-    { id: 'option', title: 'Profile 관리', subtitle: <OptionList /> },
+    ...(job === 'teachers'
+      ? [{ id: 'schedule', title: '스케쥴 관리', subtitle: <ScheduleList /> }]
+      : []),
+    {
+      id: 'option',
+      title: 'Profile 관리',
+      subtitle: <OptionList job={job} lectureFee={lectureFee} career={career} option={option} />,
+    },
   ];
   const [currentId, setCurrentId] = useState<string | null>(null);
   const tabContainerHeight = 100;
