@@ -25,9 +25,9 @@
       "password": "test1234"
     },
     {
-      "name": "elena",
-      "email": "ljedoc@gmail.com",
-      "password": "dlwldms2",
+      "name": "elen",
+      "email": "elen@gmail.com",
+      "password": "test1234",
       "teacher": true,
       "id": "usMU8Hr"
     },
@@ -37,6 +37,13 @@
       "password": "test1234",
       "teacher": true,
       "id": "WhZZ1ec"
+    },
+    {
+      "name": "김웹",
+      "email": "spiderman@gmail.com",
+      "password": "test1234",
+      "teacher": true,
+      "id": "ItPEYJD"
     }
   ],
   "students": [
@@ -77,8 +84,39 @@
       "password": "test1234",
       "teacher": false,
       "id": "yHPHHwR"
+    },
+    {
+      "name": "강철",
+      "email": "ironman@gmail.com",
+      "password": "test1234",
+      "teacher": false,
+      "id": "w2Yh_x5"
+    },
+    {
+      "name": "김웹",
+      "email": "spiderman@gmail.com",
+      "password": "test1234",
+      "teacher": true,
+      "id": "tC4OHwm"
+    },
+    {
+      "name": "장미국",
+      "email": "captainAmerica@gmail.com",
+      "password": "test1234",
+      "teacher": false,
+      "id": "G09rYOc"
     }
   ],
+  "verify": {
+    "elena@gmail.com": true,
+    "james@gmail.com": true,
+    "stephan@gmail.com": true,
+    "test@test.com": true,
+    "elen@gmail.com": true,
+    "kangmin@gmail.com": true,
+    "alwaystrue@gmail.com": true,
+    "captainAmerica@gmail.com": true
+  },
   "login": [
     {
       "id": "1",

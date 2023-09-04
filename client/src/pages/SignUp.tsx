@@ -14,6 +14,7 @@ export type Member = {
 const checkEmailDuplicate = async (email: string): Promise<boolean | undefined> => {
   try {
     const response = await axios.get<boolean>(`http://localhost:8080/students/verify/${email}`); //백엔드 API
+    console.log('중복확인요청', response.data);
     return response.data;
   } catch (error) {
     console.log('Email중복 확인 Axios요청', error);
@@ -68,9 +69,18 @@ const SignUp: React.FC = () => {
   };
 
   useEffect(() => {
-    if (userInfo.name && userInfo.email && userInfo.password) {
+    if (userInfo.name && userInfo.email && userInfo.password && !userInfo.teacher) {
       axios
         .post('http://localhost:8080/students', userInfo)
+        .then((response) => {
+          console.log('회원가입 비동기요청', response.data);
+        })
+        .catch((error) => {
+          console.log('회원가입 비동기요청', error);
+        });
+    } else if (userInfo.name && userInfo.email && userInfo.password && userInfo.teacher) {
+      axios
+        .post('http://localhost:8080/teachers', userInfo)
         .then((response) => {
           console.log('회원가입 비동기요청', response.data);
         })
@@ -118,7 +128,7 @@ const SignUp: React.FC = () => {
   return (
     <div className="flex flex-col item-center justify-center m-[12.5px]">
       <div className="text-center font-bold text-2xl mb-4">회원가입</div>
-      <div className="flex flex-col item-center justify-center mx-3 py-3 bg-mint-1 rounded-lg">
+      <div className="flex flex-col item-center justify-center mx-3 py-3 rounded-lg">
         <form className="flex flex-col gap-2 p-4 m-1 rounded-lg" onSubmit={handleSubmit}>
           <label htmlFor="name" className="text-sm mx-4">
             이름
@@ -141,14 +151,15 @@ const SignUp: React.FC = () => {
               type="email"
               id="email"
               name="email"
-              className=" border text-xs rounded-lg w-[90%] ml-[12px] mr-1 p-3 h-[50px]"
+              className="border border text-xs rounded-lg w-[90%] ml-[12px] mr-1 p-3 h-[50px]"
               placeholder="이메일을 입력하세요"
               value={userEmail}
               onChange={handleuserEmailChange}
             />
             <button
               type="button"
-              className="text-xs text-gray-600 border bg-gray-300 shadow-lg rounded-lg hover:bg-gray-500 hover:text-white h-[40px] w-[40px] mt-1"
+              className="text-xs text-gray-600 border bg-gray-300 shadow-lg 
+              rounded-lg hover:bg-gray-500 hover:text-white h-[40px] w-[40px] mt-1"
               onClick={handleEmailCheck}
             >
               <div>중복</div>
