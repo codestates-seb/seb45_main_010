@@ -4,7 +4,7 @@ import userExampleImage from '../../assets/Image/user-example.png';
 import ProfileDropdown from './ProfileDropdown';
 import { Link } from 'react-router-dom';
 
-export default function ProfileHeader({ name, introduce }: { name: string; introduce: string }) {
+const ProfileHeader = ({ name, introduce }: { name: string; introduce: string }) => {
   const category = {
     subject: ['수학', '과학', '외국어', '국사', '사회'],
     area: ['서울', '강서', '강원', '강남', '강북', '충북', '제주'],
@@ -42,4 +42,6 @@ export default function ProfileHeader({ name, introduce }: { name: string; intro
       <div className="mt-10 border-b-2 border-grey-1"></div>
     </div>
   );
-}
+};
+
+export default ProfileHeader;
