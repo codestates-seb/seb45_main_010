@@ -3,16 +3,16 @@ import { BsPencil } from 'react-icons/bs';
 // import { TfiSave } from "react-icons/tfi";
 
 type OptionListProps = {
-  job: string;
+  teacher: boolean;
   lectureFee: string;
   career: string;
   option: string;
 };
 
-const OptionList: React.FC<OptionListProps> = ({ job, lectureFee, career, option }) => {
+const OptionList: React.FC<OptionListProps> = ({ teacher, lectureFee, career, option }) => {
   return (
     <>
-      {job === 'teachers' ? (
+      {teacher ? (
         <div className="m-5">
           <p className="mb-5 text-sm font-bold ">강좌형식</p>
           <div className="flex flex-row items-center gap-1 mt-5 mb-10">

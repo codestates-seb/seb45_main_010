@@ -127,6 +127,91 @@
       ]
     }
   ],
+  "profile": [
+    {
+      "name": "김뚱땅",
+      "email": "junghyun@gmail.com",
+      "password": "test1234",
+      "teacher": false,
+      "id": "yHPHHwR",
+      "area": ["강동", "강남"],
+      "category": ["국어"],
+      "classMethod": {
+        "onLine": true,
+        "offLine": true
+      },
+      "introduce": "저는 서울대학교를 목표로 하고 있는 고등학교 3학년입니다.꿈은 이루어진다~~~~",
+      "date": "2023.01.01",
+      "option": "서울대학교를 가기 위해 모든 과목 수업 원합니다! 국영수사과 화이팅~",
+
+      "request": [
+        {
+          "id": "usMU8Hr7",
+          "name": "홍길동",
+          "requestcategory": ["수학"],
+          "note": "수업요청",
+          "date": "2023.09.01"
+        },
+        {
+          "id": "usMU8Hr8",
+          "name": "홍나라",
+          "requestcategory": ["국어"],
+          "note": "답변완료",
+          "date": "2023.09.01"
+        },
+        {
+          "id": "usMU8Hr9",
+          "name": "김뚱땅",
+          "requestcategory": ["과학"],
+          "note": "취소완료",
+          "date": "2023.09.01"
+        }
+      ]
+    },
+    {
+      "name": "홍길동",
+      "email": "ljedoc@gmail.com",
+      "password": "dlwldms2",
+      "teacher": true,
+      "id": "usMU8Hr",
+      "area": ["서울", "강남"],
+      "category": ["수학", "과학"],
+      "classMethod": {
+        "onLine": true,
+        "offLine": false
+      },
+      "introduce": "저는 서울대학교 수학과를 졸업했으며, 10년 이상 입시 학원 및 개인 지도를 해온 경력을 가지고 있습니다. 초등 및 중학수학을 비롯한 수학의 기초다지기, 고등수학 및 심화학습, 내신 대비, 수능시험을 준비를 위한 타켓 수업등을 폭넓게 진행하고 있습니다.",
+      "date": "2023.01.01",
+      "lectureFee": "1시간 1인 50,000원",
+      "career": "저는 MIT 공대를 졸업했습니다. 과외와는 아무 상관이 없지만 자랑입니다.",
+      "option": "초등학생, 중학생 기초 수업은 내신 진행시 1회 3시간으로 수업하며 9시 이후에는 수업하지 않습니다. 레벨 테스트는 무료로 진행합니다. 고3의 수능대비반의 경우는 타켓 수업(족집게 문제풀이)이 별도로 이루어지며, 시간당 2만원의 추가비용이 있습니다. (교재제공) 물리 수업은 팀으로 진행하며, 현재 진행중인 팀에 합류하기 위해서는 별도의 테스트를 진행하여야 합니다. 테스트 비용이 있으며 수강시에 수강료에 산입하여 정산하여 드립니다.",
+
+      "request": [
+        {
+          "id": "usMU8Hr1",
+          "name": "홍길동",
+          "requestcategory": ["수학"],
+          "note": "수업요청",
+          "date": "2023.09.01"
+        },
+        {
+          "id": "usMU8Hr2",
+          "name": "홍나라",
+          "requestcategory": ["국어"],
+          "note": "답변완료",
+          "date": "2023.09.01"
+        },
+        {
+          "id": "usMU8Hr3",
+          "name": "김뚱땅",
+          "requestcategory": ["과학"],
+          "note": "취소완료",
+          "date": "2023.09.01"
+        }
+      ]
+    }
+  ],
+
   "login": [
     {
       "id": "1",

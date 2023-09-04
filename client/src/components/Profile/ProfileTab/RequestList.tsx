@@ -2,15 +2,15 @@ import { Button } from '@material-tailwind/react';
 import { UserRequest } from 'components/Type/User';
 
 type RequestListProps = {
-  job: string;
+  teacher: boolean;
   requests: UserRequest[];
 };
 
-const RequestList: React.FC<RequestListProps> = ({ requests, job }) => {
+const RequestList: React.FC<RequestListProps> = ({ requests, teacher }) => {
   return (
     <div className="my-5">
       <p className="flex-1 mx-5 mb-4 text-sm font-bold">
-        {job === 'teachers' ? '강의요청목록' : '수업요청목록'}
+        {teacher ? '강의요청목록' : '수업요청목록'}
       </p>
       <div className="flex justify-end text-right">
         <Button
@@ -23,7 +23,7 @@ const RequestList: React.FC<RequestListProps> = ({ requests, job }) => {
           className="flex items-center mx-1 h-7 p-2 text-[8px] text-gray-700 bg-white rounded-xl border-mint-2"
           variant="outlined"
         >
-          {job === 'students' ? '강사' : '학생'}
+          {!teacher ? '강사' : '학생'}
         </Button>
       </div>
       {requests &&

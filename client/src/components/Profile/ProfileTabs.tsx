@@ -6,13 +6,19 @@ import { UserRequest } from 'components/Type/User';
 
 type ProfileTabsProps = {
   requests: UserRequest[];
-  job: string;
+  teacher: boolean;
   lectureFee: string;
   career: string;
   option: string;
 };
 
-const ProfileTabs: React.FC<ProfileTabsProps> = ({ requests, job, lectureFee, career, option }) => {
+const ProfileTabs: React.FC<ProfileTabsProps> = ({
+  requests,
+  teacher,
+  lectureFee,
+  career,
+  option,
+}) => {
   type tabData = {
     id: string;
     title: string;
@@ -23,15 +29,15 @@ const ProfileTabs: React.FC<ProfileTabsProps> = ({ requests, job, lectureFee, ca
     {
       id: 'request',
       title: '내 강의 조회',
-      subtitle: <RequestList requests={requests} job={job} />,
+      subtitle: <RequestList requests={requests} teacher={teacher} />,
     },
-    ...(job === 'teachers'
-      ? [{ id: 'schedule', title: '스케쥴 관리', subtitle: <ScheduleList /> }]
-      : []),
+    ...(teacher ? [{ id: 'schedule', title: '스케쥴 관리', subtitle: <ScheduleList /> }] : []),
     {
       id: 'option',
       title: 'Profile 관리',
-      subtitle: <OptionList job={job} lectureFee={lectureFee} career={career} option={option} />,
+      subtitle: (
+        <OptionList teacher={teacher} lectureFee={lectureFee} career={career} option={option} />
+      ),
     },
   ];
   const [currentId, setCurrentId] = useState<string | null>(null);

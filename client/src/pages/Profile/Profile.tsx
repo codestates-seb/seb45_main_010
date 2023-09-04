@@ -9,28 +9,28 @@ const Profile = () => {
   const [lectureFee, setLectureFee] = useState<string>('');
   const [career, setCareer] = useState<string>('');
   const [option, setOption] = useState<string>('');
-  const [job, setJob] = useState<'teachers' | 'students'>('teachers');
-  const userId = 'WhZZ1ec';
+  const [isteacher, setIsTeacher] = useState<boolean>(true);
+  const userId = 'usMU8Hr';
   // const userId = 'yHPHHwR';
-  // const job = 'students';
 
   useEffect(() => {
     const userData = async () => {
       try {
-        const response = await axios.get<User>(`http://localhost:8081/${job}/${userId}`);
+        const response = await axios.get<User>(`http://localhost:8081/profile/${userId}`);
         setUser(response.data);
       } catch (error) {
         console.log('UserData GET error', error);
       }
     };
     userData();
-  }, [job, userId]);
+  }, [isteacher, userId]);
 
   useEffect(() => {
     if (user) {
       setLectureFee(user.lectureFee);
       setCareer(user.career);
       setOption(user.option);
+      setIsTeacher(user.teacher);
     }
   }, [user]);
 
@@ -41,7 +41,7 @@ const Profile = () => {
           <ProfileHeader name={user.name} introduce={user.introduce} user={user} />
           <ProfileTabs
             requests={user.request}
-            job={job}
+            teacher={user.teacher}
             lectureFee={lectureFee}
             career={career}
             option={option}
