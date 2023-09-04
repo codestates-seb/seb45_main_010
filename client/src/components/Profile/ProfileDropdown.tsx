@@ -5,13 +5,15 @@ import { BsX, BsChevronDown } from 'react-icons/bs';
 export default function ProfileDropdown({
   title,
   selections,
+  categories,
 }: {
   title: string;
   selections: string[];
+  categories: string[];
 }) {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [selectedCategory, setSelectedCategory] = useState<string>('');
-  const [tags, setTags] = useState<string[]>([]);
+  const [tags, setTags] = useState<string[]>(categories || []);
 
   const handleCategorySelect = (item: string) => {
     setSelectedCategory(item);

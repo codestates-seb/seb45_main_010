@@ -1,16 +1,40 @@
-
 import ProfileTabs from 'components/Profile/ProfileTabs';
 import ProfileHeader from 'components/Profile/ProfileHeader';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import { User } from 'components/Type/User';
 
-export default function Profile() {
-  const name: string = '홍길동';
-  const introduce: string = `저는 서울대학교 수학과를 졸업했으며, 10년 이상 입시 학원 및 개인 지도를 해온 경력을 가지고
-  있습니다. 초등 및 중학수학을 비롯한 수학의 기초다지기, 고등수학 및 심화학습, 내신 대비,
-  수능시험을 준비를 위한 타켓 수업등을 폭넓게 진행하고 있습니다.`;
+const Profile = () => {
+  const [user, setUser] = useState<User | null>(null);
+  // const [job, setJob] = useState<'teachers' | 'students'>('teachers');
+  // const userId = 'WhZZ1ec';
+  const userId = 'yHPHHwR';
+  const job = 'students';
+
+  useEffect(() => {
+    const userData = async () => {
+      try {
+        const response = await axios.get<User>(`http://localhost:8081/${job}/${userId}`);
+        setUser(response.data);
+      } catch (error) {
+        console.log('UserData GET error', error);
+      }
+    };
+    userData();
+  }, [job, userId]);
+
   return (
     <>
-      <ProfileHeader name={name} introduce={introduce} />
-      <ProfileTabs />
+      {user ? (
+        <>
+          <ProfileHeader name={user.name} introduce={user.introduce} user={user} />
+          <ProfileTabs requests={user.request} job={job} />
+        </>
+      ) : (
+        <div>Loading...</div>
+      )}
     </>
   );
-}
+};
+
+export default Profile;
