@@ -5,8 +5,7 @@ import { Button } from '@material-tailwind/react';
 import { ko } from 'date-fns/locale';
 
 export type TimeSlot = {
-  start: Date;
-  end: Date;
+  timeRange: string;
 };
 
 function generateTimeSlots(startDate: string): TimeSlot[] {
@@ -20,7 +19,12 @@ function generateTimeSlots(startDate: string): TimeSlot[] {
     const end = new Date(startDate);
     end.setHours(hour + 1, 0, 0);
 
-    timeSlotsPerDay.push({ start, end });
+    const timeRange = `${start.toLocaleTimeString([], {
+      hour: '2-digit',
+      minute: '2-digit',
+    })}~${end.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`;
+
+    timeSlotsPerDay.push({ timeRange });
   }
 
   return timeSlotsPerDay;
@@ -68,6 +72,7 @@ const Calendar = () => {
   };
   const handleTimeSlotClick = (timeSlot: TimeSlot): void => {
     setSelcetedTimeSlots((prevSlots) => [...prevSlots, timeSlot]);
+    console.log(selectedTimeSlots);
   };
 
   return (
@@ -92,10 +97,7 @@ const Calendar = () => {
               key={index}
               onClick={() => handleTimeSlotClick(slot)}
             >
-              <span className="flex-1 text-center">
-                {slot.start.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} -
-                {slot.end.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-              </span>
+              <span className="flex-1 text-center">{slot.timeRange}</span>
             </Button>
           ))}
           <span>선택한 시간 목록</span>
@@ -105,10 +107,7 @@ const Calendar = () => {
               size="sm"
               key={index}
             >
-              <span className="flex-1 text-center">
-                {slot.start.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} -
-                {slot.end.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-              </span>
+              <span className="flex-1 text-center">{slot.timeRange}</span>
             </Button>
           ))}
         </div>
