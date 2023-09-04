@@ -3,7 +3,7 @@ import { BsChevronDown } from 'react-icons/bs';
 import DatePicker from 'react-datepicker';
 import { useState } from 'react';
 
-export default function ScheduleList() {
+const ScheduleList = () => {
   const [startDate, setStartDate] = useState(new Date());
   return (
     <div className="my-10">
@@ -46,4 +46,6 @@ export default function ScheduleList() {
       </div>
     </div>
   );
-}
+};
+
+export default ScheduleList;

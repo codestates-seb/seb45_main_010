@@ -4,7 +4,7 @@ import { Accordion, AccordionHeader, AccordionBody, Button } from '@material-tai
 import { BsChevronDown } from 'react-icons/bs';
 import { ReqModal } from 'components/Modal/ReqModal';
 
-export default function DetailPage() {
+const DetailPage = () => {
   const [openIntroduce, setOpenIntroduce] = useState(true);
   const [openOption, setOpenOption] = useState(true);
   const [openCareer, setOpenCareer] = useState(true);
@@ -131,4 +131,6 @@ export default function DetailPage() {
       </div>
     </>
   );
-}
+};
+
+export default DetailPage;

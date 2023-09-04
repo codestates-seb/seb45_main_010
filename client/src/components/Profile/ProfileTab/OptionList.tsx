@@ -2,7 +2,7 @@ import { Checkbox } from '@material-tailwind/react';
 import { BsPencil } from 'react-icons/bs';
 // import { TfiSave } from "react-icons/tfi";
 
-export default function OptionList() {
+const OptionList = () => {
   return (
     <div className="m-5">
       <p className="mb-5 text-sm font-bold ">강좌형식</p>
@@ -57,4 +57,6 @@ export default function OptionList() {
       </ul>
     </div>
   );
-}
+};
+
+export default OptionList;

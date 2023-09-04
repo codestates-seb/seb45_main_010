@@ -1,6 +1,6 @@
 import { Button } from '@material-tailwind/react';
 
-export default function RequestList() {
+const RequestList = () => {
   return (
     <div className="my-5">
       <p className="flex-1 mx-5 mb-4 text-sm font-bold">강의요청목록</p>
@@ -56,4 +56,5 @@ export default function RequestList() {
       </div>
     </div>
   );
-}
+};
+export default RequestList;
