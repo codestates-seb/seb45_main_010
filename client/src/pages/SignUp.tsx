@@ -141,7 +141,7 @@ const SignUp: React.FC = () => {
               type="email"
               id="email"
               name="email"
-              className="border border text-xs rounded-lg w-[90%] ml-[12px] mr-1 p-3 h-[50px]"
+              className=" border text-xs rounded-lg w-[90%] ml-[12px] mr-1 p-3 h-[50px]"
               placeholder="이메일을 입력하세요"
               value={userEmail}
               onChange={handleuserEmailChange}

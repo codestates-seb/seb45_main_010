@@ -15,8 +15,8 @@ export const ReqModal = () => {
 
   return (
     <>
-      <Button onClick={handleOpen} variant="gradient">
-        Open Dialog
+      <Button onClick={handleOpen} variant="gradient" className="flex items-center h-10 text-sm">
+        강의 신청하기
       </Button>
       <Dialog
         size="xs"

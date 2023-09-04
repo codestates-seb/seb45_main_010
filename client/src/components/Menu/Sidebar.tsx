@@ -18,19 +18,23 @@ export const Sidebar = ({ handlerMenu }: props) => {
         <List className="grid items-center grid-cols-2 p-4 border-b-2 border-grey-3">
           <ListItem className="flex items-center justify-center">
             <AiOutlineUser className="mr-2 text-xl" />
-            <Typography className="mt-1" variant="h5" color="blue-gray">
-              로그인
-            </Typography>
+            <Link to={'/Login'} onClick={handlerMenu}>
+              <Typography className="mt-1" variant="h5" color="blue-gray">
+                로그인
+              </Typography>
+            </Link>
           </ListItem>
           <ListItem className="flex justify-center ">
             <AiOutlineUserAdd className="mr-2 text-xl " />
-            <Typography className="mt-1" variant="h5" color="blue-gray">
-              회원가입
-            </Typography>
+            <Link to={'/Signup'} onClick={handlerMenu}>
+              <Typography className="mt-1" variant="h5" color="blue-gray">
+                회원가입
+              </Typography>
+            </Link>
           </ListItem>
         </List>
         <List>
-          <Link to={'/list'} onClick={handlerMenu}>
+          <Link to={'/'} onClick={handlerMenu}>
             <ListItem>
               <ListItemPrefix>
                 <PresentationChartBarIcon className="w-5 h-5" />
@@ -38,12 +42,14 @@ export const Sidebar = ({ handlerMenu }: props) => {
               강사 목록
             </ListItem>
           </Link>
-          <ListItem>
-            <ListItemPrefix>
-              <UserCircleIcon className="w-5 h-5" />
-            </ListItemPrefix>
-            내 정보
-          </ListItem>
+          <Link to={'/Profile'} onClick={handlerMenu}>
+            <ListItem>
+              <ListItemPrefix>
+                <UserCircleIcon className="w-5 h-5" />
+              </ListItemPrefix>
+              내 정보
+            </ListItem>
+          </Link>
         </List>
       </Card>
     </>

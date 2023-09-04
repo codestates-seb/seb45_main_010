@@ -2,6 +2,7 @@ import userExampleImage from '../../assets/Image/user-example.png';
 import { useState } from 'react';
 import { Accordion, AccordionHeader, AccordionBody, Button } from '@material-tailwind/react';
 import { BsChevronDown } from 'react-icons/bs';
+import { ReqModal } from 'components/Modal/ReqModal';
 
 export default function DetailPage() {
   const [openIntroduce, setOpenIntroduce] = useState(true);
@@ -126,7 +127,7 @@ export default function DetailPage() {
       </div>
       <div className="fixed bottom-5 h-[50px] flex items-center justify-between px-5 w-[375px] bg-[#008774]">
         <div className="text-sm text-white">1회 50,000원 / 1시간</div>
-        <Button className="flex items-center h-10 text-sm">강의신청하기</Button>
+        <ReqModal />
       </div>
     </>
   );

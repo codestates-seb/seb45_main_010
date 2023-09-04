@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button } from '@material-tailwind/react';
+import { Link } from 'react-router-dom';
 
 const Login: React.FC = () => {
   return (
@@ -17,9 +18,11 @@ const Login: React.FC = () => {
             className="border text-xs rounded-lg p-3 mx-2 h-[50px]"
             placeholder="이메일을 입력하세요"
           />
+
           <label htmlFor="password" className="text-sm mx-2 mt-5">
             비밀번호
           </label>
+
           <input
             type="password"
             id="password"
@@ -35,9 +38,13 @@ const Login: React.FC = () => {
           </Button>
         </form>
         <div className="flex item-center justify-center mb-3 p-3">
-          <div className="text-xs text-gray-600 ">비밀번호찾기</div>
+          <Link to={'/GetPassword'}>
+            <div className="text-xs text-gray-600 ">비밀번호찾기</div>{' '}
+          </Link>
           <div className="text-xs text-gray-600 px-2">|</div>
-          <div className="text-xs text-gray-600 pr-3">회원 가입</div>
+          <Link to={'/Signup'}>
+            <div className="text-xs text-gray-600 pr-3">회원 가입</div>
+          </Link>
         </div>
         <Button
           type="submit"

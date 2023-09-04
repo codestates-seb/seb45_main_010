@@ -2,7 +2,7 @@ import { Button } from '@material-tailwind/react';
 import { BsPencil } from 'react-icons/bs';
 import userExampleImage from '../../assets/Image/user-example.png';
 import ProfileDropdown from './ProfileDropdown';
-
+import { Link } from 'react-router-dom';
 
 export default function ProfileHeader({ name, introduce }: { name: string; introduce: string }) {
   const category = {
@@ -20,12 +20,14 @@ export default function ProfileHeader({ name, introduce }: { name: string; intro
           ></img>
           <div className="flex flex-col gap-2">
             <p className="ml-3 text-2xl">{name}</p>
-            <Button
-              className="font-normal text-black w-[100px] ml-3 bg-mint-2 rounded-xl"
-              size="sm"
-            >
-              개인정보변경
-            </Button>
+            <Link to={'/Private'}>
+              <Button
+                className="font-normal text-black w-[100px] ml-3 bg-mint-2 rounded-xl"
+                size="sm"
+              >
+                개인정보변경
+              </Button>
+            </Link>
           </div>
         </div>
       </div>
