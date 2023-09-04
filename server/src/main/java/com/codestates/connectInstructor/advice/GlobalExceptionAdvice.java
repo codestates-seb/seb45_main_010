@@ -1,6 +1,5 @@
 package com.codestates.connectInstructor.advice;
 
-
 import com.codestates.connectInstructor.exception.BusinessLogicException;
 import com.codestates.connectInstructor.response.ErrorResponse;
 import org.springframework.http.HttpStatus;
@@ -22,7 +21,6 @@ public class GlobalExceptionAdvice {
 
         return response;
     }
-
     @ExceptionHandler
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ErrorResponse handleConstraintViolationException(
@@ -31,18 +29,14 @@ public class GlobalExceptionAdvice {
 
         return response;
     }
-
     @ExceptionHandler
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public ErrorResponse handleBusinessLogicException(BusinessLogicException e) {
         System.out.println(e.getExceptionCode().getCode());
         System.out.println(e.getMessage());
 
-        // TODO GlobalExceptionAdvice 기능 추가 1
         return ErrorResponse.of(e.getExceptionCode() );
     }
-
-    // TODO GlobalExceptionAdvice 기능 추가 2
     @ExceptionHandler
     @ResponseStatus(HttpStatus.METHOD_NOT_ALLOWED)
     public ErrorResponse handleHttpRequestMethodNotSupportedException(HttpRequestMethodNotSupportedException e){
@@ -52,8 +46,6 @@ public class GlobalExceptionAdvice {
 
         return ErrorResponse.of( hs );
     }
-
-    // TODO GlobalExceptionAdvice 기능 추가 3
     @ExceptionHandler
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ErrorResponse handelException( NullPointerException e){
@@ -62,7 +54,5 @@ public class GlobalExceptionAdvice {
         System.out.println( hs.getReasonPhrase());
 
         return ErrorResponse.of( hs );
-
     }
-
 }
