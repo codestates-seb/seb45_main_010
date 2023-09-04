@@ -2,10 +2,11 @@ import { useState } from 'react';
 import { Menu, MenuHandler, MenuList, MenuItem, Button } from '@material-tailwind/react';
 import { BsX, BsChevronDown } from 'react-icons/bs';
 
-const ProfileDropdown = ({ title, selections }: { title: string; selections: string[] }) => {
+
+const ProfileDropdown = ({ title, selections, categories, }: { title: string; selections: string[]; categories: string[]; }) => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [selectedCategory, setSelectedCategory] = useState<string>('');
-  const [tags, setTags] = useState<string[]>([]);
+  const [tags, setTags] = useState<string[]>(categories || []);
 
   const handleCategorySelect = (item: string) => {
     setSelectedCategory(item);

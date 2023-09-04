@@ -1,15 +1,54 @@
 import ProfileTabs from 'components/Profile/ProfileTabs';
 import ProfileHeader from 'components/Profile/ProfileHeader';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import { User } from 'components/Type/User';
 
 const Profile = () => {
-  const name: string = '홍길동';
-  const introduce: string = `저는 서울대학교 수학과를 졸업했으며, 10년 이상 입시 학원 및 개인 지도를 해온 경력을 가지고
-  있습니다. 초등 및 중학수학을 비롯한 수학의 기초다지기, 고등수학 및 심화학습, 내신 대비,
-  수능시험을 준비를 위한 타켓 수업등을 폭넓게 진행하고 있습니다.`;
+  const [user, setUser] = useState<User | null>(null);
+  const [lectureFee, setLectureFee] = useState<string>('');
+  const [career, setCareer] = useState<string>('');
+  const [option, setOption] = useState<string>('');
+  const [isteacher, setIsTeacher] = useState<boolean>(true);
+  const userId = 'usMU8Hr';
+  // const userId = 'yHPHHwR';
+
+  useEffect(() => {
+    const userData = async () => {
+      try {
+        const response = await axios.get<User>(`http://localhost:8081/profile/${userId}`);
+        setUser(response.data);
+      } catch (error) {
+        console.log('UserData GET error', error);
+      }
+    };
+    userData();
+  }, [isteacher, userId]);
+
+  useEffect(() => {
+    if (user) {
+      setLectureFee(user.lectureFee);
+      setCareer(user.career);
+      setOption(user.option);
+      setIsTeacher(user.teacher);
+    }
+  }, [user]);
   return (
     <>
-      <ProfileHeader name={name} introduce={introduce} />
-      <ProfileTabs />
+      {user ? (
+        <>
+          <ProfileHeader name={user.name} introduce={user.introduce} user={user} />
+          <ProfileTabs
+            requests={user.request}
+            teacher={user.teacher}
+            lectureFee={lectureFee}
+            career={career}
+            option={option}
+          />
+        </>
+      ) : (
+        <div>Loading...</div>
+      )}
     </>
   );
 };

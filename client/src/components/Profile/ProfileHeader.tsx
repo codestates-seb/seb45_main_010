@@ -3,8 +3,10 @@ import { BsPencil } from 'react-icons/bs';
 import userExampleImage from '../../assets/Image/user-example.png';
 import ProfileDropdown from './ProfileDropdown';
 import { Link } from 'react-router-dom';
+import { User } from 'components/Type/User';
 
-const ProfileHeader = ({ name, introduce }: { name: string; introduce: string }) => {
+
+const ProfileHeader = ({ name, introduce, user, }: { name: string; introduce: string; user: User; }) => {
   const category = {
     subject: ['수학', '과학', '외국어', '국사', '사회'],
     area: ['서울', '강서', '강원', '강남', '강북', '충북', '제주'],
@@ -31,8 +33,8 @@ const ProfileHeader = ({ name, introduce }: { name: string; introduce: string })
           </div>
         </div>
       </div>
-      <ProfileDropdown title="과목" selections={category.subject} />
-      <ProfileDropdown title="지역" selections={category.area} />
+      <ProfileDropdown title="과목" selections={category.subject} categories={user.category} />
+      <ProfileDropdown title="지역" selections={category.area} categories={user.area} />
       <ul>
         <li className="right-0 flex justify-end m-5">
           <BsPencil />
