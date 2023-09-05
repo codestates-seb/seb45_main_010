@@ -13,7 +13,7 @@ const OptionList: React.FC<OptionListProps> = ({ teacher, lectureFee, career, op
   return (
     <>
       {teacher ? (
-        <div className="m-5">
+        <div className="px-4 py-5">
           <p className="mb-5 text-sm font-bold ">강좌형식</p>
           <div className="flex flex-row items-center gap-1 mt-5 mb-10">
             <Checkbox
@@ -35,21 +35,21 @@ const OptionList: React.FC<OptionListProps> = ({ teacher, lectureFee, career, op
             <li className="right-0 flex justify-end m-4">
               <BsPencil />
             </li>
-            <li className="mx-4 mb-10 text-xs leading-5">{lectureFee}</li>
+            <li className="px-2 mb-10 text-xs leading-5">{lectureFee}</li>
           </ul>
           <p className="text-sm font-bold">학력 및 경력</p>
           <ul>
             <li className="right-0 flex justify-end m-4">
               <BsPencil />
             </li>
-            <li className="mx-4 mb-10 text-xs leading-5">{career}</li>
+            <li className="px-2 mb-10 text-xs leading-5">{career}</li>
           </ul>
           <p className="text-sm font-bold">수업옵션</p>
           <ul>
             <li className="right-0 flex justify-end m-4">
               <BsPencil />
             </li>
-            <li className="mx-4 mb-10 text-xs leading-5">{option}</li>
+            <li className="px-2 mb-10 text-xs leading-5">{option}</li>
           </ul>
         </div>
       ) : (
@@ -59,7 +59,7 @@ const OptionList: React.FC<OptionListProps> = ({ teacher, lectureFee, career, op
             <li className="right-0 flex justify-end m-4">
               <BsPencil />
             </li>
-            <li className="mx-4 mb-10 text-xs leading-5">{option}</li>
+            <li className="px-2 mb-10 text-xs leading-5">{option}</li>
           </ul>
         </>
       )}

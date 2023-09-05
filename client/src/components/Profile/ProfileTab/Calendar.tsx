@@ -76,9 +76,9 @@ const Calendar = () => {
   };
 
   return (
-    <div className="container flex flex-col items-center justify-center gap-5">
+    <div className="container flex flex-col items-center justify-center gap-5 px-4">
       <DatePicker
-        className="flex items-center justify-between p-2 text-center text-sm font-bold text-black bg-mint-4 rounded-xl w-[230px] border-mint-2"
+        className="flex items-center justify-between w-[350px] p-2 text-sm font-bold text-center text-black bg-mint-4 rounded-xl border-mint-2"
         placeholderText="날짜 선택"
         selected={selectedDate}
         onChange={handleDateChange}
@@ -92,7 +92,7 @@ const Calendar = () => {
           <span>선택 가능한 시간 목록</span>
           {timeSlots.map((slot: TimeSlot, index: number) => (
             <Button
-              className="list-disc list-inside mb-5 flex items-center justify-between p-2 text-sm font-bold text-black bg-mint-2 rounded-xl w-[230px] border-mint-2"
+              className="flex items-center justify-between w-[350px] p-2 mb-5 text-sm font-bold text-black list-disc list-inside bg-mint-2 rounded-xl border-mint-2"
               size="sm"
               key={index}
               onClick={() => handleTimeSlotClick(slot)}
@@ -103,7 +103,7 @@ const Calendar = () => {
           <span>선택한 시간 목록</span>
           {selectedTimeSlots.map((slot: TimeSlot, index: number) => (
             <Button
-              className="list-disc list-inside mb-5 flex items-center justify-between p-2 text-sm font-bold text-white bg-blue-1 rounded-xl w-[230px] border-green"
+              className="flex items-center justify-between w-[350px] p-2 mb-5 text-sm font-bold text-white list-disc list-inside bg-blue-1 rounded-xl border-green"
               size="sm"
               key={index}
             >
