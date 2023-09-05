@@ -11,10 +11,10 @@ export const Sidebar = ({ handlerMenu }: props) => {
   return (
     <>
       <div
-        className="absolute top-0 w-[375px] h-screen bg-black bg-opacity-10 "
+        className="absolute top-0 w-full h-full bg-black bg-opacity-10 "
         onClick={handlerMenu}
       ></div>
-      <Card className="w-[350px] p-1 shadow-xl  top-0 absolute">
+      <Card className="w-[350px] p-2 shadow-xl top-3 absolute m-3">
         <List className="grid items-center grid-cols-2 p-4 border-b-2 border-gray-3">
           <ListItem className="flex items-center justify-center">
             <AiOutlineUser className="mr-2 text-xl" />

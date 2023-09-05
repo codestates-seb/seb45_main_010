@@ -1,7 +1,8 @@
 import React from 'react';
-import { Button, IconButton } from '@material-tailwind/react';
-import { ArrowRightIcon, ArrowLeftIcon } from '@heroicons/react/24/outline';
+import { Button } from '@material-tailwind/react';
 import { Teacher } from 'configs/List/config';
+import { BiChevronsLeft, BiChevronsRight } from 'react-icons/bi';
+import { PageNumbers } from './PageNumbers';
 
 type props = {
   test: Teacher;
@@ -14,46 +15,40 @@ const Pagination = ({ test, limit, currentPage, setCurrentPage }: props) => {
   const total: number = test.length;
   const numPages: number = Math.ceil(total / limit);
 
-  const prev = () => {
+  const first = () => {
     if (currentPage === 0) return;
-    setCurrentPage(currentPage - 1);
+    setCurrentPage(0);
   };
 
-  const next = () => {
-    if (currentPage === numPages) return;
-    setCurrentPage(currentPage + 1);
+  const last = () => {
+    if (currentPage === numPages - 1) return;
+    setCurrentPage(numPages - 1);
   };
 
   return (
-    <div className="flex items-center justify-center ">
+    <div className="flex items-center justify-center">
       <Button
         variant="text"
         className="flex items-center p-3 rounded-full"
-        onClick={prev}
+        onClick={first}
         disabled={currentPage === 0}
       >
-        <ArrowLeftIcon strokeWidth={2} className="w-3 h-3" /> 이전
+        <BiChevronsLeft className="w-8 h-8" />
       </Button>
       <div className="flex items-center">
-        {Array.from({ length: numPages }, (_, index) => (
-          <IconButton
-            key={index}
-            className={currentPage === index ? 'bg-mint-2 rounded-full text-black' : 'rounded-full'}
-            onClick={() => setCurrentPage(index)}
-            variant={currentPage === index ? 'filled' : 'text'}
-          >
-            {index + 1}
-          </IconButton>
-        ))}
+        <PageNumbers
+          numPages={numPages}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+        />
       </div>
       <Button
         variant="text"
         className="flex items-center p-3 rounded-full "
-        onClick={next}
-        disabled={currentPage === numPages}
+        onClick={last}
+        disabled={currentPage === numPages - 1}
       >
-        다음
-        <ArrowRightIcon strokeWidth={2} className="w-3 h-3" />
+        <BiChevronsRight className="w-8 h-8" />
       </Button>
     </div>
   );
