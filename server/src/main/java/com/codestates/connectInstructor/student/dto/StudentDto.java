@@ -18,6 +18,8 @@ public class StudentDto {
         @NotBlank
         private String name;
         @NotBlank
+        private String profileImg;
+        @NotBlank
         private String introduction;
     }
 }
