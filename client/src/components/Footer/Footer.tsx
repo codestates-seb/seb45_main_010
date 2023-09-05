@@ -12,10 +12,10 @@ import {
 
 export const Footer = () => {
   return (
-    <footer className="absolute bottom-0 bg-grey-1 w-[375px]">
+    <footer className="absolute bottom-0 bg-gray-100 w-full">
       <div className="grid grid-cols-2 gap-3 py-5">
-        {MEMBER.map(({ title, member }, key) => (
-          <div key={key} className="flex flex-col items-center">
+        {MEMBER.map(({ title, member }, index) => (
+          <div key={index} className="flex flex-col items-center">
             <Typography
               variant="small"
               color="blue-gray"
@@ -24,9 +24,9 @@ export const Footer = () => {
               {title}
             </Typography>
             <ul className="space-y-1 ">
-              {member.map((link, key) => (
+              {member.map((link, index) => (
                 <Typography
-                  key={key}
+                  key={index}
                   as="li"
                   color="blue-gray"
                   className="flex justify-center font-normal"
@@ -44,7 +44,7 @@ export const Footer = () => {
         ))}
       </div>
 
-      <div className="flex gap-4 p-1 text-blue-gray-900 sm:justify-center">
+      <div className="flex gap-4 p-1 text-blue-gray-900 justify-center">
         <Typography as="i" className="transition-opacity opacity-80 hover:opacity-100">
           <BiLogoTailwindCss />
         </Typography>

@@ -1,8 +1,8 @@
 import { Card } from '@material-tailwind/react';
-import { Button, Input, Select, Option } from '@material-tailwind/react';
+import { Input, Select, Option } from '@material-tailwind/react';
+import { AiOutlineSearch } from 'react-icons/ai';
 
 type props = {
-
   handlerSearch: () => void;
 };
 
@@ -10,24 +10,17 @@ export const Search = ({ handlerSearch }: props) => {
   return (
     <>
       <div
-        className="absolute top-0 w-[375px] h-screen bg-black bg-opacity-10 "
+        className="absolute top-0 w-full h-full bg-black bg-opacity-10 "
         onClick={handlerSearch}
       ></div>
-      <Card className="w-[350px] p-1 shadow-xl top-0 absolute">
+      <Card className="w-[350px] p-2 shadow-xl top-3 absolute m-3">
         <form>
           <div className="relative flex w-full gap-2 w-100%">
-            <Input
-              type="search"
-              label="Search..."
-              className="pr-20"
-              containerProps={{
-                className: 'min-w-[288px]',
-              }}
-              crossOrigin={undefined}
+            <Input type="search" label="Search..." crossOrigin={undefined} />
+            <AiOutlineSearch
+              className="  absolute right-0 text-xl cursor-pointer text-gray-3 m-2"
+              onClick={handlerSearch}
             />
-            <Button size="sm" className="!absolute rounded right-1 top-1 bg-grey-1">
-              Search
-            </Button>
           </div>
           <div className="m-3">
             <div className="mb-5">

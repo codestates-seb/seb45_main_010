@@ -14,15 +14,8 @@ const Pagination = ({ test, limit, currentPage, setCurrentPage }: props) => {
   const total: number = test.length;
   const numPages: number = Math.ceil(total / limit);
 
-  const selectPage = (index: number) =>
-    ({
-      variant: currentPage === index ? 'filled' : 'text',
-      onClick: () => setCurrentPage(index),
-      className: currentPage === index ? 'bg-mint-2 rounded-full text-black' : 'rounded-full',
-    }) as any;
-
   const prev = () => {
-    if (currentPage === 1) return;
+    if (currentPage === 0) return;
     setCurrentPage(currentPage - 1);
   };
 
@@ -37,14 +30,19 @@ const Pagination = ({ test, limit, currentPage, setCurrentPage }: props) => {
         variant="text"
         className="flex items-center p-3 rounded-full"
         onClick={prev}
-        disabled={currentPage === 1}
+        disabled={currentPage === 0}
       >
         <ArrowLeftIcon strokeWidth={2} className="w-3 h-3" /> 이전
       </Button>
       <div className="flex items-center">
-        {Array.from({ length: numPages }, (_, idx) => (
-          <IconButton key={idx} {...selectPage(idx + 1)}>
-            {idx + 1}
+        {Array.from({ length: numPages }, (_, index) => (
+          <IconButton
+            key={index}
+            className={currentPage === index ? 'bg-mint-2 rounded-full text-black' : 'rounded-full'}
+            onClick={() => setCurrentPage(index)}
+            variant={currentPage === index ? 'filled' : 'text'}
+          >
+            {index + 1}
           </IconButton>
         ))}
       </div>

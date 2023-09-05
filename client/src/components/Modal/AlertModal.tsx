@@ -28,7 +28,7 @@ export const AlertModal = ({ title, text, btnName, btnCheck }: props) => {
         size="xs"
         className="overflow-hidden "
       >
-        <DialogHeader className="bg-grey-3 test-xl">{title}</DialogHeader>
+        <DialogHeader className="bg-gray-3 test-xl">{title}</DialogHeader>
         <DialogBody divider>{text}</DialogBody>
         <DialogFooter className="justify-center felx">
           <Button

@@ -18,9 +18,9 @@ const App = () => {
         <Header handlerMenu={handlerMenu} handlerSearch={handlerSearch} />
         {isMenu && <Sidebar handlerMenu={handlerMenu} />}
         {isSearch && <Search handlerSearch={handlerSearch} />}
+        <Outlet />
       </main>
       <Footer />
-      <Outlet />
     </>
   );
 };

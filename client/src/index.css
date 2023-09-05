@@ -10,17 +10,18 @@
     display: flex;
     justify-content: center;
     overflow-y: auto;
-    background-color: rgb(209, 209, 209);
+    background-color: white;
+    min-height: 100vh;
   }
 
   body {
     position: relative;
     padding-bottom: 200px;
     width: 375px;
-    min-height: 667px;
     background-color: white;
     border-radius: 10px;
     overflow: hidden;
     box-sizing: border-box;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
   }
 }
