@@ -34,19 +34,20 @@ const Option = ({
             />
           )}
         </li>
-        <li className="px-2 mb-10 text-xs leading-5">
+        <li className="text-xs leading-5">
           {isEditing ? (
             <Textarea
               color="blue"
               label="저장 버튼을 누르면 수정사항이 저장됩니다."
               value={editOptionDesc}
               onChange={(e) => setEditOptionDesc(e.target.value)}
-              className="w-full min-h-[100px]"
+              className="px-2 min-h-[100px]"
             />
           ) : (
             optionDesc
           )}
         </li>
+        <div className="py-8"></div>
       </ul>
     </>
   );

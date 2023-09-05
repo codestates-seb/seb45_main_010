@@ -10,8 +10,8 @@ const Profile = () => {
   const [career, setCareer] = useState<string>('');
   const [option, setOption] = useState<string>('');
   const [isteacher, setIsTeacher] = useState<boolean>(true);
-  const userId = 'usMU8Hr';
-  // const userId = 'yHPHHwR';
+  // const userId = 'usMU8Hr';
+  const userId = 'yHPHHwR';
 
   useEffect(() => {
     const userData = async () => {

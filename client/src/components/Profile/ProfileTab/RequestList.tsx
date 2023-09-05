@@ -8,7 +8,7 @@ type RequestListProps = {
 
 const RequestList: React.FC<RequestListProps> = ({ requests, teacher }) => {
   return (
-    <div className="px-4 py-5">
+    <div className="py-5">
       <p className="flex-1 mb-4 text-sm font-bold">{teacher ? '강의요청목록' : '수업요청목록'}</p>
       <div className="flex justify-end text-right">
         <Button
@@ -28,7 +28,7 @@ const RequestList: React.FC<RequestListProps> = ({ requests, teacher }) => {
         requests.map((request, index) => (
           <div
             key={index}
-            className={`my-5 border rounded-lg w-[350px] ${
+            className={`my-5 border rounded-lg w-100% ${
               request.note === '수업요청'
                 ? 'bg-[#BEDEF1] border-blue-3 hover:bg-blue-1 hover:border-blue-1'
                 : 'bg-mint-2 border-[#BEDEF1] hover:bg-gray-1 hover:border-gey-1'
