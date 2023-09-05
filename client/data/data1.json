@@ -107,6 +107,13 @@
       "password": "test1234",
       "teacher": true,
       "id": "4M7lAHH"
+    },
+    {
+      "name": "김민재",
+      "email": "munich@gmail.com",
+      "password": "test1234",
+      "teacher": true,
+      "id": "o4fcE_3"
     }
   ],
   "students": [
@@ -266,6 +273,20 @@
       "password": "test1234",
       "teacher": false,
       "id": "lT6rFJn"
+    },
+    {
+      "name": "김메시",
+      "email": "mesi@gmail.com",
+      "password": "test1234",
+      "teacher": false,
+      "id": "VEBR6AG"
+    },
+    {
+      "name": "김홍길",
+      "email": "hongkilkim@gmail.com",
+      "password": "test1234",
+      "teacher": false,
+      "id": "q6SbKTi"
     }
   ],
   "verify": [
