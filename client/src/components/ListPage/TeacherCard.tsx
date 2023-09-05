@@ -1,9 +1,9 @@
-import { Teacher } from 'configs/List/config';
+import { TeacherType } from 'configs/List/config';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
 type props = {
-  test: Teacher;
+  test: TeacherType;
 };
 const TeacherCard = ({ test }: props) => {
   return (

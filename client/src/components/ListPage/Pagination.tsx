@@ -1,11 +1,11 @@
 import React from 'react';
 import { Button } from '@material-tailwind/react';
-import { Teacher } from 'configs/List/config';
+import { TeacherType } from 'configs/List/config';
 import { BiChevronsLeft, BiChevronsRight } from 'react-icons/bi';
 import { PageNumbers } from './PageNumbers';
 
 type props = {
-  test: Teacher;
+  test: TeacherType;
   limit: number;
   currentPage: number;
   setCurrentPage: (index: number) => void;

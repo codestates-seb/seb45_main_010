@@ -1,4 +1,4 @@
-export type Teacher = {
+export type TeacherType = {
   user: string;
   name: string;
   category: string[];
@@ -9,7 +9,7 @@ export type Teacher = {
   };
 }[];
 
-export const test: Teacher = [
+export const test: TeacherType = [
   {
     user: 'https://png.pngtree.com/png-clipart/20220113/ourlarge/pngtree-cartoon-hand-drawn-default-avatar-png-image_4156500.png',
     name: '조상옥',
