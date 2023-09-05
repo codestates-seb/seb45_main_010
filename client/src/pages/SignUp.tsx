@@ -57,7 +57,7 @@ const SignUp: React.FC = () => {
     });
   };
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+  const handleSignUp = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!userInfo.name || !userInfo.email || !userInfo.password) {
       alert('이름, 이메일, 비밀번호를 모두 입력하세요.');
@@ -91,7 +91,7 @@ const SignUp: React.FC = () => {
     <div className="flex flex-col item-center justify-center m-[12.5px]">
       <div className="text-center font-bold text-2xl mb-4">회원가입</div>
       <div className="flex flex-col item-center justify-center mx-3 py-3 rounded-lg">
-        <form className="flex flex-col gap-2 p-4 m-1 rounded-lg" onSubmit={handleSubmit}>
+        <form className="flex flex-col gap-2 p-4 m-1 rounded-lg" onSubmit={handleSignUp}>
           <label htmlFor="name" className="text-sm mx-4">
             이름
           </label>
@@ -99,7 +99,7 @@ const SignUp: React.FC = () => {
             type="text"
             id="name"
             name="name"
-            className="border text-xs rounded-lg p-3 mx-[12px] h-[50px]"
+            className="border text-sm rounded-lg p-3 mx-[12px] h-[50px]"
             placeholder="이름을 입력하세요"
             value={userInfo.name}
             onChange={handleUserInfo}
@@ -113,7 +113,7 @@ const SignUp: React.FC = () => {
               type="email"
               id="email"
               name="email"
-              className="border text-xs rounded-lg w-[90%] ml-[12px] mr-1 p-3 h-[50px]"
+              className="border text-sm rounded-lg w-[90%] ml-[12px] mr-1 p-3 h-[50px]"
               placeholder="이메일을 입력하세요"
               value={userInfo.email}
               onChange={handleUserInfo}
@@ -154,11 +154,11 @@ const SignUp: React.FC = () => {
               type="checkbox"
               id="teacher"
               name="teacher"
-              className="accent-green h-5 w-5"
+              color="indigo"
               checked={userInfo.teacher}
               onChange={handleUserInfo}
             />
-            <span className="text-sm text-gray-500">강사로 가입하기</span>
+            <span className="text-sm text-gray-700">강사로 가입하기</span>
           </label>
           <Button
             type="submit"
