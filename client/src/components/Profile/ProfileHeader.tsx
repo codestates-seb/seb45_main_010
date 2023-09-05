@@ -1,9 +1,9 @@
 import { Button } from '@material-tailwind/react';
-import { BsPencil } from 'react-icons/bs';
 import userExampleImage from '../../assets/Image/user-example.png';
 import ProfileDropdown from './ProfileDropdown';
 import { Link } from 'react-router-dom';
 import { User } from 'components/Type/User';
+import Option from './ProfileTab/Option';
 
 const ProfileHeader = ({
   name,
@@ -44,12 +44,7 @@ const ProfileHeader = ({
       </>
       <ProfileDropdown title="과목" selections={category.subject} categories={user.category} />
       <ProfileDropdown title="지역" selections={category.area} categories={user.area} />
-      <ul>
-        <li className="right-0 flex justify-end m-5">
-          <BsPencil />
-        </li>
-        <li className="px-2 text-xs leading-5 min-h-[100px]">{introduce}</li>
-      </ul>
+      <Option optionDesc={introduce} />
       <div className="mt-10 border-b-2 border-gray-1"></div>
     </div>
   );

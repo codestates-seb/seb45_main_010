@@ -105,7 +105,7 @@ const ProfileTabs: React.FC<ProfileTabsProps> = ({
           className="flex flex-col items-center justify-center mt-10"
           id={`tab-${section.id}`}
         >
-          <div className="p-4]">{section.subtitle}</div>
+          <div className="w-full p-4">{section.subtitle}</div>
         </section>
       ))}
     </>

@@ -1,6 +1,5 @@
 import { Checkbox } from '@material-tailwind/react';
-import { BsPencil } from 'react-icons/bs';
-// import { TfiSave } from "react-icons/tfi";
+import Option from './Option';
 
 type OptionListProps = {
   teacher: boolean;
@@ -14,7 +13,7 @@ const OptionList: React.FC<OptionListProps> = ({ teacher, lectureFee, career, op
     <>
       {teacher ? (
         <div className="px-4 py-5">
-          <p className="mb-5 text-sm font-bold ">강좌형식</p>
+          <p className="mb-5 text-sm font-bold">강좌형식</p>
           <div className="flex flex-row items-center gap-1 mt-5 mb-10">
             <Checkbox
               color="green"
@@ -30,37 +29,13 @@ const OptionList: React.FC<OptionListProps> = ({ teacher, lectureFee, career, op
               오프라인
             </div>
           </div>
-          <p className="mb-5 text-sm font-bold">강의료 ( 강사 소개에 노출됩니다 )</p>
-          <ul>
-            <li className="right-0 flex justify-end m-4">
-              <BsPencil />
-            </li>
-            <li className="px-2 mb-10 text-xs leading-5">{lectureFee}</li>
-          </ul>
-          <p className="text-sm font-bold">학력 및 경력</p>
-          <ul>
-            <li className="right-0 flex justify-end m-4">
-              <BsPencil />
-            </li>
-            <li className="px-2 mb-10 text-xs leading-5">{career}</li>
-          </ul>
-          <p className="text-sm font-bold">수업옵션</p>
-          <ul>
-            <li className="right-0 flex justify-end m-4">
-              <BsPencil />
-            </li>
-            <li className="px-2 mb-10 text-xs leading-5">{option}</li>
-          </ul>
+          <Option optionTitle="강의료 ( 강사 소개에 노출됩니다 )" optionDesc={lectureFee} />
+          <Option optionTitle="학력 및 경력" optionDesc={career} />
+          <Option optionTitle="수업옵션" optionDesc={option} />
         </div>
       ) : (
         <>
-          <p className="text-sm font-bold">수업옵션</p>
-          <ul>
-            <li className="right-0 flex justify-end m-4">
-              <BsPencil />
-            </li>
-            <li className="px-2 mb-10 text-xs leading-5">{option}</li>
-          </ul>
+          <Option optionTitle="수업옵션" optionDesc={option} />
         </>
       )}
     </>
