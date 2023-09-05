@@ -35,6 +35,7 @@ const GetPassword: React.FC = () => {
         const matchingUser = response.data.filter((el: SearchPassword) => {
           return el.email === passwordkey.email;
         })[0];
+        console.log(matchingUser);
         if (matchingUser) {
           alert(`${matchingUser.email}계정에서 비밀번호를 확인하세요`);
           navigate('/login');
