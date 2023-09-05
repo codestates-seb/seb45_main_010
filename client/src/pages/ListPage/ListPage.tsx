@@ -4,9 +4,9 @@ import TeacherCard from 'components/ListPage/TeacherCard';
 import Pagination from 'components/ListPage/Pagination';
 
 const ListPage = () => {
-  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [currentPage, setCurrentPage] = useState<number>(0);
   const limit: number = 5;
-  const offset = (currentPage - 1) * limit;
+  const offset = currentPage * limit;
 
   return (
     <>

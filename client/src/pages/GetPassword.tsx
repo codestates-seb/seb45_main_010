@@ -5,7 +5,7 @@ const GetPassword: React.FC = () => {
   return (
     <div className="flex flex-col item-center justify-center m-[12.5px]">
       <div className="text-center font-bold text-2xl my-4">비밀번호 찾기</div>
-      <div className="flex flex-col item-center justify-center mx-3 py-3 bg-mint-1 rounded-lg">
+      <div className="flex flex-col item-center justify-center mx-3 py-3 rounded-lg">
         <div className="text-sm text-gray-950 px-5 mb-2">가입된 이메일을 입력해주세요</div>
         <div className="text-sm text-gray-950 px-5">
           이메일을 통해 비밀번호를 확인하실수 있습니다

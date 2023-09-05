@@ -33,7 +33,7 @@ const RequestList: React.FC<RequestListProps> = ({ requests, teacher }) => {
             className={`my-5 border rounded-lg w-320 ${
               request.note === '수업요청'
                 ? 'bg-[#BEDEF1] border-blue-3 hover:bg-blue-1 hover:border-blue-1'
-                : 'bg-mint-2 border-[#BEDEF1] hover:bg-grey-1 hover:border-gey-1'
+                : 'bg-mint-2 border-[#BEDEF1] hover:bg-gray-1 hover:border-gey-1'
             } cursor-pointer duration-300`}
           >
             <div className="flex flex-row items-center justify-between p-4">

@@ -8,8 +8,8 @@ type props = {
 const TeacherCard = ({ test }: props) => {
   return (
     <Link to={'/Detail'}>
-      <div className=" w-[375px] flex flex-col items-center">
-        {test.map((items, key) => {
+      <div className=" w-full flex flex-col items-center px-[7.5px]">
+        {test.map((items, index) => {
           const isOnOff: string =
             items.classMethod.onLine && items.classMethod.offLine
               ? '온/오프'
@@ -19,8 +19,8 @@ const TeacherCard = ({ test }: props) => {
 
           return (
             <section
-              key={key}
-              className="w-[350px] h-[82px] shadow-md border-2 border-grey-2 
+              key={index}
+              className="w-[350px] h-[82px] shadow-md border-2 border-gray-2 
                     bg-mint-3 rounded-xl p-2 text-xs flex-row flex justify-between mb-5
                      duration-500  hover:scale-105 hover:shadow-black cursor-pointer active:bg-mint-4"
             >
@@ -30,8 +30,8 @@ const TeacherCard = ({ test }: props) => {
               <span className="flex flex-col items-center ">
                 <h1 className="mb-2">수업 종류</h1>
                 <ul className="grid grid-cols-2 m-1 text-center ">
-                  {items.category.slice(0, 4).map((category, key) => (
-                    <li className="px-1" key={key}>
+                  {items.category.slice(0, 4).map((category, index) => (
+                    <li className="px-1" key={index}>
                       {category.length > 4 ? `${category.slice(0, 4)}...` : category}
                     </li>
                   ))}
@@ -40,8 +40,8 @@ const TeacherCard = ({ test }: props) => {
               <span className="flex flex-col items-center ">
                 <h1 className="mb-2">지역</h1>
                 <ul className="grid grid-cols-2 m-1 text-center ">
-                  {items.area.slice(0, 4).map((area, key) => (
-                    <li className="px-1" key={key}>
+                  {items.area.slice(0, 4).map((area, index) => (
+                    <li className="px-1" key={index}>
                       {area.length > 4 ? `${area.slice(0, 4)}...` : area}
                     </li>
                   ))}

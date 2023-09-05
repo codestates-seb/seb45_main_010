@@ -5,8 +5,15 @@ import ProfileDropdown from './ProfileDropdown';
 import { Link } from 'react-router-dom';
 import { User } from 'components/Type/User';
 
-
-const ProfileHeader = ({ name, introduce, user, }: { name: string; introduce: string; user: User; }) => {
+const ProfileHeader = ({
+  name,
+  introduce,
+  user,
+}: {
+  name: string;
+  introduce: string;
+  user: User;
+}) => {
   const category = {
     subject: ['수학', '과학', '외국어', '국사', '사회'],
     area: ['서울', '강서', '강원', '강남', '강북', '충북', '제주'],
@@ -41,7 +48,7 @@ const ProfileHeader = ({ name, introduce, user, }: { name: string; introduce: st
         </li>
         <li className="mx-4 text-xs leading-5 min-h-[100px]">{introduce}</li>
       </ul>
-      <div className="mt-10 border-b-2 border-grey-1"></div>
+      <div className="mt-10 border-b-2 border-gray-1"></div>
     </div>
   );
 };
