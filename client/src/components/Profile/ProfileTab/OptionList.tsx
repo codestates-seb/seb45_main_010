@@ -12,6 +12,8 @@ type OptionListProps = {
     onLine: boolean;
     offLine: boolean;
   };
+  handleClassMethodUpdate: (onLine: boolean, offLine: boolean) => void;
+  userId: number;
 };
 
 const OptionList: React.FC<OptionListProps> = ({
@@ -20,9 +22,22 @@ const OptionList: React.FC<OptionListProps> = ({
   career,
   option,
   classMethod = { onLine: true, offLine: false },
+  handleClassMethodUpdate,
+  userId,
 }) => {
   const [onLine, setOnLine] = useState(classMethod.onLine);
   const [offLine, setOffLine] = useState(classMethod.offLine);
+  const handleOnLineChange = () => {
+    const newOnLineState = !onLine;
+    setOnLine(newOnLineState);
+    handleClassMethodUpdate(newOnLineState, offLine);
+  };
+
+  const handleOffLineChange = () => {
+    const newOffLineState = !offLine;
+    setOffLine(newOffLineState);
+    handleClassMethodUpdate(onLine, newOffLineState);
+  };
   return (
     <>
       {teacher ? (
@@ -33,7 +48,7 @@ const OptionList: React.FC<OptionListProps> = ({
               color="green"
               className="text-green bg-green"
               checked={onLine}
-              onChange={() => setOnLine(!onLine)}
+              onChange={() => handleOnLineChange()}
               crossOrigin="anonymous"
             />
             <OnlineDiv onoff="온라인" />
@@ -42,18 +57,22 @@ const OptionList: React.FC<OptionListProps> = ({
               color="green"
               className="text-green bg-green"
               checked={offLine}
-              onChange={() => setOffLine(!offLine)}
+              onChange={() => handleOffLineChange()}
               crossOrigin="anonymous"
             />
             <OnlineDiv onoff="오프라인" />
           </div>
-          <Option optionTitle="강의료 ( 강사 소개에 노출됩니다 )" optionDesc={lectureFee} />
-          <Option optionTitle="학력 및 경력" optionDesc={career} />
-          <Option optionTitle="수업옵션" optionDesc={option} />
+          <Option
+            optionTitle="강의료 ( 강사 소개에 노출됩니다 )"
+            optionDesc={lectureFee}
+            userId={userId}
+          />
+          <Option optionTitle="학력 및 경력" optionDesc={career} userId={userId} />
+          <Option optionTitle="수업옵션" optionDesc={option} userId={userId} />
         </div>
       ) : (
         <>
-          <Option optionTitle="수업옵션" optionDesc={option} />
+          <Option optionTitle="수업옵션" optionDesc={option} userId={userId} />
         </>
       )}
     </>

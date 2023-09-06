@@ -2,7 +2,7 @@ import { Button } from '@material-tailwind/react';
 import userExampleImage from '../../assets/Image/user-example.png';
 import ProfileDropdown from './ProfileDropdown';
 import { Link } from 'react-router-dom';
-import { User } from 'components/Types/User';
+import { User } from 'components/Types/Types';
 import OnlineDiv from 'components/Items/OnlineDiv';
 import Option from './ProfileTab/Option';
 
@@ -57,7 +57,7 @@ const ProfileHeader: React.FC<ProfileHeaderProps> = ({
       </>
       <ProfileDropdown title="과목" selections={category.subject} categories={user.category} />
       <ProfileDropdown title="지역" selections={category.area} categories={user.area} />
-      <Option optionDesc={introduce} />
+      <Option optionDesc={introduce} userId={user.id} />
       <div className="mt-10 border-b-2 border-gray-1"></div>
     </div>
   );

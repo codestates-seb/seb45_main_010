@@ -1,9 +1,9 @@
 import { Button } from '@material-tailwind/react';
-import { UserRequest } from 'components/Types/User';
+import { RequestType } from 'components/Types/Types';
 
 type RequestListProps = {
   teacher: boolean;
-  requests: UserRequest[];
+  requests: RequestType[];
 };
 
 const RequestList: React.FC<RequestListProps> = ({ requests, teacher }) => {

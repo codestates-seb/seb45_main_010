@@ -30,3 +30,11 @@ export type ListPageType = Pick<
   TeacherType,
   'name' | 'category' | 'area' | 'classMethod' | 'img'
 >[];
+
+export type RequestType = {
+  id: string;
+  name: string;
+  requestcategory: string[];
+  note: string;
+  date: string;
+};
