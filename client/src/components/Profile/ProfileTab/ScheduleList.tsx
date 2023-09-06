@@ -16,7 +16,7 @@ const ScheduleList = () => {
         </Button> */}
         <Calendar />
       </div>
-      <div className="flex items-center justify-center px-4 py-5">
+      <div className="flex items-center justify-center py-5">
         <Button
           className="flex items-center justify-between w-full p-2 my-5 text-sm font-bold text-white bg-blue-1 rounded-xl "
           size="sm"

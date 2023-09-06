@@ -2,18 +2,27 @@ import { Button } from '@material-tailwind/react';
 import userExampleImage from '../../assets/Image/user-example.png';
 import ProfileDropdown from './ProfileDropdown';
 import { Link } from 'react-router-dom';
-import { User } from 'components/Type/User';
+import User from 'components/Type/User';
 import Option from './ProfileTab/Option';
+import OnlineDiv from 'components/Items/OnlineDiv';
 
-const ProfileHeader = ({
-  name,
-  introduce,
-  user,
-}: {
+type ProfileHeaderProps = {
   name: string;
   introduce: string;
   user: User;
+  classMethod: {
+    onLine: boolean;
+    offLine: boolean;
+  };
+};
+
+const ProfileHeader: React.FC<ProfileHeaderProps> = ({
+  name,
+  introduce,
+  user,
+  classMethod = { onLine: false, offLine: false },
 }) => {
+  const { onLine, offLine } = classMethod;
   const category = {
     subject: ['수학', '과학', '외국어', '국사', '사회'],
     area: ['서울', '강서', '강원', '강남', '강북', '충북', '제주'],
@@ -40,6 +49,10 @@ const ProfileHeader = ({
               </Link>
             </div>
           </div>
+        </div>
+        <div className="flex justify-end gap-5 my-10">
+          {onLine ? <OnlineDiv onoff="온라인" /> : null}
+          {offLine ? <OnlineDiv onoff="오프라인" /> : null}
         </div>
       </>
       <ProfileDropdown title="과목" selections={category.subject} categories={user.category} />
