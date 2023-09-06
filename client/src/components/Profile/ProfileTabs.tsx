@@ -15,6 +15,7 @@ type ProfileTabsProps = {
     offLine: boolean;
   };
   handleClassMethodUpdate: (onLine: boolean, offLine: boolean) => void;
+  userId: number;
 };
 
 const ProfileTabs: React.FC<ProfileTabsProps> = ({
@@ -25,6 +26,7 @@ const ProfileTabs: React.FC<ProfileTabsProps> = ({
   option,
   classMethod,
   handleClassMethodUpdate,
+  userId,
 }) => {
   type tabDataType = {
     id: string;
@@ -50,6 +52,7 @@ const ProfileTabs: React.FC<ProfileTabsProps> = ({
           option={option}
           classMethod={classMethod}
           handleClassMethodUpdate={handleClassMethodUpdate}
+          userId={userId}
         />
       ),
     },

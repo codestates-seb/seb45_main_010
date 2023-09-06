@@ -57,7 +57,7 @@ const ProfileHeader: React.FC<ProfileHeaderProps> = ({
       </>
       <ProfileDropdown title="과목" selections={category.subject} categories={user.category} />
       <ProfileDropdown title="지역" selections={category.area} categories={user.area} />
-      <Option optionDesc={introduce} />
+      <Option optionDesc={introduce} userId={user.id} />
       <div className="mt-10 border-b-2 border-gray-1"></div>
     </div>
   );

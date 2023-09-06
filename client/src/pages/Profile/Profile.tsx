@@ -32,6 +32,7 @@ const Profile = () => {
             classMethod={{ onLine: user.classMethod.onLine, offLine: user.classMethod.offLine }}
           />
           <ProfileTabs
+            userId={user.id}
             requests={request}
             teacher={user.teacher}
             lectureFee={user.lectureFee}

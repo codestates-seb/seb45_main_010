@@ -13,6 +13,7 @@ type OptionListProps = {
     offLine: boolean;
   };
   handleClassMethodUpdate: (onLine: boolean, offLine: boolean) => void;
+  userId: number;
 };
 
 const OptionList: React.FC<OptionListProps> = ({
@@ -22,6 +23,7 @@ const OptionList: React.FC<OptionListProps> = ({
   option,
   classMethod = { onLine: true, offLine: false },
   handleClassMethodUpdate,
+  userId,
 }) => {
   const [onLine, setOnLine] = useState(classMethod.onLine);
   const [offLine, setOffLine] = useState(classMethod.offLine);
@@ -60,13 +62,17 @@ const OptionList: React.FC<OptionListProps> = ({
             />
             <OnlineDiv onoff="오프라인" />
           </div>
-          <Option optionTitle="강의료 ( 강사 소개에 노출됩니다 )" optionDesc={lectureFee} />
-          <Option optionTitle="학력 및 경력" optionDesc={career} />
-          <Option optionTitle="수업옵션" optionDesc={option} />
+          <Option
+            optionTitle="강의료 ( 강사 소개에 노출됩니다 )"
+            optionDesc={lectureFee}
+            userId={userId}
+          />
+          <Option optionTitle="학력 및 경력" optionDesc={career} userId={userId} />
+          <Option optionTitle="수업옵션" optionDesc={option} userId={userId} />
         </div>
       ) : (
         <>
-          <Option optionTitle="수업옵션" optionDesc={option} />
+          <Option optionTitle="수업옵션" optionDesc={option} userId={userId} />
         </>
       )}
     </>
