@@ -1,5 +1,4 @@
 import { Button } from '@material-tailwind/react';
-import userExampleImage from '../../assets/Image/user-example.png';
 import ProfileDropdown from './ProfileDropdown';
 import { Link } from 'react-router-dom';
 import { User } from 'Types/User';
@@ -31,11 +30,11 @@ const ProfileHeader: React.FC<ProfileHeaderProps> = ({
     <div className="p-4 py-10">
       <>
         <div className="flex flex-row items-center gap-6 mb-10">
-          <img
+          {/* <img
             src={userExampleImage}
             className="border rounded-full w-14 h-14 border-mint-2"
             alt="프로필이미지"
-          ></img>
+          ></img> */}
           <div className="flex flex-col gap-2">
             <div>
               <p className="text-2xl">{name}</p>

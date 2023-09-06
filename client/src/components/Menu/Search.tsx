@@ -18,7 +18,7 @@ export const Search = ({ handlerSearch }: props) => {
           <div className="relative flex w-full gap-2 w-100%">
             <Input type="search" label="Search..." crossOrigin={undefined} />
             <AiOutlineSearch
-              className="  absolute right-0 text-xl cursor-pointer text-gray-3 m-2"
+              className="absolute right-0 m-2 text-xl cursor-pointer  text-gray-3"
               onClick={handlerSearch}
             />
           </div>

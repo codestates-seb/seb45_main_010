@@ -1,4 +1,4 @@
-import userExampleImage from '../../assets/Image/user-example.png';
+// import userExampleImage from '../../assets/Image/user-example.png';
 import { useState } from 'react';
 import { Accordion, AccordionHeader, AccordionBody, Button } from '@material-tailwind/react';
 import { BsChevronDown } from 'react-icons/bs';
@@ -17,11 +17,11 @@ const DetailPage = () => {
     <>
       <div className="m-5 my-10">
         <div className="flex flex-row items-center gap-6">
-          <img
+          {/* <img
             src={userExampleImage}
             className="border rounded-full w-14 h-14 border-mint-2"
             alt="프로필이미지"
-          ></img>
+          ></img> */}
           <div className="flex flex-col gap-2">
             <p className="ml-3 text-2xl">홍길동</p>
             <div className="font-normal text-[#8E98A8] text-xs ml-[75px] mt-[-10px]">강사님</div>

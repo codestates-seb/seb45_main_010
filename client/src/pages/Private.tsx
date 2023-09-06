@@ -1,5 +1,4 @@
 import React from 'react';
-import Thumbnail from '../assets/모네-수련.jpeg';
 import { AiFillCamera } from 'react-icons/ai';
 import { FiSend } from 'react-icons/fi';
 
@@ -7,16 +6,16 @@ const Private: React.FC = () => {
   return (
     <div className="flex flex-col justify-center">
       <div className="flex p-4">
-        <div className="flex flex-col item-center justify-center">
-          <img src={Thumbnail} className="mx-6 rounded-lg h-14 w-14 m-2" />
-          <div className="flex flex-col item-center justify-end relative">
-            <div className="rounded-full h-7 w-7 bg-gray-100 absolute bottom-0 right-0 opacity-80">
+        <div className="flex flex-col justify-center item-center">
+          {/* <img src={Thumbnail} className="m-2 mx-6 rounded-lg h-14 w-14" /> */}
+          <div className="relative flex flex-col justify-end item-center">
+            <div className="absolute bottom-0 right-0 bg-gray-100 rounded-full h-7 w-7 opacity-80">
               <AiFillCamera className="h-5 w-5 absolute bottom-1.5 right-1" />
             </div>
           </div>
         </div>
         <div className="flex flex-col justify-center">
-          <div className="text-2xl m-1">홍길동</div>
+          <div className="m-1 text-2xl">홍길동</div>
         </div>
       </div>
       <div className="flex-col pl-10">
@@ -64,7 +63,7 @@ const Private: React.FC = () => {
             <FiSend />
           </button>
         </form>
-        <div className="text-xs text-gray-700 p-1">전화번호는 숫자로만 입력해주세요</div>
+        <div className="p-1 text-xs text-gray-700">전화번호는 숫자로만 입력해주세요</div>
       </div>
     </div>
   );
