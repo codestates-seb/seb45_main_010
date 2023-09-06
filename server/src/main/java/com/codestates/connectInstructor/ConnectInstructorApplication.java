@@ -7,7 +7,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.scheduling.annotation.EnableAsync;
 
 @SpringBootApplication
-		(exclude = SecurityAutoConfiguration.class)
 @EnableAsync
 @EnableJpaAuditing
 public class ConnectInstructorApplication {

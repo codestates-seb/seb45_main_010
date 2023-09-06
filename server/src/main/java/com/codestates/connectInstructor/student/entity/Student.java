@@ -33,7 +33,7 @@ public class Student extends Auditable implements Member {
     @Column(nullable = false)
     private String profileImg;
 
-    @Column(columnDefinition = "TEXT", nullable = false)
+    @Column(columnDefinition = "TEXT")
     private String introduction;
 
     @Column(nullable = false, name = "is_oauth")
