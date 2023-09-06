@@ -54,24 +54,24 @@ const Login: React.FC = () => {
 
   console.log(userDetails);
   return (
-    <div className="flex flex-col item-center justify-center m-[12.5px]">
-      <div className="text-center font-bold text-2xl mb-4">로그인</div>
-      <div className="flex flex-col item-center justify-center mx-3 py-3 rounded-lg">
-        <form className="flex flex-col gap-2 p-4 m-1 rounded-lg" onSubmit={HandleLogin}>
-          <label htmlFor="email" className="text-sm mx-2 mt-10">
+    <div className="flex flex-col item-center justify-center px-[12.5px]">
+      <div className="text-center font-bold text-2xl">로그인</div>
+      <div className="flex flex-col item-center justify-center rounded-lg">
+        <form className="flex flex-col gap-2 py-4 rounded-lg" onSubmit={HandleLogin}>
+          <label htmlFor="email" className="text-sm">
             이메일
           </label>
           <input
             type="email"
             id="email"
             name="email"
-            className="border text-sm rounded-lg p-3 mx-2 h-[50px]"
+            className="border-2 text-sm rounded-lg p-2 mb-5 h-[50px]"
             placeholder="이메일을 입력하세요"
             value={LoginInfo.email}
             onChange={HandleLoginInfo}
           />
 
-          <label htmlFor="password" className="text-sm mx-2 mt-5">
+          <label htmlFor="password" className="text-sm">
             비밀번호
           </label>
 
@@ -79,33 +79,35 @@ const Login: React.FC = () => {
             type="password"
             id="password"
             name="password"
-            className="border text-sm rounded-lg p-3 mx-2 h-[50px]"
+            className="border-2 text-sm rounded-lg p-2 mb-8 h-[50px]"
             placeholder="비밀번호를 입력하세요"
             value={LoginInfo.password}
             onChange={HandleLoginInfo}
           />
           <Button
             type="submit"
-            className="text-white text-xl bg-blue-1 rounded-lg shadow-lg shadow-gray-900/30 p-2 mx-2 mt-7 h-[50px] hover:bg-blue-2"
+            className="text-white border-2 border-blue-1 text-xl bg-blue-1 rounded-lg shadow-lg shadow-gray-900/30 p-1 h-[50px] hover:bg-blue-2"
           >
             이메일로 로그인
           </Button>
         </form>
-        <div className="flex item-center justify-center mb-3 p-3">
+        <div className="flex item-center justify-center p-2 pr-10">
           <Link to={'/GetPassword'}>
-            <div className="text-xs text-gray-600 ">비밀번호찾기</div>{' '}
+            <div className="text-sm text-gray-600">비밀번호찾기</div>{' '}
           </Link>
-          <div className="text-xs text-gray-600 px-2">|</div>
+          <div className="text-sm text-gray-600 px-2">|</div>
           <Link to={'/Signup'}>
-            <div className="text-xs text-gray-600 pr-3">회원 가입</div>
+            <div className="text-sm text-gray-600">회원 가입</div>
           </Link>
         </div>
-        <Button
-          type="submit"
-          className="text-xl text-black bg-koko-1 rounded-lg shadow-lg shadow-gray-900/30 p-2 mb-5 mx-7 h-[50px] hover:bg-koko-2"
-        >
-          카카오로 로그인
-        </Button>
+        <form className="flex flex-col gap-2 py-4 rounded-lg" onSubmit={(e) => e.preventDefault()}>
+          <Button
+            type="submit"
+            className="text-xl text-black border-2 border-koko-1 bg-koko-1 rounded-lg shadow-lg shadow-gray-900/30 p-1 h-[50px] hover:bg-koko-2"
+          >
+            카카오로 로그인
+          </Button>
+        </form>
       </div>
     </div>
   );

@@ -88,24 +88,24 @@ const SignUp: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col item-center justify-center m-[12.5px]">
-      <div className="text-center font-bold text-2xl mb-4">회원가입</div>
-      <div className="flex flex-col item-center justify-center mx-3 py-3 rounded-lg">
-        <form className="flex flex-col gap-2 p-4 m-1 rounded-lg" onSubmit={handleSignUp}>
-          <label htmlFor="name" className="text-sm mx-4">
+    <div className="flex flex-col item-center justify-center px-[12.5px]">
+      <div className="text-center font-bold text-2xl">회원가입</div>
+      <div className="flex flex-col item-center justify-center py-2 rounded-lg">
+        <form className="flex flex-col gap-2 py-4 rounded-lg mb-1" onSubmit={handleSignUp}>
+          <label htmlFor="name" className="text-sm">
             이름
           </label>
           <input
             type="text"
             id="name"
             name="name"
-            className="border text-sm rounded-lg p-3 mx-[12px] h-[50px]"
+            className="border-2 text-sm rounded-lg p-2 mb-5 h-[50px]"
             placeholder="이름을 입력하세요"
             value={userInfo.name}
             onChange={handleUserInfo}
           />
 
-          <label htmlFor="email" className="text-sm mx-4 mt-5">
+          <label htmlFor="email" className="text-sm">
             이메일
           </label>
           <div className="flex item-center">
@@ -113,7 +113,7 @@ const SignUp: React.FC = () => {
               type="email"
               id="email"
               name="email"
-              className="border text-sm rounded-lg w-[90%] ml-[12px] mr-1 p-3 h-[50px]"
+              className="border-2 text-sm rounded-lg p-2 w-[90%] h-[50px] mb-5"
               placeholder="이메일을 입력하세요"
               value={userInfo.email}
               onChange={handleUserInfo}
@@ -121,7 +121,7 @@ const SignUp: React.FC = () => {
             <button
               type="button"
               className="text-xs text-gray-600 border bg-gray-300 shadow-lg 
-              rounded-lg hover:bg-gray-500 hover:text-white h-[40px] w-[40px] mt-1"
+              rounded-lg hover:bg-gray-500 hover:text-white h-[40px] w-[40px] m-1"
               onClick={() => handleEmailCheck(userInfo.email)}
             >
               <div>중복</div>
@@ -136,20 +136,20 @@ const SignUp: React.FC = () => {
             ) : null}
           </div>
 
-          <label htmlFor="password" className="text-sm mx-4 mt-5">
+          <label htmlFor="password" className="text-sm">
             비밀번호
           </label>
           <input
             type="password"
             id="password"
             name="password"
-            className="border text-xs rounded-lg p-3 mx-[12px] h-[50px]"
+            className="border-2 text-sm rounded-lg p-2 h-[50px]"
             placeholder="영문과 숫자를 조합, 8자 이상으로 입력해주세요 "
             value={userInfo.password}
             onChange={handleUserInfo}
           />
 
-          <label className="flex items-center space-x-2 mt-3 mb-2 ml-4">
+          <label className="flex items-center space-x-2">
             <Checkbox
               type="checkbox"
               id="teacher"
@@ -158,21 +158,23 @@ const SignUp: React.FC = () => {
               checked={userInfo.teacher}
               onChange={handleUserInfo}
             />
-            <span className="text-sm text-gray-700">강사로 가입하기</span>
+            <span className="text-sm text-gray-700 py-4">강사로 가입하기</span>
           </label>
           <Button
             type="submit"
-            className="text-white text-xl bg-blue-1 rounded-lg shadow-lg shadow-gray-900/30 p-2 m-2 h-[50px] hover:bg-blue-2"
+            className="text-white border-2 border-blue-1 text-xl bg-blue-1 rounded-lg shadow-lg shadow-gray-900/30 p-1 h-[50px] hover:bg-blue-2"
           >
             이메일 회원가입
           </Button>
         </form>
-        <Button
-          type="submit"
-          className="text-xl text-black bg-koko-1 rounded-lg shadow-lg shadow-gray-900/30 p-2 mb-5 mx-7 h-[50px] hover:bg-koko-2"
-        >
-          카카오 회원가입
-        </Button>
+        <form className="flex flex-col gap-2 py-4 rounded-lg" onSubmit={(e) => e.preventDefault()}>
+          <Button
+            type="submit"
+            className="text-xl text-black border-2 border-koko-1 bg-koko-1 rounded-lg shadow-lg shadow-gray-900/30 p-1 h-[50px] hover:bg-koko-2"
+          >
+            카카오 회원가입
+          </Button>
+        </form>
       </div>
     </div>
   );
