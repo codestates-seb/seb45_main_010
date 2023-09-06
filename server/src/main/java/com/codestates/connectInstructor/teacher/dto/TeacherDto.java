@@ -17,6 +17,8 @@ public class TeacherDto {
         @NotBlank
         private String name;
         @NotBlank
+        private String profileImg;
+        @NotBlank
         private String introduction;
         @NotBlank
         private String career;

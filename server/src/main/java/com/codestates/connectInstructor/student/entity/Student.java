@@ -30,6 +30,9 @@ public class Student extends Auditable implements Member {
     @Column(nullable = false)
     private String name;
 
+    @Column(nullable = false)
+    private String profileImg;
+
     @Column(columnDefinition = "TEXT", nullable = false)
     private String introduction;
 
