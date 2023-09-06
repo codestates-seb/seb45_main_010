@@ -16,13 +16,13 @@ public class TeacherDto {
         private String password;
         @NotBlank
         private String name;
-        @NotBlank
-        private String profileImg;
-        @NotBlank
-        private String introduction;
-        @NotBlank
-        private String career;
-        @NotBlank
-        private String address;
+//        @NotBlank
+//        private String profileImg;
+//        @NotBlank
+//        private String introduction;
+//        @NotBlank
+//        private String career;
+//        @NotBlank
+//        private String address;
     }
 }
