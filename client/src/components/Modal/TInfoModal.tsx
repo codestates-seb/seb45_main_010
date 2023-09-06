@@ -34,15 +34,15 @@ export const TInfoModal = () => {
         </section>
         <DialogHeader className="p-2 text-sm">이름</DialogHeader>
         <section className="flex items-center bg-mint-3 rounded-2xl">
-          <Input label="이름" />
+          <Input label="이름" crossOrigin={undefined} />
         </section>
         <DialogHeader className="p-2 text-sm">연락처</DialogHeader>
         <section className="flex items-center bg-mint-3 rounded-2xl">
-          <Input label="연락처" />
+          <Input label="연락처" crossOrigin={undefined} />
         </section>
         <DialogHeader className="p-2 text-sm">이메일</DialogHeader>
         <section className="flex items-center bg-mint-3 rounded-2xl">
-          <Input label="이메일" type="email" />
+          <Input label="이메일" type="email" crossOrigin={undefined} />
         </section>
         <DialogHeader className="p-2 text-sm">특이사항</DialogHeader>
         <section className="flex items-center bg-mint-3 rounded-2xl">

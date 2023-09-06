@@ -2,7 +2,7 @@ import ProfileTabs from 'components/Profile/ProfileTabs';
 import ProfileHeader from 'components/Profile/ProfileHeader';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import User from 'components/Type/User';
+import { User } from 'components/Type/User';
 
 const Profile = () => {
   const [user, setUser] = useState<User | null>(null);

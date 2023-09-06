@@ -1,5 +1,5 @@
 import { Button } from '@material-tailwind/react';
-import { UserRequest } from 'components/Type/User';
+import { UserRequest } from 'components/Types/User';
 
 type RequestListProps = {
   teacher: boolean;

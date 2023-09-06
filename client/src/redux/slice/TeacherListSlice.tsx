@@ -1,16 +1,16 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import type { PayloadAction } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { ListPageType } from 'components/Types/Types';
 import { RootState } from 'redux/store';
 
-type CounterState = {
+type initialStateType = {
   status: string;
-  value: number;
+  value: ListPageType[];
 };
 
-const initialState: CounterState = {
+const initialState: initialStateType = {
   status: '',
-  value: 0,
+  value: [],
 };
 
 export const getData = createAsyncThunk('패치이름', async () => {
@@ -19,21 +19,10 @@ export const getData = createAsyncThunk('패치이름', async () => {
   return data;
 });
 
-export const counterSlice = createSlice({
-  name: 'counter',
+export const teacherListSlice = createSlice({
+  name: 'teacherList',
   initialState,
-  reducers: {
-    increment: (state) => {
-      state.status = 'increment';
-      state.value += 1;
-    },
-    decrement: (state) => {
-      state.value -= 1;
-    },
-    incrementByAmount: (state, action: PayloadAction<number>) => {
-      state.value += action.payload;
-    },
-  },
+  reducers: {},
 
   extraReducers: (builder) => {
     builder
@@ -47,8 +36,6 @@ export const counterSlice = createSlice({
   },
 });
 
-export const abcd = counterSlice.actions;
+export const teacherList = (state: RootState) => state.teacherList;
 
-export const selectCount = (state: RootState) => state.counter;
-
-export default counterSlice.reducer;
+export default teacherListSlice.reducer;

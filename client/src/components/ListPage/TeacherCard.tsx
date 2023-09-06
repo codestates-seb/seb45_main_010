@@ -1,10 +1,11 @@
-import { Teacher } from 'configs/List/config';
+import { ListPageType } from 'components/Types/Types';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
 type props = {
-  test: Teacher;
+  test: ListPageType;
 };
+
 const TeacherCard = ({ test }: props) => {
   return (
     <Link to={'/Detail'}>
@@ -49,7 +50,7 @@ const TeacherCard = ({ test }: props) => {
               </span>
 
               <div className="flex flex-col items-center">
-                <img src={items.user} className="w-[25px] h-[25px] rounded-lg" />
+                <img src={items.img} className="w-[25px] h-[25px] rounded-lg" />
                 <span>{items.name}</span>
               </div>
             </section>

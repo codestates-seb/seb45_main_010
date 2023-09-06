@@ -34,7 +34,7 @@ export const SInfoModal = () => {
         </section>
         <DialogHeader className="p-2 text-sm">이름</DialogHeader>
         <section className="flex items-center bg-mint-3 rounded-2xl">
-          <Input label="이름" />
+          <Input label="이름" crossOrigin={undefined} />
         </section>
         <DialogHeader className="p-2 text-sm">온/오프라인</DialogHeader>
         <section className="flex items-center bg-mint-3 rounded-2xl">
