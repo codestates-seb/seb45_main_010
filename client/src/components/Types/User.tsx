@@ -1,5 +1,3 @@
-import { TeacherType } from 'configs/List/config';
-
 export type User = {
   name: string;
   email: string;
@@ -26,9 +24,4 @@ export type UserRequest = {
   requestcategory: string[];
   note: string;
   date: string;
-};
-
-export type initialStateType = {
-  status: string;
-  value: TeacherType[];
 };

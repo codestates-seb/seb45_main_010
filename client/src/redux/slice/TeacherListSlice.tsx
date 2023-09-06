@@ -1,7 +1,12 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { initialStateType } from 'components/Type/User';
+import { ListPageType } from 'components/Types/Types';
 import { RootState } from 'redux/store';
+
+type initialStateType = {
+  status: string;
+  value: ListPageType[];
+};
 
 const initialState: initialStateType = {
   status: '',

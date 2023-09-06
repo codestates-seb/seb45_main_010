@@ -3,7 +3,7 @@ import { BsPencil } from 'react-icons/bs';
 import userExampleImage from '../../assets/Image/user-example.png';
 import ProfileDropdown from './ProfileDropdown';
 import { Link } from 'react-router-dom';
-import { User } from 'components/Type/User';
+import { User } from 'components/Types/User';
 
 const ProfileHeader = ({
   name,

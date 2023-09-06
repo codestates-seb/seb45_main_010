@@ -1,17 +1,8 @@
-export type TeacherType = {
-  user: string;
-  name: string;
-  category: string[];
-  area: string[];
-  classMethod: {
-    onLine: boolean;
-    offLine: boolean;
-  };
-}[];
+import { ListPageType } from 'components/Types/Types';
 
-export const test: TeacherType = [
+export const test: ListPageType = [
   {
-    user: 'https://png.pngtree.com/png-clipart/20220113/ourlarge/pngtree-cartoon-hand-drawn-default-avatar-png-image_4156500.png',
+    img: 'https://png.pngtree.com/png-clipart/20220113/ourlarge/pngtree-cartoon-hand-drawn-default-avatar-png-image_4156500.png',
     name: '조상옥',
     category: ['수학', '국어', 'sdfadsfadsfs', '한국사', '영어', '과학', '사회', '한국사'],
     area: ['서울', '경기', '대전', '강원', '경기', '대전', '강원'],
@@ -21,7 +12,7 @@ export const test: TeacherType = [
     },
   },
   {
-    user: 'https://png.pngtree.com/png-clipart/20220113/ourlarge/pngtree-cartoon-hand-drawn-default-avatar-png-image_4156500.png',
+    img: 'https://png.pngtree.com/png-clipart/20220113/ourlarge/pngtree-cartoon-hand-drawn-default-avatar-png-image_4156500.png',
     name: '조상옥',
     category: ['수학', '국어', '과학'],
     area: ['서울', '경기'],
@@ -31,7 +22,7 @@ export const test: TeacherType = [
     },
   },
   {
-    user: 'https://png.pngtree.com/png-clipart/20220113/ourlarge/pngtree-cartoon-hand-drawn-default-avatar-png-image_4156500.png',
+    img: 'https://png.pngtree.com/png-clipart/20220113/ourlarge/pngtree-cartoon-hand-drawn-default-avatar-png-image_4156500.png',
     name: '조상옥',
     category: ['영어', '과학'],
     area: ['서울', '경기', '강원'],
@@ -41,7 +32,7 @@ export const test: TeacherType = [
     },
   },
   {
-    user: 'https://png.pngtree.com/png-clipart/20220113/ourlarge/pngtree-cartoon-hand-drawn-default-avatar-png-image_4156500.png',
+    img: 'https://png.pngtree.com/png-clipart/20220113/ourlarge/pngtree-cartoon-hand-drawn-default-avatar-png-image_4156500.png',
     name: '조상옥',
     category: ['영어', '과학'],
     area: ['서울', '경기', '강원'],
@@ -51,7 +42,7 @@ export const test: TeacherType = [
     },
   },
   {
-    user: 'https://png.pngtree.com/png-clipart/20220113/ourlarge/pngtree-cartoon-hand-drawn-default-avatar-png-image_4156500.png',
+    img: 'https://png.pngtree.com/png-clipart/20220113/ourlarge/pngtree-cartoon-hand-drawn-default-avatar-png-image_4156500.png',
     name: '조상옥',
     category: ['영어', '과학'],
     area: ['서울', '경기', '강원'],
@@ -61,7 +52,7 @@ export const test: TeacherType = [
     },
   },
   {
-    user: 'https://png.pngtree.com/png-clipart/20220113/ourlarge/pngtree-cartoon-hand-drawn-default-avatar-png-image_4156500.png',
+    img: 'https://png.pngtree.com/png-clipart/20220113/ourlarge/pngtree-cartoon-hand-drawn-default-avatar-png-image_4156500.png',
     name: '조상옥',
     category: ['영어', '과학'],
     area: ['서울', '경기', '강원'],
@@ -71,7 +62,7 @@ export const test: TeacherType = [
     },
   },
   {
-    user: 'https://png.pngtree.com/png-clipart/20220113/ourlarge/pngtree-cartoon-hand-drawn-default-avatar-png-image_4156500.png',
+    img: 'https://png.pngtree.com/png-clipart/20220113/ourlarge/pngtree-cartoon-hand-drawn-default-avatar-png-image_4156500.png',
     name: '조상옥',
     category: ['영어', '과학'],
     area: ['서울', '경기', '강원'],
@@ -81,7 +72,7 @@ export const test: TeacherType = [
     },
   },
   {
-    user: 'https://png.pngtree.com/png-clipart/20220113/ourlarge/pngtree-cartoon-hand-drawn-default-avatar-png-image_4156500.png',
+    img: 'https://png.pngtree.com/png-clipart/20220113/ourlarge/pngtree-cartoon-hand-drawn-default-avatar-png-image_4156500.png',
     name: '조상옥',
     category: ['영어', '과학'],
     area: ['서울', '경기', '강원'],
@@ -91,7 +82,7 @@ export const test: TeacherType = [
     },
   },
   {
-    user: 'https://png.pngtree.com/png-clipart/20220113/ourlarge/pngtree-cartoon-hand-drawn-default-avatar-png-image_4156500.png',
+    img: 'https://png.pngtree.com/png-clipart/20220113/ourlarge/pngtree-cartoon-hand-drawn-default-avatar-png-image_4156500.png',
     name: '조상옥',
     category: ['수학', '국어', 'sdfadsfadsfs', '한국사', '영어', '과학', '사회', '한국사'],
     area: ['서울', '경기', '대전', '강원', '경기', '대전', '강원'],
@@ -101,7 +92,7 @@ export const test: TeacherType = [
     },
   },
   {
-    user: 'https://png.pngtree.com/png-clipart/20220113/ourlarge/pngtree-cartoon-hand-drawn-default-avatar-png-image_4156500.png',
+    img: 'https://png.pngtree.com/png-clipart/20220113/ourlarge/pngtree-cartoon-hand-drawn-default-avatar-png-image_4156500.png',
     name: '조상옥',
     category: ['수학', '국어', '과학'],
     area: ['서울', '경기'],
@@ -111,7 +102,7 @@ export const test: TeacherType = [
     },
   },
   {
-    user: 'https://png.pngtree.com/png-clipart/20220113/ourlarge/pngtree-cartoon-hand-drawn-default-avatar-png-image_4156500.png',
+    img: 'https://png.pngtree.com/png-clipart/20220113/ourlarge/pngtree-cartoon-hand-drawn-default-avatar-png-image_4156500.png',
     name: '조상옥',
     category: ['영어', '과학'],
     area: ['서울', '경기', '강원'],
@@ -121,7 +112,7 @@ export const test: TeacherType = [
     },
   },
   {
-    user: 'https://png.pngtree.com/png-clipart/20220113/ourlarge/pngtree-cartoon-hand-drawn-default-avatar-png-image_4156500.png',
+    img: 'https://png.pngtree.com/png-clipart/20220113/ourlarge/pngtree-cartoon-hand-drawn-default-avatar-png-image_4156500.png',
     name: '조상옥',
     category: ['영어', '과학'],
     area: ['서울', '경기', '강원'],
@@ -131,7 +122,7 @@ export const test: TeacherType = [
     },
   },
   {
-    user: 'https://png.pngtree.com/png-clipart/20220113/ourlarge/pngtree-cartoon-hand-drawn-default-avatar-png-image_4156500.png',
+    img: 'https://png.pngtree.com/png-clipart/20220113/ourlarge/pngtree-cartoon-hand-drawn-default-avatar-png-image_4156500.png',
     name: '조상옥',
     category: ['수학', '국어', 'sdfadsfadsfs', '한국사', '영어', '과학', '사회', '한국사'],
     area: ['서울', '경기', '대전', '강원', '경기', '대전', '강원'],
@@ -141,7 +132,7 @@ export const test: TeacherType = [
     },
   },
   {
-    user: 'https://png.pngtree.com/png-clipart/20220113/ourlarge/pngtree-cartoon-hand-drawn-default-avatar-png-image_4156500.png',
+    img: 'https://png.pngtree.com/png-clipart/20220113/ourlarge/pngtree-cartoon-hand-drawn-default-avatar-png-image_4156500.png',
     name: '조상옥',
     category: ['수학', '국어', '과학'],
     area: ['서울', '경기'],
@@ -151,7 +142,7 @@ export const test: TeacherType = [
     },
   },
   {
-    user: 'https://png.pngtree.com/png-clipart/20220113/ourlarge/pngtree-cartoon-hand-drawn-default-avatar-png-image_4156500.png',
+    img: 'https://png.pngtree.com/png-clipart/20220113/ourlarge/pngtree-cartoon-hand-drawn-default-avatar-png-image_4156500.png',
     name: '조상옥',
     category: ['영어', '과학'],
     area: ['서울', '경기', '강원'],
@@ -161,7 +152,7 @@ export const test: TeacherType = [
     },
   },
   {
-    user: 'https://png.pngtree.com/png-clipart/20220113/ourlarge/pngtree-cartoon-hand-drawn-default-avatar-png-image_4156500.png',
+    img: 'https://png.pngtree.com/png-clipart/20220113/ourlarge/pngtree-cartoon-hand-drawn-default-avatar-png-image_4156500.png',
     name: '조상옥',
     category: ['영어', '과학'],
     area: ['서울', '경기', '강원'],
@@ -171,7 +162,7 @@ export const test: TeacherType = [
     },
   },
   {
-    user: 'https://png.pngtree.com/png-clipart/20220113/ourlarge/pngtree-cartoon-hand-drawn-default-avatar-png-image_4156500.png',
+    img: 'https://png.pngtree.com/png-clipart/20220113/ourlarge/pngtree-cartoon-hand-drawn-default-avatar-png-image_4156500.png',
     name: '조상옥',
     category: ['영어', '과학'],
     area: ['서울', '경기', '강원'],
@@ -181,7 +172,7 @@ export const test: TeacherType = [
     },
   },
   {
-    user: 'https://png.pngtree.com/png-clipart/20220113/ourlarge/pngtree-cartoon-hand-drawn-default-avatar-png-image_4156500.png',
+    img: 'https://png.pngtree.com/png-clipart/20220113/ourlarge/pngtree-cartoon-hand-drawn-default-avatar-png-image_4156500.png',
     name: '조상옥',
     category: ['영어', '과학'],
     area: ['서울', '경기', '강원'],
@@ -191,7 +182,7 @@ export const test: TeacherType = [
     },
   },
   {
-    user: 'https://png.pngtree.com/png-clipart/20220113/ourlarge/pngtree-cartoon-hand-drawn-default-avatar-png-image_4156500.png',
+    img: 'https://png.pngtree.com/png-clipart/20220113/ourlarge/pngtree-cartoon-hand-drawn-default-avatar-png-image_4156500.png',
     name: '조상옥',
     category: ['영어', '과학'],
     area: ['서울', '경기', '강원'],
@@ -201,7 +192,7 @@ export const test: TeacherType = [
     },
   },
   {
-    user: 'https://png.pngtree.com/png-clipart/20220113/ourlarge/pngtree-cartoon-hand-drawn-default-avatar-png-image_4156500.png',
+    img: 'https://png.pngtree.com/png-clipart/20220113/ourlarge/pngtree-cartoon-hand-drawn-default-avatar-png-image_4156500.png',
     name: '조상옥',
     category: ['영어', '과학'],
     area: ['서울', '경기', '강원'],
@@ -211,7 +202,7 @@ export const test: TeacherType = [
     },
   },
   {
-    user: 'https://png.pngtree.com/png-clipart/20220113/ourlarge/pngtree-cartoon-hand-drawn-default-avatar-png-image_4156500.png',
+    img: 'https://png.pngtree.com/png-clipart/20220113/ourlarge/pngtree-cartoon-hand-drawn-default-avatar-png-image_4156500.png',
     name: '조상옥',
     category: ['수학', '국어', 'sdfadsfadsfs', '한국사', '영어', '과학', '사회', '한국사'],
     area: ['서울', '경기', '대전', '강원', '경기', '대전', '강원'],
@@ -221,7 +212,7 @@ export const test: TeacherType = [
     },
   },
   {
-    user: 'https://png.pngtree.com/png-clipart/20220113/ourlarge/pngtree-cartoon-hand-drawn-default-avatar-png-image_4156500.png',
+    img: 'https://png.pngtree.com/png-clipart/20220113/ourlarge/pngtree-cartoon-hand-drawn-default-avatar-png-image_4156500.png',
     name: '조상옥',
     category: ['수학', '국어', '과학'],
     area: ['서울', '경기'],
@@ -231,7 +222,7 @@ export const test: TeacherType = [
     },
   },
   {
-    user: 'https://png.pngtree.com/png-clipart/20220113/ourlarge/pngtree-cartoon-hand-drawn-default-avatar-png-image_4156500.png',
+    img: 'https://png.pngtree.com/png-clipart/20220113/ourlarge/pngtree-cartoon-hand-drawn-default-avatar-png-image_4156500.png',
     name: '조상옥',
     category: ['영어', '과학'],
     area: ['서울', '경기', '강원'],
@@ -241,7 +232,7 @@ export const test: TeacherType = [
     },
   },
   {
-    user: 'https://png.pngtree.com/png-clipart/20220113/ourlarge/pngtree-cartoon-hand-drawn-default-avatar-png-image_4156500.png',
+    img: 'https://png.pngtree.com/png-clipart/20220113/ourlarge/pngtree-cartoon-hand-drawn-default-avatar-png-image_4156500.png',
     name: '조상옥',
     category: ['영어', '과학'],
     area: ['서울', '경기', '강원'],
@@ -251,7 +242,7 @@ export const test: TeacherType = [
     },
   },
   {
-    user: 'https://png.pngtree.com/png-clipart/20220113/ourlarge/pngtree-cartoon-hand-drawn-default-avatar-png-image_4156500.png',
+    img: 'https://png.pngtree.com/png-clipart/20220113/ourlarge/pngtree-cartoon-hand-drawn-default-avatar-png-image_4156500.png',
     name: '조상옥',
     category: ['수학', '국어', 'sdfadsfadsfs', '한국사', '영어', '과학', '사회', '한국사'],
     area: ['서울', '경기', '대전', '강원', '경기', '대전', '강원'],
@@ -261,7 +252,7 @@ export const test: TeacherType = [
     },
   },
   {
-    user: 'https://png.pngtree.com/png-clipart/20220113/ourlarge/pngtree-cartoon-hand-drawn-default-avatar-png-image_4156500.png',
+    img: 'https://png.pngtree.com/png-clipart/20220113/ourlarge/pngtree-cartoon-hand-drawn-default-avatar-png-image_4156500.png',
     name: '조상옥',
     category: ['수학', '국어', '과학'],
     area: ['서울', '경기'],
@@ -271,7 +262,7 @@ export const test: TeacherType = [
     },
   },
   {
-    user: 'https://png.pngtree.com/png-clipart/20220113/ourlarge/pngtree-cartoon-hand-drawn-default-avatar-png-image_4156500.png',
+    img: 'https://png.pngtree.com/png-clipart/20220113/ourlarge/pngtree-cartoon-hand-drawn-default-avatar-png-image_4156500.png',
     name: '조상옥',
     category: ['영어', '과학'],
     area: ['서울', '경기', '강원'],
@@ -281,7 +272,7 @@ export const test: TeacherType = [
     },
   },
   {
-    user: 'https://png.pngtree.com/png-clipart/20220113/ourlarge/pngtree-cartoon-hand-drawn-default-avatar-png-image_4156500.png',
+    img: 'https://png.pngtree.com/png-clipart/20220113/ourlarge/pngtree-cartoon-hand-drawn-default-avatar-png-image_4156500.png',
     name: '조상옥',
     category: ['영어', '과학'],
     area: ['서울', '경기', '강원'],
@@ -291,7 +282,7 @@ export const test: TeacherType = [
     },
   },
   {
-    user: 'https://png.pngtree.com/png-clipart/20220113/ourlarge/pngtree-cartoon-hand-drawn-default-avatar-png-image_4156500.png',
+    img: 'https://png.pngtree.com/png-clipart/20220113/ourlarge/pngtree-cartoon-hand-drawn-default-avatar-png-image_4156500.png',
     name: '조상옥',
     category: ['영어', '과학'],
     area: ['서울', '경기', '강원'],
@@ -301,7 +292,7 @@ export const test: TeacherType = [
     },
   },
   {
-    user: 'https://png.pngtree.com/png-clipart/20220113/ourlarge/pngtree-cartoon-hand-drawn-default-avatar-png-image_4156500.png',
+    img: 'https://png.pngtree.com/png-clipart/20220113/ourlarge/pngtree-cartoon-hand-drawn-default-avatar-png-image_4156500.png',
     name: '조상옥',
     category: ['영어', '과학'],
     area: ['서울', '경기', '강원'],
@@ -311,7 +302,7 @@ export const test: TeacherType = [
     },
   },
   {
-    user: 'https://png.pngtree.com/png-clipart/20220113/ourlarge/pngtree-cartoon-hand-drawn-default-avatar-png-image_4156500.png',
+    img: 'https://png.pngtree.com/png-clipart/20220113/ourlarge/pngtree-cartoon-hand-drawn-default-avatar-png-image_4156500.png',
     name: '조상옥',
     category: ['영어', '과학'],
     area: ['서울', '경기', '강원'],
@@ -321,7 +312,7 @@ export const test: TeacherType = [
     },
   },
   {
-    user: 'https://png.pngtree.com/png-clipart/20220113/ourlarge/pngtree-cartoon-hand-drawn-default-avatar-png-image_4156500.png',
+    img: 'https://png.pngtree.com/png-clipart/20220113/ourlarge/pngtree-cartoon-hand-drawn-default-avatar-png-image_4156500.png',
     name: '조상옥',
     category: ['영어', '과학'],
     area: ['서울', '경기', '강원'],
@@ -331,7 +322,7 @@ export const test: TeacherType = [
     },
   },
   {
-    user: 'https://png.pngtree.com/png-clipart/20220113/ourlarge/pngtree-cartoon-hand-drawn-default-avatar-png-image_4156500.png',
+    img: 'https://png.pngtree.com/png-clipart/20220113/ourlarge/pngtree-cartoon-hand-drawn-default-avatar-png-image_4156500.png',
     name: '조상옥',
     category: ['수학', '국어', 'sdfadsfadsfs', '한국사', '영어', '과학', '사회', '한국사'],
     area: ['서울', '경기', '대전', '강원', '경기', '대전', '강원'],
@@ -341,7 +332,7 @@ export const test: TeacherType = [
     },
   },
   {
-    user: 'https://png.pngtree.com/png-clipart/20220113/ourlarge/pngtree-cartoon-hand-drawn-default-avatar-png-image_4156500.png',
+    img: 'https://png.pngtree.com/png-clipart/20220113/ourlarge/pngtree-cartoon-hand-drawn-default-avatar-png-image_4156500.png',
     name: '조상옥',
     category: ['수학', '국어', '과학'],
     area: ['서울', '경기'],
@@ -351,7 +342,7 @@ export const test: TeacherType = [
     },
   },
   {
-    user: 'https://png.pngtree.com/png-clipart/20220113/ourlarge/pngtree-cartoon-hand-drawn-default-avatar-png-image_4156500.png',
+    img: 'https://png.pngtree.com/png-clipart/20220113/ourlarge/pngtree-cartoon-hand-drawn-default-avatar-png-image_4156500.png',
     name: '조상옥',
     category: ['영어', '과학'],
     area: ['서울', '경기', '강원'],
@@ -361,7 +352,7 @@ export const test: TeacherType = [
     },
   },
   {
-    user: 'https://png.pngtree.com/png-clipart/20220113/ourlarge/pngtree-cartoon-hand-drawn-default-avatar-png-image_4156500.png',
+    img: 'https://png.pngtree.com/png-clipart/20220113/ourlarge/pngtree-cartoon-hand-drawn-default-avatar-png-image_4156500.png',
     name: '조상옥',
     category: ['영어', '과학'],
     area: ['서울', '경기', '강원'],
