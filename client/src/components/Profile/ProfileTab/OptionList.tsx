@@ -12,6 +12,7 @@ type OptionListProps = {
     onLine: boolean;
     offLine: boolean;
   };
+  handleClassMethodUpdate: (onLine: boolean, offLine: boolean) => void;
 };
 
 const OptionList: React.FC<OptionListProps> = ({
@@ -20,9 +21,21 @@ const OptionList: React.FC<OptionListProps> = ({
   career,
   option,
   classMethod = { onLine: true, offLine: false },
+  handleClassMethodUpdate,
 }) => {
   const [onLine, setOnLine] = useState(classMethod.onLine);
   const [offLine, setOffLine] = useState(classMethod.offLine);
+  const handleOnLineChange = () => {
+    const newOnLineState = !onLine;
+    setOnLine(newOnLineState);
+    handleClassMethodUpdate(newOnLineState, offLine);
+  };
+
+  const handleOffLineChange = () => {
+    const newOffLineState = !offLine;
+    setOffLine(newOffLineState);
+    handleClassMethodUpdate(onLine, newOffLineState);
+  };
   return (
     <>
       {teacher ? (
@@ -33,7 +46,7 @@ const OptionList: React.FC<OptionListProps> = ({
               color="green"
               className="text-green bg-green"
               checked={onLine}
-              onChange={() => setOnLine(!onLine)}
+              onChange={() => handleOnLineChange()}
               crossOrigin="anonymous"
             />
             <OnlineDiv onoff="온라인" />
@@ -42,7 +55,7 @@ const OptionList: React.FC<OptionListProps> = ({
               color="green"
               className="text-green bg-green"
               checked={offLine}
-              onChange={() => setOffLine(!offLine)}
+              onChange={() => handleOffLineChange()}
               crossOrigin="anonymous"
             />
             <OnlineDiv onoff="오프라인" />

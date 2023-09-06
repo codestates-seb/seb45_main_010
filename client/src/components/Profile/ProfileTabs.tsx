@@ -2,10 +2,10 @@ import { useEffect, useRef } from 'react';
 import RequestList from './ProfileTab/RequestList';
 import ScheduleList from './ProfileTab/ScheduleList';
 import OptionList from './ProfileTab/OptionList';
-import { UserRequest } from 'components/Types/User';
+import { RequestType } from 'components/Types/Types';
 
 type ProfileTabsProps = {
-  requests: UserRequest[];
+  requests: RequestType[];
   teacher: boolean;
   lectureFee: string;
   career: string;
@@ -14,6 +14,7 @@ type ProfileTabsProps = {
     onLine: boolean;
     offLine: boolean;
   };
+  handleClassMethodUpdate: (onLine: boolean, offLine: boolean) => void;
 };
 
 const ProfileTabs: React.FC<ProfileTabsProps> = ({
@@ -22,6 +23,8 @@ const ProfileTabs: React.FC<ProfileTabsProps> = ({
   lectureFee,
   career,
   option,
+  classMethod,
+  handleClassMethodUpdate,
 }) => {
   type tabDataType = {
     id: string;
@@ -45,7 +48,8 @@ const ProfileTabs: React.FC<ProfileTabsProps> = ({
           lectureFee={lectureFee}
           career={career}
           option={option}
-          classMethod={{ onLine: false, offLine: false }}
+          classMethod={classMethod}
+          handleClassMethodUpdate={handleClassMethodUpdate}
         />
       ),
     },

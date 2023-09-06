@@ -1,27 +1,25 @@
 import ProfileTabs from 'components/Profile/ProfileTabs';
 import ProfileHeader from 'components/Profile/ProfileHeader';
-import { useState, useEffect } from 'react';
-import axios from 'axios';
-import { User } from 'components/Type/User';
+import { useEffect } from 'react';
+import { FetchProfile, FetchRequest, updateClassMethod } from 'redux/thunk/Thunk';
+import { useAppDispatch, useAppSelector } from 'hooks/hooks';
 
 const Profile = () => {
-  const [user, setUser] = useState<User | null>(null);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [isteacher, setIsTeacher] = useState<boolean>(true);
-  const userId = 'usMU8Hr';
-  // const userId = 'yHPHHwR';
+  const dispatch = useAppDispatch();
+  const profileState = useAppSelector((state) => state.profile);
+  const requestState = useAppSelector((state) => state.request);
+  const handleClassMethodUpdate = (onLine: boolean, offLine: boolean) => {
+    dispatch(updateClassMethod({ userId, onLine, offLine }));
+  };
+  const userId = 1;
+  // const userId = 2;
+  const user = profileState.value;
+  const request = requestState.value;
 
   useEffect(() => {
-    const userData = async () => {
-      try {
-        const response = await axios.get<User>(`http://localhost:8081/profile/${userId}`);
-        setUser(response.data);
-      } catch (error) {
-        console.log('UserData GET error', error);
-      }
-    };
-    userData();
-  }, [isteacher, userId]);
+    dispatch(FetchProfile(userId));
+    dispatch(FetchRequest(userId));
+  }, [dispatch, userId]);
 
   return (
     <>
@@ -34,16 +32,19 @@ const Profile = () => {
             classMethod={{ onLine: user.classMethod.onLine, offLine: user.classMethod.offLine }}
           />
           <ProfileTabs
-            requests={user.request}
+            requests={request}
             teacher={user.teacher}
             lectureFee={user.lectureFee}
             career={user.career}
             option={user.option}
             classMethod={{ onLine: user.classMethod.onLine, offLine: user.classMethod.offLine }}
+            handleClassMethodUpdate={handleClassMethodUpdate}
           />
         </>
-      ) : (
+      ) : profileState.status === 'pending' ? (
         <div>Loading...</div>
+      ) : (
+        <div>Error loading data</div>
       )}
     </>
   );
