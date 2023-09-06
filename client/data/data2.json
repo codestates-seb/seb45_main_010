@@ -3,7 +3,7 @@
     {
       "name": "홍길동",
       "email": "ljedoc@gmail.com",
-      "password": "dlwldms2",
+      "password": "test1234",
       "teacher": true,
       "id": "usMU8Hr",
       "area": ["서울", "강남"],
@@ -170,8 +170,8 @@
     },
     {
       "name": "홍길동",
-      "email": "ljedoc@gmail.com",
-      "password": "dlwldms2",
+      "email": "wiedfds@gmail.com",
+      "password": "fdddfw2",
       "teacher": true,
       "id": "usMU8Hr",
       "area": ["서울", "강남"],

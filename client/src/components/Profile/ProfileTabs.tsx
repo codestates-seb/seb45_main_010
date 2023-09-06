@@ -10,6 +10,10 @@ type ProfileTabsProps = {
   lectureFee: string;
   career: string;
   option: string;
+  classMethod: {
+    onLine: boolean;
+    offLine: boolean;
+  };
 };
 
 const ProfileTabs: React.FC<ProfileTabsProps> = ({
@@ -19,13 +23,13 @@ const ProfileTabs: React.FC<ProfileTabsProps> = ({
   career,
   option,
 }) => {
-  type tabData = {
+  type tabDataType = {
     id: string;
     title: string;
     subtitle: JSX.Element;
   }[];
 
-  const tabData = [
+  const tabData: tabDataType = [
     {
       id: 'request',
       title: '내 강의 조회',
@@ -36,7 +40,13 @@ const ProfileTabs: React.FC<ProfileTabsProps> = ({
       id: 'option',
       title: 'Profile 관리',
       subtitle: (
-        <OptionList teacher={teacher} lectureFee={lectureFee} career={career} option={option} />
+        <OptionList
+          teacher={teacher}
+          lectureFee={lectureFee}
+          career={career}
+          option={option}
+          classMethod={{ onLine: false, offLine: false }}
+        />
       ),
     },
   ];
@@ -105,7 +115,7 @@ const ProfileTabs: React.FC<ProfileTabsProps> = ({
           className="flex flex-col items-center justify-center mt-10"
           id={`tab-${section.id}`}
         >
-          <div className="w-[350px]">{section.subtitle}</div>
+          <div className="w-full p-4">{section.subtitle}</div>
         </section>
       ))}
     </>

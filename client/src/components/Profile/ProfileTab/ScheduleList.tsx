@@ -2,11 +2,10 @@ import { Button } from '@material-tailwind/react';
 // import { BsChevronDown } from 'react-icons/bs';
 import Calendar from './Calendar';
 
-
 const ScheduleList = () => {
   return (
-    <div className="my-10">
-      <p className="mx-5 mb-5 text-sm font-bold ">수업가능 일정설정</p>
+    <div className="py-10">
+      <p className="px-4 mb-5 text-sm font-bold ">수업가능 일정설정</p>
       <div className="flex flex-col items-center justify-center gap-5">
         {/* <Button
           className="flex items-center justify-between p-2 text-sm font-bold text-black bg-mint-4 rounded-xl w-[230px] border-mint-2"
@@ -17,9 +16,9 @@ const ScheduleList = () => {
         </Button> */}
         <Calendar />
       </div>
-      <div className="flex items-center justify-center my-5">
+      <div className="flex items-center justify-center py-5">
         <Button
-          className="flex items-center justify-between p-2 my-5 text-sm font-bold text-white bg-blue-1 rounded-xl w-[98px] "
+          className="flex items-center justify-between w-full p-2 my-5 text-sm font-bold text-white bg-blue-1 rounded-xl "
           size="sm"
         >
           <span className="flex-1 text-center">저장</span>
