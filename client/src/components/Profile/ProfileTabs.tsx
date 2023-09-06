@@ -10,6 +10,10 @@ type ProfileTabsProps = {
   lectureFee: string;
   career: string;
   option: string;
+  classMethod: {
+    onLine: boolean;
+    offLine: boolean;
+  };
 };
 
 const ProfileTabs: React.FC<ProfileTabsProps> = ({
@@ -36,7 +40,13 @@ const ProfileTabs: React.FC<ProfileTabsProps> = ({
       id: 'option',
       title: 'Profile 관리',
       subtitle: (
-        <OptionList teacher={teacher} lectureFee={lectureFee} career={career} option={option} />
+        <OptionList
+          teacher={teacher}
+          lectureFee={lectureFee}
+          career={career}
+          option={option}
+          classMethod={{ onLine: false, offLine: false }}
+        />
       ),
     },
   ];
