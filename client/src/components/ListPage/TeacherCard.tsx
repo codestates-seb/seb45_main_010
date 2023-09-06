@@ -1,4 +1,4 @@
-import { ListPageType } from 'components/Types/Types';
+import { ListPageType } from 'Types/Types';
 import React from 'react';
 import { Link } from 'react-router-dom';
 

@@ -1,4 +1,4 @@
-import { ListPageType } from 'components/Types/Types';
+import { ListPageType } from 'Types/Types';
 
 export const test: ListPageType = [
   {

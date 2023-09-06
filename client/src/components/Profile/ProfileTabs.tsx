@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import RequestList from './ProfileTab/RequestList';
 import ScheduleList from './ProfileTab/ScheduleList';
 import OptionList from './ProfileTab/OptionList';
-import { UserRequest } from 'components/Types/User';
+import { UserRequest } from 'Types/User';
 
 type ProfileTabsProps = {
   requests: UserRequest[];

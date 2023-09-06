@@ -2,7 +2,7 @@ import React from 'react';
 import { Button } from '@material-tailwind/react';
 import { BiChevronsLeft, BiChevronsRight } from 'react-icons/bi';
 import { PageNumbers } from './PageNumbers';
-import { ListPageType } from 'components/Types/Types';
+import { ListPageType } from 'Types/Types';
 
 type props = {
   test: ListPageType;

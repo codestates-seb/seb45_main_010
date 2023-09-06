@@ -2,7 +2,7 @@ import { Button } from '@material-tailwind/react';
 import userExampleImage from '../../assets/Image/user-example.png';
 import ProfileDropdown from './ProfileDropdown';
 import { Link } from 'react-router-dom';
-import { User } from 'components/Types/User';
+import { User } from 'Types/User';
 import OnlineDiv from 'components/Items/OnlineDiv';
 import Option from './ProfileTab/Option';
 
