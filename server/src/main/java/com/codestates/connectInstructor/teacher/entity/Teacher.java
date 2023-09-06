@@ -30,7 +30,7 @@ public class Teacher extends Auditable implements Member {
     @Column(nullable = false, length = 30)
     private String name;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String profileImg; // TODO 회원가입 시 default로 할 때 null인지 default URL이 있는지
 
     @Column(columnDefinition = "TEXT", nullable = false)
