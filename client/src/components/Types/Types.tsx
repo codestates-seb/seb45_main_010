@@ -4,6 +4,7 @@ export type User = {
   password: string;
   teacher: boolean;
   id: number;
+  phone: number;
   area: string[];
   category: string[];
   img: string;
@@ -24,7 +25,16 @@ export type User = {
 
 export type TeacherType = Omit<User, 'password'>;
 
-export type StudentType = Omit<User, 'password' | 'date' | 'classMethod'>;
+export type StudentType = Omit<
+  User,
+  'password' | 'date' | 'classMethod' | 'lectureFee' | 'career' | 'option'
+>;
+
+export type CommonUserType = Pick<User, 'name' | 'email' | 'phone' | 'id' | 'teacher'>;
+
+export type PrivateType = Pick<User, 'img' | 'name' | 'email' | 'password' | 'phone'>;
+
+export type LoginType = Pick<User, 'email' | 'password'>;
 
 export type ListPageType = Pick<
   TeacherType,
