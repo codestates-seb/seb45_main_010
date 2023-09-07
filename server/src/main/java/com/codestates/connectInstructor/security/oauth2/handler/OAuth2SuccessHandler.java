@@ -42,6 +42,8 @@ public class OAuth2SuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
 
         log.info("start!!!!");
 
+        log.info("getAuthType : {}", request.getAuthType());
+
 //        if (request.getAttribute("memberType").equals("student")) {
 //            log.info("##### 성공!!!!!");
 //        }

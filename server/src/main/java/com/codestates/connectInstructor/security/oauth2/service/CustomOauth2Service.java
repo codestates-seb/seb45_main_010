@@ -35,6 +35,10 @@ public class CustomOauth2Service implements OAuth2UserService<OAuth2UserRequest,
     public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
         log.info("load User 호출 성공");
 
+//        if (userRequest.getAdditionalParameters().get("memberType").equals("student")) {
+//            log.info("학생이다!!!!!");
+//        }
+
         OAuth2UserService<OAuth2UserRequest, OAuth2User> delegate = new DefaultOAuth2UserService();
         OAuth2User user = delegate.loadUser(userRequest);
 
