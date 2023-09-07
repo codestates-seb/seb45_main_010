@@ -3,7 +3,7 @@ import { ChangeEvent, FormEvent } from 'react';
 import { Button } from '@material-tailwind/react';
 import { Link } from 'react-router-dom';
 import { LoginType, CommonUserType } from '../components/Types/Types';
-import Private from './Private';
+import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
 
 const Login: React.FC = () => {
@@ -123,7 +123,6 @@ const Login: React.FC = () => {
           </Button>
         </form>
       </div>
-      <Private userDetails={userDetails} />
     </div>
   );
 };

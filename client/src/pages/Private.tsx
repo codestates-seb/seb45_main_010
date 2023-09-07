@@ -4,12 +4,7 @@ import { AiFillCamera } from 'react-icons/ai';
 import { FiSend } from 'react-icons/fi';
 import { CommonUserType } from '../components/Types/Types';
 
-type OwnProps = {
-  userDetails: CommonUserType;
-};
-
-const Private: React.FC<OwnProps> = ({ userDetails }) => {
-  console.log(userDetails);
+const Private: React.FC = () => {
   const [userInfo, setUserInfo] = useState<CommonUserType>({
     ...userDetails,
   });
