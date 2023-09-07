@@ -1,23 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Thumbnail from '../assets/모네-수련.jpeg';
 import { AiFillCamera } from 'react-icons/ai';
 import { FiSend } from 'react-icons/fi';
 import { CommonUserType } from '../components/Types/Types';
-import axios from 'axios';
 
 type OwnProps = {
   userDetails: CommonUserType;
 };
 
 const Private: React.FC<OwnProps> = ({ userDetails }) => {
-  const [userInfo, seUserInfo] = useState<CommonUserType>({
-    //회원가입정보
-    name: userDetails.name,
-    email: userDetails.email,
-    teacher: userDetails.teacher,
-    id: userDetails.id,
-    phone: userDetails.phone,
-    img: userDetails.img,
+  console.log(userDetails);
+  const [userInfo, setUserInfo] = useState<CommonUserType>({
+    ...userDetails,
   });
 
   console.log(userDetails);
@@ -28,15 +22,21 @@ const Private: React.FC<OwnProps> = ({ userDetails }) => {
   //     .then((res) => seUserInfo(res.data))
   //     .catch((err) => console.log(err));
   // };
+  useEffect(() => {
+    // userDetails가 변경될 때마다 userInfo를 업데이트
+    setUserInfo({
+      ...userDetails,
+    });
+  }, [userDetails]);
 
   return (
     <div className="flex flex-col justify-center px-[12.5px]">
       <div className="flex mb-2">
         <div className="flex flex-col item-center justify-center">
-          {!userInfo.img ? (
-            <img src={Thumbnail} className="mx-6 rounded-lg h-14 w-14 m-2" />
-          ) : (
+          {userInfo.img ? (
             <img src={userDetails.img} className="mx-6 rounded-lg h-14 w-14 m-2" />
+          ) : (
+            <img src={Thumbnail} className="mx-6 rounded-lg h-14 w-14 m-2" />
           )}
         </div>
         <div className="flex flex-col item-center justify-end relative">

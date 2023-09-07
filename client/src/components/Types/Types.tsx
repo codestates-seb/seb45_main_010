@@ -30,7 +30,7 @@ export type StudentType = Omit<
   'password' | 'date' | 'classMethod' | 'lectureFee' | 'career' | 'option'
 >;
 
-export type CommonUserType = Pick<User, 'name' | 'email' | 'phone' | 'id' | 'teacher'>;
+export type CommonUserType = Pick<User, 'name' | 'email' | 'teacher' | 'id' | 'phone' | 'img'>;
 
 export type PrivateType = Pick<User, 'img' | 'name' | 'email' | 'password' | 'phone'>;
 

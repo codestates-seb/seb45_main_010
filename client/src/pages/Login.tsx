@@ -44,9 +44,17 @@ const Login: React.FC = () => {
         const matchingUser = response.data.filter((user: LoginType) => {
           return user.email === LoginInfo.email && user.password === LoginInfo.password;
         })[0];
-        setUserDetails(matchingUser);
-        console.log(userDetails);
         if (matchingUser) {
+          setUserDetails({
+            ...userDetails,
+            name: matchingUser.name,
+            email: matchingUser.email,
+            teacher: matchingUser.teacher,
+            id: matchingUser.id,
+            phone: matchingUser.phone || '',
+            img: matchingUser.img || '',
+          });
+          console.log(userDetails);
           alert('로그인 되었습니다');
         } else {
           alert('이메일 혹은 비밀번호가 일치하지 않습니다.');
