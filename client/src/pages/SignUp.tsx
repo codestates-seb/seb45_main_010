@@ -2,19 +2,15 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ChangeEvent, FormEvent } from 'react';
 import { Button, Checkbox } from '@material-tailwind/react';
+import { User } from '../components/Types/Types';
 import axios from 'axios';
 
-export type Member = {
-  name: string;
-  email: string;
-  password: string;
-  teacher: boolean;
-};
+type MemberSignUp = Pick<User, 'name' | 'email' | 'password' | 'teacher'>;
 
 const SignUp: React.FC = () => {
   const [checkEmail, setCheckEmail] = useState<boolean>(false); //이메일중복확인
   const [registerable, setResiterable] = useState<boolean>(false); //등록가능여부
-  const [userInfo, setUserInfo] = useState<Member>({
+  const [userInfo, setUserInfo] = useState<MemberSignUp>({
     //회원가입정보
     name: '',
     email: '',
@@ -151,6 +147,7 @@ const SignUp: React.FC = () => {
 
           <label className="flex items-center space-x-2">
             <Checkbox
+              crossOrigin={undefined}
               type="checkbox"
               id="teacher"
               name="teacher"

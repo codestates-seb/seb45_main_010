@@ -1,20 +1,35 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ChangeEvent, FormEvent } from 'react';
 import { Button } from '@material-tailwind/react';
 import { Link } from 'react-router-dom';
+import { LoginType, CommonUserType } from '../components/Types/Types';
+import { fetchUserDetails } from 'redux/slice/MemberSlice';
+import { useAppDispatch, useAppSelector } from 'hooks/hooks';
 import axios from 'axios';
 
-export type MemberLogin = {
-  email: string;
-  password: string;
-};
 const Login: React.FC = () => {
-  const [LoginInfo, setLoginInfo] = useState<MemberLogin>({
+  const [LoginInfo, setLoginInfo] = useState<LoginType>({
     //회원가입정보
     email: '',
     password: '',
   });
-  const [userDetails, setUserDetails] = useState<[]>([]);
+  const [userDetails, setUserDetails] = useState<CommonUserType>({
+    name: '',
+    email: '',
+    teacher: false,
+    id: null as unknown as number,
+    phone: null as unknown as number,
+    img: '',
+  });
+
+  const dispatch = useAppDispatch();
+  const user = useAppSelector((state) => state.member);
+  console.log(user);
+
+  useEffect(() => {
+    // Thunk 액션 생성자 디스패치
+    dispatch(fetchUserDetails());
+  }, [dispatch]);
 
   const HandleLoginInfo = (e: ChangeEvent<HTMLInputElement>) => {
     const key = e.target.name;
@@ -32,15 +47,17 @@ const Login: React.FC = () => {
       return;
     }
 
+    dispatch(fetchUserDetails());
+
     await axios
       .get('http://localhost:8080/member')
       .then((response) => {
         console.log('회원확인 map으로 받아옴', response.data);
-        const matchingUser = response.data.filter((user: MemberLogin) => {
+        const matchingUser = response.data.filter((user: LoginType) => {
           return user.email === LoginInfo.email && user.password === LoginInfo.password;
         })[0];
-        setUserDetails(matchingUser);
         if (matchingUser) {
+          console.log(userDetails);
           alert('로그인 되었습니다');
         } else {
           alert('이메일 혹은 비밀번호가 일치하지 않습니다.');
