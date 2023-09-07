@@ -1,32 +1,30 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { CommonUserType } from 'components/Types/Types';
 
-type initialStateType = {
-  status: string;
-  value: CommonUserType | null;
-  error: string | null;
-};
-
-const initialState: initialStateType = {
-  status: '',
-  value: null,
-  error: null,
+const initialState: CommonUserType = {
+  name: '',
+  email: '',
+  teacher: false,
+  id: null as unknown as number,
+  phone: null as unknown as number,
+  img: '',
 };
 
 export const memberSlice = createSlice({
   name: 'member',
   initialState,
-  reducers: {},
-  extraReducers: (builder) => {
-    builder.addCase(fetchUserDetails.fulfilled, (state, action) => {
-      state.value = action.payload;
-    });
+  reducers: {
+    setUserInfo: (state, action: PayloadAction<CommonUserType>) => {
+      return {
+        ...state,
+        ...action.payload,
+      };
+    },
   },
 });
 
-export const { setUserDetails } = memberSlice.actions;
-
+export const { setUserInfo } = memberSlice.actions;
 export default memberSlice.reducer;
 
 export const fetchUserDetails = createAsyncThunk('member/fetchUserDetails', async () => {

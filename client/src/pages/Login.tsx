@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ChangeEvent, FormEvent } from 'react';
 import { Button } from '@material-tailwind/react';
 import { Link } from 'react-router-dom';
 import { LoginType, CommonUserType } from '../components/Types/Types';
-import { useSelector, useDispatch } from 'react-redux';
+import { fetchUserDetails } from 'redux/slice/MemberSlice';
+import { useAppDispatch, useAppSelector } from 'hooks/hooks';
 import axios from 'axios';
 
 const Login: React.FC = () => {
@@ -21,6 +22,15 @@ const Login: React.FC = () => {
     img: '',
   });
 
+  const dispatch = useAppDispatch();
+  const user = useAppSelector((state) => state.member);
+  console.log(user);
+
+  useEffect(() => {
+    // Thunk 액션 생성자 디스패치
+    dispatch(fetchUserDetails());
+  }, [dispatch]);
+
   const HandleLoginInfo = (e: ChangeEvent<HTMLInputElement>) => {
     const key = e.target.name;
     setLoginInfo({
@@ -37,6 +47,8 @@ const Login: React.FC = () => {
       return;
     }
 
+    dispatch(fetchUserDetails());
+
     await axios
       .get('http://localhost:8080/member')
       .then((response) => {
@@ -45,15 +57,6 @@ const Login: React.FC = () => {
           return user.email === LoginInfo.email && user.password === LoginInfo.password;
         })[0];
         if (matchingUser) {
-          setUserDetails({
-            ...userDetails,
-            name: matchingUser.name,
-            email: matchingUser.email,
-            teacher: matchingUser.teacher,
-            id: matchingUser.id,
-            phone: matchingUser.phone || '',
-            img: matchingUser.img || '',
-          });
           console.log(userDetails);
           alert('로그인 되었습니다');
         } else {
