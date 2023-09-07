@@ -40,13 +40,13 @@ public class SubjectService {
         if(subject.isPresent())
             throw new BusinessLogicException(ExceptionCode.SUBJECT_EXISTS);
     }
-    private Subject findVerifiedSubject( String subjectName ){
+    public Subject findVerifiedSubject( String subjectName ){
         Optional<Subject> subject = subjectRepository.findBySubjectName(subjectName);
         Subject findSubject =
                 subject.orElseThrow(() -> new BusinessLogicException(ExceptionCode.SUBJECT_NOT_FOUND));
         return findSubject;
     }
-    private Subject findVerifiedSubject( long subjectId ){
+    public Subject findVerifiedSubject( long subjectId ){
         Optional<Subject> subject = subjectRepository.findById(subjectId);
         Subject findSubject =
                 subject.orElseThrow(() -> new BusinessLogicException(ExceptionCode.SUBJECT_NOT_FOUND));
