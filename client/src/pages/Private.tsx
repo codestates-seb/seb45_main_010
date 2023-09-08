@@ -37,7 +37,7 @@ const Private: React.FC = () => {
           <div className="text-2xl m-1">{userDetails.name}</div>
         </div>
       </div>
-      <div className="flex-col px-7 mb-1">
+      <div className="flex-col mb-1 px-7">
         <div className="text-sm">이메일</div>
         <div className="text-sm">{userDetails.email}</div>
       </div>
