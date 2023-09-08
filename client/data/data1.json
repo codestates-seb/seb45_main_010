@@ -423,7 +423,7 @@
     },
     {
       "name": "홍길동",
-      "email": "kilddong@gmail.com",
+      "email": "abcd@gmail.com",
       "password": "test1234",
       "teacher": true,
       "phone": "01023453456",

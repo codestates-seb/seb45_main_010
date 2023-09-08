@@ -1,42 +1,36 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import Thumbnail from '../assets/모네-수련.jpeg';
 import { AiFillCamera } from 'react-icons/ai';
-import { FiSend } from 'react-icons/fi';
-import { CommonUserType } from '../components/Types/Types';
+import { fetchUserDetails } from 'redux/slice/MemberSlice';
+import { useAppDispatch, useAppSelector } from 'hooks/hooks';
+import { ChangeModal } from 'components/Modal/ChangeModal';
 
 const Private: React.FC = () => {
-  const [userInfo, setUserInfo] = useState<CommonUserType>({
-    ...userDetails,
-  });
-
+  const dispatch = useAppDispatch();
+  const userDetails = useAppSelector((state) => state.member);
   console.log(userDetails);
-  console.log(userInfo);
-  // const handleImage = () => {
-  //   axios
-  //     .patch(`http://localhost:8080/${userInfo.id}`)
-  //     .then((res) => seUserInfo(res.data))
-  //     .catch((err) => console.log(err));
-  // };
+
+  // 연동을 구현하면 삭제해야 할 코드, 해당 페이지 로딩시 새로고침으로 초기화되어 삽입한 내용임
+  const LoginInfo: string = 'abcd@gmail.com';
   useEffect(() => {
-    // userDetails가 변경될 때마다 userInfo를 업데이트
-    setUserInfo({
-      ...userDetails,
-    });
-  }, [userDetails]);
+    dispatch(fetchUserDetails(LoginInfo));
+  }, [dispatch]);
 
   return (
     <div className="flex flex-col justify-center px-[12.5px]">
       <div className="flex mb-2">
-        <div className="flex flex-col item-center justify-center">
-          {userInfo.img ? (
-            <img src={userDetails.img} className="mx-6 rounded-lg h-14 w-14 m-2" />
-          ) : (
-            <img src={Thumbnail} className="mx-6 rounded-lg h-14 w-14 m-2" />
-          )}
-        </div>
-        <div className="flex flex-col item-center justify-end relative">
-          <div className="rounded-full h-7 w-7 bg-gray-100 absolute bottom-0 right-0 opacity-80">
-            <AiFillCamera className="h-5 w-5 absolute bottom-1.5 right-1" />
+        <div className="flex">
+          <div className="flex flex-row justify-center item-center mr-[-30px]">
+            {userDetails.img ? (
+              <img src={userDetails.img} className="mx-6 rounded-lg h-14 w-14 m-2" />
+            ) : (
+              <img src={Thumbnail} className="mx-6 rounded-lg h-14 w-14 m-2" />
+            )}
+          </div>
+          <div className="flex flex-col item-center justify-end">
+            <div className="flex justify-center items-center rounded-full h-7 w-7 bg-gray-100 opacity-80">
+              <AiFillCamera className="h-5 w-5" />
+            </div>
           </div>
         </div>
         <div className="flex flex-col justify-center">
@@ -49,46 +43,57 @@ const Private: React.FC = () => {
       </div>
 
       <div className="flex-col my-5">
-        <div className="text-xm">이름</div>
-        <form className="flex gap-1 rounded-lg">
-          <input
-            type="text"
-            className="border text-xs h-[50px] border-blue-800/60 rounded-lg w-80 p-2"
-            placeholder={userDetails.name}
-          />
-          <button type="submit" className="">
-            <FiSend />
-          </button>
-        </form>
+        <div className="text-xm self-align-center">이름</div>
+        <div className="text-sm flex items-center">
+          <div className="border text-xs h-[60px] border-blue-800/60 rounded-lg w-80 p-2">
+            {userDetails.name}
+          </div>
+          <div className="m-2">
+            <ChangeModal
+              title=""
+              text="변경할 이름을 입력하세요"
+              warning=""
+              btnName="변경"
+              btnCheck="제출"
+            />
+          </div>
+        </div>
       </div>
 
       <div className="flex-col my-5">
-        <div className="text-sm">비밀번호</div>
-        <form className="flex gap-1 rounded-lg">
-          <input
-            type="text"
-            className="border text-sm h-[50px] border-blue-800/60 rounded-lg w-80 p-2"
-            placeholder="*********"
-          />
-          <button type="submit" className="">
-            <FiSend />
-          </button>
-        </form>
+        <div className="text-xm self-align-center">비밀번호</div>
+        <div className="text-sm flex items-center">
+          <div className="border text-xs h-[60px] border-blue-800/60 rounded-lg w-80 p-2">
+            *********
+          </div>
+          <div className="m-2">
+            <ChangeModal
+              title=""
+              text="변경할 비밀번호를 입력하세요"
+              warning="숫자+영문조합으로 8자이상 입력해주세요"
+              btnName="변경"
+              btnCheck="제출"
+            />
+          </div>
+        </div>
       </div>
+
       <div className="flex-col my-5">
-        <div className="text-sm">전화번호</div>
-        <form className="flex gap-1 rounded-lg">
-          <input
-            type="text"
-            className="border text-sm h-[50px] border-blue-800/60 rounded-lg w-80 p-2"
-            placeholder={
-              userDetails.phone === null ? 'your phone number here' : userDetails.phone.toString()
-            }
-          />
-          <button type="submit" className="">
-            <FiSend />
-          </button>
-        </form>
+        <div className="text-xm self-align-center">전화번호</div>
+        <div className="text-sm flex items-center">
+          <div className="border text-xs h-[60px] border-blue-800/60 rounded-lg w-80 p-2">
+            {userDetails.phone === null ? 'your phone number here' : userDetails.phone.toString()}
+          </div>
+          <div className="m-2">
+            <ChangeModal
+              title=""
+              text="새로운 전화번호를 입력하세요"
+              warning="숫자로만 입력해주세요"
+              btnName="변경"
+              btnCheck="제출"
+            />
+          </div>
+        </div>
         <div className="text-sm text-gray-700 p-1">전화번호는 숫자로만 입력해주세요</div>
       </div>
     </div>
