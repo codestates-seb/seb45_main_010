@@ -26,6 +26,9 @@ public class RegionService {
     public List<Region> findRegions(){
         return regionRepository.findAll();
     }
+    public List<Region> findRegionsWithTeacherId( long teacherId ){
+        return regionRepository.findByTeacherId(teacherId);
+    }
     public void deleteRegion( long regionId ){
         Region region = findVerifiedRegion(regionId);
 
