@@ -1,5 +1,14 @@
-import { Card, Typography, List, ListItem, ListItemPrefix } from '@material-tailwind/react';
-import { PresentationChartBarIcon, UserCircleIcon } from '@heroicons/react/24/solid';
+import {
+  Card,
+  Typography,
+  List,
+  ListItem,
+  ListItemPrefix,
+} from '@material-tailwind/react';
+import {
+  PresentationChartBarIcon,
+  UserCircleIcon,
+} from '@heroicons/react/24/solid';
 import { AiOutlineUser, AiOutlineUserAdd } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 

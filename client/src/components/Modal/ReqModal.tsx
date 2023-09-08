@@ -15,7 +15,11 @@ export const ReqModal = () => {
 
   return (
     <>
-      <Button onClick={handleOpen} variant="gradient" className="flex items-center h-10 text-sm">
+      <Button
+        onClick={handleOpen}
+        variant="gradient"
+        className="flex items-center h-10 text-sm"
+      >
         강의 신청하기
       </Button>
       <Dialog
@@ -26,27 +30,45 @@ export const ReqModal = () => {
       >
         <DialogHeader className="p-2 text-sm ">과목 선택</DialogHeader>
         <section className="flex items-center ">
-          <button className="px-3 py-1 m-2 text-sm text-black rounded-2xl bg-mint-3">수학</button>
+          <button className="px-3 py-1 m-2 text-sm text-black rounded-2xl bg-mint-3">
+            수학
+          </button>
         </section>
         <DialogHeader className="p-2 text-sm ">선택 과목</DialogHeader>
         <section className="flex items-center bg-mint-3 rounded-2xl ">
-          <button className="px-3 py-1 m-2 text-sm text-black rounded-2xl bg-mint-2">수학</button>
-          <button className="px-3 py-1 m-2 text-sm text-black rounded-2xl bg-mint-2">과학</button>
-          <button className="px-3 py-1 m-2 text-sm text-black rounded-2xl bg-mint-2">국어</button>
+          <button className="px-3 py-1 m-2 text-sm text-black rounded-2xl bg-mint-2">
+            수학
+          </button>
+          <button className="px-3 py-1 m-2 text-sm text-black rounded-2xl bg-mint-2">
+            과학
+          </button>
+          <button className="px-3 py-1 m-2 text-sm text-black rounded-2xl bg-mint-2">
+            국어
+          </button>
         </section>
         <DialogHeader className="p-2 text-sm ">지역 선택</DialogHeader>
         <section className="flex items-center ">
-          <button className="px-3 py-1 m-2 text-sm text-black rounded-2xl bg-mint-3">수학</button>
+          <button className="px-3 py-1 m-2 text-sm text-black rounded-2xl bg-mint-3">
+            수학
+          </button>
         </section>
         <DialogHeader className="p-2 text-sm">선택 지역</DialogHeader>
         <section className="flex items-center bg-mint-3 rounded-2xl">
-          <button className="px-3 py-1 m-2 text-sm text-black rounded-2xl bg-mint-2">수학</button>
-          <button className="px-3 py-1 m-2 text-sm text-black rounded-2xl bg-mint-2">과학</button>
-          <button className="px-3 py-1 m-2 text-sm text-black rounded-2xl bg-mint-2">국어</button>
+          <button className="px-3 py-1 m-2 text-sm text-black rounded-2xl bg-mint-2">
+            수학
+          </button>
+          <button className="px-3 py-1 m-2 text-sm text-black rounded-2xl bg-mint-2">
+            과학
+          </button>
+          <button className="px-3 py-1 m-2 text-sm text-black rounded-2xl bg-mint-2">
+            국어
+          </button>
         </section>
         <DialogHeader className="p-2 text-sm">스케줄 선택</DialogHeader>
         <section className="flex items-center bg-mint-3 rounded-2xl">
-          <p className="px-3 py-1 m-2 text-sm text-black rounded-2xl bg-mint-2">수학</p>
+          <p className="px-3 py-1 m-2 text-sm text-black rounded-2xl bg-mint-2">
+            수학
+          </p>
         </section>
         <DialogHeader className="p-2 text-sm">이름</DialogHeader>
         <section className="flex items-center bg-mint-3 rounded-2xl">

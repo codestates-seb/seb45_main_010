@@ -51,11 +51,15 @@ const GetPassword: React.FC = () => {
 
   return (
     <div className="flex flex-col item-center justify-center px-[12.5px]">
-      <div className="text-center font-bold text-2xl my-4">비밀번호 찾기</div>
-      <div className="flex flex-col item-center justify-center rounded-lg">
+      <div className="my-4 text-2xl font-bold text-center">비밀번호 찾기</div>
+      <div className="flex flex-col justify-center rounded-lg item-center">
         <div className="flex flex-col my-2">
-          <div className="text-sm text-gray-950">가입된 이메일을 입력해주세요</div>
-          <div className="text-sm text-gray-950">이메일을 통해 비밀번호를 확인하실수 있습니다</div>
+          <div className="text-sm text-gray-950">
+            가입된 이메일을 입력해주세요
+          </div>
+          <div className="text-sm text-gray-950">
+            이메일을 통해 비밀번호를 확인하실수 있습니다
+          </div>
         </div>
         <form className="flex flex-col gap-2 py-4" onSubmit={HandleSearch}>
           <label htmlFor="email" className="text-sm">

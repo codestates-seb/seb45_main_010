@@ -43,7 +43,11 @@ function generateAvailableTimeSlots(): Record<string, TimeSlot[]> {
   const endDate = new Date();
   endDate.setMonth(endDate.getMonth() + 1);
 
-  for (let date = new Date(startDate); date <= endDate; date.setDate(date.getDate() + 1)) {
+  for (
+    let date = new Date(startDate);
+    date <= endDate;
+    date.setDate(date.getDate() + 1)
+  ) {
     const formattedDate = formatDate(date);
     availableTimeSlots[formattedDate] = generateTimeSlots(formattedDate);
   }
@@ -75,7 +79,8 @@ const Calendar = () => {
     setSelcetedTimeSlots((prevSlots) => [...prevSlots, timeSlot]);
     setTimeSlots((prevSlots) =>
       prevSlots.filter(
-        (slot) => slot.timeRange !== timeSlot.timeRange || slot.date !== timeSlot.date
+        (slot) =>
+          slot.timeRange !== timeSlot.timeRange || slot.date !== timeSlot.date
       )
     );
   };
@@ -83,7 +88,8 @@ const Calendar = () => {
   const handleSelectedTimeSlotClick = (timeSlot: TimeSlot): void => {
     setSelcetedTimeSlots((prevSlots) =>
       prevSlots.filter(
-        (slot) => slot.timeRange !== timeSlot.timeRange || slot.date !== timeSlot.date
+        (slot) =>
+          slot.timeRange !== timeSlot.timeRange || slot.date !== timeSlot.date
       )
     );
     setTimeSlots((prevSlots) => [...prevSlots, timeSlot]);
@@ -91,9 +97,8 @@ const Calendar = () => {
   const scheduleData = {
     date: {
       select: {
-        [(selectedDate && formatDate(selectedDate)) || '']: selectedTimeSlots.map(
-          (slot) => slot.timeRange
-        ),
+        [(selectedDate && formatDate(selectedDate)) || '']:
+          selectedTimeSlots.map((slot) => slot.timeRange),
       },
     },
   };

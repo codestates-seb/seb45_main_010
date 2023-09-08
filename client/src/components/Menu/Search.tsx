@@ -1,6 +1,6 @@
 import { Card } from '@material-tailwind/react';
 import { Input, Select, Option } from '@material-tailwind/react';
-import { FormEvent, useEffect, useState } from 'react';
+import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import { AiOutlineSearch } from 'react-icons/ai';
 
 type props = {
@@ -8,26 +8,30 @@ type props = {
 };
 
 export const Search = ({ handlerSearch }: props) => {
-  const [searchList, setSearchList] = useState<string>('');
-  const [newSearch, setNewSearch] = useState<string[]>([]);
+  const [inputText, setInputText] = useState<string>('');
+  const [searchList, setSearchList] = useState<string[]>([]);
 
   useEffect(() => {
-    setSearchList(newSearch.join(','));
-  }, [newSearch]);
+    setInputText(searchList.join(','));
+  }, [searchList]);
 
-  const searchHandler = (e: React.MouseEvent<HTMLLIElement>) => {
+  const handlerSearching = (e: React.MouseEvent<HTMLLIElement>) => {
     const target = e.target as HTMLLIElement;
-    setNewSearch((pre) => {
+    setSearchList((pre) => {
       const updatedSearch = [...pre, target.innerHTML];
       const newData: string[] = Array.from(new Set(updatedSearch));
       return newData;
     });
   };
 
-  const formSearch = (e: FormEvent<HTMLButtonElement>) => {
+  const handleFormSubmit = (e: FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    const inputData = [forminput.value];
-    setNewSearch(inputData);
+    setSearchList(inputText.split(','));
+  };
+
+  const handlerInput = (e: ChangeEvent<HTMLInputElement>) => {
+    const newText = e.target.value;
+    setInputText(newText);
   };
 
   return (
@@ -40,28 +44,28 @@ export const Search = ({ handlerSearch }: props) => {
         <form id="myForm">
           <div className="mb-3">
             <Select label="과목" size="lg">
-              <Option onClick={searchHandler}>국어</Option>
-              <Option onClick={searchHandler}>수학</Option>
+              <Option onClick={handlerSearching}>국어</Option>
+              <Option onClick={handlerSearching}>수학</Option>
             </Select>
           </div>
           <div className="mb-3">
             <Select label="지역" size="lg">
-              <Option onClick={searchHandler}>서울</Option>
-              <Option onClick={searchHandler}>제주</Option>
+              <Option onClick={handlerSearching}>서울</Option>
+              <Option onClick={handlerSearching}>제주</Option>
             </Select>
           </div>
           <div className="relative flex w-full gap-2 w-100%">
             <Input
               type="text"
               label="Search..."
-              id="forminput"
-              defaultValue={searchList}
+              defaultValue={inputText}
               crossOrigin={undefined}
+              onChange={handlerInput}
             />
             <button
               className="absolute right-0 m-2 text-xl cursor-pointer text-gray-3"
               type="submit"
-              onClick={formSearch}
+              onClick={handleFormSubmit}
             >
               <AiOutlineSearch />
             </button>

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import Thumbnail from '../assets/모네-수련.jpeg';
+import Thumbnail from '/assets/Image/mone.png';
 import { AiFillCamera } from 'react-icons/ai';
 import { fetchUserDetails } from 'redux/slice/MemberSlice';
 import { useAppDispatch, useAppSelector } from 'hooks/hooks';
@@ -22,19 +22,22 @@ const Private: React.FC = () => {
         <div className="flex">
           <div className="flex flex-row justify-center item-center mr-[-30px]">
             {userDetails.img ? (
-              <img src={userDetails.img} className="mx-6 rounded-lg h-14 w-14 m-2" />
+              <img
+                src={userDetails.img}
+                className="m-2 mx-6 rounded-lg h-14 w-14"
+              />
             ) : (
-              <img src={Thumbnail} className="mx-6 rounded-lg h-14 w-14 m-2" />
+              <img src={Thumbnail} className="m-2 mx-6 rounded-lg h-14 w-14" />
             )}
           </div>
-          <div className="flex flex-col item-center justify-end">
-            <div className="flex justify-center items-center rounded-full h-7 w-7 bg-gray-100 opacity-80">
-              <AiFillCamera className="h-5 w-5" />
+          <div className="flex flex-col justify-end item-center">
+            <div className="flex items-center justify-center bg-gray-100 rounded-full h-7 w-7 opacity-80">
+              <AiFillCamera className="w-5 h-5" />
             </div>
           </div>
         </div>
         <div className="flex flex-col justify-center">
-          <div className="text-2xl m-1">{userDetails.name}</div>
+          <div className="m-1 text-2xl">{userDetails.name}</div>
         </div>
       </div>
       <div className="flex-col mb-1 px-7">
@@ -44,7 +47,7 @@ const Private: React.FC = () => {
 
       <div className="flex-col my-5">
         <div className="text-xm self-align-center">이름</div>
-        <div className="text-sm flex items-center">
+        <div className="flex items-center text-sm">
           <div className="border text-xs h-[60px] border-blue-800/60 rounded-lg w-80 p-2">
             {userDetails.name}
           </div>
@@ -62,7 +65,7 @@ const Private: React.FC = () => {
 
       <div className="flex-col my-5">
         <div className="text-xm self-align-center">비밀번호</div>
-        <div className="text-sm flex items-center">
+        <div className="flex items-center text-sm">
           <div className="border text-xs h-[60px] border-blue-800/60 rounded-lg w-80 p-2">
             *********
           </div>
@@ -80,9 +83,11 @@ const Private: React.FC = () => {
 
       <div className="flex-col my-5">
         <div className="text-xm self-align-center">전화번호</div>
-        <div className="text-sm flex items-center">
+        <div className="flex items-center text-sm">
           <div className="border text-xs h-[60px] border-blue-800/60 rounded-lg w-80 p-2">
-            {userDetails.phone === null ? 'your phone number here' : userDetails.phone.toString()}
+            {userDetails.phone === null
+              ? 'your phone number here'
+              : userDetails.phone.toString()}
           </div>
           <div className="m-2">
             <ChangeModal
@@ -94,7 +99,9 @@ const Private: React.FC = () => {
             />
           </div>
         </div>
-        <div className="text-sm text-gray-700 p-1">전화번호는 숫자로만 입력해주세요</div>
+        <div className="p-1 text-sm text-gray-700">
+          전화번호는 숫자로만 입력해주세요
+        </div>
       </div>
     </div>
   );

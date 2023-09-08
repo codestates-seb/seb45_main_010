@@ -9,12 +9,11 @@ module.exports = withMT({
         serif: ['Nanum Gothic', 'sans-serif'],
         mono: ['Nanum Gothic', 'sans-serif'],
       },
-
       fontSize: {
         xxs: '8px',
         xs: '12px',
         sm: '14px',
-        base: '1rem',
+        base: '16px',
         xl: '24px',
         '2xl': '36px',
       },
@@ -31,7 +30,7 @@ module.exports = withMT({
           3: '#BEDEF1',
         },
         green: '#008774',
-        koko: {
+        kaka: {
           1: '#FEE500',
           2: '#E8D13B',
         },

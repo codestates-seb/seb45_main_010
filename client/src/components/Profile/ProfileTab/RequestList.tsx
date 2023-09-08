@@ -1,5 +1,5 @@
 import { Button } from '@material-tailwind/react';
-import { RequestType } from 'components/Types/Types';
+import { RequestType } from 'Types/Types';
 
 type RequestListProps = {
   teacher: boolean;
@@ -9,7 +9,9 @@ type RequestListProps = {
 const RequestList: React.FC<RequestListProps> = ({ requests, teacher }) => {
   return (
     <div className="py-5">
-      <p className="flex-1 mb-4 text-sm font-bold">{teacher ? '강의요청목록' : '수업요청목록'}</p>
+      <p className="flex-1 mb-4 text-sm font-bold">
+        {teacher ? '강의요청목록' : '수업요청목록'}
+      </p>
       <div className="flex justify-end text-right">
         <Button
           className="flex items-center mx-1 h-7 p-2 text-[8px] text-gray-700 bg-white rounded-xl border-mint-2"

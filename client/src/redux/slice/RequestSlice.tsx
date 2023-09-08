@@ -1,4 +1,4 @@
-import { RequestType } from 'components/Types/Types';
+import { RequestType } from 'Types/Types';
 import { FetchRequest } from 'redux/thunk/Thunk';
 import { createSlice } from '@reduxjs/toolkit';
 

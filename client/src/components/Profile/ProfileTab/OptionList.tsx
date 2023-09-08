@@ -67,7 +67,11 @@ const OptionList: React.FC<OptionListProps> = ({
             optionDesc={lectureFee}
             userId={userId}
           />
-          <Option optionTitle="학력 및 경력" optionDesc={career} userId={userId} />
+          <Option
+            optionTitle="학력 및 경력"
+            optionDesc={career}
+            userId={userId}
+          />
           <Option optionTitle="수업옵션" optionDesc={option} userId={userId} />
         </div>
       ) : (

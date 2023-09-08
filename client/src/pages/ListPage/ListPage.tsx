@@ -7,7 +7,7 @@ import { RootState } from 'redux/store';
 
 const ListPage = () => {
   const [currentPage, setCurrentPage] = useState<number>(0);
-  const limit: number = 5;
+  const limit: number = 7;
   const offset = currentPage * limit;
   const teacher = useAppSelector((state: RootState) => state.teacherList);
 

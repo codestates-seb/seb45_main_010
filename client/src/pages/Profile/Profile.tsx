@@ -1,7 +1,11 @@
 import ProfileTabs from 'components/Profile/ProfileTabs';
 import ProfileHeader from 'components/Profile/ProfileHeader';
 import { useEffect } from 'react';
-import { FetchProfile, FetchRequest, updateClassMethod } from 'redux/thunk/Thunk';
+import {
+  FetchProfile,
+  FetchRequest,
+  updateClassMethod,
+} from 'redux/thunk/Thunk';
 import { useAppDispatch, useAppSelector } from 'hooks/hooks';
 
 const Profile = () => {
@@ -29,7 +33,10 @@ const Profile = () => {
             name={user.name}
             introduce={user.introduce}
             user={user}
-            classMethod={{ onLine: user.classMethod.onLine, offLine: user.classMethod.offLine }}
+            classMethod={{
+              onLine: user.classMethod.onLine,
+              offLine: user.classMethod.offLine,
+            }}
           />
           <ProfileTabs
             userId={user.id}
@@ -38,7 +45,10 @@ const Profile = () => {
             lectureFee={user.lectureFee}
             career={user.career}
             option={user.option}
-            classMethod={{ onLine: user.classMethod.onLine, offLine: user.classMethod.offLine }}
+            classMethod={{
+              onLine: user.classMethod.onLine,
+              offLine: user.classMethod.offLine,
+            }}
             handleClassMethodUpdate={handleClassMethodUpdate}
           />
         </>

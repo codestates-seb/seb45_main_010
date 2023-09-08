@@ -1,4 +1,4 @@
-import { User } from 'components/Types/Types';
+import { User } from 'Types/Types';
 import {
   FetchProfile,
   updateClassMethod,

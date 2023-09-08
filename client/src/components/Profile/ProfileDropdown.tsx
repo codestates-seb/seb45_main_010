@@ -1,5 +1,11 @@
 import { useState } from 'react';
-import { Menu, MenuHandler, MenuList, MenuItem, Button } from '@material-tailwind/react';
+import {
+  Menu,
+  MenuHandler,
+  MenuList,
+  MenuItem,
+  Button,
+} from '@material-tailwind/react';
 import { BsX, BsChevronDown } from 'react-icons/bs';
 
 const ProfileDropdown = ({
@@ -55,7 +61,10 @@ const ProfileDropdown = ({
         </Menu>
         <div className="right-0 flex flex-wrap gap-4 basis-3/5">
           {tags.map((tag) => (
-            <Button key={tag} className="flex h-8 gap-1 p-2 text-black bg-mint-2 rounded-xl">
+            <Button
+              key={tag}
+              className="flex h-8 gap-1 p-2 text-black bg-mint-2 rounded-xl"
+            >
               {tag}
               <BsX className="text-blue-2" onClick={() => removeTag(tag)} />
             </Button>

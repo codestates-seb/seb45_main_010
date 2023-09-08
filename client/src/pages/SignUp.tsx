@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ChangeEvent, FormEvent } from 'react';
 import { Button, Checkbox } from '@material-tailwind/react';
-import { User } from '../components/Types/Types';
+import { User } from '../Types/Types';
 import axios from 'axios';
 
 type MemberSignUp = Pick<User, 'name' | 'email' | 'password' | 'teacher'>;
@@ -19,8 +19,11 @@ const SignUp: React.FC = () => {
   });
 
   const navigate = useNavigate();
-  const isValidEmail: boolean = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(userInfo.email);
-  const isValiePassword: boolean = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(userInfo.password);
+  const isValidEmail: boolean = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(
+    userInfo.email
+  );
+  const isValiePassword: boolean =
+    /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(userInfo.password);
 
   const handleEmailCheck = async (userEmail: string) => {
     if (!isValidEmail) {
@@ -66,12 +69,17 @@ const SignUp: React.FC = () => {
     }
 
     if (!isValiePassword) {
-      alert('고객님의 정보보안을 위해 비밀번호는 영문과 숫자를 조합하여 8자 이상으로 입력해주세요');
+      alert(
+        '고객님의 정보보안을 위해 비밀번호는 영문과 숫자를 조합하여 8자 이상으로 입력해주세요'
+      );
       return;
     }
 
     await axios
-      .post(`http://localhost:8080/${userInfo.teacher ? 'teachers' : 'students'}`, userInfo)
+      .post(
+        `http://localhost:8080/${userInfo.teacher ? 'teachers' : 'students'}`,
+        userInfo
+      )
       .then((response) => {
         console.log('회원가입 비동기요청', response.data);
         alert('회원가입을 축하드립니다');
@@ -85,9 +93,12 @@ const SignUp: React.FC = () => {
 
   return (
     <div className="flex flex-col item-center justify-center px-[12.5px]">
-      <div className="text-center font-bold text-2xl">회원가입</div>
-      <div className="flex flex-col item-center justify-center py-2 rounded-lg">
-        <form className="flex flex-col gap-2 py-4 rounded-lg mb-1" onSubmit={handleSignUp}>
+      <div className="text-2xl font-bold text-center">회원가입</div>
+      <div className="flex flex-col justify-center py-2 rounded-lg item-center">
+        <form
+          className="flex flex-col gap-2 py-4 mb-1 rounded-lg"
+          onSubmit={handleSignUp}
+        >
           <label htmlFor="name" className="text-sm">
             이름
           </label>
@@ -126,9 +137,13 @@ const SignUp: React.FC = () => {
           </div>
           <div>
             {checkEmail === true && registerable === true ? (
-              <div className="text-gray-800 text-xs ml-4">등록 가능한 이메일입니다.</div>
+              <div className="ml-4 text-xs text-gray-800">
+                등록 가능한 이메일입니다.
+              </div>
             ) : checkEmail === true && registerable === false ? (
-              <div className="text-red text-xs ml-4">이미 등록된 이메일입니다.</div>
+              <div className="ml-4 text-xs text-red">
+                이미 등록된 이메일입니다.
+              </div>
             ) : null}
           </div>
 
@@ -155,7 +170,7 @@ const SignUp: React.FC = () => {
               checked={userInfo.teacher}
               onChange={handleUserInfo}
             />
-            <span className="text-sm text-gray-700 py-4">강사로 가입하기</span>
+            <span className="py-4 text-sm text-gray-700">강사로 가입하기</span>
           </label>
           <Button
             type="submit"
@@ -164,7 +179,10 @@ const SignUp: React.FC = () => {
             이메일 회원가입
           </Button>
         </form>
-        <form className="flex flex-col gap-2 py-4 rounded-lg" onSubmit={(e) => e.preventDefault()}>
+        <form
+          className="flex flex-col gap-2 py-4 rounded-lg"
+          onSubmit={(e) => e.preventDefault()}
+        >
           <Button
             type="submit"
             className="text-xl text-black border-2 border-koko-1 bg-koko-1 rounded-lg shadow-lg shadow-gray-900/30 p-1 h-[50px] hover:bg-koko-2"

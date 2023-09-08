@@ -1,7 +1,4 @@
-type footer = {
-  title: string;
-  member: string[];
-};
+import { footer } from 'Types/Types';
 
 export const MEMBER: footer[] = [
   {

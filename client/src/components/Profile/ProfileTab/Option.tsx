@@ -3,7 +3,12 @@ import { TfiSave } from 'react-icons/tfi';
 import { useState } from 'react';
 import { Textarea } from '@material-tailwind/react';
 import { useAppDispatch } from 'hooks/hooks';
-import { updateCareer, updateLectureFee, updateOption, updateIntroduce } from 'redux/thunk/Thunk';
+import {
+  updateCareer,
+  updateLectureFee,
+  updateOption,
+  updateIntroduce,
+} from 'redux/thunk/Thunk';
 
 const Option = ({
   optionTitle,

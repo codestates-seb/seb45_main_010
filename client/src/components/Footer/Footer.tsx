@@ -12,7 +12,7 @@ import {
 
 export const Footer = () => {
   return (
-    <footer className="absolute bottom-0 bg-gray-1 w-full">
+    <footer className="absolute bottom-0 w-full bg-gray-1">
       <div className="grid grid-cols-2 gap-3 py-5">
         {MEMBER.map(({ title, member }, key) => (
           <div key={key} className="flex flex-col items-center">
@@ -45,25 +45,46 @@ export const Footer = () => {
       </div>
 
       <div className="flex gap-4 p-1 text-blue-gray-900 sm:justify-center">
-        <Typography as="i" className="transition-opacity opacity-80 hover:opacity-100">
+        <Typography
+          as="i"
+          className="transition-opacity opacity-80 hover:opacity-100"
+        >
           <BiLogoTailwindCss />
         </Typography>
-        <Typography as="i" className="transition-opacity opacity-80 hover:opacity-100">
+        <Typography
+          as="i"
+          className="transition-opacity opacity-80 hover:opacity-100"
+        >
           <BiLogoReact />
         </Typography>
-        <Typography as="i" className="transition-opacity opacity-80 hover:opacity-100">
+        <Typography
+          as="i"
+          className="transition-opacity opacity-80 hover:opacity-100"
+        >
           <BiLogoDiscordAlt />
         </Typography>
-        <Typography as="i" className="transition-opacity opacity-80 hover:opacity-100">
+        <Typography
+          as="i"
+          className="transition-opacity opacity-80 hover:opacity-100"
+        >
           <BiLogoTypescript />
         </Typography>
-        <Typography as="i" className="transition-opacity opacity-80 hover:opacity-100">
+        <Typography
+          as="i"
+          className="transition-opacity opacity-80 hover:opacity-100"
+        >
           <BiLogoVisualStudio />
         </Typography>
-        <Typography as="i" className="transition-opacity opacity-80 hover:opacity-100">
+        <Typography
+          as="i"
+          className="transition-opacity opacity-80 hover:opacity-100"
+        >
           <BiLogoGithub />
         </Typography>
-        <Typography as="i" className="transition-opacity opacity-80 hover:opacity-100">
+        <Typography
+          as="i"
+          className="transition-opacity opacity-80 hover:opacity-100"
+        >
           <BiLogoFigma />
         </Typography>
       </div>

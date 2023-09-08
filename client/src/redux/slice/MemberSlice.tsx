@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { CommonUserType } from 'components/Types/Types';
+import { CommonUserType } from 'Types/Types';
 
 const initialState: CommonUserType = {
   name: '',
@@ -35,7 +35,9 @@ export default memberSlice.reducer;
 export const fetchUserDetails = createAsyncThunk(
   'member/fetchUserDetails',
   async (email: string) => {
-    const response = await axios.get(`http://localhost:8080/member?email=${email}`);
+    const response = await axios.get(
+      `http://localhost:8080/member?email=${email}`
+    );
     const data = response.data[0];
     console.log(data);
     return data;

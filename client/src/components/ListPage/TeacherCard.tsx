@@ -1,4 +1,4 @@
-import { ListPageType } from 'components/Types/Types';
+import { ListPageType } from 'Types/Types';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
@@ -23,7 +23,7 @@ const TeacherCard = ({ test }: props) => {
               key={index}
               className="w-[350px] h-[82px] shadow-md border-2 border-gray-2 
                     bg-mint-3 rounded-xl p-2 text-xs flex-row flex justify-between mb-5
-                     duration-500  hover:scale-105 hover:shadow-black cursor-pointer active:bg-mint-4"
+                     duration-500  hover:scale-105  cursor-pointer hover:bg-mint-4"
             >
               <span className="w-16 h-6 px-2 py-1 m-1 text-center text-black cursor-auto bg-mint-2 rounded-xl">
                 {isOnOff}
@@ -33,7 +33,9 @@ const TeacherCard = ({ test }: props) => {
                 <ul className="grid grid-cols-2 m-1 text-center ">
                   {items.category.slice(0, 4).map((category, index) => (
                     <li className="px-1" key={index}>
-                      {category.length > 4 ? `${category.slice(0, 4)}...` : category}
+                      {category.length > 4
+                        ? `${category.slice(0, 4)}...`
+                        : category}
                     </li>
                   ))}
                 </ul>
