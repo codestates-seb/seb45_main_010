@@ -2,6 +2,7 @@ package com.codestates.connectInstructor.student.entity;
 
 import com.codestates.connectInstructor.audit.Auditable;
 import com.codestates.connectInstructor.common.MemberStatus;
+import com.codestates.connectInstructor.match.entity.Match;
 import com.codestates.connectInstructor.security.member.Member;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,6 +11,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 @Entity
@@ -36,6 +38,11 @@ public class Student extends Auditable implements Member {
     @Column(columnDefinition = "TEXT")
     private String introduction;
 
+    @Column(columnDefinition = "TEXT")
+    private String lessonOption;
+
+    private String phoneNumber;
+
     @Column(nullable = false, name = "is_oauth")
     private boolean isOauth = false;
 
@@ -48,5 +55,11 @@ public class Student extends Auditable implements Member {
     @Column(name = "last_login_at")
     private LocalDateTime lastLogin;
 
+    @OneToMany(mappedBy = "student")
+    //TODO 해성님 PR 이후로 SUBJECT에도 ONETOMANY 추가하기
+    private List<StudentSubject> studentSubjects = new LinkedList<>();
+
+    @OneToMany(mappedBy = "student")
+    private List<Match> matches = new ArrayList<>();
 
 }

@@ -11,6 +11,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Positive;
 import java.net.URI;
 
 @RestController
@@ -35,10 +36,86 @@ public class StudentController {
         return ResponseEntity.created(location).build();
     }
 
-    @GetMapping("/verify/{email}")
+    //student에 둘 게 아니라 common으로 옮겨야하나?
+    @GetMapping("/check/{email}")
     public ResponseEntity verifyEmail(@PathVariable("email") String email) {
-        service.verifyEmail(email);
+        boolean isUsed = service.checkUsedEmail(email);
+
+        StudentDto.EmailCheck response = StudentDto.EmailCheck.builder().isUsed(isUsed).build();
+
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @PatchMapping("/introduction")
+    public ResponseEntity patchIntroduction(@RequestBody @Valid StudentDto.PatchIntroduction request) {
+        Student student = mapper.patchIntroductionToStudent(request);
+
+        Student updated = service.updateIntroduction(student);
+
+        StudentDto.PatchIntroduction response = mapper.studentToPatchIntroduction(updated);
+
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @PatchMapping("/lessonOption")
+    public ResponseEntity patchIntroduction(@RequestBody @Valid StudentDto.PatchLessonOption request) {
+        Student student = mapper.patchPatchLessonOptionToStudent(request);
+
+        Student updated = service.updateLessonOption(student);
+
+        StudentDto.PatchIntroduction response = mapper.studentToPatchLessonOption(updated);
+
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{student-id}")
+    public ResponseEntity deleteStudent(@PathVariable("student-id") @Positive long studentId) {
+        service.deleteStudent(studentId);
+
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @PatchMapping("/name")
+    public ResponseEntity patchName(@RequestBody @Valid StudentDto.PatchName request) {
+        Student student = mapper.patchNameToStudent(request);
+
+        Student updated = service.updateName(student);
+
+        StudentDto.PatchName response = mapper.studentToPatchName(updated);
+
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @PatchMapping("/password")
+    public ResponseEntity patchPassword(@RequestBody @Valid StudentDto.PatchPassword request) {
+        Student student = mapper.patchPasswordToStudent(request);
+
+        Student updated = service.updatePassword(student);
 
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+    @PatchMapping("/phoneNumber")
+    public ResponseEntity patchPhoneNumber(@RequestBody @Valid StudentDto.PatchPassword request) {
+        Student student = mapper.patchPhoneNumberToStudent(request);
+
+        Student updated = service.updatePhoneNumber(student);
+
+        StudentDto.PatchPassword response = mapper.studentToPatchPassword(updated);
+
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @PatchMapping("/subjects")
+    public ResponseEntity patchSubject(@RequestBody @Valid StudentDto.PatchSubject request) {
+
+        Student updated = service.updateSubject(request.getStudentId(), request.getSubjects());
+
+        StudentDto.ResponsePatchSubject responsePatchSubject = mapper.studentToResponsePatchSubject(updated);
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+
+    //TODO 지역 수정, 매칭 포함한 정보 get
 }

@@ -1,10 +1,13 @@
 package com.codestates.connectInstructor.student.dto;
 
+import com.codestates.connectInstructor.student.entity.StudentSubject;
 import lombok.Builder;
 import lombok.Getter;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import java.util.List;
 
 public class StudentDto {
     @Getter
@@ -17,9 +20,75 @@ public class StudentDto {
         private String password;
         @NotBlank
         private String name;
-//        @NotBlank
-//        private String profileImg;
-//        @NotBlank
-//        private String introduction;
     }
+
+    @Getter
+    @Builder
+    public static class EmailCheck {
+        private boolean isUsed;
+    }
+
+    @Getter
+    @Builder
+    public static class PatchIntroduction {
+        @NotNull
+        private long id;
+        @NotBlank
+        private String introduction;
+    }
+
+    @Getter
+    @Builder
+    public static class PatchLessonOption {
+        @NotNull
+        private long id;
+        @NotBlank
+        private String lessonOption;
+    }
+
+    @Getter
+    @Builder
+    public static class PatchName {
+        @NotNull
+        private long id;
+        @NotNull
+        private String name;
+    }
+
+    @Getter
+    @Builder
+    public static class PatchPassword {
+        @NotNull
+        private long id;
+        @NotBlank
+        private String password;
+    }
+
+    @Getter
+    @Builder
+    public static class PatchPhoneNumber {
+        @NotNull
+        private long id;
+        @NotNull
+        private String phoneNumber;
+    }
+
+    @Getter
+    @Builder
+    public static class PatchSubject {
+        @NotNull
+        private long StudentId;
+        @NotNull
+        private List<String> subjects;
+    }
+
+    @Getter
+    @Builder
+    public static class ResponsePatchSubject {
+        @NotNull
+        private long id;
+        @NotNull
+        private List<StudentSubject> studentSubjects;
+    }
+
 }
