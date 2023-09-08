@@ -1,5 +1,6 @@
 import { Card } from '@material-tailwind/react';
 import { Input, Select, Option } from '@material-tailwind/react';
+import { FormEvent, useEffect, useState } from 'react';
 import { AiOutlineSearch } from 'react-icons/ai';
 
 type props = {
@@ -7,6 +8,28 @@ type props = {
 };
 
 export const Search = ({ handlerSearch }: props) => {
+  const [searchList, setSearchList] = useState<string>('');
+  const [newSearch, setNewSearch] = useState<string[]>([]);
+
+  useEffect(() => {
+    setSearchList(newSearch.join(','));
+  }, [newSearch]);
+
+  const searchHandler = (e: React.MouseEvent<HTMLLIElement>) => {
+    const target = e.target as HTMLLIElement;
+    setNewSearch((pre) => {
+      const updatedSearch = [...pre, target.innerHTML];
+      const newData: string[] = Array.from(new Set(updatedSearch));
+      return newData;
+    });
+  };
+
+  const formSearch = (e: FormEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    const inputData = [forminput.value];
+    setNewSearch(inputData);
+  };
+
   return (
     <>
       <div
@@ -14,44 +37,34 @@ export const Search = ({ handlerSearch }: props) => {
         onClick={handlerSearch}
       ></div>
       <Card className="w-[350px] p-2 shadow-xl top-3 absolute m-3">
-        <form>
-          <div className="relative flex w-full gap-2 w-100%">
-            <Input type="search" label="Search..." crossOrigin={undefined} />
-            <AiOutlineSearch
-              className="  absolute right-0 text-xl cursor-pointer text-gray-3 m-2"
-              onClick={handlerSearch}
-            />
+        <form id="myForm">
+          <div className="mb-3">
+            <Select label="과목" size="lg">
+              <Option onClick={searchHandler}>국어</Option>
+              <Option onClick={searchHandler}>수학</Option>
+            </Select>
           </div>
-          <div className="m-3">
-            <div className="mb-5">
-              <Select label="과목별">
-                <Option>국어</Option>
-                <Option>영어</Option>
-                <Option>수학</Option>
-                <Option>생활과윤리</Option>
-                <Option>지리</Option>
-                <Option>한국사</Option>
-                <Option>세계사</Option>
-                <Option>물리</Option>
-                <Option>화학</Option>
-                <Option>생명과학</Option>
-                <Option>제2외국어</Option>
-              </Select>
-            </div>
-            <div className="mb-5">
-              <Select label="지역별">
-                <Option>서울</Option>
-                <Option>경기</Option>
-                <Option>강원</Option>
-                <Option>제주</Option>
-                <Option>경북</Option>
-                <Option>경남</Option>
-                <Option>충북</Option>
-                <Option>충남</Option>
-                <Option>전북</Option>
-                <Option>전남</Option>
-              </Select>
-            </div>
+          <div className="mb-3">
+            <Select label="지역" size="lg">
+              <Option onClick={searchHandler}>서울</Option>
+              <Option onClick={searchHandler}>제주</Option>
+            </Select>
+          </div>
+          <div className="relative flex w-full gap-2 w-100%">
+            <Input
+              type="text"
+              label="Search..."
+              id="forminput"
+              defaultValue={searchList}
+              crossOrigin={undefined}
+            />
+            <button
+              className="absolute right-0 m-2 text-xl cursor-pointer text-gray-3"
+              type="submit"
+              onClick={formSearch}
+            >
+              <AiOutlineSearch />
+            </button>
           </div>
         </form>
       </Card>
