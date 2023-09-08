@@ -30,7 +30,7 @@ module.exports = withMT({
           3: '#BEDEF1',
         },
         green: '#008774',
-        kaka: {
+        kakao: {
           1: '#FEE500',
           2: '#E8D13B',
         },

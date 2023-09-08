@@ -43,10 +43,7 @@ const Login: React.FC = () => {
     <div className="flex flex-col item-center justify-center px-[12.5px]">
       <div className="text-2xl font-bold text-center">로그인</div>
       <div className="flex flex-col justify-center rounded-lg item-center">
-        <form
-          className="flex flex-col gap-2 py-4 rounded-lg"
-          onSubmit={HandleLogin}
-        >
+        <form className="flex flex-col gap-2 py-4 rounded-lg" onSubmit={HandleLogin}>
           <label htmlFor="email" className="text-sm">
             이메일
           </label>
@@ -89,13 +86,10 @@ const Login: React.FC = () => {
             <div className="text-sm text-gray-600">회원 가입</div>
           </Link>
         </div>
-        <form
-          className="flex flex-col gap-2 py-4 rounded-lg"
-          onSubmit={(e) => e.preventDefault()}
-        >
+        <form className="flex flex-col gap-2 py-4 rounded-lg" onSubmit={(e) => e.preventDefault()}>
           <Button
             type="submit"
-            className="text-xl text-black border-2 border-koko-1 bg-koko-1 rounded-lg shadow-lg shadow-gray-900/30 p-1 h-[50px] hover:bg-koko-2"
+            className="text-xl text-black border-2 border-kakao-1 bg-kakao-1 rounded-lg shadow-lg shadow-gray-900/30 p-1 h-[50px] hover:bg-kakao-2"
           >
             카카오로 로그인
           </Button>
