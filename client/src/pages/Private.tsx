@@ -1,10 +1,9 @@
 import React, { useEffect } from 'react';
 import Thumbnail from '../assets/모네-수련.jpeg';
 import { AiFillCamera } from 'react-icons/ai';
-import { FiSend } from 'react-icons/fi';
 import { fetchUserDetails } from 'redux/slice/MemberSlice';
 import { useAppDispatch, useAppSelector } from 'hooks/hooks';
-import { CommonUserType } from '../components/Types/Types';
+import { ChangeModal } from 'components/Modal/ChangeModal';
 
 const Private: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -16,19 +15,6 @@ const Private: React.FC = () => {
   useEffect(() => {
     dispatch(fetchUserDetails(LoginInfo));
   }, [dispatch]);
-
-  // const handleImage = () => {
-  //   axios
-  //     .patch(`http://localhost:8080/${userInfo.id}`)
-  //     .then((res) => seUserInfo(res.data))
-  //     .catch((err) => console.log(err));
-  // };
-  // useEffect(() => {
-  //   // userDetails가 변경될 때마다 userInfo를 업데이트
-  //   setUserInfo({
-  //     ...userDetails,
-  //   });
-  // }, [userDetails]);
 
   return (
     <div className="flex flex-col justify-center px-[12.5px]">
@@ -57,46 +43,57 @@ const Private: React.FC = () => {
       </div>
 
       <div className="flex-col my-5">
-        <div className="text-xm">이름</div>
-        <form className="flex gap-1 rounded-lg">
-          <input
-            type="text"
-            className="border text-xs h-[50px] border-blue-800/60 rounded-lg w-80 p-2"
-            placeholder={userDetails.name}
-          />
-          <button type="submit" className="">
-            <FiSend />
-          </button>
-        </form>
+        <div className="text-xm self-align-center">이름</div>
+        <div className="text-sm flex items-center">
+          <div className="border text-xs h-[60px] border-blue-800/60 rounded-lg w-80 p-2">
+            {userDetails.name}
+          </div>
+          <div className="m-2">
+            <ChangeModal
+              title=""
+              text="변경할 이름을 입력하세요"
+              warning=""
+              btnName="변경"
+              btnCheck="제출"
+            />
+          </div>
+        </div>
       </div>
 
       <div className="flex-col my-5">
-        <div className="text-sm">비밀번호</div>
-        <form className="flex gap-1 rounded-lg">
-          <input
-            type="text"
-            className="border text-sm h-[50px] border-blue-800/60 rounded-lg w-80 p-2"
-            placeholder="*********"
-          />
-          <button type="submit" className="">
-            <FiSend />
-          </button>
-        </form>
+        <div className="text-xm self-align-center">비밀번호</div>
+        <div className="text-sm flex items-center">
+          <div className="border text-xs h-[60px] border-blue-800/60 rounded-lg w-80 p-2">
+            *********
+          </div>
+          <div className="m-2">
+            <ChangeModal
+              title=""
+              text="변경할 비밀번호를 입력하세요"
+              warning="숫자+영문조합으로 8자이상 입력해주세요"
+              btnName="변경"
+              btnCheck="제출"
+            />
+          </div>
+        </div>
       </div>
+
       <div className="flex-col my-5">
-        <div className="text-sm">전화번호</div>
-        <form className="flex gap-1 rounded-lg">
-          <input
-            type="text"
-            className="border text-sm h-[50px] border-blue-800/60 rounded-lg w-80 p-2"
-            placeholder={
-              userDetails.phone === null ? 'your phone number here' : userDetails.phone.toString()
-            }
-          />
-          <button type="submit" className="">
-            <FiSend />
-          </button>
-        </form>
+        <div className="text-xm self-align-center">전화번호</div>
+        <div className="text-sm flex items-center">
+          <div className="border text-xs h-[60px] border-blue-800/60 rounded-lg w-80 p-2">
+            {userDetails.phone === null ? 'your phone number here' : userDetails.phone.toString()}
+          </div>
+          <div className="m-2">
+            <ChangeModal
+              title=""
+              text="새로운 전화번호를 입력하세요"
+              warning="숫자로만 입력해주세요"
+              btnName="변경"
+              btnCheck="제출"
+            />
+          </div>
+        </div>
         <div className="text-sm text-gray-700 p-1">전화번호는 숫자로만 입력해주세요</div>
       </div>
     </div>
