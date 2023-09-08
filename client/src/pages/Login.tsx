@@ -2,19 +2,19 @@ import React, { useState } from 'react';
 import { ChangeEvent, FormEvent } from 'react';
 import { Button } from '@material-tailwind/react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
+import { LoginType } from '../components/Types/Types';
+import { fetchUserDetails } from 'redux/slice/MemberSlice';
+import { useAppDispatch, useAppSelector } from 'hooks/hooks';
 
-export type MemberLogin = {
-  email: string;
-  password: string;
-};
 const Login: React.FC = () => {
-  const [LoginInfo, setLoginInfo] = useState<MemberLogin>({
+  const [LoginInfo, setLoginInfo] = useState<LoginType>({
     //회원가입정보
     email: '',
     password: '',
   });
-  const [userDetails, setUserDetails] = useState<[]>([]);
+  const dispatch = useAppDispatch();
+  const userInfo = useAppSelector((state) => state.member);
+  console.log(userInfo);
 
   const HandleLoginInfo = (e: ChangeEvent<HTMLInputElement>) => {
     const key = e.target.name;
@@ -32,27 +32,13 @@ const Login: React.FC = () => {
       return;
     }
 
-    await axios
-      .get('http://localhost:8080/member')
-      .then((response) => {
-        console.log('회원확인 map으로 받아옴', response.data);
-        const matchingUser = response.data.filter((user: MemberLogin) => {
-          return user.email === LoginInfo.email && user.password === LoginInfo.password;
-        })[0];
-        setUserDetails(matchingUser);
-        if (matchingUser) {
-          alert('로그인 되었습니다');
-        } else {
-          alert('이메일 혹은 비밀번호가 일치하지 않습니다.');
-        }
-      })
-      .catch((error) => {
-        console.log('회원가입 비동기요청', error);
-        alert('서비스 개선중입니다. 잠시후에 다시 시도하여 주세요');
-      });
+    try {
+      await dispatch(fetchUserDetails(LoginInfo.email));
+    } catch (error) {
+      console.log(error);
+    }
   };
 
-  console.log(userDetails);
   return (
     <div className="flex flex-col item-center justify-center px-[12.5px]">
       <div className="text-center font-bold text-2xl">로그인</div>
