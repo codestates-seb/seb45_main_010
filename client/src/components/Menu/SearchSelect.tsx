@@ -3,15 +3,15 @@ import { Select, Option } from '@material-tailwind/react';
 
 type props = {
   searchList: string[];
-  setSearchList: (newData: string[]) => void;
+  setSearchList: (newSearch: string[]) => void;
 };
 
 const SearchSelect = ({ searchList, setSearchList }: props) => {
   const handlerSearching = (e: React.MouseEvent<HTMLLIElement>) => {
-    const target = e.target as HTMLLIElement;
-    const updatedSearch: string[] = [...searchList, target.innerHTML];
-    const newData: string[] = Array.from(new Set(updatedSearch));
-    setSearchList(newData);
+    const newText: string = e.currentTarget.innerHTML;
+    const newSearch: string[] = Array.from(new Set([...searchList, newText]));
+
+    setSearchList(newSearch);
   };
 
   return (
