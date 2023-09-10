@@ -30,15 +30,9 @@ export type StudentType = Omit<
   'password' | 'date' | 'classMethod' | 'lectureFee' | 'career' | 'option'
 >;
 
-export type CommonUserType = Pick<
-  User,
-  'name' | 'email' | 'teacher' | 'id' | 'phone' | 'img'
->;
+export type CommonUserType = Pick<User, 'name' | 'email' | 'teacher' | 'id' | 'phone' | 'img'>;
 
-export type PrivateType = Pick<
-  User,
-  'img' | 'name' | 'email' | 'password' | 'phone'
->;
+export type PrivateType = Pick<User, 'img' | 'name' | 'email' | 'password' | 'phone'>;
 
 export type LoginType = Pick<User, 'email' | 'password'>;
 
@@ -55,7 +49,8 @@ export type RequestType = {
   date: string;
 };
 
-export type footer = {
-  title: string;
+export type footerType = {
+  footerMessage: string;
   member: string[];
+  teamGithub: string;
 };
