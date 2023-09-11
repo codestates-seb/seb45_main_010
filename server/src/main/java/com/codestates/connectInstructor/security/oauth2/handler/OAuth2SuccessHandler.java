@@ -65,15 +65,15 @@ public class OAuth2SuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
                 String accessToken = delegateAccessToken(student);
                 String refreshToken = delegateRefreshToken(student);
 
-//                String url = UriComponentsBuilder
-//                        .fromUriString("http://localhost:8080/test")
-//                        .build()
-//                        .toUriString();
+                String url = UriComponentsBuilder
+                        .fromUriString("http://localhost:8080/oauth2Test")
+                        .build()
+                        .toUriString();
 
                 response.setHeader("Authorization", "Bearer " + accessToken);
                 response.setHeader("Refresh", refreshToken);
 
-//                getRedirectStrategy().sendRedirect(request, response, url);
+                getRedirectStrategy().sendRedirect(request, response, url);
             }
 
             else {

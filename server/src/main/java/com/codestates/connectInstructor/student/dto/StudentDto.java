@@ -1,5 +1,6 @@
 package com.codestates.connectInstructor.student.dto;
 
+import com.codestates.connectInstructor.common.MemberStatus;
 import com.codestates.connectInstructor.student.entity.StudentSubject;
 import lombok.Builder;
 import lombok.Getter;
@@ -77,18 +78,22 @@ public class StudentDto {
     @Builder
     public static class PatchSubject {
         @NotNull
-        private long StudentId;
+        private long studentId;
         @NotNull
         private List<String> subjects;
     }
 
+
     @Getter
     @Builder
-    public static class ResponsePatchSubject {
-        @NotNull
+    public static class SimpleResponse {
         private long id;
-        @NotNull
-        private List<StudentSubject> studentSubjects;
+        private String email;
+        private String name;
+        private String profileImg;
+        private String phoneNumber;
+        private boolean isOauth;
+        private MemberStatus status;
     }
 
 }

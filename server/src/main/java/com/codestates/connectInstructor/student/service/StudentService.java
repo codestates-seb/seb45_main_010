@@ -14,6 +14,7 @@ import com.codestates.connectInstructor.teacher.entity.Teacher;
 import com.codestates.connectInstructor.teacher.repository.TeacherRepository;
 import com.codestates.connectInstructor.teacher.service.TeacherService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
@@ -28,6 +29,7 @@ import java.util.Optional;
 @Service
 @Transactional
 @RequiredArgsConstructor
+@Slf4j
 public class StudentService {
     private final StudentRepository repository;
     private final ApplicationEventPublisher applicationEventPublisher;
@@ -86,7 +88,7 @@ public class StudentService {
         return repository.save(found);
     }
 
-    private Student findStudentById(long id) {
+    public Student findStudentById(long id) {
         Optional<Student> optionalStudent = repository.findById(id);
 
         Student verified = optionalStudent.orElseThrow(() -> new BusinessLogicException(ExceptionCode.MEMBER_NOT_FOUND));
@@ -130,7 +132,12 @@ public class StudentService {
 
         Student found = findStudentById(id);
 
-        return authentication.getName() == found.getEmail() ? true : false;
+        log.info("{}", found.getName());
+        log.info("{}", authentication.getName());
+        log.info("{}", found.getEmail());
+
+
+        return authentication.getName().toString().equals(found.getEmail()) ? true : false;
     }
 
 
@@ -160,7 +167,11 @@ public class StudentService {
         Student found = findStudentById(studentId);
         List<StudentSubject> studentSubjectsFound = found.getStudentSubjects();
 
-        for (StudentSubject studentSubject : studentSubjectsFound) {
+        long studentSubjectsFoundSize = studentSubjectsFound.size();
+
+        for (int i = 0; i < studentSubjectsFoundSize; i++) {
+            StudentSubject studentSubject = studentSubjectsFound.get(i);
+
             if (!subjects.contains(studentSubject.getSubject().getSubjectName())) {
                 found.getStudentSubjects().remove(studentSubject);
             }
@@ -169,7 +180,7 @@ public class StudentService {
         for (String subjectsName : subjects) {
             boolean subjectExist = false;
             for (StudentSubject studentSubject : studentSubjectsFound) {
-                if (studentSubject.getSubject().getSubjectName() == subjectsName) {
+                if (studentSubject.getSubject().getSubjectName().equals(subjectsName)) {
                     subjectExist = true;
                     break;
                 }
@@ -183,9 +194,11 @@ public class StudentService {
                 studentSubject.setSubject(subject);
 
                 found.getStudentSubjects().add(studentSubject);
+                log.info("학생이 가지고 있지 않고, request에 있는 과목 추가");
             }
         }
 
         return repository.save(found);
     }
+
 }

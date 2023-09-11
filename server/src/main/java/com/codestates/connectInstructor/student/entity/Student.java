@@ -4,9 +4,13 @@ import com.codestates.connectInstructor.audit.Auditable;
 import com.codestates.connectInstructor.common.MemberStatus;
 import com.codestates.connectInstructor.match.entity.Match;
 import com.codestates.connectInstructor.security.member.Member;
+import com.codestates.connectInstructor.subject.entity.Subject;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -55,11 +59,12 @@ public class Student extends Auditable implements Member {
     @Column(name = "last_login_at")
     private LocalDateTime lastLogin;
 
-    @OneToMany(mappedBy = "student")
-    //TODO 해성님 PR 이후로 SUBJECT에도 ONETOMANY 추가하기
-    private List<StudentSubject> studentSubjects = new LinkedList<>();
+    @OneToMany(mappedBy = "student", cascade = {CascadeType.ALL}, orphanRemoval = true)
+    private List<StudentSubject> studentSubjects = new ArrayList<>();
 
-    @OneToMany(mappedBy = "student")
+    @OneToMany(mappedBy = "student", cascade = {CascadeType.ALL}, orphanRemoval = true)
     private List<Match> matches = new ArrayList<>();
+
+
 
 }

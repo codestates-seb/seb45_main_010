@@ -7,6 +7,7 @@ import com.codestates.connectInstructor.student.service.StudentService;
 import com.codestates.connectInstructor.utils.UriCreator;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -63,7 +64,7 @@ public class StudentController {
 
         Student updated = service.updateLessonOption(student);
 
-        StudentDto.PatchIntroduction response = mapper.studentToPatchLessonOption(updated);
+        StudentDto.PatchIntroduction response = mapper.studentToPatchIntroduction(updated);
 
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
@@ -96,12 +97,12 @@ public class StudentController {
     }
 
     @PatchMapping("/phoneNumber")
-    public ResponseEntity patchPhoneNumber(@RequestBody @Valid StudentDto.PatchPassword request) {
+    public ResponseEntity patchPhoneNumber(@RequestBody @Valid StudentDto.PatchPhoneNumber request) {
         Student student = mapper.patchPhoneNumberToStudent(request);
 
         Student updated = service.updatePhoneNumber(student);
 
-        StudentDto.PatchPassword response = mapper.studentToPatchPassword(updated);
+        StudentDto.PatchPhoneNumber response = mapper.studentToPatchPhoneNumber(updated);
 
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
@@ -111,9 +112,18 @@ public class StudentController {
 
         Student updated = service.updateSubject(request.getStudentId(), request.getSubjects());
 
-        StudentDto.ResponsePatchSubject responsePatchSubject = mapper.studentToResponsePatchSubject(updated);
+        StudentDto.PatchSubject response = mapper.studentToPatchSubject(updated);
 
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @GetMapping("{student-id}")
+    public ResponseEntity getSimpleStudent(@PathVariable("student-id") @Positive long id) {
+        Student student = service.findStudentById(id);
+
+        StudentDto.SimpleResponse response = mapper.studentToSimpleResponse(student);
+
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
 

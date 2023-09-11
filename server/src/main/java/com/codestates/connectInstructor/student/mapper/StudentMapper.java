@@ -7,6 +7,7 @@ import org.mapstruct.Mapping;
 import org.mapstruct.ObjectFactory;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Mapper(componentModel = "spring")
 public interface StudentMapper {
@@ -24,12 +25,23 @@ public interface StudentMapper {
 
     Student patchPasswordToStudent(StudentDto.PatchPassword request);
 
-    Student patchPhoneNumberToStudent(StudentDto.PatchPassword request);
+    Student patchPhoneNumberToStudent(StudentDto.PatchPhoneNumber request);
 
     StudentDto.PatchName studentToPatchName(Student updated);
 
-    StudentDto.PatchPassword studentToPatchPassword(Student updated);
+    StudentDto.PatchPhoneNumber studentToPatchPhoneNumber(Student updated);
 
+    StudentDto.SimpleResponse studentToSimpleResponse(Student student);
 
-    StudentDto.ResponsePatchSubject studentToResponsePatchSubject(Student updated);
+    default StudentDto.PatchSubject studentToPatchSubject(Student updated) {
+        return StudentDto.PatchSubject.builder()
+                .studentId(updated.getId())
+                .subjects(
+                        updated
+                                .getStudentSubjects()
+                                .stream().map(x -> x.getSubject().getSubjectName())
+                                .collect(Collectors.toList())
+                )
+                .build();
+    }
 }

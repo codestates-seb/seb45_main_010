@@ -2,12 +2,16 @@ package com.codestates.connectInstructor.match.entity;
 
 import com.codestates.connectInstructor.region.entity.Region;
 import com.codestates.connectInstructor.student.entity.Student;
+import com.codestates.connectInstructor.student.entity.StudentSubject;
 import com.codestates.connectInstructor.subject.entity.Subject;
+import com.codestates.connectInstructor.teacher.entity.Teacher;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.LinkedList;
+import java.util.List;
 
 @Entity
 @Getter@Setter@NoArgsConstructor
@@ -18,30 +22,36 @@ public class Match {
 
     @Enumerated(value = EnumType.STRING)
     @Column(nullable = false)
-    private MatchStatus status;
+    private MatchStatus status = MatchStatus.MATCH_REQUEST;
 
-    @ManyToOne
-    @JoinColumn(name = "SUBJECT_ID")
-    private Subject subject;
+    @OneToMany(mappedBy = "match")
+    private List<MatchSubject> matchSubjects = new LinkedList<>();
+
+    //TODO region 구현 후 추가. region은 여러 개가 될 예정
+//    @JoinColumn(name = "REGION_ID")
+//    private Region region;
+
+    //TODO schedule 구현 후 수정
+    @Column(nullable = false)
+    private String schedule = "9월 19일 화요일 / 13:00 ~ 14:00";
 
     @Column(nullable = false)
-    private String schedule;
+    private boolean isOnline;
 
     @ManyToOne
-    @JoinColumn(name = "STUDENT_ID")
+    @JoinColumn(name = "STUDENT_ID", nullable = false)
     private Student student;
+
+    @ManyToOne
+    @JoinColumn(name = "TEACHER_ID", nullable = false)
+    private Teacher teacher;
 
     private String studentName;
 
     @Column(nullable = false)
-    private String phoneNumber;
+    private String studentPhoneNumber;
 
-    private String email;
-
-    private boolean isOnline;
-
-//    @JoinColumn(name = "REGION_ID")
-//    private Region region;
+    private String studentEmail;
 
     @Column(columnDefinition = "TEXT")
     private String remarks;
