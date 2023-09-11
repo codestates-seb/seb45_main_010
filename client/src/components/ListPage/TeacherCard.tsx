@@ -8,7 +8,7 @@ type props = {
 
 const TeacherCard = ({ test }: props) => {
   return (
-    <Link to={'/Detail'}>
+    <Link to={'/id'}>
       <div className=" w-full flex flex-col items-center px-[7.5px]">
         {test.map((items, index) => {
           const isOnOff: string =
@@ -33,9 +33,7 @@ const TeacherCard = ({ test }: props) => {
                 <ul className="grid grid-cols-2 m-1 text-center ">
                   {items.category.slice(0, 4).map((category, index) => (
                     <li className="px-1" key={index}>
-                      {category.length > 4
-                        ? `${category.slice(0, 4)}...`
-                        : category}
+                      {category.length > 4 ? `${category.slice(0, 4)}...` : category}
                     </li>
                   ))}
                 </ul>

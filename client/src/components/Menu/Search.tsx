@@ -18,7 +18,7 @@ export const Search = ({ handlerSearch }: props) => {
   return (
     <>
       <div
-        className="absolute top-0 w-full h-full bg-black bg-opacity-10 "
+        className="absolute top-0 w-full h-full bg-black bg-opacity-10 backdrop-blur-sm"
         onClick={handlerSearch}
       ></div>
       <Card className="w-[350px] p-2 shadow-xl top-3 absolute m-3">

@@ -26,15 +26,11 @@ export const TInfoModal = () => {
       >
         <DialogHeader className="p-2 text-sm ">요청 과목</DialogHeader>
         <section className="flex items-center bg-mint-3 rounded-2xl ">
-          <button className="px-3 py-1 m-2 text-sm text-black rounded-2xl bg-mint-2">
-            수학
-          </button>
+          <button className="px-3 py-1 m-2 text-sm text-black rounded-2xl bg-mint-2">수학</button>
         </section>
         <DialogHeader className="p-2 text-sm">요청 날짜</DialogHeader>
         <section className="flex items-center bg-mint-3 rounded-2xl">
-          <button className="px-3 py-1 m-2 text-sm text-black rounded-2xl bg-mint-2">
-            수학
-          </button>
+          <button className="px-3 py-1 m-2 text-sm text-black rounded-2xl bg-mint-2">수학</button>
         </section>
         <DialogHeader className="p-2 text-sm">이름</DialogHeader>
         <section className="flex items-center bg-mint-3 rounded-2xl">
