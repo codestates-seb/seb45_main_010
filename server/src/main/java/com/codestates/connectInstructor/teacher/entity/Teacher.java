@@ -68,7 +68,7 @@ public class Teacher extends Auditable implements Member {
     @Enumerated(value = EnumType.ORDINAL)
     private MemberStatus status = MemberStatus.ACTIVE;
 
-    @ElementCollection(fetch = FetchType.EAGER)
+    @ElementCollection(fetch = FetchType.LAZY)
     private List<String> roles = new ArrayList<>();
 
     @OneToMany(mappedBy = "teacher", cascade = CascadeType.ALL, orphanRemoval = true)

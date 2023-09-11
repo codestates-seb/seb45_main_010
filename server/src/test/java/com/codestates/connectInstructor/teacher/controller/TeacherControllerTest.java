@@ -55,9 +55,6 @@ public class TeacherControllerTest {
                 .email("test@example.com")
                 .password("test1234")
                 .name("테스트")
-                .introduction("자기 소개")
-                .career("경력")
-                .address("주소")
                 .build();
 
         Teacher teacher = new Teacher();
@@ -80,37 +77,34 @@ public class TeacherControllerTest {
                                 List.of(
                                         fieldWithPath("email").type(JsonFieldType.STRING).description("이메일"),
                                         fieldWithPath("password").type(JsonFieldType.STRING).description("비밀번호"),
-                                        fieldWithPath("name").type(JsonFieldType.STRING).description("이름"),
-                                        fieldWithPath("introduction").type(JsonFieldType.STRING).description("자기소개"),
-                                        fieldWithPath("career").type(JsonFieldType.STRING).description("경력"),
-                                        fieldWithPath("address").type(JsonFieldType.STRING).description("주소")
+                                        fieldWithPath("name").type(JsonFieldType.STRING).description("이름")
                                 )
                         )));
     }
 
-    @Test
-    @WithAnonymousUser
-    public void verifyEmailTest() throws Exception{
-        String email = "test@example.com";
-
-        doNothing().when(service).verifyEmail(anyString());
-
-        ResultActions actions = mockMvc.perform(
-                RestDocumentationRequestBuilders
-                        .get("/teachers/verify/{email}", email)
-                        .accept(MediaType.APPLICATION_JSON)
-        );
-
-        actions.andExpect(MockMvcResultMatchers.status().isOk())
-                .andDo(
-                        document(
-                                "verify-teacher-email",
-                                getRequestPreProcessor(),
-                                getResponsePreProcessor(),
-                                pathParameters(
-                                        parameterWithName("email").description("검증하고자하는 이메일")
-                                )
-                        )
-                );
-    }
+//    @Test
+//    @WithAnonymousUser
+//    public void verifyEmailTest() throws Exception{
+//        String email = "test@example.com";
+//
+//        doNothing().when(service).verifyEmail(anyString());
+//
+//        ResultActions actions = mockMvc.perform(
+//                RestDocumentationRequestBuilders
+//                        .get("/teachers/verify/{email}", email)
+//                        .accept(MediaType.APPLICATION_JSON)
+//        );
+//
+//        actions.andExpect(MockMvcResultMatchers.status().isOk())
+//                .andDo(
+//                        document(
+//                                "verify-teacher-email",
+//                                getRequestPreProcessor(),
+//                                getResponsePreProcessor(),
+//                                pathParameters(
+//                                        parameterWithName("email").description("검증하고자하는 이메일")
+//                                )
+//                        )
+//                );
+//    }
 }

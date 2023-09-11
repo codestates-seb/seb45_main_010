@@ -1,5 +1,6 @@
 package com.codestates.connectInstructor.region.entity;
 
+import com.codestates.connectInstructor.student.entity.StudentRegion;
 import com.codestates.connectInstructor.teacher.entity.TeacherRegion;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,4 +20,6 @@ public class Region {
     private String regionName;
     @OneToMany(mappedBy = "region", cascade = CascadeType.REMOVE)
     private List<TeacherRegion> teacherRegions = new ArrayList<>();
+    @OneToMany(mappedBy = "region", cascade = CascadeType.REMOVE)
+    private List<StudentRegion> studentRegions = new ArrayList<>();
 }
