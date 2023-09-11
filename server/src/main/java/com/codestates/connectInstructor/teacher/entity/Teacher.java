@@ -71,10 +71,10 @@ public class Teacher extends Auditable implements Member {
     @ElementCollection(fetch = FetchType.EAGER)
     private List<String> roles = new ArrayList<>();
 
-    @OneToMany(mappedBy = "teacher", cascade = CascadeType.PERSIST, orphanRemoval = true)
+    @OneToMany(mappedBy = "teacher", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<TeacherRegion> teacherRegions = new ArrayList<>();
 
-    @OneToMany(mappedBy = "teacher", cascade = CascadeType.PERSIST, orphanRemoval = true)
+    @OneToMany(mappedBy = "teacher", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<TeacherSubject> teacherSubjects = new ArrayList<>();
 
     @Column(name = "last_login_at")
@@ -87,12 +87,12 @@ public class Teacher extends Auditable implements Member {
         teacherSubjects.add(teacherSubject);
     }
     public void removeTeacherSubject( TeacherSubject teacherSubject){
-        teacherSubjects.remove(teacherSubject);
+        teacherSubjects.remove(teacherSubjects.indexOf(teacherSubject));
     }
     public void addTeacherRegion( TeacherRegion teacherRegion){
         teacherRegions.add(teacherRegion);
     }
     public void removeTeacherRegion( TeacherRegion teacherRegion){
-        teacherRegions.remove(teacherRegion);
+        teacherRegions.remove(teacherRegions.indexOf(teacherRegion));
     }
 }

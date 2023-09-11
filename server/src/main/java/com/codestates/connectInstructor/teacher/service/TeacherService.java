@@ -3,12 +3,14 @@ package com.codestates.connectInstructor.teacher.service;
 import com.codestates.connectInstructor.event.SignupEvent;
 import com.codestates.connectInstructor.exception.BusinessLogicException;
 import com.codestates.connectInstructor.exception.ExceptionCode;
+import com.codestates.connectInstructor.region.entity.Region;
 import com.codestates.connectInstructor.region.service.RegionService;
 import com.codestates.connectInstructor.security.utils.CustomAuthorityUtils;
 import com.codestates.connectInstructor.subject.entity.Subject;
 import com.codestates.connectInstructor.subject.repository.SubjectRepository;
 import com.codestates.connectInstructor.subject.service.SubjectService;
 import com.codestates.connectInstructor.teacher.entity.Teacher;
+import com.codestates.connectInstructor.teacher.entity.TeacherRegion;
 import com.codestates.connectInstructor.teacher.entity.TeacherSubject;
 import com.codestates.connectInstructor.teacher.repository.TeacherRepository;
 import org.springframework.context.ApplicationEventPublisher;
@@ -20,6 +22,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
@@ -91,11 +94,56 @@ public class TeacherService {
 
         return teacherRepository.save(findTeacher);
     }
+    public void addRegionToTeacher( long teacherId, String regionName ){
+        Teacher teacher = findVerifiedTeacher(teacherId);
+        Region region = regionService.findVerifiedRegion(regionName);
+
+        List<TeacherRegion> teacherRegions = teacher.getTeacherRegions();
+
+        for( TeacherRegion teacherRegion : teacherRegions ){
+            if( teacherRegion.getTeacher().getId() == teacherId )
+                if( teacherRegion.getRegion().getRegionName().equals(regionName))
+                    throw new BusinessLogicException( ExceptionCode.TEACHER_REGION_EXISTS );
+        }
+
+        TeacherRegion teacherRegion = new TeacherRegion();
+        teacherRegion.setTeacher(teacher);
+        teacherRegion.setRegion(region);
+
+        teacher.addTeacherRegion(teacherRegion);
+
+        teacherRepository.save(teacher);
+    }
+    public void deleteRegionFromTeacher( long teacherId, String regionName ){
+        Teacher teacher = findVerifiedTeacher(teacherId);
+        Region region = regionService.findVerifiedRegion(regionName);
+/*
+        List<TeacherRegion> teacherRegions = teacher.getTeacherRegions();
+        TeacherRegion remove = null;
+        for( TeacherRegion teacherRegion : teacherRegions ){
+            if( teacherRegion.getTeacher().getId() == teacherId )
+                if( teacherRegion.getRegion().getRegionName().equals(regionName))
+                    teacher.removeTeacherRegion(teacherRegion);
+        }
+*/
+        List<TeacherRegion> teacherRegions = teacher.getTeacherRegions();
+        Iterator<TeacherRegion> iterator = teacherRegions.iterator();
+
+        while (iterator.hasNext()) {
+            TeacherRegion teacherRegion = iterator.next();
+            if (teacherRegion.getTeacher().getId() == teacherId && teacherRegion.getRegion().getRegionName().equals(regionName)) {
+                iterator.remove(); // 이렇게 해서 리스트에서 제거합니다.
+            }
+        }
+
+        teacherRepository.save(teacher);
+    }
     public void addSubjectToTeacher( long teacherId, String subjectName ){
         Teacher teacher = findVerifiedTeacher(teacherId);
         Subject subject = subjectService.findVerifiedSubject(subjectName);
 
         List<TeacherSubject> teacherSubjects = teacher.getTeacherSubjects();
+
         for( TeacherSubject teacherSubject : teacherSubjects ){
             if( teacherSubject.getTeacher().getId() == teacherId )
                 if( teacherSubject.getSubject().getSubjectName().equals(subjectName))
@@ -113,13 +161,16 @@ public class TeacherService {
     public void deleteSubjectFromTeacher( long teacherId, String subjectName ){
         Teacher teacher = findVerifiedTeacher(teacherId);
         Subject subject = subjectService.findVerifiedSubject(subjectName);
+        System.out.println(teacher.getTeacherSubjects().size());
 
         List<TeacherSubject> teacherSubjects = teacher.getTeacherSubjects();
-        for( TeacherSubject teacherSubject : teacherSubjects ){
-            if( teacherSubject.getTeacher().getId() == teacherId )
-                if( teacherSubject.getSubject().getSubjectName().equals(subjectName))
-                    teacher.removeTeacherSubject(teacherSubject);
+
+        for( int i = 0; i < teacherSubjects.size(); i++ ){
+            TeacherSubject teacherSubject = teacherSubjects.get(i);
+            if( teacherSubject.getSubject().getSubjectName().equals(subjectName))
+                teacher.getTeacherSubjects().remove(teacherSubject);
         }
+        System.out.println(teacher.getTeacherSubjects().size());
 
         teacherRepository.save(teacher);
     }

@@ -55,6 +55,20 @@ public class TeacherController {
         return ResponseEntity.created(location).build();
 
     }
+    @PostMapping("/{teacher-id}/region")
+    public ResponseEntity postTeacherRegion(@PathVariable("teacher-id") @Positive long teacherId,
+                                             @RequestParam String regionName){
+        teacherService.addRegionToTeacher(teacherId, regionName);
+
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+    @DeleteMapping("/{teacher-id}/region")
+    public ResponseEntity deleteTeacherRegion(@PathVariable("teacher-id") @Positive long teacherId,
+                                               @RequestParam String regionName){
+        teacherService.deleteRegionFromTeacher(teacherId, regionName);
+
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
     @PostMapping("/{teacher-id}/subject")
     public ResponseEntity postTeacherSubject(@PathVariable("teacher-id") @Positive long teacherId,
                                              @RequestParam String subjectName){
@@ -90,11 +104,12 @@ public class TeacherController {
     }
 
     @GetMapping
-    public ResponseEntity getTeachers(@RequestParam(required = false) String teacherName,
-                                      @RequestParam(required = false) List<String> subjectNames,
-                                      @RequestParam(required = false) List<String> regionNames,
+    public ResponseEntity getTeachers(@RequestParam String teacherName,
+                                      @RequestParam List<String> subjectNames,
+                                      @RequestParam List<String> regionNames,
                                       @Positive @RequestParam int page,
                                       @Positive @RequestParam int size) {
+
         Page<Teacher> pageTeachers = teacherService.searchTeachers(teacherName, subjectNames, regionNames,page-1, size);
         List<Teacher> teachers = pageTeachers.getContent();
 
