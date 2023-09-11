@@ -1,7 +1,7 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import axios from 'axios';
+import { createSlice } from '@reduxjs/toolkit';
 import { ListPageType } from 'Types/Types';
 import { RootState } from 'redux/store';
+import { getData } from 'redux/thunk/ListPageThunk';
 
 type initialStateType = {
   status: string;
@@ -12,12 +12,6 @@ const initialState: initialStateType = {
   status: '',
   value: [],
 };
-
-export const getData = createAsyncThunk('패치이름', async () => {
-  const response = await axios.get('주소');
-  const data = await response.data();
-  return data;
-});
 
 export const teacherListSlice = createSlice({
   name: 'teacherList',
