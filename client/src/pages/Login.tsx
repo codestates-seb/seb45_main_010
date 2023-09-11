@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ChangeEvent, FormEvent } from 'react';
 import { Button } from '@material-tailwind/react';
 import { Link } from 'react-router-dom';
@@ -12,11 +13,14 @@ const Login: React.FC = () => {
     email: '',
     password: '',
   });
+
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const userInfo = useAppSelector((state) => state.member);
+  const isLoading = userInfo.isLoading;
   console.log(userInfo);
 
-  const HandleLoginInfo = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleLoginInfo = (e: ChangeEvent<HTMLInputElement>) => {
     const key = e.target.name;
     setLoginInfo({
       ...LoginInfo,
@@ -24,7 +28,7 @@ const Login: React.FC = () => {
     });
   };
 
-  const HandleLogin = async (e: FormEvent<HTMLFormElement>) => {
+  const handleLogin = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (!LoginInfo.email || !LoginInfo.password) {
@@ -33,17 +37,32 @@ const Login: React.FC = () => {
     }
 
     try {
-      await dispatch(fetchUserDetails(LoginInfo.email));
+      const resultAction = await dispatch(fetchUserDetails(LoginInfo.email));
+
+      if (fetchUserDetails.fulfilled.match(resultAction)) {
+        console.log(userInfo.user);
+        alert(`반갑습니다.${resultAction.payload.name} 회원님!`);
+        navigate('/');
+      } else if (fetchUserDetails.rejected.match(resultAction)) {
+        // 서버 200, 304인데 데이터가 없는경우
+        const errorMessage = resultAction.payload as string;
+        alert(errorMessage);
+      }
     } catch (error) {
       console.log(error);
+      alert('서버와 통신오류가 발생했습니다. 로그인을 재시도해주세요');
+      return;
     }
   };
 
   return (
     <div className="flex flex-col item-center justify-center px-[12.5px]">
       <div className="text-2xl font-bold text-center">로그인</div>
+      {/* {isLoading ? (
+        <IsLoading />
+      ) : ( */}
       <div className="flex flex-col justify-center rounded-lg item-center">
-        <form className="flex flex-col gap-2 py-4 rounded-lg" onSubmit={HandleLogin}>
+        <form className="flex flex-col gap-2 py-4 rounded-lg" onSubmit={handleLogin}>
           <label htmlFor="email" className="text-sm">
             이메일
           </label>
@@ -54,7 +73,7 @@ const Login: React.FC = () => {
             className="border-2 text-sm rounded-lg p-2 mb-5 h-[50px]"
             placeholder="이메일을 입력하세요"
             value={LoginInfo.email}
-            onChange={HandleLoginInfo}
+            onChange={handleLoginInfo}
           />
 
           <label htmlFor="password" className="text-sm">
@@ -68,7 +87,7 @@ const Login: React.FC = () => {
             className="border-2 text-sm rounded-lg p-2 mb-8 h-[50px]"
             placeholder="비밀번호를 입력하세요"
             value={LoginInfo.password}
-            onChange={HandleLoginInfo}
+            onChange={handleLoginInfo}
           />
           <Button
             type="submit"
@@ -95,6 +114,7 @@ const Login: React.FC = () => {
           </Button>
         </form>
       </div>
+      {/* )} */}
     </div>
   );
 };
