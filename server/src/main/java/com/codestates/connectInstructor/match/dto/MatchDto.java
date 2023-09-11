@@ -1,5 +1,6 @@
 package com.codestates.connectInstructor.match.dto;
 
+import com.codestates.connectInstructor.match.entity.Match;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -48,7 +49,7 @@ public class MatchDto {
         long id;
         long studentId;
         long teacherId;
-        String status;
+        Match.MatchStatus status;
         List<String> matchSubjects;
         List<String> matchRegions;
         String schedule;

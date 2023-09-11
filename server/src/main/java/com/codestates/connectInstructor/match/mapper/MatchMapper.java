@@ -13,7 +13,7 @@ public interface MatchMapper {
                 .id(match.getId())
                 .studentId(match.getStudent().getId())
                 .teacherId(match.getTeacher().getId())
-                .status(match.getSchedule())
+                .status(match.getStatus())
                 .matchSubjects(
                         match.getMatchSubjects()
                                 .stream().map(matchSubject ->
