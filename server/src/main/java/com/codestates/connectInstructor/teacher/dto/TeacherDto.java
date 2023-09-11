@@ -2,10 +2,7 @@ package com.codestates.connectInstructor.teacher.dto;
 
 import com.codestates.connectInstructor.region.dto.RegionDto;
 import com.codestates.connectInstructor.subject.dto.SubjectDto;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
@@ -31,7 +28,7 @@ public class TeacherDto {
 //        @NotBlank
 //        private String address;
     }
-    @Getter@Setter@NoArgsConstructor
+    @Getter@Setter@NoArgsConstructor@AllArgsConstructor
     public static class Patch {
         private long id;
         private String name;
@@ -45,7 +42,7 @@ public class TeacherDto {
         private boolean offLine;
         private String address;
     }
-    @Getter@Setter@NoArgsConstructor
+    @Getter@Setter@NoArgsConstructor@AllArgsConstructor
     public static class Response {
         private long id;
         private String email;
@@ -59,7 +56,7 @@ public class TeacherDto {
         private boolean onLine;
         private boolean offLine;
         private String address;
-        private boolean isOauth;
+        private boolean oauth;
         private List<SubjectDto.Response> subjects;
         private List<RegionDto.Response> regions;
         private LocalDateTime lastLogin;
@@ -68,7 +65,7 @@ public class TeacherDto {
 
 
     }
-    @Getter@Setter@NoArgsConstructor
+    @Getter@Setter@NoArgsConstructor@AllArgsConstructor
     public static class Element {
         private long id;
         private boolean onLine;

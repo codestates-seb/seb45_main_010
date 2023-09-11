@@ -63,7 +63,7 @@ public class Teacher extends Auditable implements Member {
 
     @Column(nullable = false, name = "is_oauth")
     @ColumnDefault("false")
-    private boolean isOauth = false;
+    private boolean oauth = false;
 
     @Enumerated(value = EnumType.ORDINAL)
     private MemberStatus status = MemberStatus.ACTIVE;

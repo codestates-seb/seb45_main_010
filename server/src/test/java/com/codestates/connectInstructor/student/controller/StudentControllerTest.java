@@ -62,6 +62,7 @@ public class StudentControllerTest {
                 .build();
 
         Student student = new Student();
+        student.setId(1L);
 
         given(mapper.postToStudent(Mockito.any(StudentDto.Post.class))).willReturn(student);
         given(service.createStudent(Mockito.any(Student.class))).willReturn(student);
@@ -82,6 +83,7 @@ public class StudentControllerTest {
                                         fieldWithPath("email").type(JsonFieldType.STRING).description("이메일"),
                                         fieldWithPath("password").type(JsonFieldType.STRING).description("비밀번호"),
                                         fieldWithPath("name").type(JsonFieldType.STRING).description("이름")
+
                                 )
                         )));
     }
