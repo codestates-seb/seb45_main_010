@@ -121,7 +121,7 @@ include::{snippets}/post-subject/http-response.adoc[]
 .response-body
 include::{snippets}/post-subject/response-body.adoc[]
 
-.response-fields
+.response-headers
 include::{snippets}/post-subject/response-headers.adoc[]
 
 === 사용 가능한 과목 모두 조회
@@ -214,7 +214,7 @@ include::{snippets}/post-region/http-response.adoc[]
 .response-body
 include::{snippets}/post-region/response-body.adoc[]
 
-.response-fields
+.response-headers
 include::{snippets}/post-region/response-headers.adoc[]
 
 === 사용 가능한 지역 모두 조회
