@@ -22,10 +22,10 @@ const TeacherCard = ({ test }: props) => {
             <section
               key={index}
               className="w-[350px] h-[82px] shadow-md border-2 border-gray-2 
-                    bg-mint-3 rounded-xl p-2 text-xs flex-row flex justify-between mb-5
-                     duration-500  hover:scale-105  cursor-pointer hover:bg-mint-4"
+                    bg-mint-300 rounded-xl p-2 text-xs flex-row flex justify-between mb-5
+                     duration-500  hover:scale-105  cursor-pointer hover:bg-mint-400"
             >
-              <span className="w-16 h-6 px-2 py-1 m-1 text-center text-black cursor-auto bg-mint-2 rounded-xl">
+              <span className="w-16 h-6 px-2 py-1 m-1 text-center text-black cursor-auto bg-mint-200 rounded-xl">
                 {isOnOff}
               </span>
               <span className="flex flex-col items-center ">

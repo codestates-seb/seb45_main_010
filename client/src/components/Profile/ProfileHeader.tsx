@@ -33,7 +33,7 @@ const ProfileHeader: React.FC<ProfileHeaderProps> = ({
         <div className="flex flex-row items-center gap-6 mb-10">
           <img
             src={userExampleImage}
-            className="border rounded-full w-14 h-14 border-mint-2"
+            className="border rounded-full w-14 h-14 border-mint-200"
             alt="프로필이미지"
           ></img>
           <div className="flex flex-col gap-2">
@@ -41,7 +41,7 @@ const ProfileHeader: React.FC<ProfileHeaderProps> = ({
               <p className="text-2xl">{name}</p>
               <Link to={'/Private'}>
                 <Button
-                  className="font-normal text-black w-[100px] relative bg-mint-2 rounded-xl"
+                  className="font-normal text-black w-[100px] relative bg-mint-200 rounded-xl"
                   size="sm"
                 >
                   개인정보변경
@@ -55,16 +55,8 @@ const ProfileHeader: React.FC<ProfileHeaderProps> = ({
           {offLine ? <OnlineDiv onoff="오프라인" /> : null}
         </div>
       </>
-      <ProfileDropdown
-        title="과목"
-        selections={category.subject}
-        categories={user.category}
-      />
-      <ProfileDropdown
-        title="지역"
-        selections={category.area}
-        categories={user.area}
-      />
+      <ProfileDropdown title="과목" selections={category.subject} categories={user.category} />
+      <ProfileDropdown title="지역" selections={category.area} categories={user.area} />
       <Option optionDesc={introduce} userId={user.id} />
       <div className="mt-10 border-b-2 border-gray-1"></div>
     </div>

@@ -116,7 +116,7 @@ const ProfileTabs: React.FC<ProfileTabsProps> = ({
           {tabData.map((tab) => (
             <a
               key={tab.id}
-              className="flex items-center justify-center flex-1 text-sm font-normal tracking-wide text-black transition duration-500 bg-mint-2 hover:bg-white hover:font-semibold"
+              className="flex items-center justify-center flex-1 text-sm font-normal tracking-wide text-black transition duration-500 bg-mint-200 hover:bg-white hover:font-semibold"
               href={`#${tab.id}`}
               onClick={(e) => onTabClick(e, `tab-${tab.id}`)}
             >

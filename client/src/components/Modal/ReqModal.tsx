@@ -53,7 +53,7 @@ export const ReqModal = () => {
         size="xs"
         open={isOpen}
         handler={handleOpen}
-        className="p-2 overflow-y-scroll max-h-[660px] bg-mint-2 "
+        className="p-2 overflow-y-scroll max-h-[660px] bg-mint-200 "
       >
         <DialogHeader className="p-2 text-sm ">과목 선택</DialogHeader>
         <section className="flex items-center ">
@@ -63,7 +63,7 @@ export const ReqModal = () => {
                 key={index}
                 onClick={() => handleCategory(index)}
                 className={`${
-                  isCategory[index] ? 'bg-gray-3' : 'bg-mint-3'
+                  isCategory[index] ? 'bg-gray-3' : 'bg-mint-300'
                 } px-3 py-1 m-2 text-sm text-black rounded-2xl `}
                 children={item}
               />
@@ -79,7 +79,7 @@ export const ReqModal = () => {
                 key={index}
                 onClick={() => handleArea(index)}
                 className={`${
-                  isArea[index] ? 'bg-gray-3' : 'bg-mint-3'
+                  isArea[index] ? 'bg-gray-3' : 'bg-mint-300'
                 } px-3 py-1 m-2 text-sm text-black rounded-2xl `}
                 children={item}
               />
@@ -96,7 +96,7 @@ export const ReqModal = () => {
                 key={index}
                 onClick={() => handleOnOff(index)}
                 className={`${
-                  isOnOff[index] ? 'bg-gray-3' : 'bg-mint-3'
+                  isOnOff[index] ? 'bg-gray-3' : 'bg-mint-300'
                 } px-3 py-1 m-2 text-sm text-black rounded-2xl `}
                 children={item}
               />
@@ -108,14 +108,14 @@ export const ReqModal = () => {
           label="이름"
           color="blue-gray"
           crossOrigin={undefined}
-          className="flex items-center bg-mint-3 rounded-2xl"
+          className="flex items-center bg-mint-300 rounded-2xl"
         />
         <DialogHeader className="p-2 text-sm">연락처</DialogHeader>
         <Input
           label="연락처"
           color="blue-gray"
           crossOrigin={undefined}
-          className="flex items-center bg-mint-3 rounded-2xl"
+          className="flex items-center bg-mint-300 rounded-2xl"
         />
         <DialogHeader className="p-2 text-sm">이메일</DialogHeader>
         <Input
@@ -123,16 +123,16 @@ export const ReqModal = () => {
           type="email"
           color="blue-gray"
           crossOrigin={undefined}
-          className="flex items-center bg-mint-3 rounded-2xl"
+          className="flex items-center bg-mint-300 rounded-2xl"
         />
         <DialogHeader className="p-2 text-sm">특이사항</DialogHeader>
-        <Textarea label="특이사항" className="flex items-center bg-mint-3 rounded-2xl" />
+        <Textarea label="특이사항" className="flex items-center bg-mint-300 rounded-2xl" />
         <DialogFooter className="p-2">
           <Button
             variant="text"
             color="red"
             onClick={handleOpen}
-            className="p-2 mx-3 my-1 text-black rounded-full bg-mint-3"
+            className="p-2 mx-3 my-1 text-black rounded-full bg-mint-300"
           >
             <span>신청하기</span>
           </Button>

@@ -135,7 +135,7 @@ const SetSchedule: React.FC<ScheduleProps> = ({ schedule, userId }) => {
   return (
     <div className="container flex flex-col items-center justify-center gap-5 px-4">
       <DatePicker
-        className="flex items-center justify-between w-[350px] p-2 text-sm font-bold text-center text-black bg-mint-4 rounded-xl border-mint-2"
+        className="flex items-center justify-between w-[350px] p-2 text-sm font-bold text-center text-black bg-mint-400 rounded-xl border-mint-200"
         placeholderText="날짜 선택"
         showPopperArrow={false}
         fixedHeight
@@ -169,11 +169,11 @@ const SetSchedule: React.FC<ScheduleProps> = ({ schedule, userId }) => {
                 {timeSlotObj.timeslots.map((timeslot) => (
                   <div key={timeSlotObj.date + timeslot}>
                     <Button
-                      className="flex items-center justify-between w-full p-2 mb-5 text-sm font-bold text-black bg-mint-2 rounded-xl border-mint-2"
+                      className="flex items-center justify-between w-full p-2 mb-5 text-sm font-bold text-black bg-mint-200 rounded-xl border-mint-200"
                       size="sm"
                       onClick={handleSelectedTimeSlot(timeSlotObj, timeslot)}
                     >
-                      <div className="flex items-center justify-center text-sm rounded-lg h-[35px] w-auto p-3 bg-mint-3">
+                      <div className="flex items-center justify-center text-sm rounded-lg h-[35px] w-auto p-3 bg-mint-300">
                         {timeSlotObj.date}
                       </div>
                       <span className="flex-1 text-center">{timeslot}</span>
