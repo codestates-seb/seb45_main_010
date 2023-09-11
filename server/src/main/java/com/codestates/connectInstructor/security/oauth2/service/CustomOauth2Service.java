@@ -12,12 +12,14 @@ import org.springframework.security.oauth2.client.userinfo.OAuth2UserService;
 import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collections;
 import java.util.Map;
 import java.util.Optional;
 
 @Service
+@Transactional
 @Slf4j
 public class CustomOauth2Service implements OAuth2UserService<OAuth2UserRequest, OAuth2User> {
     private final StudentRepository studentRepository;
@@ -34,6 +36,10 @@ public class CustomOauth2Service implements OAuth2UserService<OAuth2UserRequest,
     @Override
     public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
         log.info("load User 호출 성공");
+
+//        if (userRequest.getAdditionalParameters().get("memberType").equals("student")) {
+//            log.info("학생이다!!!!!");
+//        }
 
         OAuth2UserService<OAuth2UserRequest, OAuth2User> delegate = new DefaultOAuth2UserService();
         OAuth2User user = delegate.loadUser(userRequest);

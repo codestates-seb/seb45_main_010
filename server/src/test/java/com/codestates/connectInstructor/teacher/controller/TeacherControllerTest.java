@@ -106,10 +106,7 @@ public class TeacherControllerTest {
                                 List.of(
                                         fieldWithPath("email").type(JsonFieldType.STRING).description("이메일"),
                                         fieldWithPath("password").type(JsonFieldType.STRING).description("비밀번호"),
-                                        fieldWithPath("name").type(JsonFieldType.STRING).description("이름")//,
-        //                                fieldWithPath("introduction").type(JsonFieldType.STRING).description("자기소개"),
-        //                                fieldWithPath("career").type(JsonFieldType.STRING).description("경력"),
-        //                                fieldWithPath("address").type(JsonFieldType.STRING).description("주소")
+                                        fieldWithPath("name").type(JsonFieldType.STRING).description("이름")
                                 )
                         ),
                         responseHeaders(        // (7-6)
@@ -420,4 +417,5 @@ public class TeacherControllerTest {
                         )
                 );
     }
+
 }

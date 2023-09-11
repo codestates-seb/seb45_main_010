@@ -9,10 +9,12 @@ import com.codestates.connectInstructor.security.handler.MemberAuthenticationSuc
 import com.codestates.connectInstructor.security.jwt.JwtTokenizer;
 import com.codestates.connectInstructor.security.oauth2.handler.OAuth2FailureHandler;
 import com.codestates.connectInstructor.security.oauth2.handler.OAuth2SuccessHandler;
+import com.codestates.connectInstructor.security.oauth2.resolver.CustomRequestResolver;
 import com.codestates.connectInstructor.security.oauth2.service.CustomOauth2Service;
 import com.codestates.connectInstructor.security.utils.CustomAuthorityUtils;
 import com.codestates.connectInstructor.student.repository.StudentRepository;
 import com.codestates.connectInstructor.student.service.StudentService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -21,6 +23,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
 import org.springframework.security.oauth2.client.web.OAuth2LoginAuthenticationFilter;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.cors.CorsConfiguration;
@@ -37,13 +40,16 @@ public class SecurityConfiguration {
     private final CustomAuthorityUtils authorityUtils; // 추가
     private final StudentRepository studentRepository;
     private final StudentService studentService;
+    private final ClientRegistrationRepository clientRegistrationRepository;
 
+    @Autowired
     public SecurityConfiguration(JwtTokenizer jwtTokenizer,
-                                 CustomAuthorityUtils authorityUtils, StudentRepository studentRepository, StudentService studentService) {
+                                 CustomAuthorityUtils authorityUtils, StudentRepository studentRepository, StudentService studentService, ClientRegistrationRepository clientRegistrationRepository) {
         this.jwtTokenizer = jwtTokenizer;
         this.authorityUtils = authorityUtils;
         this.studentRepository = studentRepository;
         this.studentService = studentService;
+        this.clientRegistrationRepository = clientRegistrationRepository;
     }
 
     @Bean
@@ -55,7 +61,9 @@ public class SecurityConfiguration {
                         .successHandler(new OAuth2SuccessHandler(studentRepository, authorityUtils, jwtTokenizer))
                         .failureHandler(new OAuth2FailureHandler())
                         .userInfoEndpoint(user -> user.userService(new CustomOauth2Service(studentRepository, studentService, authorityUtils)))
-                )
+//                        .authorizationEndpoint(authorizationEndpoint -> authorizationEndpoint
+//                                .authorizationRequestResolver(new CustomRequestResolver(clientRegistrationRepository, "/oauth2/authorize-client")))
+                        )
                 .csrf().disable()
                 .cors(Customizer.withDefaults())
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
@@ -113,4 +121,5 @@ public class SecurityConfiguration {
                     .addFilterAfter(jwtVerificationFilter, OAuth2LoginAuthenticationFilter.class);
         }
     }
+
 }
