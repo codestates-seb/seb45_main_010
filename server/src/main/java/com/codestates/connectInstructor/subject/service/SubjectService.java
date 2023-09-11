@@ -25,6 +25,9 @@ public class SubjectService {
     public List<Subject> findSubjects(){
         return subjectRepository.findAll();
     }
+    public List<Subject> findSubjectsWithTeacherId(long teacherId){
+        return subjectRepository.findByTeacherId(teacherId);
+    }
     public void deleteSubject( long subjectId ){
         Subject subject = findVerifiedSubject(subjectId);
 
