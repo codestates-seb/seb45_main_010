@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { User } from 'Types/Types';
 
 export const FetchProfile = createAsyncThunk('FetchProfile', async (userId: number) => {
   const response = await axios.get(`http://localhost:8081/profile/${userId}`);
@@ -8,10 +9,41 @@ export const FetchProfile = createAsyncThunk('FetchProfile', async (userId: numb
 });
 
 export const FetchRequest = createAsyncThunk('FetchRequest', async (userId: number) => {
-  const response = await axios.get(`http://localhost:8081/request${userId}`);
+  const response = await axios.get(`http://localhost:8081/request/${userId}`);
   const data = response.data;
   return data;
 });
+
+export const FetchSchedule = createAsyncThunk('schedule/fetchSchedule', async (userId: number) => {
+  const response = await axios.get(`http://localhost:8081/profile/${userId}`);
+  const data = response.data;
+  return data;
+});
+
+export const updateSchedule = createAsyncThunk(
+  'profile/updateSchedule',
+  async ({
+    userId,
+    date,
+    method,
+  }: {
+    userId: number;
+    date: User['date'] | null;
+    method: 'POST' | 'PATCH' | 'DELETE';
+  }) => {
+    let response;
+    if (method === 'POST') {
+      response = await axios.post(`http://localhost:8081/profile/${userId}`, { date });
+    } else if (method === 'PATCH') {
+      response = await axios.patch(`http://localhost:8081/profile/${userId}`, { date });
+    } else {
+      response = await axios.delete(`http://localhost:8081/profile/${userId}`, {
+        data: date, //  date: dateToBeDeleted
+      });
+    }
+    return response.data;
+  }
+);
 
 export const updateClassMethod = createAsyncThunk(
   'profile/updateClassMethod',
