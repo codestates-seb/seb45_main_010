@@ -232,7 +232,7 @@
     },
     {
       "id": "3",
-      "name": "stefan",
+      "name": "길동량",
       "email": "stephan@gmail.com",
       "password": "test1234"
     },
@@ -416,18 +416,18 @@
     },
     {
       "name": "김홍길",
-      "email": "hongkilkim@gmail.com",
+      "email": "abcde@gmail.com",
       "password": "test1234",
       "teacher": false,
-      "id": "q6SbKTi"
+      "id": "14"
     },
     {
       "name": "홍길동",
       "email": "abcd@gmail.com",
-      "password": "test1234",
+      "password": "test123456",
       "teacher": true,
-      "phone": "01023453456",
-      "id": "usMU8Hr",
+      "phone": "01023457890",
+      "id": "10",
       "area": ["서울", "강남"],
       "category": ["수학", "과학"],
       "classMethod": {
@@ -446,7 +446,7 @@
       "password": "test1234",
       "teacher": true,
       "phone": "01156523453",
-      "id": "WhZZ1ec",
+      "id": "15",
       "area": ["강동", "강남"],
       "category": ["국어"],
       "classMethod": {
@@ -471,6 +471,11 @@
       "category": ["국어"],
       "img": "https://item.kakaocdn.net/do/d84248170c2c52303db27306a00fb861effd194bae87d73dd00522794070855d",
       "introduce": "저는 서울대학교를 목표로 하고 있는 고등학교 3학년입니다.꿈은 이루어진다~~~~"
+    },
+    {
+      "email": "abcd@gmail.com",
+      "name": "동길이",
+      "id": "16"
     }
   ]
 }

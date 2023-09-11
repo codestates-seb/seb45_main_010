@@ -12,11 +12,7 @@ export type User = {
   lectureFee: string;
   career: string;
   option: string;
-  date: {
-    select: {
-      [date: string]: string[];
-    };
-  };
+  date: { date: string; timeslots: string[] }[];
   classMethod: {
     onLine: boolean;
     offLine: boolean;
@@ -64,3 +60,5 @@ export type footerType = {
   member: string[];
   teamGithub: string;
 };
+
+export type TimeSlot = { date: string; timeslots: string[] }[];

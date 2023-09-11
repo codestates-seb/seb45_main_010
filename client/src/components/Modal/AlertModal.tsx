@@ -1,44 +1,39 @@
 import React, { useState } from 'react';
-import { Button, Dialog, DialogHeader, DialogBody, DialogFooter } from '@material-tailwind/react';
+import { Button, Dialog, DialogBody, DialogFooter, Input } from '@material-tailwind/react';
 
 type props = {
   title: string;
   text: string;
+  warning: string;
   btnName: string;
   btnCheck: string;
 };
 
-export const AlertModal = ({ title, text, btnName, btnCheck }: props) => {
+export const ChangeModal = ({ title, text, warning, btnName, btnCheck }: props) => {
   const [open, setOpen] = useState<boolean>(false);
 
   const handleOpen = () => setOpen(!open);
 
   return (
     <>
-      <Button onClick={handleOpen} variant="gradient">
-        {btnName}
-      </Button>
-      <Dialog
-        open={open}
-        handler={handleOpen}
-        animate={{
-          mount: { scale: 1, y: 0 },
-          unmount: { scale: 0.9, y: -100 },
-        }}
-        size="xs"
-        className="overflow-hidden "
-      >
-        <DialogHeader className="bg-gray-3 test-xl">{title}</DialogHeader>
-        <DialogBody divider>{text}</DialogBody>
-        <DialogFooter className="justify-center felx">
-          <Button
-            variant="text"
-            color="red"
-            onClick={handleOpen}
-            className="text-white bg-blue-1 hover:bg-blue-2"
-          >
-            <span>{btnCheck}</span>
-          </Button>
+      <Button onClick={handleOpen}>{btnName}</Button>
+      <Dialog open={open} handler={handleOpen} size="xs" className="overflow-hidden ">
+        <DialogBody divider>
+          <p className="text-center text-black">{title}</p>
+          <div className="grid grid-flow-col">
+            <Input label={text} crossOrigin={undefined} color="blue" className="text-black " />
+            <Button
+              variant="outlined"
+              color="red"
+              onClick={handleOpen}
+              className="col-span-1 p-2 ml-5"
+            >
+              {btnCheck}
+            </Button>
+          </div>
+        </DialogBody>
+        <DialogFooter className="flex justify-center space-x-2">
+          <p className="text-xs text-black">{warning}</p>
         </DialogFooter>
       </Dialog>
     </>

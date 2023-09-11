@@ -4,6 +4,8 @@ import { ProfileSlice } from './slice/PofileSilce';
 import { RequestSlice } from './slice/RequestSlice';
 import { memberSlice } from './slice/MemberSlice';
 import { teacherDetailSlice } from './slice/DetailPageSlice';
+import { ScheduleSlice } from './slice/ScheduleSlice';
+
 export const store = configureStore({
   reducer: {
     teacherList: teacherListSlice.reducer,
@@ -11,6 +13,7 @@ export const store = configureStore({
     request: RequestSlice.reducer,
     member: memberSlice.reducer,
     teacherDetail: teacherDetailSlice.reducer,
+    schedule: ScheduleSlice.reducer,
   },
 });
 

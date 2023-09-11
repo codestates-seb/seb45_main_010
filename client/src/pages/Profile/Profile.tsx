@@ -1,11 +1,7 @@
 import ProfileTabs from 'components/Profile/ProfileTabs';
 import ProfileHeader from 'components/Profile/ProfileHeader';
 import { useEffect } from 'react';
-import {
-  FetchProfile,
-  FetchRequest,
-  updateClassMethod,
-} from 'redux/thunk/Thunk';
+import { FetchProfile, updateClassMethod } from 'redux/thunk/Thunk';
 import { useAppDispatch, useAppSelector } from 'hooks/hooks';
 
 const Profile = () => {
@@ -21,8 +17,13 @@ const Profile = () => {
   const request = requestState.value;
 
   useEffect(() => {
-    dispatch(FetchProfile(userId));
-    dispatch(FetchRequest(userId));
+    dispatch(FetchProfile(userId))
+      .then((response) => {
+        console.log('Profile fetched successfully:', response);
+      })
+      .catch((error) => {
+        console.error('Error fetching profile:', error);
+      });
   }, [dispatch, userId]);
 
   return (
@@ -50,6 +51,7 @@ const Profile = () => {
               offLine: user.classMethod.offLine,
             }}
             handleClassMethodUpdate={handleClassMethodUpdate}
+            schedule={user.date}
           />
         </>
       ) : profileState.status === 'pending' ? (
