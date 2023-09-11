@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Button,
   Dialog,
@@ -7,11 +7,30 @@ import {
   Input,
   Textarea,
 } from '@material-tailwind/react';
+import { DetailType } from 'Types/Types';
+
+const arr: string[] = ['수학', '국어', '영어'];
+const array: string[] = ['서울', '경기', '제주'];
+
+type props = Pick<DetailType, 'category' | 'area' | 'date'>;
 
 export const ReqModal = () => {
-  const [open, setOpen] = React.useState(false);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [selectCategory, setSelectCategory] = useState<boolean[]>([]);
+  const [selectArea, setSelectArea] = useState<boolean[]>([]);
 
-  const handleOpen = () => setOpen(!open);
+  const handleOpen = (): void => setIsOpen(!isOpen);
+
+  const handleCategory = (index: number): void => {
+    const newButtonStates = [...selectCategory];
+    newButtonStates[index] = !newButtonStates[index];
+    setSelectCategory(newButtonStates);
+  };
+  const handleArea = (index: number): void => {
+    const newButtonStates = [...selectArea];
+    newButtonStates[index] = !newButtonStates[index];
+    setSelectArea(newButtonStates);
+  };
 
   return (
     <>
@@ -19,57 +38,50 @@ export const ReqModal = () => {
         onClick={handleOpen}
         variant="gradient"
         className="flex items-center h-10 text-sm"
-      >
-        강의 신청하기
-      </Button>
+        children="강의 신청하기"
+      />
+
       <Dialog
         size="xs"
-        open={open}
+        open={isOpen}
         handler={handleOpen}
         className="p-2 overflow-y-scroll max-h-[660px] bg-mint-2 "
       >
         <DialogHeader className="p-2 text-sm ">과목 선택</DialogHeader>
         <section className="flex items-center ">
-          <button className="px-3 py-1 m-2 text-sm text-black rounded-2xl bg-mint-3">
-            수학
-          </button>
+          {arr.map((item, index) => {
+            return (
+              <Button
+                key={index}
+                onClick={() => handleCategory(index)}
+                className={`${
+                  selectCategory[index] ? 'bg-gray-3' : 'bg-mint-3'
+                } px-3 py-1 m-2 text-sm text-black rounded-2xl `}
+                children={item}
+              />
+            );
+          })}
         </section>
-        <DialogHeader className="p-2 text-sm ">선택 과목</DialogHeader>
-        <section className="flex items-center bg-mint-3 rounded-2xl ">
-          <button className="px-3 py-1 m-2 text-sm text-black rounded-2xl bg-mint-2">
-            수학
-          </button>
-          <button className="px-3 py-1 m-2 text-sm text-black rounded-2xl bg-mint-2">
-            과학
-          </button>
-          <button className="px-3 py-1 m-2 text-sm text-black rounded-2xl bg-mint-2">
-            국어
-          </button>
-        </section>
+
         <DialogHeader className="p-2 text-sm ">지역 선택</DialogHeader>
         <section className="flex items-center ">
-          <button className="px-3 py-1 m-2 text-sm text-black rounded-2xl bg-mint-3">
-            수학
-          </button>
+          {' '}
+          {array.map((item, index) => {
+            return (
+              <Button
+                key={index}
+                onClick={() => handleArea(index)}
+                className={`${
+                  selectArea[index] ? 'bg-gray-3' : 'bg-mint-3'
+                } px-3 py-1 m-2 text-sm text-black rounded-2xl `}
+                children={item}
+              />
+            );
+          })}
         </section>
-        <DialogHeader className="p-2 text-sm">선택 지역</DialogHeader>
-        <section className="flex items-center bg-mint-3 rounded-2xl">
-          <button className="px-3 py-1 m-2 text-sm text-black rounded-2xl bg-mint-2">
-            수학
-          </button>
-          <button className="px-3 py-1 m-2 text-sm text-black rounded-2xl bg-mint-2">
-            과학
-          </button>
-          <button className="px-3 py-1 m-2 text-sm text-black rounded-2xl bg-mint-2">
-            국어
-          </button>
-        </section>
+
         <DialogHeader className="p-2 text-sm">스케줄 선택</DialogHeader>
-        <section className="flex items-center bg-mint-3 rounded-2xl">
-          <p className="px-3 py-1 m-2 text-sm text-black rounded-2xl bg-mint-2">
-            수학
-          </p>
-        </section>
+
         <DialogHeader className="p-2 text-sm">이름</DialogHeader>
         <section className="flex items-center bg-mint-3 rounded-2xl">
           <Input label="이름" crossOrigin={undefined} />
