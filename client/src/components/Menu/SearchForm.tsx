@@ -20,7 +20,7 @@ const SearchForm = ({ inputText, setInputText, setSearchList }: props) => {
 
   return (
     <form id="myForm">
-      <div className="relative flex w-full gap-2 w-100%">
+      <div className="relative flex w-full gap-2 w-100% mb-5">
         <Input
           type="text"
           label="Search..."
