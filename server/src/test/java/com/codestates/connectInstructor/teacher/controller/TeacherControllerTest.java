@@ -1,5 +1,9 @@
 package com.codestates.connectInstructor.teacher.controller;
 
+import com.codestates.connectInstructor.region.mapper.RegionMapper;
+import com.codestates.connectInstructor.region.service.RegionService;
+import com.codestates.connectInstructor.subject.mapper.SubjectMapper;
+import com.codestates.connectInstructor.subject.service.SubjectService;
 import com.codestates.connectInstructor.teacher.dto.TeacherDto;
 import com.codestates.connectInstructor.teacher.entity.Teacher;
 import com.codestates.connectInstructor.teacher.mapper.TeacherMapper;
@@ -45,6 +49,14 @@ public class TeacherControllerTest {
     private TeacherMapper mapper;
     @MockBean
     private TeacherService service;
+    @MockBean
+    private SubjectService subjectService;
+    @MockBean
+    private SubjectMapper subjectMapper;
+    @MockBean
+    private RegionService regionService;
+    @MockBean
+    private RegionMapper regionMapper;
     @Autowired
     private Gson gson;
 
@@ -55,12 +67,10 @@ public class TeacherControllerTest {
                 .email("test@example.com")
                 .password("test1234")
                 .name("테스트")
-                .introduction("자기 소개")
-                .career("경력")
-                .address("주소")
                 .build();
 
         Teacher teacher = new Teacher();
+        teacher.setId(1L);
 
         given(mapper.postToTeacher(Mockito.any(TeacherDto.Post.class))).willReturn(teacher);
         given(service.createTeacher(Mockito.any(Teacher.class))).willReturn(teacher);
@@ -80,10 +90,10 @@ public class TeacherControllerTest {
                                 List.of(
                                         fieldWithPath("email").type(JsonFieldType.STRING).description("이메일"),
                                         fieldWithPath("password").type(JsonFieldType.STRING).description("비밀번호"),
-                                        fieldWithPath("name").type(JsonFieldType.STRING).description("이름"),
-                                        fieldWithPath("introduction").type(JsonFieldType.STRING).description("자기소개"),
-                                        fieldWithPath("career").type(JsonFieldType.STRING).description("경력"),
-                                        fieldWithPath("address").type(JsonFieldType.STRING).description("주소")
+                                        fieldWithPath("name").type(JsonFieldType.STRING).description("이름")//,
+        //                                fieldWithPath("introduction").type(JsonFieldType.STRING).description("자기소개"),
+        //                                fieldWithPath("career").type(JsonFieldType.STRING).description("경력"),
+        //                                fieldWithPath("address").type(JsonFieldType.STRING).description("주소")
                                 )
                         )));
     }
