@@ -41,6 +41,19 @@ export type ListPageType = Pick<
   'name' | 'category' | 'area' | 'classMethod' | 'img'
 >[];
 
+export type DetailType = Pick<
+  User,
+  | 'name'
+  | 'img'
+  | 'classMethod'
+  | 'category'
+  | 'area'
+  | 'date'
+  | 'introduce'
+  | 'lectureFee'
+  | 'career'
+>;
+
 export type RequestType = {
   id: string;
   name: string;
