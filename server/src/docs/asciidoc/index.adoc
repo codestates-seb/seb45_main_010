@@ -99,7 +99,7 @@ include::{snippets}/verify-teacher-email/response-body.adoc[]
 
 == SubjectController
 
-=== 과목 정식 등록
+=== 사용자가 사용할 과목 등록
 .curl-request
 include::{snippets}/post-subject/curl-request.adoc[]
 
@@ -124,7 +124,7 @@ include::{snippets}/post-subject/response-body.adoc[]
 .response-fields
 include::{snippets}/post-subject/response-headers.adoc[]
 
-=== 정식 등록 가능한 과목명 모두 조회
+=== 사용 가능한 과목 모두 조회
 .curl-request
 include::{snippets}/get-subjects/curl-request.adoc[]
 
@@ -146,7 +146,7 @@ include::{snippets}/get-subjects/response-body.adoc[]
 .response-fields
 include::{snippets}/get-subjects/response-fields.adoc[]
 
-=== 과목 식별자로 정식과목 삭제
+=== 과목 식별자로 과목 삭제
 .curl-request
 include::{snippets}/delete-subject-with-id/curl-request.adoc[]
 
@@ -168,7 +168,7 @@ include::{snippets}/delete-subject-with-id/http-response.adoc[]
 .response-body
 include::{snippets}/delete-subject-with-id/response-body.adoc[]
 
-=== 과목 이름으로 정식과목 삭제
+=== 과목 이름으로 과목 삭제
 .curl-request
 include::{snippets}/delete-subject-with-name/curl-request.adoc[]
 
@@ -192,7 +192,7 @@ include::{snippets}/delete-subject-with-name/response-body.adoc[]
 
 == RegionController
 
-=== 지역 정식 등록
+=== 사용자가 사용할 지역 등록
 .curl-request
 include::{snippets}/post-region/curl-request.adoc[]
 
@@ -217,7 +217,7 @@ include::{snippets}/post-region/response-body.adoc[]
 .response-fields
 include::{snippets}/post-region/response-headers.adoc[]
 
-=== 정식 등록 가능한 지역 모두 조회
+=== 사용 가능한 지역 모두 조회
 .curl-request
 include::{snippets}/get-regions/curl-request.adoc[]
 
@@ -239,7 +239,7 @@ include::{snippets}/get-regions/response-body.adoc[]
 .response-fields
 include::{snippets}/get-regions/response-fields.adoc[]
 
-=== 지역 식별자로 정식지역 삭제
+=== 지역 식별자로 지역 삭제
 .curl-request
 include::{snippets}/delete-region-with-id/curl-request.adoc[]
 
@@ -261,7 +261,7 @@ include::{snippets}/delete-region-with-id/http-response.adoc[]
 .response-body
 include::{snippets}/delete-region-with-id/response-body.adoc[]
 
-=== 지역 이름으로 정식지역 삭제
+=== 지역 이름으로 지역 삭제
 .curl-request
 include::{snippets}/delete-region-with-name/curl-request.adoc[]
 
