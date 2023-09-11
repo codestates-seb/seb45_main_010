@@ -17,7 +17,7 @@ public interface StudentMapper {
 
     StudentDto.PatchIntroduction studentToPatchIntroduction(Student updated);
 
-    StudentDto.PatchIntroduction studentToPatchLessonOption(Student updated);
+    StudentDto.PatchLessonOption studentToPatchLessonOption(Student updated);
 
     Student patchPatchLessonOptionToStudent(StudentDto.PatchLessonOption request);
 

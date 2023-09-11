@@ -1,5 +1,6 @@
 package com.codestates.connectInstructor.match.entity;
 
+import com.codestates.connectInstructor.region.entity.Region;
 import com.codestates.connectInstructor.student.entity.Student;
 import com.codestates.connectInstructor.subject.entity.Subject;
 import lombok.Getter;
@@ -12,7 +13,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @NoArgsConstructor
-public class MatchSubject {
+public class MatchRegion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -22,6 +23,6 @@ public class MatchSubject {
     private Match match;
 
     @ManyToOne
-    @JoinColumn(name = "SUBJECT_ID")
-    private Subject subject;
+    @JoinColumn(name = "REGION_ID")
+    private Region region;
 }

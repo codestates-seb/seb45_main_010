@@ -50,7 +50,7 @@ public class Student extends Auditable implements Member {
     @Column(nullable = false, name = "is_oauth")
     private boolean isOauth = false;
 
-    @Enumerated(value = EnumType.ORDINAL)
+    @Enumerated(value = EnumType.STRING)
     private MemberStatus status = MemberStatus.ACTIVE;
 
     @ElementCollection(fetch = FetchType.EAGER)
@@ -61,6 +61,9 @@ public class Student extends Auditable implements Member {
 
     @OneToMany(mappedBy = "student", cascade = {CascadeType.ALL}, orphanRemoval = true)
     private List<StudentSubject> studentSubjects = new ArrayList<>();
+
+    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<StudentRegion> studentRegions = new ArrayList<>();
 
     @OneToMany(mappedBy = "student", cascade = {CascadeType.ALL}, orphanRemoval = true)
     private List<Match> matches = new ArrayList<>();

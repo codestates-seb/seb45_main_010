@@ -1,10 +1,12 @@
 package com.codestates.connectInstructor.student.controller;
 
 
+import com.codestates.connectInstructor.common.MemberStatus;
 import com.codestates.connectInstructor.student.dto.StudentDto;
 import com.codestates.connectInstructor.student.entity.Student;
 import com.codestates.connectInstructor.student.mapper.StudentMapper;
 import com.codestates.connectInstructor.student.service.StudentService;
+import com.codestates.connectInstructor.subject.entity.Subject;
 import com.google.gson.Gson;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -155,4 +157,258 @@ public class StudentControllerTest {
                         ));
     }
 
+    @Test
+    @WithMockUser(authorities = {"ROLE_STUDENT"})
+    public void patchLessonOptionTest() throws Exception {
+        long id = 1L;
+        String lessonOption = "수업옵션";
+
+        StudentDto.PatchLessonOption request = StudentDto.PatchLessonOption.builder().id(id).lessonOption(lessonOption).build();
+
+        Student student = new Student();
+        student.setId(id);
+        student.setLessonOption(lessonOption);
+
+        given(mapper.patchPatchLessonOptionToStudent(Mockito.any(StudentDto.PatchLessonOption.class))).willReturn(student);
+        given(service.updateLessonOption(Mockito.any(Student.class))).willReturn(student);
+        given(mapper.studentToPatchLessonOption(Mockito.any(Student.class))).willReturn(request);
+
+        ResultActions actions = mockMvc.perform(
+                RestDocumentationRequestBuilders.patch("/students/lessonOption")
+                        .accept(MediaType.APPLICATION_JSON)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(gson.toJson(request))
+        );
+
+        actions.andExpect(MockMvcResultMatchers.status().isOk())
+                .andDo(document("patch-lessonOption",
+                        getRequestPreProcessor(),
+                        getResponsePreProcessor(),
+                        requestFields(
+                                List.of(
+                                        fieldWithPath("id").type(JsonFieldType.NUMBER).description("회원 식별자"),
+                                        fieldWithPath("lessonOption").type(JsonFieldType.STRING).description("수업옵션")
+                                )
+                        ),
+                        responseFields(
+                                List.of(
+                                        fieldWithPath("id").type(JsonFieldType.NUMBER).description("회원 식별자"),
+                                        fieldWithPath("lessonOption").type(JsonFieldType.STRING).description("수업옵션 수정 후")
+                                )
+                        )
+                ));
+    }
+
+    @Test
+    @WithMockUser(authorities = {"ROLE_STUDENT"})
+    public void patchNameTest() throws Exception {
+        long id = 1L;
+        String name = "수정된 이름";
+
+        StudentDto.PatchName request = StudentDto.PatchName.builder().id(id).name(name).build();
+
+        Student student = new Student();
+        student.setId(id);
+        student.setName(name);
+
+        given(mapper.patchNameToStudent(Mockito.any(StudentDto.PatchName.class))).willReturn(student);
+        given(service.updateName(Mockito.any(Student.class))).willReturn(student);
+        given(mapper.studentToPatchName(Mockito.any(Student.class))).willReturn(request);
+
+        ResultActions actions = mockMvc.perform(
+                RestDocumentationRequestBuilders.patch("/students/name")
+                        .accept(MediaType.APPLICATION_JSON)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(gson.toJson(request))
+        );
+
+        actions.andExpect(MockMvcResultMatchers.status().isOk())
+                .andDo(document("patch-name",
+                        getRequestPreProcessor(),
+                        getResponsePreProcessor(),
+                        requestFields(
+                                List.of(
+                                        fieldWithPath("id").type(JsonFieldType.NUMBER).description("회원 식별자"),
+                                        fieldWithPath("name").type(JsonFieldType.STRING).description("이름")
+                                )
+                        ),
+                        responseFields(
+                                List.of(
+                                        fieldWithPath("id").type(JsonFieldType.NUMBER).description("회원 식별자"),
+                                        fieldWithPath("name").type(JsonFieldType.STRING).description("이름 수정 후")
+                                )
+                        )
+                ));
+    }
+
+    @Test
+    @WithMockUser(authorities = {"ROLE_STUDENT"})
+    public void patchPasswordTest() throws Exception {
+        long id = 1L;
+        String password = "afterpatch1";
+
+        StudentDto.PatchPassword request = StudentDto.PatchPassword.builder().id(id).password(password).build();
+
+        Student student = new Student();
+        student.setId(id);
+        student.setPassword(password);
+
+        given(mapper.patchPasswordToStudent(Mockito.any(StudentDto.PatchPassword.class))).willReturn(student);
+        given(service.updatePassword(Mockito.any(Student.class))).willReturn(student);
+
+        ResultActions actions = mockMvc.perform(
+                RestDocumentationRequestBuilders.patch("/students/password")
+                        .accept(MediaType.APPLICATION_JSON)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(gson.toJson(request))
+        );
+
+        actions.andExpect(MockMvcResultMatchers.status().isOk())
+                .andDo(document("patch-password",
+                        getRequestPreProcessor(),
+                        getResponsePreProcessor(),
+                        requestFields(
+                                List.of(
+                                        fieldWithPath("id").type(JsonFieldType.NUMBER).description("회원 식별자"),
+                                        fieldWithPath("password").type(JsonFieldType.STRING).description("수정할 비밀번호")
+                                )
+                        )
+                ));
+    }
+
+    @Test
+    @WithMockUser(authorities = {"ROLE_STUDENT"})
+    public void patchPhoneNumberTest() throws Exception {
+        long id = 1L;
+        String phoneNumber = "01012345678";
+
+        StudentDto.PatchPhoneNumber request = StudentDto.PatchPhoneNumber.builder().id(id).phoneNumber(phoneNumber).build();
+
+        Student student = new Student();
+        student.setId(id);
+        student.setPhoneNumber(phoneNumber);
+
+        given(mapper.patchPhoneNumberToStudent(Mockito.any(StudentDto.PatchPhoneNumber.class))).willReturn(student);
+        given(service.updatePhoneNumber(Mockito.any(Student.class))).willReturn(student);
+        given(mapper.studentToPatchPhoneNumber(Mockito.any(Student.class))).willReturn(request);
+
+        ResultActions actions = mockMvc.perform(
+                RestDocumentationRequestBuilders.patch("/students/phoneNumber")
+                        .accept(MediaType.APPLICATION_JSON)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(gson.toJson(request))
+        );
+
+        actions.andExpect(MockMvcResultMatchers.status().isOk())
+                .andDo(document("patch-phoneNumber",
+                        getRequestPreProcessor(),
+                        getResponsePreProcessor(),
+                        requestFields(
+                                List.of(
+                                        fieldWithPath("id").type(JsonFieldType.NUMBER).description("회원 식별자"),
+                                        fieldWithPath("phoneNumber").type(JsonFieldType.STRING).description("연락처")
+                                )
+                        ),
+                        responseFields(
+                                List.of(
+                                        fieldWithPath("id").type(JsonFieldType.NUMBER).description("회원 식별자"),
+                                        fieldWithPath("phoneNumber").type(JsonFieldType.STRING).description("연락처 수정 후")
+                                )
+                        )
+                ));
+    }
+
+    @Test
+    @WithMockUser(authorities = {"ROLE_STUDENT"})
+    public void patchSubjectTest() throws Exception {
+        long id = 1L;
+        List<String> subjects = List.of("국어", "영어");
+
+        StudentDto.PatchSubject request = StudentDto.PatchSubject.builder().studentId(id).subjects(subjects).build();
+
+        Student student = new Student();
+        student.setId(id);
+
+        given(service.updateSubject(Mockito.anyLong(), Mockito.anyList())).willReturn(student);
+        given(mapper.studentToPatchSubject(Mockito.any(Student.class))).willReturn(request);
+
+        ResultActions actions = mockMvc.perform(
+                RestDocumentationRequestBuilders.patch("/students/subjects")
+                        .accept(MediaType.APPLICATION_JSON)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(gson.toJson(request))
+        );
+
+        actions.andExpect(MockMvcResultMatchers.status().isOk())
+                .andDo(document("patch-subjects",
+                        getRequestPreProcessor(),
+                        getResponsePreProcessor(),
+                        requestFields(
+                                List.of(
+                                        fieldWithPath("studentId").type(JsonFieldType.NUMBER).description("회원 식별자"),
+                                        fieldWithPath("subjects").type(JsonFieldType.ARRAY).description("학생의 모든 관심 과목")
+                                )
+                        ),
+                        responseFields(
+                                List.of(
+                                        fieldWithPath("studentId").type(JsonFieldType.NUMBER).description("회원 식별자"),
+                                        fieldWithPath("subjects").type(JsonFieldType.ARRAY).description("학생의 모든 관심 과목")
+                                )
+                        )
+                ));
+    }
+
+    @Test
+    @WithAnonymousUser
+    public void getSimpleStudentTest() throws Exception {
+        long id = 1L;
+        String email = "test@example.com";
+        String name = "테스트";
+        String profileImg = "프로필 이미지. 미구현";
+        String phoneNumber = "01012345678";
+        boolean isOauth = false;
+        MemberStatus status = MemberStatus.ACTIVE;
+
+        Student student = new Student();
+        student.setEmail(email);
+        student.setName(name);
+        student.setProfileImg(profileImg);
+        student.setPhoneNumber(phoneNumber);
+        student.setOauth(isOauth);
+        student.setStatus(status);
+
+        StudentDto.SimpleResponse response = StudentDto.SimpleResponse.builder()
+                .id(id).email(email).name(name).profileImg(profileImg).phoneNumber(phoneNumber).isOauth(isOauth).status(status)
+                .build();
+
+        given(service.findStudentById(Mockito.anyLong())).willReturn(student);
+        given(mapper.studentToSimpleResponse(Mockito.any(Student.class))).willReturn(response);
+
+        ResultActions actions = mockMvc.perform(
+                RestDocumentationRequestBuilders.get("/students/{student-id}", id)
+                        .accept(MediaType.APPLICATION_JSON)
+                        .contentType(MediaType.APPLICATION_JSON)
+        );
+
+        actions.andExpect(MockMvcResultMatchers.status().isOk())
+                .andDo(document("get-simple",
+                        getRequestPreProcessor(),
+                        getResponsePreProcessor(),
+                        pathParameters(
+                                parameterWithName("student-id").description("회원 식별자")
+                        ),
+                        responseFields(
+                                List.of(
+                                        fieldWithPath("id").type(JsonFieldType.NUMBER).description("회원 식별자"),
+                                        fieldWithPath("email").type(JsonFieldType.STRING).description("이메일"),
+                                        fieldWithPath("name").type(JsonFieldType.STRING).description("이름"),
+                                        fieldWithPath("profileImg").type(JsonFieldType.STRING).description("프로필 사진 링크. 미구현"),
+                                        fieldWithPath("phoneNumber").type(JsonFieldType.STRING).description("연락처"),                                        fieldWithPath("oauth").type(JsonFieldType.BOOLEAN).description("소셜 회원가입 여부. true면 소셜 회원, false면 자체 가입 회원"),
+                                        fieldWithPath("status").type(JsonFieldType.STRING).description("회원 상태")
+                                )
+                        )
+                        ));
+
+    }
 }
+

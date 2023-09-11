@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -24,12 +25,11 @@ public class Match {
     @Column(nullable = false)
     private MatchStatus status = MatchStatus.MATCH_REQUEST;
 
-    @OneToMany(mappedBy = "match")
-    private List<MatchSubject> matchSubjects = new LinkedList<>();
+    @OneToMany(mappedBy = "match", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<MatchSubject> matchSubjects = new ArrayList<>();
 
-    //TODO region 구현 후 추가. region은 여러 개가 될 예정
-//    @JoinColumn(name = "REGION_ID")
-//    private Region region;
+    @OneToMany(mappedBy = "match", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<MatchRegion> matchRegions = new ArrayList<>();
 
     //TODO schedule 구현 후 수정
     @Column(nullable = false)

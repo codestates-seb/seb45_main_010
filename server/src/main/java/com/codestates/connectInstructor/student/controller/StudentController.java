@@ -64,7 +64,7 @@ public class StudentController {
 
         Student updated = service.updateLessonOption(student);
 
-        StudentDto.PatchIntroduction response = mapper.studentToPatchIntroduction(updated);
+        StudentDto.PatchLessonOption response = mapper.studentToPatchLessonOption(updated);
 
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
