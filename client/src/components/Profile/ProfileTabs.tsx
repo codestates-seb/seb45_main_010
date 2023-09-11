@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import RequestList from './ProfileTab/RequestList';
 import ScheduleList from './ProfileTab/ScheduleList';
 import OptionList from './ProfileTab/OptionList';
-import { RequestType, User } from 'components/Types/Types';
+import { RequestType, User } from 'Types/Types';
 
 type ProfileTabsProps = {
   requests: RequestType[];
@@ -42,7 +42,15 @@ const ProfileTabs: React.FC<ProfileTabsProps> = ({
       title: '내 강의 조회',
       subtitle: <RequestList requests={requests} teacher={teacher} />,
     },
-    ...(teacher ? [{ id: 'schedule', title: '스케쥴 관리', subtitle: <ScheduleList /> }] : []),
+    ...(teacher
+      ? [
+          {
+            id: 'schedule',
+            title: '스케쥴 관리',
+            subtitle: <ScheduleList schedule={schedule} userId={userId} />,
+          },
+        ]
+      : []),
     {
       id: 'option',
       title: 'Profile 관리',

@@ -1,5 +1,5 @@
 import Schedule from '../../Schedule/SetSchedule';
-import { User } from 'components/Types/Types';
+import { User } from 'Types/Types';
 
 type ScheduleListProps = {
   schedule: User['date'];

@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { User } from 'components/Types/Types';
+import { User } from 'Types/Types';
 
 export const FetchProfile = createAsyncThunk('FetchProfile', async (userId: number) => {
   const response = await axios.get(`http://localhost:8081/profile/${userId}`);

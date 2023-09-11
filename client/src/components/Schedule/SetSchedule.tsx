@@ -3,9 +3,9 @@ import DatePicker from 'react-datepicker';
 import { ko } from 'date-fns/locale';
 import { Button, Option, Select } from '@material-tailwind/react';
 import { useState, useEffect, useRef } from 'react';
-import { TimeSlot } from 'components/Types/Types';
+import { TimeSlot } from 'Types/Types';
 import { generateAvailableTimeSlots, generateTimeSlots, formatDate } from './Functions';
-import { updateSchedule } from 'redux/thunk/Thunk';
+import { updateSchedule, FetchSchedule } from 'redux/thunk/Thunk';
 import { useAppDispatch } from 'hooks/hooks';
 
 type ScheduleProps = {
@@ -27,11 +27,10 @@ const SetSchedule: React.FC<ScheduleProps> = ({ schedule, userId }) => {
   );
   const dispatch = useAppDispatch();
 
-  const prevScheduleRef = useRef(schedule);
+  const prevScheduleRef = useRef(schedule ? schedule : []);
 
   useEffect(() => {
     prevScheduleRef.current = schedule;
-    console.log(`timeSlot 값 변화 ${timeSlots}`);
   }, [schedule, timeSlots]);
 
   const handleSave = async () => {
@@ -41,7 +40,6 @@ const SetSchedule: React.FC<ScheduleProps> = ({ schedule, userId }) => {
       prevScheduleRef.current = [];
     }
     const prevSchedule = prevScheduleRef.current;
-
     if (newSchedule.length === 0 && prevSchedule.length === 0) {
       return;
     } else if (newSchedule.length > 0 && prevSchedule.length === 0) {
@@ -72,13 +70,9 @@ const SetSchedule: React.FC<ScheduleProps> = ({ schedule, userId }) => {
       const formattedDate = formatDate(date);
       const timeSlot = availableTimeSlots.find((slot) => slot.date === formattedDate);
 
-      console.log('Available time slots:', availableTimeSlots);
-      console.log('Found time slot:', timeSlot);
-
       setTimeSlots(
         timeSlot ? timeSlot.timeslots : availableTimeSlots.flatMap((slot) => slot.timeslots)
       );
-      console.log(`"setTimeSlots", ${timeSlots}`);
     } else {
       setTimeSlots([]);
     }
