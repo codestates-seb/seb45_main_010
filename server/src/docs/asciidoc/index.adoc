@@ -99,7 +99,7 @@ include::{snippets}/verify-teacher-email/response-body.adoc[]
 
 == SubjectController
 
-=== 과목 등록
+=== 과목 생성
 .curl-request
 include::{snippets}/post-subject/curl-request.adoc[]
 
@@ -192,7 +192,7 @@ include::{snippets}/delete-subject-with-name/response-body.adoc[]
 
 == RegionController
 
-=== 지역 등록
+=== 지역 생성
 .curl-request
 include::{snippets}/post-region/curl-request.adoc[]
 
