@@ -1,9 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { teacherListSlice } from './slice/TeacherListSlice';
+import { teacherListSlice } from './slice/ListPageSlice';
 import { ProfileSlice } from './slice/PofileSilce';
 import { RequestSlice } from './slice/RequestSlice';
 import { memberSlice } from './slice/MemberSlice';
-import { teacherDetailSlice } from './slice/DetailSlice';
+import { teacherDetailSlice } from './slice/DetailPageSlice';
 export const store = configureStore({
   reducer: {
     teacherList: teacherListSlice.reducer,
