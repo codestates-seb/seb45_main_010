@@ -57,8 +57,11 @@ export type RequestType = {
 
 export type footerType = {
   footerMessage: string;
-  member: string[];
-  teamGithub: string;
+  member: {
+    name: string;
+    position: string;
+    img: string;
+  }[];
 };
 
 export type TimeSlot = { date: string; timeslots: string[] }[];

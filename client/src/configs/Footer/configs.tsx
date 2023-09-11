@@ -1,7 +1,38 @@
 import { footerType } from 'Types/Types';
 
 export const footerInfo: footerType = {
-  footerMessage: '2023 codestates main project',
-  member: ['CHOsanok', 'ellanelee', 'jerimy321', 'JeonHaesung', 'jaylee0326', 'hong95995'],
-  teamGithub: 'codestates-seb/seb45_main_010',
+  footerMessage: '2023 Project X10 SEB45_10',
+  member: [
+    {
+      name: 'CHOsanok',
+      position: 'Front',
+      img: 'https://avatars.githubusercontent.com/u/126087336?v=4',
+    },
+
+    {
+      name: 'JeonHaesung',
+      position: 'Back',
+      img: 'https://avatars.githubusercontent.com/u/129924403?v=4',
+    },
+    {
+      name: 'ellanelee',
+      position: 'Front',
+      img: 'https://avatars.githubusercontent.com/u/130072135?v=4',
+    },
+    {
+      name: 'jaylee0326',
+      position: 'Back',
+      img: 'https://avatars.githubusercontent.com/u/97014658?v=4',
+    },
+    {
+      name: 'jerimy321',
+      position: 'Front',
+      img: 'https://avatars.githubusercontent.com/u/123806723?v=4',
+    },
+    {
+      name: 'hong95995',
+      position: 'Back',
+      img: 'https://avatars.githubusercontent.com/u/120150354?v=4',
+    },
+  ],
 };
