@@ -19,10 +19,10 @@ module.exports = withMT({
       },
       colors: {
         mint: {
-          1: '#E6F6F4',
-          2: '#E0EFF8',
-          3: '#F2FAFF',
-          4: '#E4ECF1',
+          100: '#E6F6F4',
+          200: '#E0EFF8',
+          300: '#F2FAFF',
+          400: '#E4ECF1',
         },
         blue: {
           1: '#2E93D1',
