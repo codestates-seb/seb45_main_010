@@ -11,25 +11,33 @@ import { DetailType } from 'Types/Types';
 
 const arr: string[] = ['수학', '국어', '영어'];
 const array: string[] = ['서울', '경기', '제주'];
+const onOff: string[] = ['온라인', '오프라인'];
+//임시
 
-type props = Pick<DetailType, 'category' | 'area' | 'date'>;
+type props = Pick<DetailType, 'category' | 'area' | 'date' | 'classMethod'>;
 
 export const ReqModal = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [selectCategory, setSelectCategory] = useState<boolean[]>([]);
-  const [selectArea, setSelectArea] = useState<boolean[]>([]);
+  const [isCategory, setIsCategory] = useState<boolean[]>([]);
+  const [isArea, setIsArea] = useState<boolean[]>([]);
+  const [isOnOff, setIsOnOff] = useState<boolean[]>([]);
 
   const handleOpen = (): void => setIsOpen(!isOpen);
 
   const handleCategory = (index: number): void => {
-    const newButtonStates = [...selectCategory];
+    const newButtonStates = [...isCategory];
     newButtonStates[index] = !newButtonStates[index];
-    setSelectCategory(newButtonStates);
+    setIsCategory(newButtonStates);
   };
   const handleArea = (index: number): void => {
-    const newButtonStates = [...selectArea];
+    const newButtonStates = [...isArea];
     newButtonStates[index] = !newButtonStates[index];
-    setSelectArea(newButtonStates);
+    setIsArea(newButtonStates);
+  };
+  const handleOnOff = (index: number): void => {
+    const newButtonStates = [...isOnOff];
+    newButtonStates[index] = !newButtonStates[index];
+    setIsOnOff(newButtonStates);
   };
 
   return (
@@ -55,7 +63,7 @@ export const ReqModal = () => {
                 key={index}
                 onClick={() => handleCategory(index)}
                 className={`${
-                  selectCategory[index] ? 'bg-gray-3' : 'bg-mint-3'
+                  isCategory[index] ? 'bg-gray-3' : 'bg-mint-3'
                 } px-3 py-1 m-2 text-sm text-black rounded-2xl `}
                 children={item}
               />
@@ -65,14 +73,13 @@ export const ReqModal = () => {
 
         <DialogHeader className="p-2 text-sm ">지역 선택</DialogHeader>
         <section className="flex items-center ">
-          {' '}
           {array.map((item, index) => {
             return (
               <Button
                 key={index}
                 onClick={() => handleArea(index)}
                 className={`${
-                  selectArea[index] ? 'bg-gray-3' : 'bg-mint-3'
+                  isArea[index] ? 'bg-gray-3' : 'bg-mint-3'
                 } px-3 py-1 m-2 text-sm text-black rounded-2xl `}
                 children={item}
               />
@@ -81,23 +88,45 @@ export const ReqModal = () => {
         </section>
 
         <DialogHeader className="p-2 text-sm">스케줄 선택</DialogHeader>
-
+        <DialogHeader className="p-2 text-sm ">온/오프라인 선택</DialogHeader>
+        <section className="flex items-center ">
+          {onOff.map((item, index) => {
+            return (
+              <Button
+                key={index}
+                onClick={() => handleOnOff(index)}
+                className={`${
+                  isOnOff[index] ? 'bg-gray-3' : 'bg-mint-3'
+                } px-3 py-1 m-2 text-sm text-black rounded-2xl `}
+                children={item}
+              />
+            );
+          })}
+        </section>
         <DialogHeader className="p-2 text-sm">이름</DialogHeader>
-        <section className="flex items-center bg-mint-3 rounded-2xl">
-          <Input label="이름" crossOrigin={undefined} />
-        </section>
+        <Input
+          label="이름"
+          color="blue-gray"
+          crossOrigin={undefined}
+          className="flex items-center bg-mint-3 rounded-2xl"
+        />
         <DialogHeader className="p-2 text-sm">연락처</DialogHeader>
-        <section className="flex items-center bg-mint-3 rounded-2xl">
-          <Input label="연락처" crossOrigin={undefined} />
-        </section>
+        <Input
+          label="연락처"
+          color="blue-gray"
+          crossOrigin={undefined}
+          className="flex items-center bg-mint-3 rounded-2xl"
+        />
         <DialogHeader className="p-2 text-sm">이메일</DialogHeader>
-        <section className="flex items-center bg-mint-3 rounded-2xl">
-          <Input label="이메일" type="email" crossOrigin={undefined} />
-        </section>
+        <Input
+          label="이메일"
+          type="email"
+          color="blue-gray"
+          crossOrigin={undefined}
+          className="flex items-center bg-mint-3 rounded-2xl"
+        />
         <DialogHeader className="p-2 text-sm">특이사항</DialogHeader>
-        <section className="flex items-center bg-mint-3 rounded-2xl">
-          <Textarea label="특이사항" />
-        </section>
+        <Textarea label="특이사항" className="flex items-center bg-mint-3 rounded-2xl" />
         <DialogFooter className="p-2">
           <Button
             variant="text"
