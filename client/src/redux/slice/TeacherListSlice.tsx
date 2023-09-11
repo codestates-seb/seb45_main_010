@@ -27,7 +27,7 @@ export const teacherListSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(getData.pending, (state) => {
-        state.status = 'pending';
+        state.status = 'loding';
       })
       .addCase(getData.fulfilled, (state, action) => {
         state.status = 'fulfilled';

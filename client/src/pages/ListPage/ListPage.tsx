@@ -3,15 +3,13 @@ import { test } from 'configs/List/config';
 import TeacherCard from 'components/ListPage/TeacherCard';
 import Pagination from 'components/ListPage/Pagination';
 import { useAppSelector } from 'hooks/hooks';
-import { RootState } from 'redux/store';
+import { teacherList } from 'redux/slice/TeacherListSlice';
 
 const ListPage = () => {
   const [currentPage, setCurrentPage] = useState<number>(0);
   const limit: number = 7;
   const offset = currentPage * limit;
-  const teacher = useAppSelector((state: RootState) => state.teacherList);
-
-  console.log(teacher);
+  const teacher = useAppSelector(teacherList);
 
   return (
     <>
