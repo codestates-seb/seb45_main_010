@@ -1,6 +1,7 @@
 package com.codestates.connectInstructor.student.dto;
 
 import com.codestates.connectInstructor.common.MemberStatus;
+import com.codestates.connectInstructor.match.entity.Match;
 import com.codestates.connectInstructor.student.entity.StudentSubject;
 import lombok.Builder;
 import lombok.Getter;
@@ -83,6 +84,15 @@ public class StudentDto {
         private List<String> subjects;
     }
 
+    @Getter
+    @Builder
+    public static class PatchRegion {
+        @NotNull
+        private long studentId;
+        @NotNull
+        private List<String> regions;
+    }
+
 
     @Getter
     @Builder
@@ -94,6 +104,32 @@ public class StudentDto {
         private String phoneNumber;
         private boolean isOauth;
         private MemberStatus status;
+    }
+
+    @Getter
+    @Builder
+    public static class DetailResponse {
+        private long id;
+        private String email;
+        private String profileImg;
+        private String introduction;
+        private String lessonOption;
+        private String phoneNumber;
+        private boolean isOauth;
+        private MemberStatus status;
+        private List<String> subjects;
+        private List<String> regions;
+        private List<MatchResponse> matches;
+    }
+
+    @Getter
+    @Builder
+    public static class MatchResponse {
+        private long matchId;
+        private String teacherName;
+        private String schedule;
+        private List<String> subjects;
+        private Match.MatchStatus status;
     }
 
 }

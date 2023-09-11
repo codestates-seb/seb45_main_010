@@ -126,6 +126,20 @@ public class StudentController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
+    @PatchMapping("/regions")
+    public ResponseEntity patchRegions(@RequestBody @Valid StudentDto.PatchRegion request) {
+        Student student = service.updateRegion(request.getStudentId(), request.getRegions());
 
-    //TODO 지역 수정, 매칭 포함한 정보 get
+        StudentDto.PatchRegion response = mapper.studentToPatchRegion(student);
+
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @GetMapping("/mypage/{student-id}")
+    public ResponseEntity getStudent(@PathVariable("student-id") long id) {
+        Student student = service.findStudentById(id);
+        StudentDto.DetailResponse response = mapper.studentToDetailResponse(student);
+
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
 }

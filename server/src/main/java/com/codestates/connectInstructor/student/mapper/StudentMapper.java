@@ -1,5 +1,6 @@
 package com.codestates.connectInstructor.student.mapper;
 
+import com.codestates.connectInstructor.common.MemberStatus;
 import com.codestates.connectInstructor.student.dto.StudentDto;
 import com.codestates.connectInstructor.student.entity.Student;
 import org.mapstruct.Mapper;
@@ -42,6 +43,52 @@ public interface StudentMapper {
                                 .stream().map(x -> x.getSubject().getSubjectName())
                                 .collect(Collectors.toList())
                 )
+                .build();
+    }
+
+    default StudentDto.PatchRegion studentToPatchRegion(Student student) {
+        return StudentDto.PatchRegion.builder()
+                .studentId(student.getId())
+                .regions(
+                        student.getStudentRegions()
+                                .stream().map(x -> x.getRegion().getRegionName())
+                                .collect(Collectors.toList())
+                ).build();
+    }
+
+    default StudentDto.DetailResponse studentToDetailResponse(Student student) {
+
+        return StudentDto.DetailResponse.builder()
+                .id(student.getId())
+                .email(student.getEmail())
+                .profileImg(student.getProfileImg())
+                .introduction(student.getIntroduction())
+                .lessonOption(student.getLessonOption())
+                .phoneNumber(student.getPhoneNumber())
+                .isOauth(student.isOauth())
+                .status(student.getStatus())
+                .subjects(student.getStudentSubjects()
+                        .stream()
+                        .map(x -> x.getSubject().getSubjectName())
+                        .collect(Collectors.toList()))
+                .regions(student.getStudentRegions()
+                        .stream()
+                        .map(x -> x.getRegion().getRegionName())
+                        .collect(Collectors.toList()))
+                .matches(student.getMatches()
+                        .stream()
+                        .map(x ->
+                                StudentDto.MatchResponse.builder()
+                                        .matchId(x.getId())
+                                        .teacherName(x.getTeacher().getName())
+                                        .schedule(x.getSchedule())
+                                        .subjects(x.getMatchSubjects()
+                                                .stream()
+                                                .map(y -> y.getSubject().getSubjectName())
+                                                .collect(Collectors.toList()))
+                                        .status(x.getStatus())
+                                        .build())
+                        .collect(Collectors.toList()))
                 .build();
     }
 }

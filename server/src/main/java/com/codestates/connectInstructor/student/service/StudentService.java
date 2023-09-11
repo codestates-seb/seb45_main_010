@@ -4,8 +4,11 @@ import com.codestates.connectInstructor.common.MemberStatus;
 import com.codestates.connectInstructor.event.SignupEvent;
 import com.codestates.connectInstructor.exception.BusinessLogicException;
 import com.codestates.connectInstructor.exception.ExceptionCode;
+import com.codestates.connectInstructor.region.entity.Region;
+import com.codestates.connectInstructor.region.repository.RegionRepository;
 import com.codestates.connectInstructor.security.utils.CustomAuthorityUtils;
 import com.codestates.connectInstructor.student.entity.Student;
+import com.codestates.connectInstructor.student.entity.StudentRegion;
 import com.codestates.connectInstructor.student.entity.StudentSubject;
 import com.codestates.connectInstructor.student.repository.StudentRepository;
 import com.codestates.connectInstructor.subject.entity.Subject;
@@ -37,6 +40,7 @@ public class StudentService {
     private final CustomAuthorityUtils customAuthorityUtils;
     private final TeacherRepository teacherRepository;
     private final SubjectRepository subjectRepository;
+    private final RegionRepository regionRepository;
 
 
     public Student createStudent(Student student) {
@@ -194,11 +198,48 @@ public class StudentService {
                 studentSubject.setSubject(subject);
 
                 found.getStudentSubjects().add(studentSubject);
-                log.info("학생이 가지고 있지 않고, request에 있는 과목 추가");
             }
         }
 
         return repository.save(found);
     }
 
+    public Student updateRegion(long studentId, List<String> regions) {
+        if (!verifyIdentity(studentId)) throw new BusinessLogicException(ExceptionCode.NOT_AUTHORIZED);
+
+        Student found = findStudentById(studentId);
+        List<StudentRegion> studentRegionsFound = found.getStudentRegions();
+
+        long studentRegionsFoundSize = studentRegionsFound.size();
+
+        for (int i = 0; i < studentRegionsFoundSize; i++) {
+            StudentRegion studentRegion = studentRegionsFound.get(i);
+
+            if (!regions.contains(studentRegion.getRegion().getRegionName())) {
+                found.getStudentRegions().remove(studentRegion);
+            }
+        }
+
+        for (String regionsName : regions) {
+            boolean regionExist = false;
+            for (StudentRegion studentRegion : studentRegionsFound) {
+                if (studentRegion.getRegion().getRegionName().equals(regionsName)) {
+                    regionExist = true;
+                    break;
+                }
+            }
+
+            if (!regionExist) {
+                Region region = regionRepository.findByRegionName(regionsName).orElseThrow(() -> new BusinessLogicException(ExceptionCode.REGION_NOT_FOUND));
+
+                StudentRegion studentRegion = new StudentRegion();
+                studentRegion.setStudent(found);
+                studentRegion.setRegion(region);
+
+                found.getStudentRegions().add(studentRegion);
+            }
+        }
+
+        return repository.save(found);
+    }
 }
