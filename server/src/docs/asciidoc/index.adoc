@@ -99,7 +99,7 @@ include::{snippets}/verify-teacher-email/response-body.adoc[]
 
 == SubjectController
 
-=== 사용자가 사용할 과목 등록
+=== 과목 등록
 .curl-request
 include::{snippets}/post-subject/curl-request.adoc[]
 
@@ -124,7 +124,7 @@ include::{snippets}/post-subject/response-body.adoc[]
 .response-headers
 include::{snippets}/post-subject/response-headers.adoc[]
 
-=== 사용 가능한 과목 모두 조회
+=== 과목 모두 조회
 .curl-request
 include::{snippets}/get-subjects/curl-request.adoc[]
 
@@ -192,7 +192,7 @@ include::{snippets}/delete-subject-with-name/response-body.adoc[]
 
 == RegionController
 
-=== 사용자가 사용할 지역 등록
+=== 지역 등록
 .curl-request
 include::{snippets}/post-region/curl-request.adoc[]
 
@@ -217,7 +217,7 @@ include::{snippets}/post-region/response-body.adoc[]
 .response-headers
 include::{snippets}/post-region/response-headers.adoc[]
 
-=== 사용 가능한 지역 모두 조회
+=== 지역 모두 조회
 .curl-request
 include::{snippets}/get-regions/curl-request.adoc[]
 
