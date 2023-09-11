@@ -362,11 +362,13 @@ public class TeacherControllerTest {
                         getRequestPreProcessor(),
                         getResponsePreProcessor(),
                         requestParameters(
-                                parameterWithName("teacherName").description("강사 이름"),
-                                parameterWithName("subjectNames").description("과목명"),
-                                parameterWithName("regionNames").description("지역명"),
-                                parameterWithName("page").description("페이지 번호"),
-                                parameterWithName("size").description("페이지 크기")
+                                List.of(
+                                    parameterWithName("teacherName").description("강사 이름"),
+                                    parameterWithName("subjectNames").description("과목명"),
+                                    parameterWithName("regionNames").description("지역명"),
+                                    parameterWithName("page").description("페이지 번호"),
+                                    parameterWithName("size").description("페이지 크기")
+                                )
                         ),
                         responseFields(
                                 List.of(
@@ -391,6 +393,122 @@ public class TeacherControllerTest {
                                 )
                         )
                 ));
+    }
+    @Test
+    @WithAnonymousUser
+    public void postTeacherRegionTest() throws Exception {
+        // given
+        // (6) 테스트 데이터
+
+        // (7) Mock 객체를 이용한 Stubbing
+        doNothing().when(teacherService).addRegionToTeacher(Mockito.anyLong(), Mockito.anyString());
+
+        // when
+        ResultActions actions =
+                mockMvc.perform(
+                        RestDocumentationRequestBuilders.post("/teachers/{teacher-id}/region", 1L)
+                                .param("regionName", "대전")
+                                .accept(MediaType.APPLICATION_JSON)
+                        // (8) request 전송
+                );
+
+        // then
+        actions
+                .andExpect(MockMvcResultMatchers.status().isCreated())
+                .andDo(document("post-teacher-region",
+                        getRequestPreProcessor(),
+                        getResponsePreProcessor(),
+                        pathParameters(parameterWithName("teacher-id").description("지역을 추가할 강사의 식별자")),
+                        requestParameters(parameterWithName("regionName").description("지역 이름") )
+                        )
+                );
+    }
+    @Test
+    @WithAnonymousUser
+    public void deleteTeacherRegionTest() throws Exception {
+        // given
+        // (6) 테스트 데이터
+
+        // (7) Mock 객체를 이용한 Stubbing
+        doNothing().when(teacherService).deleteRegionFromTeacher(Mockito.anyLong(), Mockito.anyString());
+
+        // when
+        ResultActions actions =
+                mockMvc.perform(
+                        RestDocumentationRequestBuilders.delete("/teachers/{teacher-id}/region", 1L)
+                                .param("regionName", "대전")
+                                .accept(MediaType.APPLICATION_JSON)
+                        // (8) request 전송
+                );
+
+        // then
+        actions
+                .andExpect(MockMvcResultMatchers.status().isNoContent())
+                .andDo(document("delete-teacher-region",
+                                getRequestPreProcessor(),
+                                getResponsePreProcessor(),
+                                pathParameters(parameterWithName("teacher-id").description("지역을 삭제할 강사의 식별자")),
+                                requestParameters(parameterWithName("regionName").description("지역 이름") )
+                        )
+                );
+    }
+    @Test
+    @WithAnonymousUser
+    public void postTeacherSubjectTest() throws Exception {
+        // given
+        // (6) 테스트 데이터
+
+        // (7) Mock 객체를 이용한 Stubbing
+        doNothing().when(teacherService).addSubjectToTeacher(Mockito.anyLong(), Mockito.anyString());
+
+        // when
+        ResultActions actions =
+                mockMvc.perform(
+                        RestDocumentationRequestBuilders.post("/teachers/{teacher-id}/subject", 1L)
+                                .param("subjectName", "수학")
+                                .accept(MediaType.APPLICATION_JSON)
+                        // (8) request 전송
+                );
+
+        // then
+        actions
+                .andExpect(MockMvcResultMatchers.status().isCreated())
+                .andDo(document("post-teacher-subject",
+                                getRequestPreProcessor(),
+                                getResponsePreProcessor(),
+                                pathParameters(parameterWithName("teacher-id").description("과목을 삭제할 강사의 식별자")),
+                                requestParameters(parameterWithName("subjectName").description("과목 이름") )
+                        )
+                );
+    }
+    @Test
+    @WithAnonymousUser
+    public void deleteTeacherSubjectTest() throws Exception {
+        // given
+        // (6) 테스트 데이터
+
+        // (7) Mock 객체를 이용한 Stubbing
+        doNothing().when(teacherService).deleteSubjectFromTeacher(Mockito.anyLong(), Mockito.anyString());
+
+        // when
+        ResultActions actions =
+                mockMvc.perform(
+                        RestDocumentationRequestBuilders.delete("/teachers/{teacher-id}/subject", 1L)
+                                .param("subjectName", "수학")
+                                .accept(MediaType.APPLICATION_JSON)
+                        // (8) request 전송
+                );
+
+        // then
+        actions
+                .andExpect(MockMvcResultMatchers.status().isNoContent())
+                .andDo(document("delete-teacher-subject",
+                                getRequestPreProcessor(),
+                                getResponsePreProcessor(),
+                                pathParameters(parameterWithName("teacher-id").description("과목을 삭제할 강사의 식별자")),
+                                requestParameters(parameterWithName("subjectName").description("과목 이름") )
+                        )
+                );
     }
     @Test
     @WithAnonymousUser
