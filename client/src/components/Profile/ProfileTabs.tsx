@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import RequestList from './ProfileTab/RequestList';
 import ScheduleList from './ProfileTab/ScheduleList';
 import OptionList from './ProfileTab/OptionList';
-import { RequestType } from 'Types/Types';
+import { RequestType, User } from 'components/Types/Types';
 
 type ProfileTabsProps = {
   requests: RequestType[];
@@ -16,6 +16,7 @@ type ProfileTabsProps = {
   };
   handleClassMethodUpdate: (onLine: boolean, offLine: boolean) => void;
   userId: number;
+  schedule: User['date'];
 };
 
 const ProfileTabs: React.FC<ProfileTabsProps> = ({
@@ -27,6 +28,7 @@ const ProfileTabs: React.FC<ProfileTabsProps> = ({
   classMethod,
   handleClassMethodUpdate,
   userId,
+  schedule,
 }) => {
   type tabDataType = {
     id: string;
@@ -40,9 +42,7 @@ const ProfileTabs: React.FC<ProfileTabsProps> = ({
       title: '내 강의 조회',
       subtitle: <RequestList requests={requests} teacher={teacher} />,
     },
-    ...(teacher
-      ? [{ id: 'schedule', title: '스케쥴 관리', subtitle: <ScheduleList /> }]
-      : []),
+    ...(teacher ? [{ id: 'schedule', title: '스케쥴 관리', subtitle: <ScheduleList /> }] : []),
     {
       id: 'option',
       title: 'Profile 관리',
@@ -63,10 +63,7 @@ const ProfileTabs: React.FC<ProfileTabsProps> = ({
   const tabContainerHeight = 100;
   const tabsRef = useRef<HTMLDivElement | null>(null);
 
-  const onTabClick = (
-    event: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
-    id: string
-  ) => {
+  const onTabClick = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>, id: string) => {
     event.preventDefault();
     const element = document.getElementById(id) as HTMLElement;
     if (element) {
@@ -86,10 +83,7 @@ const ProfileTabs: React.FC<ProfileTabsProps> = ({
         tabsRef.current.classList.remove('fixed');
         tabsRef.current.classList.add('relative', 'top-0');
         tabsRef.current.style.top = '0px'; // 위치조정 때문에 인라인 css 사용
-      } else if (
-        window.scrollY >= offsetForSticky &&
-        window.scrollY <= bottomOfStickyContent
-      ) {
+      } else if (window.scrollY >= offsetForSticky && window.scrollY <= bottomOfStickyContent) {
         tabsRef.current.classList.remove('fixed', 'top-0');
         tabsRef.current.classList.add('relative');
         tabsRef.current.style.top = `${window.scrollY - offsetForSticky}px`; // 위치조정 때문에 인라인 css 사용
