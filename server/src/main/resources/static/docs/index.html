@@ -484,7 +484,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_강사_지역_삭제">4.6. 강사 지역 삭제</a></li>
 <li><a href="#_강사_과목_등록">4.7. 강사 과목 등록</a></li>
 <li><a href="#_강사_과목_삭제">4.8. 강사 과목 삭제</a></li>
-<li><a href="#_강사_이메일_중복_확인">4.9. 강사 이메일 중복 확인</a></li>
 </ul>
 </li>
 </ul>
@@ -2239,6 +2238,14 @@ Location: /teachers/1</code></pre>
 </div>
 <div class="sect2">
 <h3 id="_강사_정보_수정">4.2. 강사 정보 수정</h3>
+<hr>
+<div class="literalblock">
+<div class="content">
+<pre>    name~address 까지 순서 상관없이 전송하면 수정됩니다. 데이터 갯수 상관 없습니다.
+    하나 하나 씩 수정 가능합니다.
+***</pre>
+</div>
+</div>
 <div class="listingblock">
 <div class="title">curl-request</div>
 <div class="content">
@@ -2418,7 +2425,7 @@ Host: localhost:8080
 <div class="content">
 <pre class="prettyprint highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
 Content-Type: application/json
-Content-Length: 970
+Content-Length: 976
 
 {
   "id" : 1,
@@ -2448,9 +2455,9 @@ Content-Length: 970
     "id" : 2,
     "regionName" : "수원시"
   } ],
-  "lastLogin" : "2023-09-11T19:21:24.09956",
-  "lastModified" : "2023-09-11T19:21:24.09956",
-  "createdAt" : "2023-09-04T19:21:24.09956"
+  "lastLogin" : "2023-09-11T19:43:11.4004972",
+  "lastModified" : "2023-09-11T19:43:11.4004972",
+  "createdAt" : "2023-09-04T19:43:11.4004972"
 }</code></pre>
 </div>
 </div>
@@ -2485,9 +2492,9 @@ Content-Length: 970
     "id" : 2,
     "regionName" : "�닔�썝�떆"
   } ],
-  "lastLogin" : "2023-09-11T19:21:24.09956",
-  "lastModified" : "2023-09-11T19:21:24.09956",
-  "createdAt" : "2023-09-04T19:21:24.09956"
+  "lastLogin" : "2023-09-11T19:43:11.4004972",
+  "lastModified" : "2023-09-11T19:43:11.4004972",
+  "createdAt" : "2023-09-04T19:43:11.4004972"
 }</code></pre>
 </div>
 </div>
@@ -2703,9 +2710,9 @@ Content-Length: 976
     "id" : 2,
     "regionName" : "수원시"
   } ],
-  "lastLogin" : "2023-09-11T19:21:24.1285577",
-  "lastModified" : "2023-09-11T19:21:24.1285577",
-  "createdAt" : "2023-09-04T19:21:24.1285577"
+  "lastLogin" : "2023-09-11T19:43:11.4364963",
+  "lastModified" : "2023-09-11T19:43:11.4364963",
+  "createdAt" : "2023-09-04T19:43:11.4364963"
 }</code></pre>
 </div>
 </div>
@@ -2740,9 +2747,9 @@ Content-Length: 976
     "id" : 2,
     "regionName" : "�닔�썝�떆"
   } ],
-  "lastLogin" : "2023-09-11T19:21:24.1285577",
-  "lastModified" : "2023-09-11T19:21:24.1285577",
-  "createdAt" : "2023-09-04T19:21:24.1285577"
+  "lastLogin" : "2023-09-11T19:43:11.4364963",
+  "lastModified" : "2023-09-11T19:43:11.4364963",
+  "createdAt" : "2023-09-04T19:43:11.4364963"
 }</code></pre>
 </div>
 </div>
@@ -2967,7 +2974,7 @@ Content-Length: 1123
     } ],
     "name" : "홍길동",
     "profileImg" : "프로필 이미지가 저장된 곳 데이터",
-    "createdAt" : "2023-09-11T19:21:24.1515573"
+    "createdAt" : "2023-09-11T19:43:11.4674991"
   }, {
     "id" : 2,
     "onLine" : false,
@@ -2988,7 +2995,7 @@ Content-Length: 1123
     } ],
     "name" : "임꺽정",
     "profileImg" : "프로필 이미지가 저장된 곳 데이터",
-    "createdAt" : "2023-09-11T19:21:24.1515573"
+    "createdAt" : "2023-09-11T19:43:11.4674991"
   } ],
   "pageInfo" : {
     "page" : 2,
@@ -3023,7 +3030,7 @@ Content-Length: 1123
     } ],
     "name" : "�솉湲몃룞",
     "profileImg" : "�봽濡쒗븘 �씠誘몄�媛� ���옣�맂 怨� �뜲�씠�꽣",
-    "createdAt" : "2023-09-11T19:21:24.1515573"
+    "createdAt" : "2023-09-11T19:43:11.4674991"
   }, {
     "id" : 2,
     "onLine" : false,
@@ -3044,7 +3051,7 @@ Content-Length: 1123
     } ],
     "name" : "�엫爰쎌젙",
     "profileImg" : "�봽濡쒗븘 �씠誘몄�媛� ���옣�맂 怨� �뜲�씠�꽣",
-    "createdAt" : "2023-09-11T19:21:24.1515573"
+    "createdAt" : "2023-09-11T19:43:11.4674991"
   } ],
   "pageInfo" : {
     "page" : 2,
@@ -3497,75 +3504,13 @@ Host: localhost:8080</code></pre>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_강사_이메일_중복_확인">4.9. 강사 이메일 중복 확인</h3>
-<div class="listingblock">
-<div class="title">curl-request</div>
-<div class="content">
-<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/teachers/1/subject?subjectName=%EC%88%98%ED%95%99' -i -X DELETE \
-    -H 'Accept: application/json'</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">http-request</div>
-<div class="content">
-<pre class="prettyprint highlight nowrap"><code data-lang="http">DELETE /teachers/1/subject?subjectName=%EC%88%98%ED%95%99 HTTP/1.1
-Accept: application/json
-Host: localhost:8080</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">httpie-request</div>
-<div class="content">
-<pre class="prettyprint highlight"><code data-lang="bash">$ http DELETE 'http://localhost:8080/teachers/1/subject?subjectName=%EC%88%98%ED%95%99' \
-    'Accept:application/json'</code></pre>
-</div>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 42. /teachers/{teacher-id}/subject</caption>
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Parameter</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>teacher-id</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">과목을 삭제할 강사의 식별자</p></td>
-</tr>
-</tbody>
-</table>
-<div class="listingblock">
-<div class="title">request-body</div>
-<div class="content">
-<pre class="prettyprint highlight nowrap"><code></code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">http-response</div>
-<div class="content">
-<pre class="prettyprint highlight nowrap"><code data-lang="http">HTTP/1.1 204 No Content</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">response-body</div>
-<div class="content">
-<pre class="prettyprint highlight nowrap"><code></code></pre>
-</div>
-</div>
-</div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
 Version 0.0.1-SNAPSHOT<br>
-Last updated 2023-09-11 19:21:10 +0900
+Last updated 2023-09-11 19:42:58 +0900
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.css">

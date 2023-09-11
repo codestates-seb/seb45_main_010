@@ -404,6 +404,11 @@ include::{snippets}/post-teacher/response-headers.adoc[]
 
 === 강사 정보 수정
 
+***
+    name~address 까지 순서 상관없이 전송하면 수정됩니다. 데이터 갯수 상관 없습니다.
+    하나 하나 씩 수정 가능합니다.
+***
+
 .curl-request
 include::{snippets}/patch-teacher/curl-request.adoc[]
 
@@ -580,29 +585,6 @@ include::{snippets}/delete-teacher-subject/request-body.adoc[]
 
 .request-parameters
 include::{snippets}/delete-teacher-subject/request-parameters.adoc[]
-
-.http-response
-include::{snippets}/delete-teacher-subject/http-response.adoc[]
-
-.response-body
-include::{snippets}/delete-teacher-subject/response-body.adoc[]
-
-=== 강사 이메일 중복 확인
-
-.curl-request
-include::{snippets}/delete-teacher-subject/curl-request.adoc[]
-
-.http-request
-include::{snippets}/delete-teacher-subject/http-request.adoc[]
-
-.httpie-request
-include::{snippets}/delete-teacher-subject/httpie-request.adoc[]
-
-.path-parameters
-include::{snippets}/delete-teacher-subject/path-parameters.adoc[]
-
-.request-body
-include::{snippets}/delete-teacher-subject/request-body.adoc[]
 
 .http-response
 include::{snippets}/delete-teacher-subject/http-response.adoc[]
