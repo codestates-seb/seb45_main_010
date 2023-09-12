@@ -108,7 +108,6 @@ const DetailPage = () => {
               <span className="flex-1 text-center">날짜 선택</span>
               <BsChevronDown className="ml-auto" />
             </Button>
-            <GetSchedule />
             <div className="h-[150px] w-[230px] bg-mint-4">달력 자리</div>
             <div>
               <Button

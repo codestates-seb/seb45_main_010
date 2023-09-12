@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 type initialStateType = {
   status: string;
-  schedule: { date: string; timeslots: string[] }[] | null;
+  schedule: { id: number; date: { date: string; timeslots: string[] }[] } | null;
   error: string | null;
   newSchedule: { date: string; timeslots: string[] }[] | null;
   teacherId: number;
