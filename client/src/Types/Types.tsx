@@ -51,6 +51,11 @@ export type footerType = {
   teamGithub: string;
 };
 
-export type TimeSlot = { date: string; timeslots: string[] };
+export type TimeSlotType = { date: string; timeslots: string[] };
 
-export type ScheduleArray = { id: number; date: { date: string; timeslots: string[] }[] }[];
+export type ScheduleType = { id: number; date: TimeSlotType[] };
+
+export type ScheduleArrayType = {
+  id: number;
+  date: ScheduleType[];
+}[];

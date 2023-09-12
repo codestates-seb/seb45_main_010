@@ -16,7 +16,6 @@ type ProfileTabsProps = {
   };
   handleClassMethodUpdate: (onLine: boolean, offLine: boolean) => void;
   userId: number;
-  schedule: User['date'];
 };
 
 const ProfileTabs: React.FC<ProfileTabsProps> = ({
@@ -28,7 +27,6 @@ const ProfileTabs: React.FC<ProfileTabsProps> = ({
   classMethod,
   handleClassMethodUpdate,
   userId,
-  schedule,
 }) => {
   type tabDataType = {
     id: string;
@@ -47,7 +45,7 @@ const ProfileTabs: React.FC<ProfileTabsProps> = ({
           {
             id: 'schedule',
             title: '스케쥴 관리',
-            subtitle: <ScheduleList schedule={schedule} userId={userId} />,
+            subtitle: <ScheduleList userId={userId} />,
           },
         ]
       : []),

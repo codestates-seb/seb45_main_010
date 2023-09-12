@@ -5,9 +5,7 @@ import { useAppDispatch, useAppSelector } from 'hooks/hooks';
 import { setSchedule } from 'redux/slice/ScheduleSlice';
 import { FetchSchedule } from 'redux/thunk/Thunk';
 import { useEffect, useState } from 'react';
-import { User } from 'Types/Types';
-
-type DateOfScheduleType = { date: string; timeslots: string[] };
+import { TimeSlotType } from 'Types/Types';
 
 const GetSchedule = () => {
   const dispatch = useAppDispatch();
@@ -23,7 +21,7 @@ const GetSchedule = () => {
       .then((response) => {
         const schedule = response.payload.date;
         const availableDatesArray: Date[] = schedule.map(
-          (scheduleItem: DateOfScheduleType) => new Date(scheduleItem.date)
+          (scheduleItem: TimeSlotType) => new Date(scheduleItem.date)
         );
         setAvailableDates(availableDatesArray);
         dispatch(setSchedule(response.payload));
