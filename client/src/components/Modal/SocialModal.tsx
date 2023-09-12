@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { ChangeEvent } from 'react';
-import { Button, Dialog, DialogBody, DialogFooter, Radio, Input } from '@material-tailwind/react';
+import { Button, Dialog, DialogBody, DialogFooter, Radio } from '@material-tailwind/react';
 import axios from 'axios';
 
 export const SocialModal = () => {
   const [open, setOpen] = useState<boolean>(false);
   const [userType, setUserType] = useState<string | null>(null);
   const handleSubmit = async () => {
+    console.log(userType);
     try {
       const response = await axios.get(`http://localhost:8080/oauth2/authorization/${userType}`);
       console.log(response.data);
