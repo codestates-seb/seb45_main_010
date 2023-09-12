@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, ChangeEvent } from 'react';
 import { Button, Dialog, DialogBody, DialogFooter, Radio } from '@material-tailwind/react';
 import axios from 'axios';
 
 export const SocialModal = () => {
   const [open, setOpen] = useState<boolean>(false);
-  const [userType, setUserType] = useState<string | null>(null);
+  const [userType, setUserType] = useState<string>('');
   const handleSubmit = async () => {
     console.log(userType);
     try {
@@ -17,6 +17,14 @@ export const SocialModal = () => {
 
   const handleOpen = () => {
     setOpen(!open);
+  };
+
+  const handleSetType = (event: ChangeEvent<HTMLInputElement>) => {
+    if (event.target.id === '강사') {
+      setUserType('kakao');
+    } else if (event.target.id === 'student') {
+      setUserType('kakao?state=teacher');
+    }
   };
 
   return (
@@ -33,19 +41,17 @@ export const SocialModal = () => {
           <div className="grid grid-flow-col p-3">
             <Radio
               crossOrigin={undefined}
-              id="teacher"
               name="userType"
+              id="teacher"
               label="강사"
-              checked={userType === 'teacher'}
-              onChange={() => setUserType('kakao?state=teacher')}
+              onChange={handleSetType}
             />
             <Radio
               crossOrigin={undefined}
-              id="student"
               name="userType"
+              id="student"
               label="학생"
-              checked={userType === 'student'}
-              onChange={() => setUserType('kakao')}
+              onChange={handleSetType}
             />
             <Button
               variant="outlined"

@@ -7,6 +7,7 @@ import { LoginType } from '../Types/Types';
 import { fetchUserDetails } from 'redux/slice/MemberSlice';
 import { useAppDispatch, useAppSelector } from 'hooks/hooks';
 import IsLoading from 'components/Loading/Loading';
+import axios from 'axios';
 
 const Login: React.FC = () => {
   const [LoginInfo, setLoginInfo] = useState<LoginType>({
@@ -14,7 +15,7 @@ const Login: React.FC = () => {
     email: '',
     password: '',
   });
-
+  const apiURL = 'http://ec2-3-34-116-209.ap-northeast-2.compute.amazonaws.com:8080';
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const userInfo = useAppSelector((state) => state.member);
@@ -29,6 +30,13 @@ const Login: React.FC = () => {
     });
   };
 
+  const handleKakaoAuth = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const response = await axios.get(`${apiURL}/oauth2/authorization/kakao`);
+    console.log(response); //토큰을 받아옴
+    //token을 받아오고 해석하여 Id를 추출하여 보내는 과정 API완료시 구현해야 함
+  };
+
   const handleLogin = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -36,6 +44,8 @@ const Login: React.FC = () => {
       alert('이메일, 비밀번호를 모두 입력하세요.');
       return;
     }
+
+    // Login 및 토큰받기
 
     try {
       const resultAction = await dispatch(fetchUserDetails(LoginInfo.email));
@@ -106,10 +116,7 @@ const Login: React.FC = () => {
               <div className="text-sm text-gray-600">회원 가입</div>
             </Link>
           </div>
-          <form
-            className="flex flex-col gap-2 py-4 rounded-lg"
-            onSubmit={(e) => e.preventDefault()}
-          >
+          <form className="flex flex-col gap-2 py-4 rounded-lg" onSubmit={handleKakaoAuth}>
             <Button
               type="submit"
               className="text-xl text-black border-2 border-kakao-1 bg-kakao-1 rounded-lg shadow-lg shadow-gray-900/30 p-1 h-[50px] hover:bg-kakao-2"
