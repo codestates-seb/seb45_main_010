@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { ChangeEvent, FormEvent } from 'react';
 import { Button, Checkbox } from '@material-tailwind/react';
 import { User } from '../Types/Types';
+import { SocialModal } from 'components/Modal/SocialModal';
 import axios from 'axios';
 
 type MemberSignUp = Pick<User, 'name' | 'email' | 'password' | 'teacher'>;
@@ -10,6 +11,7 @@ type MemberSignUp = Pick<User, 'name' | 'email' | 'password' | 'teacher'>;
 const SignUp: React.FC = () => {
   const [checkEmail, setCheckEmail] = useState<boolean>(false); //이메일중복확인
   const [registerable, setResiterable] = useState<boolean>(false); //등록가능여부
+  const [kakao, showKakao] = useState<boolean>(false); //카카오로 등록
   const [userInfo, setUserInfo] = useState<MemberSignUp>({
     //회원가입정보
     name: '',
@@ -42,6 +44,12 @@ const SignUp: React.FC = () => {
       console.log('이메일 중복체크 통신오류', error);
       alert('서비스 개선중입니다. 잠시후에 다시 시도하여 주세요');
     }
+  };
+
+  const handleKakao = () => {
+    showKakao(true);
+    console.log('카카오 모달열림');
+    console.log(kakao);
   };
 
   const handleUserInfo = (e: ChangeEvent<HTMLInputElement>) => {
@@ -164,14 +172,7 @@ const SignUp: React.FC = () => {
             이메일 회원가입
           </Button>
         </form>
-        <form className="flex flex-col gap-2 py-4 rounded-lg" onSubmit={(e) => e.preventDefault()}>
-          <Button
-            type="submit"
-            className="text-xl text-black border-2 border-kakao-1 bg-kakao-1 rounded-lg shadow-lg shadow-gray-900/30 p-1 h-[50px] hover:bg-kakao-2"
-          >
-            카카오 회원가입
-          </Button>
-        </form>
+        <SocialModal />
       </div>
     </div>
   );

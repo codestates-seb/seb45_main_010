@@ -10,7 +10,7 @@ const Private: React.FC = () => {
   const userDetails = useAppSelector((state) => state.member.user);
   console.log(userDetails);
 
-  const LoginInfo: string = 'abcd@gmail.com';
+  const LoginInfo: string = userDetails.email;
   useEffect(() => {
     dispatch(fetchUserDetails(LoginInfo));
   }, [dispatch]);
