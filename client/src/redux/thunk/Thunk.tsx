@@ -15,7 +15,7 @@ export const FetchRequest = createAsyncThunk('FetchRequest', async (userId: numb
 });
 
 export const FetchSchedule = createAsyncThunk('schedule/fetchSchedule', async (userId: number) => {
-  const response = await axios.get(`http://localhost:8081/profile/${userId}`);
+  const response = await axios.get(`http://localhost:8081/schedule/${userId}`);
   const data = response.data;
   return data;
 });

@@ -52,3 +52,5 @@ export type footerType = {
 };
 
 export type TimeSlot = { date: string; timeslots: string[] };
+
+export type ScheduleArray = { id: number; date: { date: string; timeslots: string[] }[] }[];
