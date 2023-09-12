@@ -17,6 +17,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -51,6 +52,9 @@ public class MatchService {
         response.setStudentName(student.getName());
         response.setStudentPhoneNumber(student.getPhoneNumber());
         response.setStudentEmail(student.getEmail());
+
+        //TODO 스케줄 구현 후 수정
+        response.setSchedules(List.of("9월 19일 화요일 / 13:00 ~ 14:00"));
 
         return response;
     }

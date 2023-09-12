@@ -110,6 +110,7 @@ public class StudentDto {
     @Builder
     public static class DetailResponse {
         private long id;
+        private String name;
         private String email;
         private String profileImg;
         private String introduction;

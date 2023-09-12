@@ -64,16 +64,18 @@ public class OAuth2SuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
             if (student.isOauth()) {
                 String accessToken = delegateAccessToken(student);
                 String refreshToken = delegateRefreshToken(student);
-
-                String url = UriComponentsBuilder
-                        .fromUriString("http://localhost:8080/oauth2Test")
-                        .build()
-                        .toUriString();
+//
+//
+//                String url = UriComponentsBuilder
+//                        .fromUriString("http://localhost:8080")
+//                        .build()
+//                        .toUriString();
 
                 response.setHeader("Authorization", "Bearer " + accessToken);
                 response.setHeader("Refresh", refreshToken);
 
-                getRedirectStrategy().sendRedirect(request, response, url);
+
+//                getRedirectStrategy().sendRedirect(request, response, url);
             }
 
             else {
@@ -94,8 +96,8 @@ public class OAuth2SuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
 
             MultiValueMap<String, String> queryParams = new LinkedMultiValueMap<>();
 
-//            queryParams.add("Authorization", "Bearer " + accessToken);
-//            queryParams.add("Refresh", refreshToken);
+            queryParams.add("Authorization", "Bearer " + accessToken);
+            queryParams.add("Refresh", refreshToken);
 
             String url = UriComponentsBuilder
                     .fromUriString("http://localhost:8080/test2")

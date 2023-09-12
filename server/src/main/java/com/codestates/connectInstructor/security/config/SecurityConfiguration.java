@@ -9,7 +9,6 @@ import com.codestates.connectInstructor.security.handler.MemberAuthenticationSuc
 import com.codestates.connectInstructor.security.jwt.JwtTokenizer;
 import com.codestates.connectInstructor.security.oauth2.handler.OAuth2FailureHandler;
 import com.codestates.connectInstructor.security.oauth2.handler.OAuth2SuccessHandler;
-import com.codestates.connectInstructor.security.oauth2.resolver.CustomRequestResolver;
 import com.codestates.connectInstructor.security.oauth2.service.CustomOauth2Service;
 import com.codestates.connectInstructor.security.utils.CustomAuthorityUtils;
 import com.codestates.connectInstructor.student.repository.StudentRepository;
