@@ -37,7 +37,7 @@ export const ChangeModal = ({
       const response = await axios.patch(`http://localhost:8080/member/${userId}`, data);
       console.log(response.data);
     } catch (error) {
-      console.log(`$changeItem}`, error);
+      console.log(`${changeItem}`, error);
     }
   };
 
