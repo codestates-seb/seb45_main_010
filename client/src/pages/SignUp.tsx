@@ -11,7 +11,6 @@ type MemberSignUp = Pick<User, 'name' | 'email' | 'password' | 'teacher'>;
 const SignUp: React.FC = () => {
   const [checkEmail, setCheckEmail] = useState<boolean>(false); //이메일중복확인
   const [registerable, setResiterable] = useState<boolean>(false); //등록가능여부
-  const [kakao, showKakao] = useState<boolean>(false); //카카오로 등록
   const [userInfo, setUserInfo] = useState<MemberSignUp>({
     //회원가입정보
     name: '',
@@ -44,12 +43,6 @@ const SignUp: React.FC = () => {
       console.log('이메일 중복체크 통신오류', error);
       alert('서비스 개선중입니다. 잠시후에 다시 시도하여 주세요');
     }
-  };
-
-  const handleKakao = () => {
-    showKakao(true);
-    console.log('카카오 모달열림');
-    console.log(kakao);
   };
 
   const handleUserInfo = (e: ChangeEvent<HTMLInputElement>) => {
