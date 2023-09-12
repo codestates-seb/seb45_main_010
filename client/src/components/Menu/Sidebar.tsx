@@ -13,7 +13,7 @@ export const Sidebar = ({ handlerMenu }: props) => {
         className="absolute top-0 w-full h-full bg-black bg-opacity-10 backdrop-blur-sm"
         onClick={handlerMenu}
       ></div>
-      <Card className="w-[350px] p-2 shadow-xl top-3 absolute m-3">
+      <Card className="w-[350px] p-2 shadow-xl top-3 absolute m-3 z-50">
         <SideMembership handlerMenu={handlerMenu} />
         <SideList handlerMenu={handlerMenu} />
       </Card>

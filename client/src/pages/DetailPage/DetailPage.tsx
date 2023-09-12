@@ -12,9 +12,6 @@ const DetailPage = () => {
   const teacherInfo = useAppSelector(teacherDetail);
   const dispatch = useAppDispatch();
 
-  dispatch(getData);
-  console.log(teacherInfo);
-
   return (
     <article className="w-full px-[7.5px] flex flex-col ">
       <TeacherInfo1 />
