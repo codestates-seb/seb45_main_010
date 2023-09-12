@@ -30,8 +30,8 @@ const SetSchedule: React.FC<ScheduleProps> = ({ userId }) => {
     dispatch(FetchSchedule(userId))
       .then((response) => {
         const schedule = response.payload.date;
-        console.log('스케쥴 정보 fetch 성공');
-        console.log(schedule);
+        // console.log('스케쥴 정보 fetch 성공');
+        // console.log(schedule);
         setSelectedTimeSlots(schedule);
         setNewSchedule(schedule);
         prevScheduleRef.current = schedule;
@@ -40,10 +40,10 @@ const SetSchedule: React.FC<ScheduleProps> = ({ userId }) => {
         console.error('Error fetching schedule:', error);
       });
   }, [dispatch, userId]);
-  console.log(newSchedule);
-  console.log(selectedTimeSlots);
-  console.log(prevScheduleRef.current);
-  console.log(prevScheduleRef.length);
+  // console.log(newSchedule);
+  // console.log(selectedTimeSlots);
+  // console.log(prevScheduleRef.current);
+  // console.log(prevScheduleRef.length);
   const formatSelectedDate = selectedDate ? formatDate(selectedDate) : null;
 
   const handleSave = async () => {
@@ -113,12 +113,12 @@ const SetSchedule: React.FC<ScheduleProps> = ({ userId }) => {
       }
 
       setNewSchedule(newSlots); // newSchedule 상태 업데이트
-      console.log('newSlots', newSlots);
+      // console.log('newSlots', newSlots);
 
       return newSlots;
     });
   };
-  console.log(newSchedule);
+  // console.log(newSchedule);
   const handleSelectedTimeSlot = (
     timeSlotObj: { date: string; timeslots: string[] },
     timeslot: string

@@ -14,7 +14,7 @@ const GetSchedule = () => {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [availableTimeSlots, setAvailableTimeSlots] = useState<string[]>([]);
   const schedule = useAppSelector((state) => state.schedule.schedule);
-  console.log(schedule);
+  // console.log(schedule);
 
   useEffect(() => {
     dispatch(FetchSchedule(userId))
