@@ -43,6 +43,61 @@ public class TeacherDto {
         private String address;
     }
     @Getter@Setter@NoArgsConstructor@AllArgsConstructor
+    public static class PatchPassword {
+        private long id;
+        private String password;
+    }
+    @Getter@Setter@NoArgsConstructor@AllArgsConstructor
+    public static class PatchName {
+        private long id;
+        private String name;
+    }
+    @Getter@Setter@NoArgsConstructor@AllArgsConstructor
+    public static class PatchPhone {
+        private long id;
+        private String phone;
+    }
+    @Getter@Setter@NoArgsConstructor@AllArgsConstructor
+    public static class PatchProfileImg {
+        private long id;
+        private String profileImg;
+    }
+    @Getter@Setter@NoArgsConstructor@AllArgsConstructor
+    public static class PatchIntroduction {
+        private long id;
+        private String introduction;
+    }
+    @Getter@Setter@NoArgsConstructor@AllArgsConstructor
+    public static class PatchCareer {
+        private long id;
+        private String career;
+    }
+    @Getter@Setter@NoArgsConstructor@AllArgsConstructor
+    public static class PatchLectureFee {
+        private long id;
+        private String lectureFee;
+    }
+    @Getter@Setter@NoArgsConstructor@AllArgsConstructor
+    public static class PatchOption {
+        private long id;
+        private String option;
+    }
+    @Getter@Setter@NoArgsConstructor@AllArgsConstructor
+    public static class PatchOnLine {
+        private long id;
+        private boolean onLine;
+    }
+    @Getter@Setter@NoArgsConstructor@AllArgsConstructor
+    public static class PatchOffLine {
+        private long id;
+        private boolean offLine;
+    }
+    @Getter@Setter@NoArgsConstructor@AllArgsConstructor
+    public static class PatchAddress {
+        private long id;
+        private String address;
+    }
+    @Getter@Setter@NoArgsConstructor@AllArgsConstructor
     public static class Response {
         private long id;
         private String email;

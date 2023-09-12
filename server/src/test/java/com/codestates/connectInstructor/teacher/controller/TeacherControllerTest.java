@@ -3,6 +3,8 @@ package com.codestates.connectInstructor.teacher.controller;
 import com.codestates.connectInstructor.region.dto.RegionDto;
 import com.codestates.connectInstructor.region.mapper.RegionMapper;
 import com.codestates.connectInstructor.region.service.RegionService;
+import com.codestates.connectInstructor.student.dto.StudentDto;
+import com.codestates.connectInstructor.student.entity.Student;
 import com.codestates.connectInstructor.subject.dto.SubjectDto;
 import com.codestates.connectInstructor.subject.mapper.SubjectMapper;
 import com.codestates.connectInstructor.subject.service.SubjectService;
@@ -28,6 +30,7 @@ import org.springframework.http.MediaType;
 import org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders;
 import org.springframework.restdocs.payload.JsonFieldType;
 import org.springframework.security.test.context.support.WithAnonymousUser;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
@@ -534,6 +537,450 @@ public class TeacherControllerTest {
                                 )
                         )
                 );
+    }
+    @Test
+    @WithMockUser(authorities = {"ROLE_TEACHER"})
+    public void patchPasswordTest() throws Exception {
+        long id = 1L;
+        String password = "patchPasswordOfTeacher";
+
+        TeacherDto.PatchPassword request = new TeacherDto.PatchPassword(id, password);
+
+        Teacher teacher = new Teacher();
+        teacher.setId(id);
+        teacher.setPassword(password);
+
+        given(teacherMapper.patchPasswordToTeacher(Mockito.any(TeacherDto.PatchPassword.class))).willReturn(teacher);
+        given(teacherService.updatePassword(Mockito.any(Teacher.class))).willReturn(teacher);
+
+        ResultActions actions = mockMvc.perform(
+                RestDocumentationRequestBuilders.patch("/teachers/password")
+                        .accept(MediaType.APPLICATION_JSON)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(gson.toJson(request))
+        );
+
+        actions.andExpect(MockMvcResultMatchers.status().isOk())
+                .andDo(document("patch-teacher-password",
+                        getRequestPreProcessor(),
+                        getResponsePreProcessor(),
+                        requestFields(
+                                List.of(
+                                        fieldWithPath("id").type(JsonFieldType.NUMBER).description("강사회원 식별자"),
+                                        fieldWithPath("password").type(JsonFieldType.STRING).description("수정할 비밀번호")
+                                )
+                        )
+                ));
+    }
+    @Test
+    @WithMockUser(authorities = {"ROLE_TEACHER"})
+    public void patchNameTest() throws Exception {
+        long id = 1L;
+        String name = "홍길동";
+
+        TeacherDto.PatchName request = new TeacherDto.PatchName(id, name);
+
+        Teacher teacher = new Teacher();
+        teacher.setId(id);
+        teacher.setName(name);
+
+        given(teacherMapper.patchNameToTeacher(Mockito.any(TeacherDto.PatchName.class))).willReturn(teacher);
+        given(teacherService.updateName(Mockito.any(Teacher.class))).willReturn(teacher);
+        given(teacherMapper.teacherToPatchName(Mockito.any(Teacher.class))).willReturn(request);
+
+        ResultActions actions = mockMvc.perform(
+                RestDocumentationRequestBuilders.patch("/teachers/name")
+                        .accept(MediaType.APPLICATION_JSON)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(gson.toJson(request))
+        );
+
+        actions.andExpect(MockMvcResultMatchers.status().isOk())
+                .andDo(document("patch-teacher-name",
+                        getRequestPreProcessor(),
+                        getResponsePreProcessor(),
+                        requestFields(
+                                List.of(
+                                        fieldWithPath("id").type(JsonFieldType.NUMBER).description("강사회원 식별자"),
+                                        fieldWithPath("name").type(JsonFieldType.STRING).description("수정할 이름")
+                                )
+                        ),
+                        responseFields(
+                                List.of(
+                                        fieldWithPath("id").type(JsonFieldType.NUMBER).description("강사회원 식별자"),
+                                        fieldWithPath("name").type(JsonFieldType.STRING).description("수정된 이름")
+                                )
+                        )
+                ));
+    }
+    @Test
+    @WithMockUser(authorities = {"ROLE_TEACHER"})
+    public void patchPhoneTest() throws Exception {
+        long id = 1L;
+        String phone = "010-1111-2222";
+
+        TeacherDto.PatchPhone request = new TeacherDto.PatchPhone(id, phone);
+
+        Teacher teacher = new Teacher();
+        teacher.setId(id);
+        teacher.setPhone(phone);
+
+        given(teacherMapper.patchPhoneToTeacher(Mockito.any(TeacherDto.PatchPhone.class))).willReturn(teacher);
+        given(teacherService.updatePhone(Mockito.any(Teacher.class))).willReturn(teacher);
+        given(teacherMapper.teacherToPatchPhone(Mockito.any(Teacher.class))).willReturn(request);
+
+        ResultActions actions = mockMvc.perform(
+                RestDocumentationRequestBuilders.patch("/teachers/phone")
+                        .accept(MediaType.APPLICATION_JSON)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(gson.toJson(request))
+        );
+
+        actions.andExpect(MockMvcResultMatchers.status().isOk())
+                .andDo(document("patch-teacher-phone",
+                        getRequestPreProcessor(),
+                        getResponsePreProcessor(),
+                        requestFields(
+                                List.of(
+                                        fieldWithPath("id").type(JsonFieldType.NUMBER).description("강사회원 식별자"),
+                                        fieldWithPath("phone").type(JsonFieldType.STRING).description("수정할 전화번호")
+                                )
+                        ),
+                        responseFields(
+                                List.of(
+                                        fieldWithPath("id").type(JsonFieldType.NUMBER).description("강사회원 식별자"),
+                                        fieldWithPath("phone").type(JsonFieldType.STRING).description("수정된 전화번호")
+                                )
+                        )
+                ));
+    }
+    @Test
+    @WithMockUser(authorities = {"ROLE_TEACHER"})
+    public void patchProfileImgTest() throws Exception {
+        long id = 1L;
+        String profileImg = "프로필 이미지가 저장된 곳";
+
+        TeacherDto.PatchProfileImg request = new TeacherDto.PatchProfileImg(id, profileImg);
+
+        Teacher teacher = new Teacher();
+        teacher.setId(id);
+        teacher.setProfileImg(profileImg);
+
+        given(teacherMapper.patchProfileImgToTeacher(Mockito.any(TeacherDto.PatchProfileImg.class))).willReturn(teacher);
+        given(teacherService.updateProfileImg(Mockito.any(Teacher.class))).willReturn(teacher);
+        given(teacherMapper.teacherToPatchProfileImg(Mockito.any(Teacher.class))).willReturn(request);
+
+        ResultActions actions = mockMvc.perform(
+                RestDocumentationRequestBuilders.patch("/teachers/profileImg")
+                        .accept(MediaType.APPLICATION_JSON)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(gson.toJson(request))
+        );
+
+        actions.andExpect(MockMvcResultMatchers.status().isOk())
+                .andDo(document("patch-teacher-profileImg",
+                        getRequestPreProcessor(),
+                        getResponsePreProcessor(),
+                        requestFields(
+                                List.of(
+                                        fieldWithPath("id").type(JsonFieldType.NUMBER).description("강사회원 식별자"),
+                                        fieldWithPath("profileImg").type(JsonFieldType.STRING).description("수정할 프로필사진")
+                                )
+                        ),
+                        responseFields(
+                                List.of(
+                                        fieldWithPath("id").type(JsonFieldType.NUMBER).description("강사회원 식별자"),
+                                        fieldWithPath("profileImg").type(JsonFieldType.STRING).description("수정된 프로필사진")
+                                )
+                        )
+                ));
+    }
+    @Test
+    @WithMockUser(authorities = {"ROLE_TEACHER"})
+    public void patchIntroductionTest() throws Exception {
+        long id = 1L;
+        String introduction = "자기소개 입니다. 저는 OO대학교를 졸업하고 ~~";
+
+        TeacherDto.PatchIntroduction request = new TeacherDto.PatchIntroduction(id, introduction);
+
+        Teacher teacher = new Teacher();
+        teacher.setId(id);
+        teacher.setIntroduction(introduction);
+
+        given(teacherMapper.patchIntroductionToTeacher(Mockito.any(TeacherDto.PatchIntroduction.class))).willReturn(teacher);
+        given(teacherService.updateIntroduction(Mockito.any(Teacher.class))).willReturn(teacher);
+        given(teacherMapper.teacherToPatchIntroduction(Mockito.any(Teacher.class))).willReturn(request);
+
+        ResultActions actions = mockMvc.perform(
+                RestDocumentationRequestBuilders.patch("/teachers/introduction")
+                        .accept(MediaType.APPLICATION_JSON)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(gson.toJson(request))
+        );
+
+        actions.andExpect(MockMvcResultMatchers.status().isOk())
+                .andDo(document("patch-teacher-introduction",
+                        getRequestPreProcessor(),
+                        getResponsePreProcessor(),
+                        requestFields(
+                                List.of(
+                                        fieldWithPath("id").type(JsonFieldType.NUMBER).description("강사회원 식별자"),
+                                        fieldWithPath("introduction").type(JsonFieldType.STRING).description("수정할 자기소개")
+                                )
+                        ),
+                        responseFields(
+                                List.of(
+                                        fieldWithPath("id").type(JsonFieldType.NUMBER).description("강사회원 식별자"),
+                                        fieldWithPath("introduction").type(JsonFieldType.STRING).description("수정된 자기소개")
+                                )
+                        )
+                ));
+    }
+    @Test
+    @WithMockUser(authorities = {"ROLE_TEACHER"})
+    public void patchCareerTest() throws Exception {
+        long id = 1L;
+        String career = "경력 소개입니다. 저는 OO학원에서 5년을 강사로서~~";
+
+        TeacherDto.PatchCareer request = new TeacherDto.PatchCareer(id, career);
+
+        Teacher teacher = new Teacher();
+        teacher.setId(id);
+        teacher.setCareer(career);
+
+        given(teacherMapper.patchCareerToTeacher(Mockito.any(TeacherDto.PatchCareer.class))).willReturn(teacher);
+        given(teacherService.updateCareer(Mockito.any(Teacher.class))).willReturn(teacher);
+        given(teacherMapper.teacherToPatchCareer(Mockito.any(Teacher.class))).willReturn(request);
+
+        ResultActions actions = mockMvc.perform(
+                RestDocumentationRequestBuilders.patch("/teachers/career")
+                        .accept(MediaType.APPLICATION_JSON)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(gson.toJson(request))
+        );
+
+        actions.andExpect(MockMvcResultMatchers.status().isOk())
+                .andDo(document("patch-teacher-career",
+                        getRequestPreProcessor(),
+                        getResponsePreProcessor(),
+                        requestFields(
+                                List.of(
+                                        fieldWithPath("id").type(JsonFieldType.NUMBER).description("강사회원 식별자"),
+                                        fieldWithPath("career").type(JsonFieldType.STRING).description("수정할 경력/이력")
+                                )
+                        ),
+                        responseFields(
+                                List.of(
+                                        fieldWithPath("id").type(JsonFieldType.NUMBER).description("강사회원 식별자"),
+                                        fieldWithPath("career").type(JsonFieldType.STRING).description("수정된 경력/이력")
+                                )
+                        )
+                ));
+    }
+    @Test
+    @WithMockUser(authorities = {"ROLE_TEACHER"})
+    public void patchLectureFeeTest() throws Exception {
+        long id = 1L;
+        String lectureFee = "수업료 관련 소개입니다. 저는 강의 시급을 4만원 정도~~~";
+
+        TeacherDto.PatchLectureFee request = new TeacherDto.PatchLectureFee(id, lectureFee);
+
+        Teacher teacher = new Teacher();
+        teacher.setId(id);
+        teacher.setLectureFee(lectureFee);
+
+        given(teacherMapper.patchLectureFeeToTeacher(Mockito.any(TeacherDto.PatchLectureFee.class))).willReturn(teacher);
+        given(teacherService.updateLectureFee(Mockito.any(Teacher.class))).willReturn(teacher);
+        given(teacherMapper.teacherToPatchLectureFee(Mockito.any(Teacher.class))).willReturn(request);
+
+        ResultActions actions = mockMvc.perform(
+                RestDocumentationRequestBuilders.patch("/teachers/lectureFee")
+                        .accept(MediaType.APPLICATION_JSON)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(gson.toJson(request))
+        );
+
+        actions.andExpect(MockMvcResultMatchers.status().isOk())
+                .andDo(document("patch-teacher-lectureFee",
+                        getRequestPreProcessor(),
+                        getResponsePreProcessor(),
+                        requestFields(
+                                List.of(
+                                        fieldWithPath("id").type(JsonFieldType.NUMBER).description("강사회원 식별자"),
+                                        fieldWithPath("lectureFee").type(JsonFieldType.STRING).description("수정할 수업료 관련 정보")
+                                )
+                        ),
+                        responseFields(
+                                List.of(
+                                        fieldWithPath("id").type(JsonFieldType.NUMBER).description("강사회원 식별자"),
+                                        fieldWithPath("lectureFee").type(JsonFieldType.STRING).description("수정된 수업료 관련 정보")
+                                )
+                        )
+                ));
+    }
+    @Test
+    @WithMockUser(authorities = {"ROLE_TEACHER"})
+    public void patchOptionTest() throws Exception {
+        long id = 1L;
+        String option = "수업 옵션 입니다.";
+
+        TeacherDto.PatchOption request = new TeacherDto.PatchOption(id, option);
+
+        Teacher teacher = new Teacher();
+        teacher.setId(id);
+        teacher.setOption(option);
+
+        given(teacherMapper.patchOptionToTeacher(Mockito.any(TeacherDto.PatchOption.class))).willReturn(teacher);
+        given(teacherService.updateOption(Mockito.any(Teacher.class))).willReturn(teacher);
+        given(teacherMapper.teacherToPatchOption(Mockito.any(Teacher.class))).willReturn(request);
+
+        ResultActions actions = mockMvc.perform(
+                RestDocumentationRequestBuilders.patch("/teachers/option")
+                        .accept(MediaType.APPLICATION_JSON)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(gson.toJson(request))
+        );
+
+        actions.andExpect(MockMvcResultMatchers.status().isOk())
+                .andDo(document("patch-teacher-option",
+                        getRequestPreProcessor(),
+                        getResponsePreProcessor(),
+                        requestFields(
+                                List.of(
+                                        fieldWithPath("id").type(JsonFieldType.NUMBER).description("강사회원 식별자"),
+                                        fieldWithPath("option").type(JsonFieldType.STRING).description("수정할 수업옵션, 설명")
+                                )
+                        ),
+                        responseFields(
+                                List.of(
+                                        fieldWithPath("id").type(JsonFieldType.NUMBER).description("강사회원 식별자"),
+                                        fieldWithPath("option").type(JsonFieldType.STRING).description("수정된 수업옵션, 설명")
+                                )
+                        )
+                ));
+    }
+    @Test
+    @WithMockUser(authorities = {"ROLE_TEACHER"})
+    public void patchOnLineTest() throws Exception {
+        long id = 1L;
+        boolean onLine = false;
+
+        TeacherDto.PatchOnLine request = new TeacherDto.PatchOnLine(id, onLine);
+
+        Teacher teacher = new Teacher();
+        teacher.setId(id);
+        teacher.setOnLine(onLine);
+
+        given(teacherMapper.patchOnLineToTeacher(Mockito.any(TeacherDto.PatchOnLine.class))).willReturn(teacher);
+        given(teacherService.updateOnLine(Mockito.any(Teacher.class))).willReturn(teacher);
+        given(teacherMapper.teacherToPatchOnLine(Mockito.any(Teacher.class))).willReturn(request);
+
+        ResultActions actions = mockMvc.perform(
+                RestDocumentationRequestBuilders.patch("/teachers/onLine")
+                        .accept(MediaType.APPLICATION_JSON)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(gson.toJson(request))
+        );
+
+        actions.andExpect(MockMvcResultMatchers.status().isOk())
+                .andDo(document("patch-teacher-onLine",
+                        getRequestPreProcessor(),
+                        getResponsePreProcessor(),
+                        requestFields(
+                                List.of(
+                                        fieldWithPath("id").type(JsonFieldType.NUMBER).description("강사회원 식별자"),
+                                        fieldWithPath("onLine").type(JsonFieldType.BOOLEAN).description("수정할 온라인 수업 가능여부")
+                                )
+                        ),
+                        responseFields(
+                                List.of(
+                                        fieldWithPath("id").type(JsonFieldType.NUMBER).description("강사회원 식별자"),
+                                        fieldWithPath("onLine").type(JsonFieldType.BOOLEAN).description("수정된 온라인 수업 가능여부")
+                                )
+                        )
+                ));
+    }
+    @Test
+    @WithMockUser(authorities = {"ROLE_TEACHER"})
+    public void patchOffLineTest() throws Exception {
+        long id = 1L;
+        boolean offLine = true;
+
+        TeacherDto.PatchOffLine request = new TeacherDto.PatchOffLine(id, offLine);
+
+        Teacher teacher = new Teacher();
+        teacher.setId(id);
+        teacher.setOffLine(offLine);
+
+        given(teacherMapper.patchOffLineToTeacher(Mockito.any(TeacherDto.PatchOffLine.class))).willReturn(teacher);
+        given(teacherService.updateOffLine(Mockito.any(Teacher.class))).willReturn(teacher);
+        given(teacherMapper.teacherToPatchOffLine(Mockito.any(Teacher.class))).willReturn(request);
+
+        ResultActions actions = mockMvc.perform(
+                RestDocumentationRequestBuilders.patch("/teachers/offLine")
+                        .accept(MediaType.APPLICATION_JSON)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(gson.toJson(request))
+        );
+
+        actions.andExpect(MockMvcResultMatchers.status().isOk())
+                .andDo(document("patch-teacher-offLine",
+                        getRequestPreProcessor(),
+                        getResponsePreProcessor(),
+                        requestFields(
+                                List.of(
+                                        fieldWithPath("id").type(JsonFieldType.NUMBER).description("강사회원 식별자"),
+                                        fieldWithPath("offLine").type(JsonFieldType.BOOLEAN).description("수정할 오프라인 수업 가능여부")
+                                )
+                        ),
+                        responseFields(
+                                List.of(
+                                        fieldWithPath("id").type(JsonFieldType.NUMBER).description("강사회원 식별자"),
+                                        fieldWithPath("offLine").type(JsonFieldType.BOOLEAN).description("수정된 오프라인 수업 가능여부")
+                                )
+                        )
+                ));
+    }
+    @Test
+    @WithMockUser(authorities = {"ROLE_TEACHER"})
+    public void patchAddressTest() throws Exception {
+        long id = 1L;
+        String address = "경기도 수원시 팔달구 효원로307번길 20";
+
+        TeacherDto.PatchAddress request = new TeacherDto.PatchAddress(id, address);
+
+        Teacher teacher = new Teacher();
+        teacher.setId(id);
+        teacher.setAddress(address);
+
+        given(teacherMapper.patchAddressToTeacher(Mockito.any(TeacherDto.PatchAddress.class))).willReturn(teacher);
+        given(teacherService.updateAddress(Mockito.any(Teacher.class))).willReturn(teacher);
+        given(teacherMapper.teacherToPatchAddress(Mockito.any(Teacher.class))).willReturn(request);
+
+        ResultActions actions = mockMvc.perform(
+                RestDocumentationRequestBuilders.patch("/teachers/address")
+                        .accept(MediaType.APPLICATION_JSON)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(gson.toJson(request))
+        );
+
+        actions.andExpect(MockMvcResultMatchers.status().isOk())
+                .andDo(document("patch-teacher-address",
+                        getRequestPreProcessor(),
+                        getResponsePreProcessor(),
+                        requestFields(
+                                List.of(
+                                        fieldWithPath("id").type(JsonFieldType.NUMBER).description("강사회원 식별자"),
+                                        fieldWithPath("address").type(JsonFieldType.STRING).description("수정할 주소(강사 사는 곳)")
+                                )
+                        ),
+                        responseFields(
+                                List.of(
+                                        fieldWithPath("id").type(JsonFieldType.NUMBER).description("강사회원 식별자"),
+                                        fieldWithPath("address").type(JsonFieldType.STRING).description("수정된 주소(강사 사는 곳)")
+                                )
+                        )
+                ));
     }
 
 }

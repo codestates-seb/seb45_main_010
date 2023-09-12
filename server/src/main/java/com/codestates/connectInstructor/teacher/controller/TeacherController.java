@@ -3,6 +3,7 @@ package com.codestates.connectInstructor.teacher.controller;
 import com.codestates.connectInstructor.region.mapper.RegionMapper;
 import com.codestates.connectInstructor.region.service.RegionService;
 import com.codestates.connectInstructor.student.dto.StudentDto;
+import com.codestates.connectInstructor.student.entity.Student;
 import com.codestates.connectInstructor.subject.mapper.SubjectMapper;
 import com.codestates.connectInstructor.subject.service.SubjectService;
 import com.codestates.connectInstructor.teacher.dto.TeacherDto;
@@ -54,6 +55,94 @@ public class TeacherController {
 
         return ResponseEntity.created(location).build();
 
+    }
+    @PatchMapping("/password")
+    public ResponseEntity patchPassword(@RequestBody @Valid TeacherDto.PatchPassword requestBody) {
+        Teacher teacher = teacherMapper.patchPasswordToTeacher(requestBody);
+
+        Teacher updated = teacherService.updatePassword(teacher);
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+    @PatchMapping("/name")
+    public ResponseEntity patchName(@RequestBody @Valid TeacherDto.PatchName requestBody) {
+        Teacher teacher = teacherMapper.patchNameToTeacher(requestBody);
+        Teacher updated = teacherService.updateName(teacher);
+        TeacherDto.PatchName response = teacherMapper.teacherToPatchName(updated);
+
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+    @PatchMapping("/phone")
+    public ResponseEntity patchPhone(@RequestBody @Valid TeacherDto.PatchPhone requestBody) {
+        Teacher teacher = teacherMapper.patchPhoneToTeacher(requestBody);
+        Teacher updated = teacherService.updatePhone(teacher);
+        TeacherDto.PatchPhone response = teacherMapper.teacherToPatchPhone(updated);
+
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+    @PatchMapping("/profileImg")
+    public ResponseEntity patchProfileImg(@RequestBody @Valid TeacherDto.PatchProfileImg requestBody) {
+        Teacher teacher = teacherMapper.patchProfileImgToTeacher(requestBody);
+        Teacher updated = teacherService.updateProfileImg(teacher);
+        TeacherDto.PatchProfileImg response = teacherMapper.teacherToPatchProfileImg(updated);
+
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+    @PatchMapping("/introduction")
+    public ResponseEntity patchIntroduction(@RequestBody @Valid TeacherDto.PatchIntroduction requestBody) {
+        Teacher teacher = teacherMapper.patchIntroductionToTeacher(requestBody);
+        Teacher updated = teacherService.updateIntroduction(teacher);
+        TeacherDto.PatchIntroduction response = teacherMapper.teacherToPatchIntroduction(updated);
+
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+    @PatchMapping("/career")
+    public ResponseEntity patchCareer(@RequestBody @Valid TeacherDto.PatchCareer requestBody) {
+        Teacher teacher = teacherMapper.patchCareerToTeacher(requestBody);
+        Teacher updated = teacherService.updateCareer(teacher);
+        TeacherDto.PatchCareer response = teacherMapper.teacherToPatchCareer(updated);
+
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+    @PatchMapping("/lectureFee")
+    public ResponseEntity patchLectureFee(@RequestBody @Valid TeacherDto.PatchLectureFee requestBody) {
+        Teacher teacher = teacherMapper.patchLectureFeeToTeacher(requestBody);
+        Teacher updated = teacherService.updateLectureFee(teacher);
+        TeacherDto.PatchLectureFee response = teacherMapper.teacherToPatchLectureFee(updated);
+
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+    @PatchMapping("/option")
+    public ResponseEntity patchOption(@RequestBody @Valid TeacherDto.PatchOption requestBody) {
+        Teacher teacher = teacherMapper.patchOptionToTeacher(requestBody);
+        Teacher updated = teacherService.updateOption(teacher);
+        TeacherDto.PatchOption response = teacherMapper.teacherToPatchOption(updated);
+
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+    @PatchMapping("/onLine")
+    public ResponseEntity patchOnLine(@RequestBody @Valid TeacherDto.PatchOnLine requestBody) {
+        Teacher teacher = teacherMapper.patchOnLineToTeacher(requestBody);
+        Teacher updated = teacherService.updateOnLine(teacher);
+        TeacherDto.PatchOnLine response = teacherMapper.teacherToPatchOnLine(updated);
+
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+    @PatchMapping("/offLine")
+    public ResponseEntity patchOffLine(@RequestBody @Valid TeacherDto.PatchOffLine requestBody) {
+        Teacher teacher = teacherMapper.patchOffLineToTeacher(requestBody);
+        Teacher updated = teacherService.updateOffLine(teacher);
+        TeacherDto.PatchOffLine response = teacherMapper.teacherToPatchOffLine(updated);
+
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+    @PatchMapping("/address")
+    public ResponseEntity patchAddress(@RequestBody @Valid TeacherDto.PatchAddress requestBody) {
+        Teacher teacher = teacherMapper.patchAddressToTeacher(requestBody);
+        Teacher updated = teacherService.updateAddress(teacher);
+        TeacherDto.PatchAddress response = teacherMapper.teacherToPatchAddress(updated);
+
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
     @PostMapping("/{teacher-id}/region")
     public ResponseEntity postTeacherRegion(@PathVariable("teacher-id") @Positive long teacherId,
