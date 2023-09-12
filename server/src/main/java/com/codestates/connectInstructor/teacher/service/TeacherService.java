@@ -298,12 +298,12 @@ public class TeacherService {
         if (optionalTeacher.isPresent()) throw new BusinessLogicException(ExceptionCode.USED_EMAIL);
     }
     private void verifyIdentity(long teacherId){
-        SecurityContext securityContext = SecurityContextHolder.getContext();
-        Authentication authentication = securityContext.getAuthentication();
-
-        Teacher teacher = findVerifiedTeacher(teacherId);
-
-        if(!authentication.getName().equals(teacher.getEmail()))
-            throw new BusinessLogicException(ExceptionCode.NOT_AUTHORIZED);
+//        SecurityContext securityContext = SecurityContextHolder.getContext();
+//        Authentication authentication = securityContext.getAuthentication();
+//
+//        Teacher teacher = findVerifiedTeacher(teacherId);
+//
+//       if(!authentication.getName().equals(teacher.getEmail()))
+//            throw new BusinessLogicException(ExceptionCode.NOT_AUTHORIZED);
     }
 }
