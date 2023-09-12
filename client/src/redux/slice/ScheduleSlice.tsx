@@ -12,7 +12,7 @@ type initialStateType = {
 
 const initialState: initialStateType = {
   status: '',
-  schedule: null,
+  schedule: [],
   error: undefined,
   newSchedule: [],
   teacherId: 0,

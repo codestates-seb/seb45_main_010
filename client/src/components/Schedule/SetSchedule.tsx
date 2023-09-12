@@ -43,6 +43,7 @@ const SetSchedule: React.FC<ScheduleProps> = ({ userId }) => {
   console.log(newSchedule);
   console.log(selectedTimeSlots);
   console.log(prevScheduleRef.current);
+  console.log(prevScheduleRef.length);
   const formatSelectedDate = selectedDate ? formatDate(selectedDate) : null;
 
   const handleSave = async () => {
@@ -52,18 +53,21 @@ const SetSchedule: React.FC<ScheduleProps> = ({ userId }) => {
     }
     const prevSchedule = prevScheduleRef.current;
     if (JSON.stringify(newSchedule) !== JSON.stringify(prevSchedule)) {
-      method = 'PATCH';
-      console.log('PATCH');
-    } else if (newSchedule.length > 0 && prevSchedule.length === 0) {
-      method = 'POST';
-      console.log('POST');
-    } else if (newSchedule.length === 0 && prevSchedule.length > 0) {
-      method = 'DELETE';
-      console.log('DELETE');
+      if (newSchedule.length > 0 && (!prevSchedule || prevSchedule.length === 0)) {
+        method = 'POST';
+        console.log('POST');
+      } else if (newSchedule.length === 0 && prevSchedule && prevSchedule.length > 0) {
+        method = 'DELETE';
+        console.log('DELETE');
+      } else {
+        method = 'PATCH';
+        console.log('PATCH');
+      }
     } else {
-      console.log('No matching condition, please check the logic.', newSchedule, prevSchedule);
+      console.log('No changes to update.', newSchedule, prevSchedule);
       return;
     }
+
     console.log('Updating schedule with:', { userId: userId, date: newSchedule });
     return dispatch(updateSchedule({ userId: userId, date: newSchedule, method }));
   };
@@ -109,11 +113,12 @@ const SetSchedule: React.FC<ScheduleProps> = ({ userId }) => {
       }
 
       setNewSchedule(newSlots); // newSchedule 상태 업데이트
-      console.log(`"newSlots" ${newSlots}`);
+      console.log('newSlots', newSlots);
+
       return newSlots;
     });
   };
-
+  console.log(newSchedule);
   const handleSelectedTimeSlot = (
     timeSlotObj: { date: string; timeslots: string[] },
     timeslot: string

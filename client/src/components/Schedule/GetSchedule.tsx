@@ -30,17 +30,16 @@ const GetSchedule = () => {
         console.error('Error fetching schedule:', error);
       });
   }, [dispatch, userId]);
-  const selectedDateString = selectedDate ? selectedDate.toISOString().split('T')[0] : [];
 
   // useEffect(() => {
-  //   if (schedule && schedule.date) {
-  //     const matchingSchedule = schedule.date.find((sch) => sch.date === selectedDateString);
-  //     console.log(matchingSchedule);
+  //   if (selectedDate) {
+  //     const selectedDateString = selectedDate.toISOString().split('T')[0];
+  //     const selectedSchedule = (Object.values(schedule) as YourScheduleType[]).find(
+  //       (slot) => slot.date === selectedDateString
+  //     );
 
-  //     if (matchingSchedule) {
-  //       setAvailableTimeSlots(matchingSchedule.timeslots);
-  //     } else {
-  //       setAvailableTimeSlots([]);
+  //     if (selectedSchedule) {
+  //       setAvailableTimeSlots(selectedSchedule.timeSlots);
   //     }
   //   }
   // }, [selectedDate, schedule]);
