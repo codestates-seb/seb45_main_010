@@ -17,6 +17,9 @@ import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -64,6 +67,72 @@ public class TeacherService {
         applicationEventPublisher.publishEvent(new SignupEvent(saved.getEmail(), saved.getName()));
 
         return saved;
+    }
+    public Teacher updatePassword(Teacher teacher){
+        Teacher findTeacher = findVerifiedTeacher(teacher.getId());
+        findTeacher.setPassword(passwordEncoder.encode(teacher.getPassword()));
+
+        return teacherRepository.save(findTeacher);
+    }
+    public Teacher updateName(Teacher teacher){
+        Teacher findTeacher = findVerifiedTeacher(teacher.getId());
+        findTeacher.setName(teacher.getName());
+
+        return teacherRepository.save(findTeacher);
+    }
+    public Teacher updatePhone(Teacher teacher){
+        Teacher findTeacher = findVerifiedTeacher(teacher.getId());
+        findTeacher.setPhone(teacher.getPhone());
+
+        return teacherRepository.save(findTeacher);
+    }
+    public Teacher updateProfileImg(Teacher teacher){
+        Teacher findTeacher = findVerifiedTeacher(teacher.getId());
+        findTeacher.setProfileImg(teacher.getProfileImg());
+
+        return teacherRepository.save(findTeacher);
+    }
+    public Teacher updateIntroduction(Teacher teacher){
+        Teacher findTeacher = findVerifiedTeacher(teacher.getId());
+        findTeacher.setIntroduction(teacher.getIntroduction());
+
+        return teacherRepository.save(findTeacher);
+    }
+    public Teacher updateCareer(Teacher teacher){
+        Teacher findTeacher = findVerifiedTeacher(teacher.getId());
+        findTeacher.setCareer(teacher.getCareer());
+
+        return teacherRepository.save(findTeacher);
+    }
+    public Teacher updateLectureFee(Teacher teacher){
+        Teacher findTeacher = findVerifiedTeacher(teacher.getId());
+        findTeacher.setLectureFee(teacher.getLectureFee());
+
+        return teacherRepository.save(findTeacher);
+    }
+    public Teacher updateOption(Teacher teacher){
+        Teacher findTeacher = findVerifiedTeacher(teacher.getId());
+        findTeacher.setOption(teacher.getOption());
+
+        return teacherRepository.save(findTeacher);
+    }
+    public Teacher updateOnLine(Teacher teacher){
+        Teacher findTeacher = findVerifiedTeacher(teacher.getId());
+        findTeacher.setOnLine(teacher.isOnLine());
+
+        return teacherRepository.save(findTeacher);
+    }
+    public Teacher updateOffLine(Teacher teacher){
+        Teacher findTeacher = findVerifiedTeacher(teacher.getId());
+        findTeacher.setOffLine(teacher.isOffLine());
+
+        return teacherRepository.save(findTeacher);
+    }
+    public Teacher updateAddress(Teacher teacher){
+        Teacher findTeacher = findVerifiedTeacher(teacher.getId());
+        findTeacher.setAddress(teacher.getAddress());
+
+        return teacherRepository.save(findTeacher);
     }
     public Teacher updateTeacher( Teacher teacher ){
         Teacher findTeacher = findVerifiedTeacher(teacher.getId());
@@ -195,5 +264,14 @@ public class TeacherService {
         Optional<Teacher> optionalTeacher = teacherRepository.findByEmail(email);
 
         if (optionalTeacher.isPresent()) throw new BusinessLogicException(ExceptionCode.USED_EMAIL);
+    }
+    public void verifyIdentity(long teacherId){
+        SecurityContext securityContext = SecurityContextHolder.getContext();
+        Authentication authentication = securityContext.getAuthentication();
+
+        Teacher teacher = findVerifiedTeacher(teacherId);
+
+        if(!authentication.getName().equals(teacher.getEmail()))
+            throw new BusinessLogicException(ExceptionCode.NOT_AUTHORIZED);
     }
 }
