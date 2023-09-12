@@ -15,7 +15,7 @@ const Login: React.FC = () => {
     email: '',
     password: '',
   });
-
+  const apiURL = 'http://ec2-3-34-116-209.ap-northeast-2.compute.amazonaws.com:8080';
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const userInfo = useAppSelector((state) => state.member);
@@ -32,7 +32,7 @@ const Login: React.FC = () => {
 
   const handleKakaoAuth = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const response = await axios.get(`http://localhost:8080/oauth2/authorization/kakao`);
+    const response = await axios.get(`${apiURL}/oauth2/authorization/kakao`);
     console.log(response); //토큰을 받아옴
     //token을 받아오고 해석하여 Id를 추출하여 보내는 과정 API완료시 구현해야 함
   };

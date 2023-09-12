@@ -26,15 +26,16 @@ export const ChangeModal = ({
 }: props) => {
   const [open, setOpen] = useState<boolean>(false);
   const [inputValue, setInputValue] = useState<string>('');
-
+  const apiURL = 'http://ec2-3-34-116-209.ap-northeast-2.compute.amazonaws.com:8080';
   console.log(userId, API);
 
   const handleNameChange = async (newName: string) => {
     try {
       const data = {
+        id: userId,
         [changeItem]: newName,
       };
-      const response = await axios.patch(`http://localhost:8080/member/${userId}`, data);
+      const response = await axios.patch(`${apiURL}/students/name`, data);
       console.log(response.data);
     } catch (error) {
       console.log(`${changeItem}`, error);
