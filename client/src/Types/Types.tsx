@@ -51,4 +51,4 @@ export type footerType = {
   teamGithub: string;
 };
 
-export type TimeSlot = { date: string; timeslots: string[] }[];
+export type TimeSlot = { date: string; timeslots: string[] };

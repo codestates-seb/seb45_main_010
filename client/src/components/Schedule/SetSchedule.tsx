@@ -34,32 +34,18 @@ const SetSchedule: React.FC<ScheduleProps> = ({ schedule, userId }) => {
   }, [schedule, timeSlots]);
 
   const handleSave = async () => {
-    let method: 'POST' | 'PATCH' | 'DELETE';
-
     if (schedule === null) {
       prevScheduleRef.current = [];
     }
     const prevSchedule = prevScheduleRef.current;
-    if (newSchedule.length === 0 && prevSchedule.length === 0) {
-      return;
-    } else if (newSchedule.length > 0 && prevSchedule.length === 0) {
-      method = 'POST';
-      console.log('POST');
-    } else if (
-      newSchedule.length > 0 &&
-      JSON.stringify(newSchedule) !== JSON.stringify(prevSchedule)
-    ) {
-      method = 'PATCH';
-      console.log('PATCH');
-    } else if (newSchedule.length === 0 && prevSchedule.length > 0) {
-      method = 'DELETE';
-      console.log('DELETE');
+    if (JSON.stringify(newSchedule) !== JSON.stringify(prevSchedule)) {
+      dispatch(updateSchedule({ userId: userId, date: newSchedule }));
     } else {
       console.log('No matching condition, please check the logic.', newSchedule, prevSchedule);
       return;
     }
-    console.log('Updating schedule with:', { userId: userId, date: newSchedule, method });
-    return dispatch(updateSchedule({ userId: userId, date: newSchedule, method }));
+    console.log('Updating schedule with:', { userId: userId, date: newSchedule });
+    return;
   };
   const today = new Date();
   today.setHours(0, 0, 0, 0);
@@ -146,9 +132,9 @@ const SetSchedule: React.FC<ScheduleProps> = ({ schedule, userId }) => {
         locale={ko}
       />
 
-      {prevScheduleRef.current || timeSlots ? (
+      {selectedDate ? (
         <div className="w-full mt-5">
-          <span className="text-xs">available</span>
+          <span className="mb-5 text-sm font-bold">선택 가능한 시간 목록</span>
           <div className="my-10">
             <Select color="blue" label="선택 가능한 시간 목록">
               {timeSlots.map((perHour: string) => (
@@ -162,7 +148,7 @@ const SetSchedule: React.FC<ScheduleProps> = ({ schedule, userId }) => {
               ))}
             </Select>
           </div>
-          <span className="mb-5 text-sm font-bold">Selected</span>
+          <span className="mb-5 text-sm font-bold">선택한 시간 목록</span>
           <div className="my-10">
             {selectedTimeSlots.map((timeSlotObj, index) => (
               <div key={timeSlotObj.date + timeSlotObj.timeslots[index]}>

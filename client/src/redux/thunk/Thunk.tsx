@@ -22,25 +22,8 @@ export const FetchSchedule = createAsyncThunk('schedule/fetchSchedule', async (u
 
 export const updateSchedule = createAsyncThunk(
   'profile/updateSchedule',
-  async ({
-    userId,
-    date,
-    method,
-  }: {
-    userId: number;
-    date: User['date'] | null;
-    method: 'POST' | 'PATCH' | 'DELETE';
-  }) => {
-    let response;
-    if (method === 'POST') {
-      response = await axios.post(`http://localhost:8081/profile/${userId}`, { date });
-    } else if (method === 'PATCH') {
-      response = await axios.patch(`http://localhost:8081/profile/${userId}`, { date });
-    } else {
-      response = await axios.delete(`http://localhost:8081/profile/${userId}`, {
-        data: date, //  date: dateToBeDeleted
-      });
-    }
+  async ({ userId, date }: { userId: number; date: User['date'] | null }) => {
+    const response = await axios.patch(`http://localhost:8081/profile/${userId}`, { date });
     return response.data;
   }
 );
