@@ -23,13 +23,15 @@ const Login: React.FC = () => {
   const userInfo = useAppSelector((state) => state.member);
   const isLoading = userInfo.isLoading;
   console.log(userInfo);
+  const authData = checkAuth();
 
   useEffect(() => {
-    const authData = checkAuth();
-    dispatch(fetchUserDetails(authData));
-    alert(`반갑습니다.${userInfo.user.name} 회원님!`);
-    navigate('/private');
-  }, [navigate]);
+    if (authData !== undefined) {
+      dispatch(fetchUserDetails(authData));
+      alert(`반갑습니다.${userInfo.user.name} 회원님!`);
+      navigate('/private');
+    }
+  }, []);
 
   const handleLoginInfo = (e: ChangeEvent<HTMLInputElement>) => {
     const key = e.target.name;
@@ -73,7 +75,7 @@ const Login: React.FC = () => {
     //사용자 정보 Redux
 
     try {
-      const resultAction = await dispatch(fetchUserDetails(userInfo.user.id));
+      const resultAction = await dispatch(fetchUserDetails(authData));
 
       if (fetchUserDetails.fulfilled.match(resultAction)) {
         console.log(userInfo.user);

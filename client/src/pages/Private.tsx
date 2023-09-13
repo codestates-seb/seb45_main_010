@@ -4,7 +4,9 @@ import { AiFillCamera } from 'react-icons/ai';
 import { fetchUserDetails } from 'redux/slice/MemberSlice';
 import { useAppDispatch, useAppSelector } from 'hooks/hooks';
 import { ChangeModal } from 'components/Modal/ChangeModal';
+import { checkAuth } from 'components/Auth/CheckAuth';
 
+const authData = checkAuth();
 const Private: React.FC = () => {
   const dispatch = useAppDispatch();
   const userDetails = useAppSelector((state) => state.member.user);
@@ -12,8 +14,8 @@ const Private: React.FC = () => {
 
   useEffect(() => {
     // 페이지가 로딩될 때 사용자 정보를 가져옵니다.
-    dispatch(fetchUserDetails());
-  }, [dispatch, userDetails.id]);
+    dispatch(fetchUserDetails(authData));
+  }, [dispatch]);
 
   return (
     <div className="flex flex-col justify-center px-[12.5px]">
@@ -87,9 +89,7 @@ const Private: React.FC = () => {
         <div className="text-sm">전화번호</div>
         <div className="flex items-center">
           <div className="flex items-center border text-xs h-[50px] border-blue-800/60 rounded-lg w-80 p-2">
-            {userDetails.phone === undefined
-              ? 'your phone number here'
-              : userDetails.phone.toString()}
+            {userDetails.phone === null ? 'your phone number here' : userDetails.phone.toString()}
           </div>
           <div className="m-2">
             <ChangeModal

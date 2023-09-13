@@ -12,10 +12,10 @@ const initialState: initialStateType = {
   user: {
     name: '',
     email: '',
-    teacher: false,
-    id: undefined as unknown as number,
-    phone: undefined as unknown as number,
-    img: undefined as unknown as string,
+    teacher: undefined as unknown as false,
+    id: null as unknown as number,
+    phone: null as unknown as number,
+    img: null as unknown as string,
   },
   isLoading: false,
   isError: false,
@@ -57,7 +57,7 @@ export const fetchUserDetails = createAsyncThunk(
     try {
       const apiURL = 'http://ec2-3-34-116-209.ap-northeast-2.compute.amazonaws.com:8080';
       const response = await axios.get(
-        `${apiURL}/${teacher === 'STUDENT' ? 'teachers' : 'students'}/${id}`
+        `${apiURL}/${teacher === 'STUDENT' ? 'students' : 'teachers'}/${id}`
       );
       console.log(response);
       const data = response.data;

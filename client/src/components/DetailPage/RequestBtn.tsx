@@ -1,5 +1,5 @@
 import React from 'react';
-import { ReqModal } from 'components/Modal/ReqModal';
+import { ReqModal } from 'components/Modal/ReqModal/ReqModal';
 
 const RequestBtn = () => {
   return (
