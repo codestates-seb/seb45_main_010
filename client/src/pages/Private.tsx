@@ -6,8 +6,8 @@ import { useAppDispatch, useAppSelector } from 'hooks/hooks';
 import { ChangeModal } from 'components/Modal/ChangeModal';
 import { checkAuth } from 'components/Auth/CheckAuth';
 
-const authData = checkAuth();
 const Private: React.FC = () => {
+  const authData = checkAuth();
   const dispatch = useAppDispatch();
   const userDetails = useAppSelector((state) => state.member.user);
   console.log(userDetails);
@@ -22,8 +22,8 @@ const Private: React.FC = () => {
       <div className="flex mb-2">
         <div className="flex">
           <div className="flex flex-row justify-center item-center mr-[-30px]">
-            {userDetails.img ? (
-              <img src={userDetails.img} className="m-2 mx-6 rounded-lg h-14 w-14" />
+            {userDetails.profileImg ? (
+              <img src={userDetails.profileImg} className="m-2 mx-6 rounded-lg h-14 w-14" />
             ) : (
               <img src={Thumbnail} className="m-2 mx-6 rounded-lg h-14 w-14" />
             )}
@@ -58,7 +58,6 @@ const Private: React.FC = () => {
               btnCheck="제출"
               changeItem="name"
               userId={userDetails.id}
-              API="http://localhost:8080/member"
             />
           </div>
         </div>
@@ -79,7 +78,6 @@ const Private: React.FC = () => {
               btnCheck="제출"
               changeItem="password"
               userId={userDetails.id}
-              API="http://localhost:8080/member"
             />
           </div>
         </div>
@@ -89,7 +87,9 @@ const Private: React.FC = () => {
         <div className="text-sm">전화번호</div>
         <div className="flex items-center">
           <div className="flex items-center border text-xs h-[50px] border-blue-800/60 rounded-lg w-80 p-2">
-            {userDetails.phone === null ? 'your phone number here' : userDetails.phone.toString()}
+            {userDetails.phoneNumber === (null || undefined)
+              ? 'your phone number here'
+              : userDetails.phoneNumber}
           </div>
           <div className="m-2">
             <ChangeModal
@@ -100,7 +100,6 @@ const Private: React.FC = () => {
               btnCheck="제출"
               changeItem="phone"
               userId={userDetails.id}
-              API="http://localhost:8080/member"
             />
           </div>
         </div>

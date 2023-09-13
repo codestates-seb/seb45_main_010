@@ -8,6 +8,7 @@ import { fetchUserDetails } from 'redux/slice/MemberSlice';
 import { useAppDispatch, useAppSelector } from 'hooks/hooks';
 import IsLoading from 'components/Loading/Loading';
 import axios from 'axios';
+import { getAuth } from 'components/Auth/GetAuth';
 import { checkAuth } from 'components/Auth/CheckAuth';
 
 const Login: React.FC = () => {
@@ -22,16 +23,20 @@ const Login: React.FC = () => {
   const navigate = useNavigate();
   const userInfo = useAppSelector((state) => state.member);
   const isLoading = userInfo.isLoading;
-  console.log(userInfo);
-  const authData = checkAuth();
+
+  const authHandler = async () => {
+    const authData = checkAuth();
+    if (authData !== undefined) {
+      await dispatch(fetchUserDetails(authData));
+      console.log(userInfo.user);
+      alert(`반갑습니다.${userInfo.user.name} 회원님!`);
+      navigate('/');
+    }
+  };
 
   useEffect(() => {
-    if (authData !== undefined) {
-      dispatch(fetchUserDetails(authData));
-      alert(`반갑습니다.${userInfo.user.name} 회원님!`);
-      navigate('/private');
-    }
-  }, []);
+    authHandler();
+  }, [dispatch]);
 
   const handleLoginInfo = (e: ChangeEvent<HTMLInputElement>) => {
     const key = e.target.name;
@@ -56,35 +61,24 @@ const Login: React.FC = () => {
       return;
     }
 
-    // Login 및 토큰받기
     try {
-      const userLogin = await axios.post(`${apiURL}/login`, {
-        username: LoginInfo.email,
-        password: LoginInfo.password,
-      });
-      const accessToken = userLogin.headers.authorization.split(' ')[1];
-      console.log(accessToken);
-      if (accessToken) {
-        localStorage.setItem('access_jwt', accessToken);
-      }
-    } catch (error) {
-      console.log('로그인 실패, error');
-      return;
-    }
-
-    //사용자 정보 Redux
-
-    try {
-      const resultAction = await dispatch(fetchUserDetails(authData));
-
-      if (fetchUserDetails.fulfilled.match(resultAction)) {
-        console.log(userInfo.user);
-        alert(`반갑습니다.${resultAction.payload.name} 회원님!`);
-        navigate('/');
-      } else if (fetchUserDetails.rejected.match(resultAction)) {
-        // 서버 200, 304인데 데이터가 없는경우
-        const errorMessage = resultAction.payload as string;
-        alert(errorMessage);
+      //처음 로그인하여 토큰을 받은 경우
+      const loginSuccess = await getAuth(LoginInfo.email, LoginInfo.password);
+      if (loginSuccess) {
+        const authData = checkAuth();
+        const resultAction = await dispatch(fetchUserDetails(authData));
+        if (fetchUserDetails.fulfilled.match(resultAction)) {
+          console.log(userInfo.user);
+          alert(`반갑습니다.${resultAction.payload.name} 회원님!`);
+          navigate('/');
+        } else if (fetchUserDetails.rejected.match(resultAction)) {
+          // 서버 200, 304인데 데이터가 없는경우
+          const errorMessage = resultAction.payload as string;
+          console.log(errorMessage);
+          alert('고객정보 확인에 실패했습니다');
+        }
+      } else if (!loginSuccess) {
+        alert('로그인에 실패했습니다. 다시 시도하여 주세요');
       }
     } catch (error) {
       console.log(error);

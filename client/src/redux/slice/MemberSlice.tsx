@@ -12,7 +12,7 @@ const initialState: initialStateType = {
   user: {
     name: '',
     email: '',
-    teacher: null as unknown as false,
+    teacher: false,
     id: null as unknown as number,
     phoneNumber: null as unknown as string,
     profileImg: null as unknown as string,
