@@ -180,7 +180,7 @@ public class TeacherController {
         Teacher teacher = teacherMapper.patchToTeacher(requestBody);
         Teacher updated = teacherService.updateTeacher(teacher);
         TeacherDto.Response response = teacherMapper.teacherToTeacherResponse(updated,
-                subjectService, regionService, subjectMapper, regionMapper);
+                subjectService, regionService);
 
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
@@ -188,7 +188,7 @@ public class TeacherController {
     public ResponseEntity getTeacher(@PathVariable("teacher-id") @Positive long teacherId){
         Teacher teacher = teacherService.findTeacher(teacherId);
         TeacherDto.Response response = teacherMapper.teacherToTeacherResponse(teacher,
-                subjectService, regionService, subjectMapper, regionMapper);
+                subjectService, regionService);
 
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
@@ -211,7 +211,7 @@ public class TeacherController {
 
         return new ResponseEntity<>(
                 new TeacherListDto<>(teacherMapper.teachersToTeacherElements(teachers,
-                        subjectService, regionService, subjectMapper, regionMapper),
+                        subjectService, regionService),
                         pageTeachers),HttpStatus.OK);
 
     }

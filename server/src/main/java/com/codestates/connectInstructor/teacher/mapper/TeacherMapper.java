@@ -13,6 +13,7 @@ import org.mapstruct.Mapper;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Mapper(componentModel = "spring")
 public interface TeacherMapper {
@@ -41,9 +42,7 @@ public interface TeacherMapper {
     Teacher patchToTeacher(TeacherDto.Patch requestBody);
     default TeacherDto.Response teacherToTeacherResponse(Teacher teacher,
                                                          SubjectService subjectService,
-                                                         RegionService regionService,
-                                                         SubjectMapper subjectMapper,
-                                                         RegionMapper regionMapper){
+                                                         RegionService regionService){
         if (teacher == null) {
             return null;
         } else {
@@ -62,8 +61,12 @@ public interface TeacherMapper {
             response.setOffLine(teacher.isOffLine());
             response.setAddress(teacher.getAddress());
             response.setOauth(teacher.isOauth());
-            response.setSubjects(subjectMapper.subjectsToSubjectResponses(subjectService.findSubjectsWithTeacherId(teacher.getId())));
-            response.setRegions(regionMapper.regionsToRegionResponses(regionService.findRegionsWithTeacherId(teacher.getId())));
+            response.setSubjects(subjectService.findSubjectsWithTeacherId(teacher.getId()).stream()
+                    .map(subject -> subject.getSubjectName())
+                    .collect(Collectors.toList()));
+            response.setRegions(regionService.findRegionsWithTeacherId(teacher.getId()).stream()
+                    .map(region -> region.getRegionName())
+                    .collect(Collectors.toList()));
             response.setLastLogin(teacher.getLastLogin());
             response.setLastModified(teacher.getLastModified());
             response.setCreatedAt(teacher.getCreatedAt());
@@ -72,9 +75,7 @@ public interface TeacherMapper {
     }
     default TeacherDto.Element teacherToTeacherElement(Teacher teacher,
                                                        SubjectService subjectService,
-                                                       RegionService regionService,
-                                                       SubjectMapper subjectMapper,
-                                                       RegionMapper regionMapper){
+                                                       RegionService regionService){
         if (teacher == null) {
             return null;
         } else {
@@ -84,17 +85,19 @@ public interface TeacherMapper {
             element.setOffLine(teacher.isOffLine());
             element.setName(teacher.getName());
             element.setProfileImg(teacher.getProfileImg());
-            element.setSubjects(subjectMapper.subjectsToSubjectResponses(subjectService.findSubjectsWithTeacherId(teacher.getId())));
-            element.setRegions(regionMapper.regionsToRegionResponses(regionService.findRegionsWithTeacherId(teacher.getId())));
+            element.setSubjects(subjectService.findSubjectsWithTeacherId(teacher.getId()).stream()
+                    .map(subject -> subject.getSubjectName())
+                    .collect(Collectors.toList()));
+            element.setRegions(regionService.findRegionsWithTeacherId(teacher.getId()).stream()
+                    .map(region -> region.getRegionName())
+                    .collect(Collectors.toList()));
             element.setCreatedAt(teacher.getCreatedAt());
             return element;
         }
     }
     default List<TeacherDto.Element> teachersToTeacherElements(List<Teacher> teachers,
                                                        SubjectService subjectService,
-                                                       RegionService regionService,
-                                                       SubjectMapper subjectMapper,
-                                                       RegionMapper regionMapper){
+                                                       RegionService regionService){
         if (teachers == null) {
             return null;
         } else {
@@ -104,7 +107,7 @@ public interface TeacherMapper {
             while(var3.hasNext()) {
                 Teacher teacher = (Teacher)var3.next();
                 list.add(this.teacherToTeacherElement(teacher,
-                        subjectService, regionService, subjectMapper, regionMapper));
+                        subjectService, regionService));
             }
 
             return list;

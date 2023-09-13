@@ -127,16 +127,12 @@ public class TeacherControllerTest {
                 "OO학원에서 O년을 일했고 ~~", "일주일에 세시간 씩 매일 가능하고 시급은 ~~~",
                 "수학 수업의 경우는 고1 과정에서 고3과정의 ~~", true, false, "경기도 용인시 기흥구 ~~");
         String patchContent = gson.toJson(patch);
-        SubjectDto.Response subject1 = new SubjectDto.Response(1L, "국어");
-        SubjectDto.Response subject2 = new SubjectDto.Response(2L, "영어");
-        List<SubjectDto.Response> subjects = new ArrayList<>();
-        subjects.add(subject1);
-        subjects.add(subject2);
-        RegionDto.Response region1 = new RegionDto.Response(1L, "용인시");
-        RegionDto.Response region2 = new RegionDto.Response(2L, "수원시");
-        List<RegionDto.Response> regions = new ArrayList<>();
-        regions.add(region1);
-        regions.add(region2);
+        List<String> subjects = new ArrayList<>();
+        subjects.add("국어");
+        subjects.add("영어");
+        List<String> regions = new ArrayList<>();
+        regions.add("용인시");
+        regions.add("수원시");
         TeacherDto.Response response = new TeacherDto.Response(1L,"hgd@gmail.com",
                 "홍길동", true, "010-1234-5678",
                 "프로필 이미지가 저장된 곳 데이터", "안녕하세요. 저는 OO대학교를 졸업하고~~~",
@@ -147,7 +143,7 @@ public class TeacherControllerTest {
             //stubbing
         given(teacherMapper.patchToTeacher(Mockito.any(TeacherDto.Patch.class))).willReturn(new Teacher());
         given(teacherService.updateTeacher(Mockito.any(Teacher.class))).willReturn(new Teacher());
-        given(teacherMapper.teacherToTeacherResponse(Mockito.any(Teacher.class),Mockito.any(SubjectService.class),Mockito.any(RegionService.class),Mockito.any(SubjectMapper.class),Mockito.any(RegionMapper.class))).willReturn(response);
+        given(teacherMapper.teacherToTeacherResponse(Mockito.any(Teacher.class),Mockito.any(SubjectService.class),Mockito.any(RegionService.class))).willReturn(response);
         //when
         ResultActions actions =
                 mockMvc.perform(
@@ -197,12 +193,8 @@ public class TeacherControllerTest {
                                         fieldWithPath("offLine").type(JsonFieldType.BOOLEAN).description("오프라인 가능 여부"),
                                         fieldWithPath("address").type(JsonFieldType.STRING).description("강사의 주소"),
                                         fieldWithPath("oauth").type(JsonFieldType.BOOLEAN).description("OAuth 회원인지 여부"),
-                                        fieldWithPath("subjects").type(JsonFieldType.ARRAY).description("강사가 가능한 과목들 객체 리스트"),
-                                        fieldWithPath("subjects[].id").type(JsonFieldType.NUMBER).description("과목 식별자"),
-                                        fieldWithPath("subjects[].subjectName").type(JsonFieldType.STRING).description("과목 이름"),
-                                        fieldWithPath("regions").type(JsonFieldType.ARRAY).description("강사가 가능한 지역들 객체 리스트"),
-                                        fieldWithPath("regions[].id").type(JsonFieldType.NUMBER).description("지역 식별자"),
-                                        fieldWithPath("regions[].regionName").type(JsonFieldType.STRING).description("지역 이름"),
+                                        fieldWithPath("subjects").type(JsonFieldType.ARRAY).description("강사가 가능한 과목들"),
+                                        fieldWithPath("regions").type(JsonFieldType.ARRAY).description("강사가 가능한 지역들"),
                                         fieldWithPath("lastLogin").type(JsonFieldType.STRING).description("마지막 로그인 일시"),
                                         fieldWithPath("lastModified").type(JsonFieldType.STRING).description("마지막 강사회원 정보 수정 일시"),
                                         fieldWithPath("createdAt").type(JsonFieldType.STRING).description("회원 가입 일시")
@@ -216,16 +208,12 @@ public class TeacherControllerTest {
     public void getTeacherTest() throws Exception{
         //given
             //test data
-        SubjectDto.Response subject1 = new SubjectDto.Response(1L, "국어");
-        SubjectDto.Response subject2 = new SubjectDto.Response(2L, "영어");
-        List<SubjectDto.Response> subjects = new ArrayList<>();
-        subjects.add(subject1);
-        subjects.add(subject2);
-        RegionDto.Response region1 = new RegionDto.Response(1L, "용인시");
-        RegionDto.Response region2 = new RegionDto.Response(2L, "수원시");
-        List<RegionDto.Response> regions = new ArrayList<>();
-        regions.add(region1);
-        regions.add(region2);
+        List<String> subjects = new ArrayList<>();
+        subjects.add("국어");
+        subjects.add("영어");
+        List<String> regions = new ArrayList<>();
+        regions.add("용인시");
+        regions.add("수원시");
         TeacherDto.Response response = new TeacherDto.Response(1L,"hgd@gmail.com",
                 "홍길동", true, "010-1234-5678",
                 "프로필 이미지가 저장된 곳 데이터", "안녕하세요. 저는 OO대학교를 졸업하고~~~",
@@ -235,7 +223,7 @@ public class TeacherControllerTest {
                 LocalDateTime.now().minus(1, ChronoUnit.WEEKS));
             //stubbing
         given(teacherService.findTeacher(Mockito.anyLong())).willReturn(new Teacher());
-        given(teacherMapper.teacherToTeacherResponse(Mockito.any(Teacher.class),Mockito.any(SubjectService.class),Mockito.any(RegionService.class),Mockito.any(SubjectMapper.class),Mockito.any(RegionMapper.class))).willReturn(response);
+        given(teacherMapper.teacherToTeacherResponse(Mockito.any(Teacher.class),Mockito.any(SubjectService.class),Mockito.any(RegionService.class))).willReturn(response);
         //when
         ResultActions actions =
                 mockMvc.perform(
@@ -266,12 +254,8 @@ public class TeacherControllerTest {
                                         fieldWithPath("offLine").type(JsonFieldType.BOOLEAN).description("오프라인 가능 여부"),
                                         fieldWithPath("address").type(JsonFieldType.STRING).description("강사의 주소"),
                                         fieldWithPath("oauth").type(JsonFieldType.BOOLEAN).description("OAuth 회원인지 여부"),
-                                        fieldWithPath("subjects").type(JsonFieldType.ARRAY).description("강사가 가능한 과목들 객체 리스트"),
-                                        fieldWithPath("subjects[].id").type(JsonFieldType.NUMBER).description("과목 식별자"),
-                                        fieldWithPath("subjects[].subjectName").type(JsonFieldType.STRING).description("과목 이름"),
-                                        fieldWithPath("regions").type(JsonFieldType.ARRAY).description("강사가 가능한 지역들 객체 리스트"),
-                                        fieldWithPath("regions[].id").type(JsonFieldType.NUMBER).description("지역 식별자"),
-                                        fieldWithPath("regions[].regionName").type(JsonFieldType.STRING).description("지역 이름"),
+                                        fieldWithPath("subjects").type(JsonFieldType.ARRAY).description("강사가 가능한 과목들"),
+                                        fieldWithPath("regions").type(JsonFieldType.ARRAY).description("강사가 가능한 지역들"),
                                         fieldWithPath("lastLogin").type(JsonFieldType.STRING).description("마지막 로그인 일시"),
                                         fieldWithPath("lastModified").type(JsonFieldType.STRING).description("마지막 강사회원 정보 수정 일시"),
                                         fieldWithPath("createdAt").type(JsonFieldType.STRING).description("회원 가입 일시")
@@ -306,16 +290,13 @@ public class TeacherControllerTest {
                 PageRequest.of( 1, 10, Sort.by("createdAt").descending()),
                 2);
 
-        SubjectDto.Response subject1 = new SubjectDto.Response(1L, "국어");
-        SubjectDto.Response subject2 = new SubjectDto.Response(2L, "영어");
-        List<SubjectDto.Response> subjects = new ArrayList<>();
-        subjects.add(subject1);
-        subjects.add(subject2);
-        RegionDto.Response region1 = new RegionDto.Response(1L, "용인시");
-        RegionDto.Response region2 = new RegionDto.Response(2L, "수원시");
-        List<RegionDto.Response> regions = new ArrayList<>();
-        regions.add(region1);
-        regions.add(region2);
+        List<String> subjects = new ArrayList<>();
+        subjects.add("국어");
+        subjects.add("영어");
+        List<String> regions = new ArrayList<>();
+        regions.add("용인시");
+        regions.add("수원시");
+
         TeacherDto.Element element1 = new TeacherDto.Element();
         element1.setId(1L);
         element1.setOnLine(true);
@@ -348,7 +329,7 @@ public class TeacherControllerTest {
 
             //stubbing
         given(teacherService.searchTeachers(Mockito.anyString(),Mockito.anyList(),Mockito.anyList(),Mockito.anyInt(),Mockito.anyInt())).willReturn(pageTeachers);
-        given(teacherMapper.teachersToTeacherElements(Mockito.anyList(),Mockito.any(SubjectService.class),Mockito.any(RegionService.class),Mockito.any(SubjectMapper.class),Mockito.any(RegionMapper.class))).willReturn(elements);
+        given(teacherMapper.teachersToTeacherElements(Mockito.anyList(),Mockito.any(SubjectService.class),Mockito.any(RegionService.class))).willReturn(elements);
 
         //when
         ResultActions actions =
@@ -369,8 +350,8 @@ public class TeacherControllerTest {
                         requestParameters(
                                 List.of(
                                     parameterWithName("teacherName").description("강사 이름"),
-                                    parameterWithName("subjectNames").description("과목명"),
-                                    parameterWithName("regionNames").description("지역명"),
+                                    parameterWithName("subjectNames").description("과목명들"),
+                                    parameterWithName("regionNames").description("지역명들"),
                                     parameterWithName("page").description("페이지 번호"),
                                     parameterWithName("size").description("페이지 크기")
                                 )
@@ -381,12 +362,8 @@ public class TeacherControllerTest {
                                         fieldWithPath("data[].id").type(JsonFieldType.NUMBER).description("강사 식별자"),
                                         fieldWithPath("data[].onLine").type(JsonFieldType.BOOLEAN).description("온라인 여부"),
                                         fieldWithPath("data[].offLine").type(JsonFieldType.BOOLEAN).description("오프라인 여부"),
-                                        fieldWithPath("data[].subjects").type(JsonFieldType.ARRAY).description("강사가 가능한 과목들 객체 리스트"),
-                                        fieldWithPath("data[].subjects[].id").type(JsonFieldType.NUMBER).description("과목 식별자"),
-                                        fieldWithPath("data[].subjects[].subjectName").type(JsonFieldType.STRING).description("과목 이름"),
-                                        fieldWithPath("data[].regions").type(JsonFieldType.ARRAY).description("강사가 가능한 지역들 객체 리스트"),
-                                        fieldWithPath("data[].regions[].id").type(JsonFieldType.NUMBER).description("지역 식별자"),
-                                        fieldWithPath("data[].regions[].regionName").type(JsonFieldType.STRING).description("지역 이름"),
+                                        fieldWithPath("data[].subjects").type(JsonFieldType.ARRAY).description("강사가 가능한 과목들"),
+                                        fieldWithPath("data[].regions").type(JsonFieldType.ARRAY).description("강사가 가능한 지역들"),
                                         fieldWithPath("data[].name").type(JsonFieldType.STRING).description("강사 이름"),
                                         fieldWithPath("data[].profileImg").type(JsonFieldType.STRING).description("프로필 이미지 저장 URL"),
                                         fieldWithPath("data[].createdAt").type(JsonFieldType.STRING).description("강사 회원가입 일시"),

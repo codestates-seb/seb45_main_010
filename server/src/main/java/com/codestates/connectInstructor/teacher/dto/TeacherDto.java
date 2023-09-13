@@ -113,8 +113,8 @@ public class TeacherDto {
         private boolean offLine;
         private String address;
         private boolean oauth;
-        private List<SubjectDto.Response> subjects;
-        private List<RegionDto.Response> regions;
+        private List<String> subjects;
+        private List<String> regions;
         private LocalDateTime lastLogin;
         private LocalDateTime lastModified;
         private LocalDateTime createdAt;
@@ -126,8 +126,8 @@ public class TeacherDto {
         private long id;
         private boolean onLine;
         private boolean offLine;
-        private List<SubjectDto.Response> subjects;
-        private List<RegionDto.Response> regions;
+        private List<String> subjects;
+        private List<String> regions;
         private String name;
         private String profileImg;
         private LocalDateTime createdAt;

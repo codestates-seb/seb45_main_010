@@ -61,6 +61,7 @@ public class TeacherService {
             teacher.setPassword(passwordEncoder.encode(teacher.getPassword()));
         }
         teacher.setRoles(customAuthorityUtils.getTEACHER_ROLES_STRING());
+        teacher.setLastModified(LocalDateTime.now());
 
         Teacher saved = teacherRepository.save(teacher);
 
@@ -74,6 +75,7 @@ public class TeacherService {
         Teacher findTeacher = findVerifiedTeacher(teacher.getId());
         findTeacher.setPassword(passwordEncoder.encode(teacher.getPassword()));
 
+        findTeacher.setLastModified(LocalDateTime.now());
         return teacherRepository.save(findTeacher);
     }
     public Teacher updateName(Teacher teacher){
@@ -82,6 +84,7 @@ public class TeacherService {
         Teacher findTeacher = findVerifiedTeacher(teacher.getId());
         findTeacher.setName(teacher.getName());
 
+        findTeacher.setLastModified(LocalDateTime.now());
         return teacherRepository.save(findTeacher);
     }
     public Teacher updatePhone(Teacher teacher){
@@ -90,6 +93,7 @@ public class TeacherService {
         Teacher findTeacher = findVerifiedTeacher(teacher.getId());
         findTeacher.setPhone(teacher.getPhone());
 
+        findTeacher.setLastModified(LocalDateTime.now());
         return teacherRepository.save(findTeacher);
     }
     public Teacher updateProfileImg(Teacher teacher){
@@ -98,6 +102,7 @@ public class TeacherService {
         Teacher findTeacher = findVerifiedTeacher(teacher.getId());
         findTeacher.setProfileImg(teacher.getProfileImg());
 
+        findTeacher.setLastModified(LocalDateTime.now());
         return teacherRepository.save(findTeacher);
     }
     public Teacher updateIntroduction(Teacher teacher){
@@ -106,6 +111,7 @@ public class TeacherService {
         Teacher findTeacher = findVerifiedTeacher(teacher.getId());
         findTeacher.setIntroduction(teacher.getIntroduction());
 
+        findTeacher.setLastModified(LocalDateTime.now());
         return teacherRepository.save(findTeacher);
     }
     public Teacher updateCareer(Teacher teacher){
@@ -114,6 +120,7 @@ public class TeacherService {
         Teacher findTeacher = findVerifiedTeacher(teacher.getId());
         findTeacher.setCareer(teacher.getCareer());
 
+        findTeacher.setLastModified(LocalDateTime.now());
         return teacherRepository.save(findTeacher);
     }
     public Teacher updateLectureFee(Teacher teacher){
@@ -122,6 +129,7 @@ public class TeacherService {
         Teacher findTeacher = findVerifiedTeacher(teacher.getId());
         findTeacher.setLectureFee(teacher.getLectureFee());
 
+        findTeacher.setLastModified(LocalDateTime.now());
         return teacherRepository.save(findTeacher);
     }
     public Teacher updateOption(Teacher teacher){
@@ -130,6 +138,7 @@ public class TeacherService {
         Teacher findTeacher = findVerifiedTeacher(teacher.getId());
         findTeacher.setOption(teacher.getOption());
 
+        findTeacher.setLastModified(LocalDateTime.now());
         return teacherRepository.save(findTeacher);
     }
     public Teacher updateOnLine(Teacher teacher){
@@ -138,6 +147,7 @@ public class TeacherService {
         Teacher findTeacher = findVerifiedTeacher(teacher.getId());
         findTeacher.setOnLine(teacher.isOnLine());
 
+        findTeacher.setLastModified(LocalDateTime.now());
         return teacherRepository.save(findTeacher);
     }
     public Teacher updateOffLine(Teacher teacher){
@@ -146,6 +156,7 @@ public class TeacherService {
         Teacher findTeacher = findVerifiedTeacher(teacher.getId());
         findTeacher.setOffLine(teacher.isOffLine());
 
+        findTeacher.setLastModified(LocalDateTime.now());
         return teacherRepository.save(findTeacher);
     }
     public Teacher updateAddress(Teacher teacher){
@@ -154,6 +165,7 @@ public class TeacherService {
         Teacher findTeacher = findVerifiedTeacher(teacher.getId());
         findTeacher.setAddress(teacher.getAddress());
 
+        findTeacher.setLastModified(LocalDateTime.now());
         return teacherRepository.save(findTeacher);
     }
     public Teacher updateTeacher( Teacher teacher ){
@@ -207,6 +219,7 @@ public class TeacherService {
 
         teacher.addTeacherRegion(teacherRegion);
 
+        teacher.setLastModified(LocalDateTime.now());
         teacherRepository.save(teacher);
     }
     public void deleteRegionFromTeacher( long teacherId, String regionName ){
@@ -233,6 +246,7 @@ public class TeacherService {
             }
         }
 
+        teacher.setLastModified(LocalDateTime.now());
         teacherRepository.save(teacher);
     }
     public void addSubjectToTeacher( long teacherId, String subjectName ){
@@ -255,6 +269,7 @@ public class TeacherService {
 
         teacher.addTeacherSubject(teacherSubject);
 
+        teacher.setLastModified(LocalDateTime.now());
         teacherRepository.save(teacher);
     }
     public void deleteSubjectFromTeacher( long teacherId, String subjectName ){
@@ -273,6 +288,7 @@ public class TeacherService {
         }
         System.out.println(teacher.getTeacherSubjects().size());
 
+        teacher.setLastModified(LocalDateTime.now());
         teacherRepository.save(teacher);
     }
     public Teacher findTeacher( long teacherId){
@@ -303,7 +319,7 @@ public class TeacherService {
 //
 //        Teacher teacher = findVerifiedTeacher(teacherId);
 //
-//       if(!authentication.getName().equals(teacher.getEmail()))
+//        if(!authentication.getName().equals(teacher.getEmail()))
 //            throw new BusinessLogicException(ExceptionCode.NOT_AUTHORIZED);
     }
 }
