@@ -79,7 +79,7 @@ public class StudentDto {
     @Builder
     public static class PatchSubject {
         @NotNull
-        private long studentId;
+        private long id;
         @NotNull
         private List<String> subjects;
     }
@@ -88,7 +88,7 @@ public class StudentDto {
     @Builder
     public static class PatchRegion {
         @NotNull
-        private long studentId;
+        private long id;
         @NotNull
         private List<String> regions;
     }

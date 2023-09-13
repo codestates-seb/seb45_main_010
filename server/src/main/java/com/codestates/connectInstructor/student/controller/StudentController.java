@@ -110,7 +110,7 @@ public class StudentController {
     @PatchMapping("/subjects")
     public ResponseEntity patchSubject(@RequestBody @Valid StudentDto.PatchSubject request) {
 
-        Student updated = service.updateSubject(request.getStudentId(), request.getSubjects());
+        Student updated = service.updateSubject(request.getId(), request.getSubjects());
 
         StudentDto.PatchSubject response = mapper.studentToPatchSubject(updated);
 
@@ -128,7 +128,7 @@ public class StudentController {
 
     @PatchMapping("/regions")
     public ResponseEntity patchRegions(@RequestBody @Valid StudentDto.PatchRegion request) {
-        Student student = service.updateRegion(request.getStudentId(), request.getRegions());
+        Student student = service.updateRegion(request.getId(), request.getRegions());
 
         StudentDto.PatchRegion response = mapper.studentToPatchRegion(student);
 

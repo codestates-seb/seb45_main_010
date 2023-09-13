@@ -36,7 +36,7 @@ public interface StudentMapper {
 
     default StudentDto.PatchSubject studentToPatchSubject(Student updated) {
         return StudentDto.PatchSubject.builder()
-                .studentId(updated.getId())
+                .id(updated.getId())
                 .subjects(
                         updated
                                 .getStudentSubjects()
@@ -48,7 +48,7 @@ public interface StudentMapper {
 
     default StudentDto.PatchRegion studentToPatchRegion(Student student) {
         return StudentDto.PatchRegion.builder()
-                .studentId(student.getId())
+                .id(student.getId())
                 .regions(
                         student.getStudentRegions()
                                 .stream().map(x -> x.getRegion().getRegionName())

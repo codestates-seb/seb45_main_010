@@ -1,13 +1,12 @@
 package com.codestates.connectInstructor.teacher.service;
 
-import com.codestates.connectInstructor.event.SignupEvent;
+import com.codestates.connectInstructor.email.event.SignupEvent;
 import com.codestates.connectInstructor.exception.BusinessLogicException;
 import com.codestates.connectInstructor.exception.ExceptionCode;
 import com.codestates.connectInstructor.region.entity.Region;
 import com.codestates.connectInstructor.region.service.RegionService;
 import com.codestates.connectInstructor.security.utils.CustomAuthorityUtils;
 import com.codestates.connectInstructor.subject.entity.Subject;
-import com.codestates.connectInstructor.subject.repository.SubjectRepository;
 import com.codestates.connectInstructor.subject.service.SubjectService;
 import com.codestates.connectInstructor.teacher.entity.Teacher;
 import com.codestates.connectInstructor.teacher.entity.TeacherRegion;
@@ -17,9 +16,6 @@ import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContext;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

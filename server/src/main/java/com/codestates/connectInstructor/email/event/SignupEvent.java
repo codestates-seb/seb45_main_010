@@ -1,4 +1,4 @@
-package com.codestates.connectInstructor.event;
+package com.codestates.connectInstructor.email.event;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

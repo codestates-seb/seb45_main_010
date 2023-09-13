@@ -1,7 +1,7 @@
 package com.codestates.connectInstructor.student.service;
 
 import com.codestates.connectInstructor.common.MemberStatus;
-import com.codestates.connectInstructor.event.SignupEvent;
+import com.codestates.connectInstructor.email.event.SignupEvent;
 import com.codestates.connectInstructor.exception.BusinessLogicException;
 import com.codestates.connectInstructor.exception.ExceptionCode;
 import com.codestates.connectInstructor.region.entity.Region;
@@ -15,7 +15,6 @@ import com.codestates.connectInstructor.subject.entity.Subject;
 import com.codestates.connectInstructor.subject.repository.SubjectRepository;
 import com.codestates.connectInstructor.teacher.entity.Teacher;
 import com.codestates.connectInstructor.teacher.repository.TeacherRepository;
-import com.codestates.connectInstructor.teacher.service.TeacherService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationEventPublisher;
