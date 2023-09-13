@@ -7,6 +7,8 @@ import {
   updateCareer,
   updateOption,
   updateIntroduction,
+  updateRegions,
+  updateSubjects,
 } from 'redux/thunk/Thunk';
 import { createSlice } from '@reduxjs/toolkit';
 
@@ -95,9 +97,21 @@ export const ProfileSlice = createSlice({
           state.value.option = action.payload.option;
         }
       })
+      .addCase(updateRegions.fulfilled, (state, action) => {
+        if (state.value) {
+          state.value.regions = action.payload.regions;
+        }
+      })
+      .addCase(updateSubjects.fulfilled, (state, action) => {
+        if (state.value) {
+          state.value.subjects = action.payload.subjects;
+        }
+      })
       .addCase(updateIntroduction.fulfilled, (state, action) => {
         console.log(action.payload);
-        state.value.introduction = action.payload.introduction;
+        if (state.value) {
+          state.value.introduction = action.payload.introduction;
+        }
       });
   },
 });

@@ -9,7 +9,10 @@ import Option from './ProfileTab/Option';
 type ProfileHeaderProps = {
   name: string;
   introduction: string;
-  user: User;
+  userId: number;
+  subjects: string[];
+  regions: string[];
+  profileImg: string | null;
   classMethod: {
     onLine: boolean;
     offLine: boolean;
@@ -19,21 +22,24 @@ type ProfileHeaderProps = {
 const ProfileHeader: React.FC<ProfileHeaderProps> = ({
   name,
   introduction,
-  user,
+  userId,
+  profileImg,
   classMethod = { onLine: false, offLine: false },
+  subjects,
+  regions,
 }) => {
   const { onLine, offLine } = classMethod;
   const category = {
-    subject: ['수학', '과학', '외국어', '국사', '사회'],
-    area: ['서울', '강서', '강원', '강남', '강북', '충북', '제주'],
+    subjects: ['수학', '과학', '외국어', '국사', '사회'],
+    regions: ['서울', '강서', '강원', '강남', '강북', '충북', '제주'],
   };
   return (
     <div className="p-4 py-10">
       <>
         <div className="flex flex-row items-center gap-6 mb-10">
           <img
-            src={userExampleImage}
-            className="border rounded-full w-14 h-14 border-mint-200"
+            src={profileImg ? profileImg : userExampleImage}
+            className="border rounded-full w-14 h-14 border-mint-2"
             alt="프로필이미지"
           ></img>
           <div className="flex flex-col gap-2">
@@ -50,14 +56,15 @@ const ProfileHeader: React.FC<ProfileHeaderProps> = ({
             </div>
           </div>
         </div>
+        {/* {teacher ? :} */}
         <div className="flex justify-end gap-5 my-10">
           {onLine ? <OnlineDiv onoff="온라인" /> : null}
           {offLine ? <OnlineDiv onoff="오프라인" /> : null}
         </div>
       </>
-      <ProfileDropdown title="과목" selections={category.subject} categories={user.category} />
-      <ProfileDropdown title="지역" selections={category.area} categories={user.area} />
-      <Option optionDesc={introduction} userId={user.id} />
+      <ProfileDropdown title="과목" selections={category.subjects} categories={user.subjects} />
+      <ProfileDropdown title="지역" selections={category.regions} categories={user.regions} />
+      <Option optionDesc={introduction} userId={userId} />
       <div className="mt-10 border-b-2 border-gray-1"></div>
     </div>
   );

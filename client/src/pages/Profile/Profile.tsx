@@ -37,7 +37,10 @@ const Profile = () => {
           <ProfileHeader
             name={user.name}
             introduction={user.introduction}
-            user={user.id}
+            userId={user.id}
+            profileImg={user.profileImg}
+            subjects={user.subjects}
+            regions={user.regions}
             classMethod={{
               onLine: user.onLine,
               offLine: user.offLine,
@@ -57,11 +60,7 @@ const Profile = () => {
             handleClassMethodUpdate={handleClassMethodUpdate}
           />
         </>
-      ) : profileState.status === 'pending' ? (
-        <div>Loading...</div>
-      ) : (
-        <div>Error loading data</div>
-      )}
+      ) : null}
     </>
   );
 };

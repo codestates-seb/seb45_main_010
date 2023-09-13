@@ -8,8 +8,8 @@ import {
   updateLectureFee,
   updateOption,
   updateIntroduction,
-  FetchProfile,
 } from 'redux/thunk/Thunk';
+import { ConfirmModal } from 'components/Modal/ConfirmModal';
 
 const Option = ({
   optionTitle,
@@ -46,7 +46,9 @@ const Option = ({
         <li className="right-0 flex justify-end m-4">
           {!isEditing && <BsPencil onClick={() => setIsEditing(true)} />}
           {isEditing && (
-            <TfiSave
+            <ConfirmModal
+              title="변경사항을 저장하시겠습니까?"
+              btnCheck="확인"
               onClick={() => {
                 setIsEditing(false);
                 saveChanges();

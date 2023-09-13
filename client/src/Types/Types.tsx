@@ -4,45 +4,52 @@ export type User = {
   password: string;
   teacher: boolean;
   id: number;
-  phone: number;
-  area: string[];
-  category: string[];
-  img: string;
-  introduce: string;
+  phoneNumber: string;
+  regions: string[];
+  subjects: string[];
+  profileImg: string;
+  introduction: string;
   lectureFee: string;
   career: string;
-  option: string;
-  date: { date: string; timeslots: string[] }[];
-  classMethod: {
-    onLine: boolean;
-    offLine: boolean;
-  };
+  lessonOption: string;
+  schedule: { date: string; timeslots: string[] }[];
+  onLine: boolean;
+  offLine: boolean;
+  oauth: boolean;
+  address: string;
 };
 
 export type TeacherType = Omit<User, 'password'>;
 
 export type StudentType = Omit<
   User,
-  'password' | 'date' | 'classMethod' | 'lectureFee' | 'career' | 'option'
+  'password' | 'schedule' | 'onLine' | 'offLine' | 'lectureFee' | 'career' | 'lessonOption'
 >;
 
-export type CommonUserType = Pick<User, 'name' | 'email' | 'teacher' | 'id' | 'phone' | 'img'>;
+export type CommonUserType = Pick<
+  User,
+  'name' | 'email' | 'teacher' | 'id' | 'phoneNumber' | 'profileImg'
+>;
 
-export type PrivateType = Pick<User, 'img' | 'name' | 'email' | 'password' | 'phone'>;
+export type PrivateType = Pick<User, 'profileImg' | 'name' | 'email' | 'password' | 'phoneNumber'>;
 
 export type LoginType = Pick<User, 'email' | 'password'>;
 
-export type ListPageType = Pick<User, 'name' | 'category' | 'area' | 'classMethod' | 'img'>[];
+export type ListPageType = Pick<
+  User,
+  'name' | 'subjects' | 'regions' | 'onLine' | 'offLine' | 'profileImg'
+>[];
 
 export type DetailType = Pick<
   User,
   | 'name'
-  | 'img'
-  | 'classMethod'
-  | 'category'
-  | 'area'
-  | 'date'
-  | 'introduce'
+  | 'profileImg'
+  | 'onLine'
+  | 'offLine'
+  | 'subjects'
+  | 'regions'
+  | 'schedule'
+  | 'introduction'
   | 'lectureFee'
   | 'career'
 >;
@@ -52,7 +59,7 @@ export type RequestType = {
   name: string;
   requestcategory: string[];
   note: string;
-  date: string;
+  schedule: string;
 };
 
 export type footerType = {
@@ -60,15 +67,15 @@ export type footerType = {
   member: {
     name: string;
     position: string;
-    img: string;
+    profileImg: string;
   }[];
 };
 
-export type TimeSlotType = { date: string; timeslots: string[] };
+export type TimeSlotType = { schedule: string; timeslots: string[] };
 
-export type ScheduleType = { id: number; date: TimeSlotType[] };
+export type ScheduleType = { id: number; schedule: TimeSlotType[] };
 
 export type ScheduleArrayType = {
   id: number;
-  date: ScheduleType[];
+  schedule: ScheduleType[];
 }[];
