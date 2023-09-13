@@ -1,13 +1,7 @@
 import React, { useState } from 'react';
-import {
-  Button,
-  Dialog,
-  DialogHeader,
-  DialogFooter,
-  Input,
-  Textarea,
-} from '@material-tailwind/react';
+import { Button, Dialog, DialogHeader, DialogFooter } from '@material-tailwind/react';
 import { DetailType } from 'Types/Types';
+import ReqForm from './ReqForm';
 
 const arr: string[] = ['수학', '국어', '영어'];
 const array: string[] = ['서울', '경기', '제주'];
@@ -21,22 +15,42 @@ export const ReqModal = () => {
   const [isCategory, setIsCategory] = useState<boolean[]>([]);
   const [isArea, setIsArea] = useState<boolean[]>([]);
   const [isOnOff, setIsOnOff] = useState<boolean[]>([]);
+  const [selectCategory, setSelectCategory] = useState<string[]>([]);
+  const [selectArea, setSelectArea] = useState<string[]>([]);
+  const [selectOnOff, setSelectOnOff] = useState<string[]>([]);
 
   const handleOpen = (): void => setIsOpen(!isOpen);
 
-  const handleCategory = (index: number): void => {
-    const newButtonStates = [...isCategory];
+  const handleCategory = (item: string, index: number): void => {
+    const newButtonStates: boolean[] = [...isCategory];
+    const newItem: string[] = [...selectCategory];
     newButtonStates[index] = !newButtonStates[index];
+    newItem[index] = newButtonStates[index] ? item : '';
+    const trim = newItem.filter((item) => item !== '');
+
+    setSelectCategory(trim);
     setIsCategory(newButtonStates);
   };
-  const handleArea = (index: number): void => {
-    const newButtonStates = [...isArea];
+
+  const handleArea = (item: string, index: number): void => {
+    const newButtonStates: boolean[] = [...isArea];
+    const newItem: string[] = [...selectArea];
     newButtonStates[index] = !newButtonStates[index];
+    newItem[index] = newButtonStates[index] ? item : '';
+    const trim = newItem.filter((item) => item !== '');
+
+    setSelectArea(trim);
     setIsArea(newButtonStates);
   };
-  const handleOnOff = (index: number): void => {
-    const newButtonStates = [...isOnOff];
+
+  const handleOnOff = (item: string, index: number): void => {
+    const newButtonStates: boolean[] = [...isOnOff];
+    const newItem: string[] = [...selectOnOff];
     newButtonStates[index] = !newButtonStates[index];
+    newItem[index] = newButtonStates[index] ? item : '';
+    const trim = newItem.filter((item) => item !== '');
+
+    setSelectOnOff(trim);
     setIsOnOff(newButtonStates);
   };
 
@@ -48,7 +62,6 @@ export const ReqModal = () => {
         className="flex items-center h-10 text-sm"
         children="강의 신청하기"
       />
-
       <Dialog
         size="xs"
         open={isOpen}
@@ -61,7 +74,7 @@ export const ReqModal = () => {
             return (
               <Button
                 key={index}
-                onClick={() => handleCategory(index)}
+                onClick={() => handleCategory(item, index)}
                 className={`${
                   isCategory[index] ? 'bg-gray-3' : 'bg-mint-300'
                 } px-3 py-1 m-2 text-sm text-black rounded-2xl `}
@@ -70,14 +83,13 @@ export const ReqModal = () => {
             );
           })}
         </section>
-
         <DialogHeader className="p-2 text-sm ">지역 선택</DialogHeader>
         <section className="flex items-center ">
           {array.map((item, index) => {
             return (
               <Button
                 key={index}
-                onClick={() => handleArea(index)}
+                onClick={() => handleArea(item, index)}
                 className={`${
                   isArea[index] ? 'bg-gray-3' : 'bg-mint-300'
                 } px-3 py-1 m-2 text-sm text-black rounded-2xl `}
@@ -86,7 +98,6 @@ export const ReqModal = () => {
             );
           })}
         </section>
-
         <DialogHeader className="p-2 text-sm">스케줄 선택</DialogHeader>
         <DialogHeader className="p-2 text-sm ">온/오프라인 선택</DialogHeader>
         <section className="flex items-center ">
@@ -94,7 +105,7 @@ export const ReqModal = () => {
             return (
               <Button
                 key={index}
-                onClick={() => handleOnOff(index)}
+                onClick={() => handleOnOff(item, index)}
                 className={`${
                   isOnOff[index] ? 'bg-gray-3' : 'bg-mint-300'
                 } px-3 py-1 m-2 text-sm text-black rounded-2xl `}
@@ -103,39 +114,14 @@ export const ReqModal = () => {
             );
           })}
         </section>
-        <DialogHeader className="p-2 text-sm">이름</DialogHeader>
-        <Input
-          label="이름"
-          color="blue-gray"
-          crossOrigin={undefined}
-          className="flex items-center bg-mint-300 rounded-2xl"
-        />
-        <DialogHeader className="p-2 text-sm">연락처</DialogHeader>
-        <Input
-          label="연락처"
-          color="blue-gray"
-          crossOrigin={undefined}
-          className="flex items-center bg-mint-300 rounded-2xl"
-        />
-        <DialogHeader className="p-2 text-sm">이메일</DialogHeader>
-        <Input
-          label="이메일"
-          type="email"
-          color="blue-gray"
-          crossOrigin={undefined}
-          className="flex items-center bg-mint-300 rounded-2xl"
-        />
-        <DialogHeader className="p-2 text-sm">특이사항</DialogHeader>
-        <Textarea label="특이사항" className="flex items-center bg-mint-300 rounded-2xl" />
+        <ReqForm />
         <DialogFooter className="p-2">
           <Button
             variant="text"
             color="red"
-            onClick={handleOpen}
             className="p-2 mx-3 my-1 text-black rounded-full bg-mint-300"
-          >
-            <span>신청하기</span>
-          </Button>
+            children="신청하기"
+          />
         </DialogFooter>
       </Dialog>
     </>
