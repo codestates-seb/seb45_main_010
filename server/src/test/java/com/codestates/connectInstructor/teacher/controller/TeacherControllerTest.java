@@ -114,7 +114,7 @@ public class TeacherControllerTest {
     @WithAnonymousUser
     public void patchTeacherTest() throws Exception {
         //give
-            //test data
+        //test data
         TeacherDto.Patch patch = new TeacherDto.Patch(1L, "홍길동", "010-1234-5678",
                 "프로필 이미지가 저장된 곳 데이터", "안녕하세요. 저는 OO대학교를 졸업하고~~~",
                 "OO학원에서 O년을 일했고 ~~", "일주일에 세시간 씩 매일 가능하고 시급은 ~~~",
@@ -126,14 +126,14 @@ public class TeacherControllerTest {
         List<String> regions = new ArrayList<>();
         regions.add("용인시");
         regions.add("수원시");
-        TeacherDto.Response response = new TeacherDto.Response(1L,"hgd@gmail.com",
+        TeacherDto.Response response = new TeacherDto.Response(1L, "hgd@gmail.com",
                 "홍길동", true, "010-1234-5678",
                 "프로필 이미지가 저장된 곳 데이터", "안녕하세요. 저는 OO대학교를 졸업하고~~~",
                 "OO학원에서 O년을 일했고 ~~", "일주일에 세시간 씩 매일 가능하고 시급은 ~~~",
                 "수학 수업의 경우는 고1 과정에서 고3과정의 ~~", true, false, "경기도 용인시 기흥구 ~~",
                 false, subjects, regions, LocalDateTime.now(), LocalDateTime.now(),
                 LocalDateTime.now().minus(1, ChronoUnit.WEEKS));
-            //stubbing
+        //stubbing
         given(teacherMapper.patchToTeacher(Mockito.any(TeacherDto.Patch.class))).willReturn(new Teacher());
         given(teacherService.updateTeacher(Mockito.any(Teacher.class))).willReturn(new Teacher());
         given(teacherMapper.teacherToTeacherResponse(Mockito.any(Teacher.class))).willReturn(response);
@@ -149,7 +149,7 @@ public class TeacherControllerTest {
 
         //then
         actions.andExpect(MockMvcResultMatchers.status().isOk())
-                .andDo(document( "patch-teacher",
+                .andDo(document("patch-teacher",
                         getRequestPreProcessor(),
                         getResponsePreProcessor(),
                         pathParameters(
@@ -196,25 +196,26 @@ public class TeacherControllerTest {
                 ));
 
     }
+
     @Test
     @WithAnonymousUser
-    public void getTeacherTest() throws Exception{
+    public void getTeacherTest() throws Exception {
         //given
-            //test data
+        //test data
         List<String> subjects = new ArrayList<>();
         subjects.add("국어");
         subjects.add("영어");
         List<String> regions = new ArrayList<>();
         regions.add("용인시");
         regions.add("수원시");
-        TeacherDto.Response response = new TeacherDto.Response(1L,"hgd@gmail.com",
+        TeacherDto.Response response = new TeacherDto.Response(1L, "hgd@gmail.com",
                 "홍길동", true, "010-1234-5678",
                 "프로필 이미지가 저장된 곳 데이터", "안녕하세요. 저는 OO대학교를 졸업하고~~~",
                 "OO학원에서 O년을 일했고 ~~", "일주일에 세시간 씩 매일 가능하고 시급은 ~~~",
                 "수학 수업의 경우는 고1 과정에서 고3과정의 ~~", true, false, "경기도 용인시 기흥구 ~~",
                 false, subjects, regions, LocalDateTime.now(), LocalDateTime.now(),
                 LocalDateTime.now().minus(1, ChronoUnit.WEEKS));
-            //stubbing
+        //stubbing
         given(teacherService.findTeacher(Mockito.anyLong())).willReturn(new Teacher());
         given(teacherMapper.teacherToTeacherResponse(Mockito.any(Teacher.class))).willReturn(response);
         //when
@@ -225,7 +226,7 @@ public class TeacherControllerTest {
                 );
         //then
         actions.andExpect(MockMvcResultMatchers.status().isOk())
-                .andDo(document( "get-teacher",
+                .andDo(document("get-teacher",
                         getRequestPreProcessor(),
                         getResponsePreProcessor(),
                         pathParameters(
@@ -256,11 +257,12 @@ public class TeacherControllerTest {
                         )
                 ));
     }
+
     @Test
     @WithAnonymousUser
     public void getTeachersTest() throws Exception {
         //given
-            //test data
+        //test data
         Teacher teacher1 = new Teacher();
         teacher1.setId(1L);
         teacher1.setName("홍길동");
@@ -280,7 +282,7 @@ public class TeacherControllerTest {
 
         Page<Teacher> pageTeachers = new PageImpl<>(
                 List.of(teacher1, teacher2),
-                PageRequest.of( 1, 10, Sort.by("createdAt").descending()),
+                PageRequest.of(1, 10, Sort.by("createdAt").descending()),
                 2);
 
         List<String> subjects = new ArrayList<>();
@@ -320,8 +322,8 @@ public class TeacherControllerTest {
 //        params.add("page","1");
 //        params.add("size", "10");
 
-            //stubbing
-        given(teacherService.searchTeachers(Mockito.anyString(),Mockito.anyList(),Mockito.anyList(),Mockito.anyInt(),Mockito.anyInt())).willReturn(pageTeachers);
+        //stubbing
+        given(teacherService.searchTeachers(Mockito.anyString(), Mockito.anyList(), Mockito.anyList(), Mockito.anyInt(), Mockito.anyInt())).willReturn(pageTeachers);
         given(teacherMapper.teachersToTeacherElements(Mockito.anyList())).willReturn(elements);
 
         //when
@@ -330,8 +332,8 @@ public class TeacherControllerTest {
                         RestDocumentationRequestBuilders.get("/teachers")
                                 .param("teacherName", "")
                                 .param("subjectNames", "국어")
-                                .param("regionNames","용인시")
-                                .param("page","1")
+                                .param("regionNames", "용인시")
+                                .param("page", "1")
                                 .param("size", "10")
                                 .accept(MediaType.APPLICATION_JSON)
                 );
@@ -342,11 +344,11 @@ public class TeacherControllerTest {
                         getResponsePreProcessor(),
                         requestParameters(
                                 List.of(
-                                    parameterWithName("teacherName").description("강사 이름"),
-                                    parameterWithName("subjectNames").description("과목명들"),
-                                    parameterWithName("regionNames").description("지역명들"),
-                                    parameterWithName("page").description("페이지 번호"),
-                                    parameterWithName("size").description("페이지 크기")
+                                        parameterWithName("teacherName").description("강사 이름"),
+                                        parameterWithName("subjectNames").description("과목명들"),
+                                        parameterWithName("regionNames").description("지역명들"),
+                                        parameterWithName("page").description("페이지 번호"),
+                                        parameterWithName("size").description("페이지 크기")
                                 )
                         ),
                         responseFields(
@@ -369,6 +371,7 @@ public class TeacherControllerTest {
                         )
                 ));
     }
+
     @Test
     @WithAnonymousUser
     public void postTeacherRegionTest() throws Exception {
@@ -394,10 +397,11 @@ public class TeacherControllerTest {
                         getRequestPreProcessor(),
                         getResponsePreProcessor(),
                         pathParameters(parameterWithName("teacher-id").description("지역을 추가할 강사의 식별자")),
-                        requestParameters(parameterWithName("regionName").description("지역 이름") )
+                        requestParameters(parameterWithName("regionName").description("지역 이름"))
                         )
                 );
     }
+
     @Test
     @WithAnonymousUser
     public void deleteTeacherRegionTest() throws Exception {
@@ -423,10 +427,11 @@ public class TeacherControllerTest {
                                 getRequestPreProcessor(),
                                 getResponsePreProcessor(),
                                 pathParameters(parameterWithName("teacher-id").description("지역을 삭제할 강사의 식별자")),
-                                requestParameters(parameterWithName("regionName").description("지역 이름") )
+                                requestParameters(parameterWithName("regionName").description("지역 이름"))
                         )
                 );
     }
+
     @Test
     @WithAnonymousUser
     public void postTeacherSubjectTest() throws Exception {
@@ -452,10 +457,11 @@ public class TeacherControllerTest {
                                 getRequestPreProcessor(),
                                 getResponsePreProcessor(),
                                 pathParameters(parameterWithName("teacher-id").description("과목을 삭제할 강사의 식별자")),
-                                requestParameters(parameterWithName("subjectName").description("과목 이름") )
+                                requestParameters(parameterWithName("subjectName").description("과목 이름"))
                         )
                 );
     }
+
     @Test
     @WithAnonymousUser
     public void deleteTeacherSubjectTest() throws Exception {
@@ -481,13 +487,14 @@ public class TeacherControllerTest {
                                 getRequestPreProcessor(),
                                 getResponsePreProcessor(),
                                 pathParameters(parameterWithName("teacher-id").description("과목을 삭제할 강사의 식별자")),
-                                requestParameters(parameterWithName("subjectName").description("과목 이름") )
+                                requestParameters(parameterWithName("subjectName").description("과목 이름"))
                         )
                 );
     }
+
     @Test
     @WithAnonymousUser
-    public void verifyEmailTest() throws Exception{
+    public void verifyEmailTest() throws Exception {
         String email = "test@example.com";
 
         doNothing().when(teacherService).verifyEmail(anyString());
@@ -510,6 +517,7 @@ public class TeacherControllerTest {
                         )
                 );
     }
+
     @Test
     @WithMockUser(authorities = {"ROLE_TEACHER"})
     public void patchPasswordTest() throws Exception {
@@ -544,6 +552,7 @@ public class TeacherControllerTest {
                         )
                 ));
     }
+
     @Test
     @WithMockUser(authorities = {"ROLE_TEACHER"})
     public void patchNameTest() throws Exception {
@@ -585,6 +594,7 @@ public class TeacherControllerTest {
                         )
                 ));
     }
+
     @Test
     @WithMockUser(authorities = {"ROLE_TEACHER"})
     public void patchPhoneTest() throws Exception {
@@ -626,6 +636,7 @@ public class TeacherControllerTest {
                         )
                 ));
     }
+
     @Test
     @WithMockUser(authorities = {"ROLE_TEACHER"})
     public void patchProfileImgTest() throws Exception {
@@ -667,6 +678,7 @@ public class TeacherControllerTest {
                         )
                 ));
     }
+
     @Test
     @WithMockUser(authorities = {"ROLE_TEACHER"})
     public void patchIntroductionTest() throws Exception {
@@ -708,6 +720,7 @@ public class TeacherControllerTest {
                         )
                 ));
     }
+
     @Test
     @WithMockUser(authorities = {"ROLE_TEACHER"})
     public void patchCareerTest() throws Exception {
@@ -749,6 +762,7 @@ public class TeacherControllerTest {
                         )
                 ));
     }
+
     @Test
     @WithMockUser(authorities = {"ROLE_TEACHER"})
     public void patchLectureFeeTest() throws Exception {
@@ -790,6 +804,7 @@ public class TeacherControllerTest {
                         )
                 ));
     }
+
     @Test
     @WithMockUser(authorities = {"ROLE_TEACHER"})
     public void patchOptionTest() throws Exception {
@@ -831,6 +846,7 @@ public class TeacherControllerTest {
                         )
                 ));
     }
+
     @Test
     @WithMockUser(authorities = {"ROLE_TEACHER"})
     public void patchOnLineTest() throws Exception {
@@ -872,6 +888,7 @@ public class TeacherControllerTest {
                         )
                 ));
     }
+
     @Test
     @WithMockUser(authorities = {"ROLE_TEACHER"})
     public void patchOffLineTest() throws Exception {
@@ -913,6 +930,7 @@ public class TeacherControllerTest {
                         )
                 ));
     }
+
     @Test
     @WithMockUser(authorities = {"ROLE_TEACHER"})
     public void patchAddressTest() throws Exception {
@@ -955,4 +973,76 @@ public class TeacherControllerTest {
                 ));
     }
 
+    @Test
+    @WithMockUser(authorities = {"ROLE_TEACHER"})
+    public void patchSubjectTest() throws Exception {
+        long id = 1L;
+        List<String> subjects = List.of("국어", "영어");
+
+        TeacherDto.PatchSubject patchSubject = new TeacherDto.PatchSubject(id, subjects);
+
+        given(teacherService.updateSubject(Mockito.anyLong(), Mockito.anyList())).willReturn(new Teacher());
+        given(teacherMapper.teacherToPatchSubject(Mockito.any(Teacher.class))).willReturn(patchSubject);
+
+        ResultActions actions = mockMvc.perform(
+                RestDocumentationRequestBuilders.patch("/teachers/subjects")
+                        .accept(MediaType.APPLICATION_JSON)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(gson.toJson(patchSubject))
+        );
+
+        actions.andExpect(MockMvcResultMatchers.status().isOk())
+                .andDo(document("patch-teacher-subjects",
+                        getRequestPreProcessor(),
+                        getResponsePreProcessor(),
+                        requestFields(
+                                List.of(
+                                        fieldWithPath("id").type(JsonFieldType.NUMBER).description("강사회원 식별자"),
+                                        fieldWithPath("subjects").type(JsonFieldType.ARRAY).description("강사의 모든 과목")
+                                )
+                        ),
+                        responseFields(
+                                List.of(
+                                        fieldWithPath("id").type(JsonFieldType.NUMBER).description("강사회원 식별자"),
+                                        fieldWithPath("subjects").type(JsonFieldType.ARRAY).description("강사의 모든 과목")
+                                )
+                        )
+                ));
+    }
+    @Test
+    @WithMockUser(authorities = {"ROLE_TEACHER"})
+    public void patchRegionTest() throws Exception {
+        long id = 1L;
+        List<String> regions = List.of("강남", "강서");
+
+        TeacherDto.PatchRegion patchRegion = new TeacherDto.PatchRegion(id, regions);
+
+        given(teacherService.updateRegion(Mockito.anyLong(), Mockito.anyList())).willReturn(new Teacher());
+        given(teacherMapper.teacherToPatchRegion(Mockito.any(Teacher.class))).willReturn(patchRegion);
+
+        ResultActions actions = mockMvc.perform(
+                RestDocumentationRequestBuilders.patch("/teachers/regions")
+                        .accept(MediaType.APPLICATION_JSON)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(gson.toJson(patchRegion))
+        );
+
+        actions.andExpect(MockMvcResultMatchers.status().isOk())
+                .andDo(document("patch-teacher-regions",
+                        getRequestPreProcessor(),
+                        getResponsePreProcessor(),
+                        requestFields(
+                                List.of(
+                                        fieldWithPath("id").type(JsonFieldType.NUMBER).description("강사회원 식별자"),
+                                        fieldWithPath("regions").type(JsonFieldType.ARRAY).description("강사의 모든 지역")
+                                )
+                        ),
+                        responseFields(
+                                List.of(
+                                        fieldWithPath("id").type(JsonFieldType.NUMBER).description("강사회원 식별자"),
+                                        fieldWithPath("regions").type(JsonFieldType.ARRAY).description("강사의 모든 지역")
+                                )
+                        )
+                ));
+    }
 }
