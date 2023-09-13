@@ -2,6 +2,7 @@ package com.codestates.connectInstructor.student.controller;
 
 
 import com.codestates.connectInstructor.common.MemberStatus;
+import com.codestates.connectInstructor.match.entity.Match;
 import com.codestates.connectInstructor.student.dto.StudentDto;
 import com.codestates.connectInstructor.student.entity.Student;
 import com.codestates.connectInstructor.student.mapper.StudentMapper;
@@ -410,6 +411,129 @@ public class StudentControllerTest {
                                 )
                         )
                         ));
+
+    }
+
+    @Test
+    @WithMockUser(authorities = {"ROLE_STUDENT"})
+    public void patchRegionTest() throws Exception {
+        long id = 1L;
+        List<String> regions = List.of("강남", "강서");
+
+        StudentDto.PatchRegion request = StudentDto.PatchRegion.builder().studentId(id).regions(regions).build();
+
+        Student student = new Student();
+        student.setId(id);
+
+        given(service.updateRegion(Mockito.anyLong(), Mockito.anyList())).willReturn(student);
+        given(mapper.studentToPatchRegion(Mockito.any(Student.class))).willReturn(request);
+
+        ResultActions actions = mockMvc.perform(
+                RestDocumentationRequestBuilders.patch("/students/regions")
+                        .accept(MediaType.APPLICATION_JSON)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(gson.toJson(request))
+        );
+
+        actions.andExpect(MockMvcResultMatchers.status().isOk())
+                .andDo(document("patch-regions",
+                        getRequestPreProcessor(),
+                        getResponsePreProcessor(),
+                        requestFields(
+                                List.of(
+                                        fieldWithPath("studentId").type(JsonFieldType.NUMBER).description("회원 식별자"),
+                                        fieldWithPath("regions").type(JsonFieldType.ARRAY).description("학생의 모든 지역")
+                                )
+                        ),
+                        responseFields(
+                                List.of(
+                                        fieldWithPath("studentId").type(JsonFieldType.NUMBER).description("회원 식별자"),
+                                        fieldWithPath("regions").type(JsonFieldType.ARRAY).description("수정 후, 학생의 모든 지역")
+                                )
+                        )
+                ));
+    }
+
+    @Test
+    @WithMockUser("ROLE_STUDENT")
+    public void getStudentTest() throws Exception {
+        long id = 1L;
+        String name = "테스트";
+        String email = "test@example.com";
+        String profileImg = "프로필 이미지. 미구현";
+        String introduction = "자기소개";
+        String lessonOption = "수업옵션";
+        String phoneNumber = "01012345678";
+        boolean isOauth = false;
+        MemberStatus status = MemberStatus.ACTIVE;
+        List<String> subjects = List.of("국어", "수학");
+        List<String> regions = List.of("강서", "강남");
+        List<StudentDto.MatchResponse> matches = List.of(
+                StudentDto.MatchResponse.builder()
+                    .matchId(1L)
+                    .teacherName("김강사")
+                    .schedule("9월 19일 화요일 / 13:00 ~ 14:00")
+                    .subjects(subjects)
+                    .status(Match.MatchStatus.MATCH_REQUEST)
+                    .build(),
+                StudentDto.MatchResponse.builder()
+                        .matchId(2L)
+                        .teacherName("박선생")
+                        .schedule("9월 19일 화요일 / 13:00 ~ 14:00")
+                        .subjects(subjects)
+                        .status(Match.MatchStatus.MATCH_ANSWERED)
+                        .build());
+
+        Student student = new Student();
+        student.setEmail(email);
+        student.setName(name);
+        student.setProfileImg(profileImg);
+        student.setPhoneNumber(phoneNumber);
+        student.setOauth(isOauth);
+        student.setStatus(status);
+
+        StudentDto.DetailResponse response = StudentDto.DetailResponse.builder()
+                .id(id).email(email).name(name).profileImg(profileImg).phoneNumber(phoneNumber).isOauth(isOauth).status(status).introduction(introduction).lessonOption(lessonOption).status(status).subjects(subjects).regions(regions).matches(matches)
+                .build();
+
+        given(service.findStudentById(Mockito.anyLong())).willReturn(student);
+        given(mapper.studentToDetailResponse(Mockito.any(Student.class))).willReturn(response);
+
+        ResultActions actions = mockMvc.perform(
+                RestDocumentationRequestBuilders.get("/students/mypage/{student-id}", id)
+                        .accept(MediaType.APPLICATION_JSON)
+                        .contentType(MediaType.APPLICATION_JSON)
+        );
+
+        actions.andExpect(MockMvcResultMatchers.status().isOk())
+                .andDo(document("get-detail-student",
+                        getRequestPreProcessor(),
+                        getResponsePreProcessor(),
+                        pathParameters(
+                                parameterWithName("student-id").description("회원 식별자")
+                        ),
+                        responseFields(
+                                List.of(
+                                        fieldWithPath("id").type(JsonFieldType.NUMBER).description("회원 식별자"),
+                                        fieldWithPath("email").type(JsonFieldType.STRING).description("이메일"),
+                                        fieldWithPath("name").type(JsonFieldType.STRING).description("이름"),
+                                        fieldWithPath("profileImg").type(JsonFieldType.STRING).description("프로필 사진 링크. 미구현"),
+                                        fieldWithPath("introduction").type(JsonFieldType.STRING).description("자기소개"),
+                                        fieldWithPath("lessonOption").type(JsonFieldType.STRING).description("수업옵션"),
+                                        fieldWithPath("oauth").type(JsonFieldType.BOOLEAN).description("소셜 회원 여부. true일 경우 소셜 회원"),
+                                        fieldWithPath("phoneNumber").type(JsonFieldType.STRING).description("연락처"),                                        fieldWithPath("oauth").type(JsonFieldType.BOOLEAN).description("소셜 회원가입 여부. true면 소셜 회원, false면 자체 가입 회원"),
+                                        fieldWithPath("status").type(JsonFieldType.STRING).description("회원 상태"),
+                                        fieldWithPath("subjects").type(JsonFieldType.ARRAY).description("회원 관심 과목"),
+                                        fieldWithPath("regions").type(JsonFieldType.ARRAY).description("회원 지역"),
+                                        fieldWithPath("matches").type(JsonFieldType.ARRAY).description("매칭 정보"),
+                                        fieldWithPath("matches[].matchId").type(JsonFieldType.NUMBER).description("매칭 식별자"),
+                                        fieldWithPath("matches[].teacherName").type(JsonFieldType.STRING).description("강사 이름"),
+                                        fieldWithPath("matches[].schedule").type(JsonFieldType.STRING).description("스케줄"),
+                                        fieldWithPath("matches[].subjects").type(JsonFieldType.ARRAY).description("과목"),
+                                        fieldWithPath("matches[].status").type(JsonFieldType.STRING).description("매칭 상태")
+                                )
+                        )
+                ));
 
     }
 }

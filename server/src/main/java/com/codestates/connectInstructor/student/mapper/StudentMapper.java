@@ -60,6 +60,7 @@ public interface StudentMapper {
 
         return StudentDto.DetailResponse.builder()
                 .id(student.getId())
+                .name(student.getName())
                 .email(student.getEmail())
                 .profileImg(student.getProfileImg())
                 .introduction(student.getIntroduction())

@@ -18,8 +18,8 @@ public class MatchController {
     public final MatchService service;
     public final MatchMapper mapper;
     @GetMapping
-    public ResponseEntity startMatch(@RequestBody MatchDto.Start request) {
-        MatchDto.GetResponse response = service.getBasicInformation(request.getStudentId(), request.getTeacherId());
+    public ResponseEntity startMatch(@RequestParam long teacherId, @RequestParam long studentId) {
+        MatchDto.GetResponse response = service.getBasicInformation(studentId, teacherId);
 
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
@@ -30,7 +30,7 @@ public class MatchController {
 
         MatchDto.Response response = mapper.matchToResponse(match);
 
-        return new ResponseEntity<>(response, HttpStatus.OK);
+        return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
     @GetMapping("/{match-id}")
@@ -43,7 +43,7 @@ public class MatchController {
     }
 
     @PatchMapping
-    public ResponseEntity matchMatch(@RequestBody MatchDto.Patch request) {
+    public ResponseEntity patchMatch(@RequestBody MatchDto.Patch request) {
         Match match = service.patchMatch(request.getId(), request.getStatus());
 
         MatchDto.Response response = mapper.matchToResponse(match);

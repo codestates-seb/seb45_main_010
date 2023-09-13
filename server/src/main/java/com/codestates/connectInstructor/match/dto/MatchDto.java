@@ -3,27 +3,24 @@ package com.codestates.connectInstructor.match.dto;
 import com.codestates.connectInstructor.match.entity.Match;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MatchDto {
-    @Getter
-    @Builder
-    public static class Start {
-        long studentId;
-        long teacherId;
-    }
 
     @Getter
     @Setter
+    @NoArgsConstructor
     public static class GetResponse {
+
         long studentId;
         long teacherId;
         List<String> subjects;
         List<String> regions;
-        List<String> schedules = List.of("9월 19일 화요일 / 13:00 ~ 14:00");
+        List<String> schedules;
         String studentName;
         String studentPhoneNumber;
         String studentEmail;
@@ -36,7 +33,7 @@ public class MatchDto {
         boolean isOnline;
         List<String> subjects;
         List<String> regions;
-        String schedule = "9월 19일 화요일 / 13:00 ~ 14:00";
+        String schedule;
         String studentName;
         String studentPhoneNumber;
         String studentEmail;
