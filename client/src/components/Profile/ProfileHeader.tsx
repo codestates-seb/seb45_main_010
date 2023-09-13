@@ -8,7 +8,7 @@ import Option from './ProfileTab/Option';
 
 type ProfileHeaderProps = {
   name: string;
-  introduce: string;
+  introduction: string;
   user: User;
   classMethod: {
     onLine: boolean;
@@ -18,7 +18,7 @@ type ProfileHeaderProps = {
 
 const ProfileHeader: React.FC<ProfileHeaderProps> = ({
   name,
-  introduce,
+  introduction,
   user,
   classMethod = { onLine: false, offLine: false },
 }) => {
@@ -57,7 +57,7 @@ const ProfileHeader: React.FC<ProfileHeaderProps> = ({
       </>
       <ProfileDropdown title="과목" selections={category.subject} categories={user.category} />
       <ProfileDropdown title="지역" selections={category.area} categories={user.area} />
-      <Option optionDesc={introduce} userId={user.id} />
+      <Option optionDesc={introduction} userId={user.id} />
       <div className="mt-10 border-b-2 border-gray-1"></div>
     </div>
   );

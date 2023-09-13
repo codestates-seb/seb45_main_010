@@ -38,7 +38,7 @@ const ProfileTabs: React.FC<ProfileTabsProps> = ({
     {
       id: 'request',
       title: '내 강의 조회',
-      subtitle: <RequestList requests={requests} teacher={teacher} />,
+      subtitle: <RequestList teacher={teacher} />,
     },
     ...(teacher
       ? [

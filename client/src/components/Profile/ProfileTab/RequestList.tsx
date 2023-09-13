@@ -3,10 +3,10 @@ import { RequestType } from 'Types/Types';
 
 type RequestListProps = {
   teacher: boolean;
-  requests: RequestType[];
+  // requests: RequestType[];
 };
 
-const RequestList: React.FC<RequestListProps> = ({ requests, teacher }) => {
+const RequestList: React.FC<RequestListProps> = ({ teacher }) => {
   return (
     <div className="py-5">
       <p className="flex-1 mb-4 text-sm font-bold">{teacher ? '강의요청목록' : '수업요청목록'}</p>
@@ -24,7 +24,7 @@ const RequestList: React.FC<RequestListProps> = ({ requests, teacher }) => {
           {!teacher ? '강사' : '학생'}
         </Button>
       </div>
-      {requests &&
+      {/* {requests &&
         requests.map((request, index) => (
           <div
             key={index}
@@ -49,7 +49,7 @@ const RequestList: React.FC<RequestListProps> = ({ requests, teacher }) => {
               <span>{request.date}</span>
             </div>
           </div>
-        ))}
+        ))} */}
     </div>
   );
 };

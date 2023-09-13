@@ -1,4 +1,4 @@
-import { User } from 'Types/Types';
+import { TeacherType } from 'Types/Types';
 import {
   FetchProfile,
   updateOnline,
@@ -42,8 +42,11 @@ const initialState = {
     email: '',
     id: 0,
     introduction: '',
+    // lastLogin: Date | null;
+    // lastModified: Date | null;
     lectureFee: '',
     name: '',
+    // oauth: boolean;
     offLine: false,
     onLine: false,
     option: '',
@@ -55,8 +58,8 @@ const initialState = {
   error: null,
 };
 
-export const ProfileSlice = createSlice({
-  name: 'profile',
+export const TeacherSlice = createSlice({
+  name: 'teacher',
   initialState,
   reducers: {},
 
@@ -69,7 +72,6 @@ export const ProfileSlice = createSlice({
         state.status = 'fulfilled';
         state.value = action.payload;
       })
-
       .addCase(updateOnline.fulfilled, (state, action) => {
         if (state.value) {
           state.value.onLine = action.payload;
@@ -96,10 +98,11 @@ export const ProfileSlice = createSlice({
         }
       })
       .addCase(updateIntroduction.fulfilled, (state, action) => {
-        console.log(action.payload);
-        state.value.introduction = action.payload.introduction;
+        if (state.value) {
+          state.value.introduction = action.payload.introduce;
+        }
       });
   },
 });
 
-export default ProfileSlice.reducer;
+export default TeacherSlice.reducer;

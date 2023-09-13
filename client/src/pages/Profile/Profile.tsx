@@ -1,20 +1,24 @@
 import ProfileTabs from 'components/Profile/ProfileTabs';
 import ProfileHeader from 'components/Profile/ProfileHeader';
 import { useEffect } from 'react';
-import { FetchProfile, updateClassMethod } from 'redux/thunk/Thunk';
+import { FetchProfile, updateOnline, updateOffline } from 'redux/thunk/Thunk';
 import { useAppDispatch, useAppSelector } from 'hooks/hooks';
 
 const Profile = () => {
   const dispatch = useAppDispatch();
   const profileState = useAppSelector((state) => state.profile);
-  const requestState = useAppSelector((state) => state.request);
-  const handleClassMethodUpdate = (onLine: boolean, offLine: boolean) => {
-    dispatch(updateClassMethod({ userId, onLine, offLine }));
+
+  const handleClassMethodUpdate = (onLine?: boolean, offLine?: boolean) => {
+    if (onLine !== undefined) {
+      dispatch(updateOnline({ userId, onLine })).then(() => dispatch(FetchProfile(userId)));
+    }
+    if (offLine !== undefined) {
+      dispatch(updateOffline({ userId, offLine })).then(() => dispatch(FetchProfile(userId)));
+    }
   };
   const userId = 1;
   // const userId = 2;
   const user = profileState.value;
-  const request = requestState.value;
 
   useEffect(() => {
     dispatch(FetchProfile(userId))
@@ -32,23 +36,23 @@ const Profile = () => {
         <>
           <ProfileHeader
             name={user.name}
-            introduce={user.introduce}
-            user={user}
+            introduction={user.introduction}
+            user={user.id}
             classMethod={{
-              onLine: user.classMethod.onLine,
-              offLine: user.classMethod.offLine,
+              onLine: user.onLine,
+              offLine: user.offLine,
             }}
           />
           <ProfileTabs
             userId={user.id}
-            requests={request}
+            // requests={request}
             teacher={user.teacher}
             lectureFee={user.lectureFee}
             career={user.career}
             option={user.option}
             classMethod={{
-              onLine: user.classMethod.onLine,
-              offLine: user.classMethod.offLine,
+              onLine: user.onLine,
+              offLine: user.offLine,
             }}
             handleClassMethodUpdate={handleClassMethodUpdate}
           />

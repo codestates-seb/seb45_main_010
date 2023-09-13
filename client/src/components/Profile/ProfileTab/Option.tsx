@@ -7,7 +7,8 @@ import {
   updateCareer,
   updateLectureFee,
   updateOption,
-  updateIntroduce,
+  updateIntroduction,
+  FetchProfile,
 } from 'redux/thunk/Thunk';
 
 const Option = ({
@@ -34,7 +35,7 @@ const Option = ({
     } else if (optionTitle === '수업옵션') {
       dispatch(updateOption({ userId, option: editOptionDesc }));
     } else if (!optionTitle) {
-      dispatch(updateIntroduce({ userId, introduce: editOptionDesc }));
+      dispatch(updateIntroduction({ userId, introduction: editOptionDesc }));
     }
   };
 
