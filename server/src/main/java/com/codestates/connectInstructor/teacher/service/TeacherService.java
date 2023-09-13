@@ -313,6 +313,64 @@ public class TeacherService {
 
         if (optionalTeacher.isPresent()) throw new BusinessLogicException(ExceptionCode.USED_EMAIL);
     }
+    public Teacher updateSubject(long teacherId, List<String> subjectNames){
+        verifyIdentity(teacherId);
+
+        Teacher found = findVerifiedTeacher(teacherId);
+        List<TeacherSubject> teacherSubjects = found.getTeacherSubjects();
+        TeacherSubject[] ts = new TeacherSubject[teacherSubjects.size()];
+        ts = teacherSubjects.toArray(ts);
+
+        for( TeacherSubject teacherSubject : ts){
+            if(!subjectNames.contains(teacherSubject.getSubject().getSubjectName()))
+                found.getTeacherSubjects().remove(teacherSubject);
+        }
+        for( String subjectName : subjectNames){
+            boolean exist = false;
+            for(TeacherSubject teacherSubject: teacherSubjects){
+                if(subjectName.equals(teacherSubject.getSubject().getSubjectName()))
+                    exist = true;
+            }
+            if(!exist) {
+                TeacherSubject teacherSubject = new TeacherSubject();
+                teacherSubject.setSubject(subjectService.findVerifiedSubject(subjectName));
+                teacherSubject.setTeacher(found);
+
+                found.getTeacherSubjects().add(teacherSubject);
+            }
+        }
+        found.setLastModified(LocalDateTime.now());
+        return teacherRepository.save(found);
+    }
+    public Teacher updateRegion(long teacherId, List<String> regionNames){
+        verifyIdentity(teacherId);
+
+        Teacher found = findVerifiedTeacher(teacherId);
+        List<TeacherRegion> teacherRegions = found.getTeacherRegions();
+        TeacherRegion[] trs = new TeacherRegion[teacherRegions.size()];
+        trs = teacherRegions.toArray(trs);
+
+        for( TeacherRegion teacherRegion : trs){
+            if(!regionNames.contains(teacherRegion.getRegion().getRegionName()))
+                found.getTeacherRegions().remove(teacherRegion);
+        }
+        for( String regionName : regionNames){
+            boolean exist = false;
+            for(TeacherRegion teacherRegion: teacherRegions){
+                if(regionName.equals(teacherRegion.getRegion().getRegionName()))
+                    exist = true;
+            }
+            if(!exist) {
+                TeacherRegion teacherRegion = new TeacherRegion();
+                teacherRegion.setRegion(regionService.findVerifiedRegion(regionName));
+                teacherRegion.setTeacher(found);
+
+                found.getTeacherRegions().add(teacherRegion);
+            }
+        }
+        found.setLastModified(LocalDateTime.now());
+        return teacherRepository.save(found);
+    }
     private void verifyIdentity(long teacherId){
 //        SecurityContext securityContext = SecurityContextHolder.getContext();
 //        Authentication authentication = securityContext.getAuthentication();

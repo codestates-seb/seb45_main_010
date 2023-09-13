@@ -43,6 +43,16 @@ public class TeacherDto {
         private String address;
     }
     @Getter@Setter@NoArgsConstructor@AllArgsConstructor
+    public static class PatchSubject {
+        private long id;
+        private List<String> subjects;
+    }
+    @Getter@Setter@NoArgsConstructor@AllArgsConstructor
+    public static class PatchRegion {
+        private long id;
+        private List<String> regions;
+    }
+    @Getter@Setter@NoArgsConstructor@AllArgsConstructor
     public static class PatchPassword {
         private long id;
         private String password;

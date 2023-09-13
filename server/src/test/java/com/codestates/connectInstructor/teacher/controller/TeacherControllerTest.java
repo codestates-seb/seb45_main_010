@@ -67,14 +67,7 @@ public class TeacherControllerTest {
     private TeacherMapper teacherMapper;
     @MockBean
     private TeacherService teacherService;
-    @MockBean
-    private SubjectService subjectService;
-    @MockBean
-    private SubjectMapper subjectMapper;
-    @MockBean
-    private RegionService regionService;
-    @MockBean
-    private RegionMapper regionMapper;
+
     @Autowired
     private Gson gson;
 
@@ -143,7 +136,7 @@ public class TeacherControllerTest {
             //stubbing
         given(teacherMapper.patchToTeacher(Mockito.any(TeacherDto.Patch.class))).willReturn(new Teacher());
         given(teacherService.updateTeacher(Mockito.any(Teacher.class))).willReturn(new Teacher());
-        given(teacherMapper.teacherToTeacherResponse(Mockito.any(Teacher.class),Mockito.any(SubjectService.class),Mockito.any(RegionService.class))).willReturn(response);
+        given(teacherMapper.teacherToTeacherResponse(Mockito.any(Teacher.class))).willReturn(response);
         //when
         ResultActions actions =
                 mockMvc.perform(
@@ -223,7 +216,7 @@ public class TeacherControllerTest {
                 LocalDateTime.now().minus(1, ChronoUnit.WEEKS));
             //stubbing
         given(teacherService.findTeacher(Mockito.anyLong())).willReturn(new Teacher());
-        given(teacherMapper.teacherToTeacherResponse(Mockito.any(Teacher.class),Mockito.any(SubjectService.class),Mockito.any(RegionService.class))).willReturn(response);
+        given(teacherMapper.teacherToTeacherResponse(Mockito.any(Teacher.class))).willReturn(response);
         //when
         ResultActions actions =
                 mockMvc.perform(
@@ -329,7 +322,7 @@ public class TeacherControllerTest {
 
             //stubbing
         given(teacherService.searchTeachers(Mockito.anyString(),Mockito.anyList(),Mockito.anyList(),Mockito.anyInt(),Mockito.anyInt())).willReturn(pageTeachers);
-        given(teacherMapper.teachersToTeacherElements(Mockito.anyList(),Mockito.any(SubjectService.class),Mockito.any(RegionService.class))).willReturn(elements);
+        given(teacherMapper.teachersToTeacherElements(Mockito.anyList())).willReturn(elements);
 
         //when
         ResultActions actions =
