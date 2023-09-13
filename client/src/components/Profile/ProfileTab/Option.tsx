@@ -1,7 +1,4 @@
-import { BsPencil } from 'react-icons/bs';
-import { TfiSave } from 'react-icons/tfi';
 import { useState } from 'react';
-import { Textarea } from '@material-tailwind/react';
 import { useAppDispatch } from 'hooks/hooks';
 import {
   updateCareer,
@@ -9,16 +6,16 @@ import {
   updateOption,
   updateIntroduction,
 } from 'redux/thunk/Thunk';
-import { ConfirmModal } from 'components/Modal/ConfirmModal';
+import EditandSave from 'components/Items/EditandSave';
 
 const Option = ({
   optionTitle,
   optionDesc: initialOptionDesc,
-  userId,
+  id,
 }: {
   optionTitle?: string;
   optionDesc: string;
-  userId: number;
+  id: number;
 }) => {
   const [optionDesc, setOptionDesc] = useState(initialOptionDesc);
   const [editOptionDesc, setEditOptionDesc] = useState(initialOptionDesc);
@@ -29,13 +26,14 @@ const Option = ({
     setOptionDesc(editOptionDesc);
     setIsEditing(false);
     if (optionTitle === '강의료 ( 강사 소개에 노출됩니다 )') {
-      dispatch(updateLectureFee({ userId, lectureFee: editOptionDesc }));
+      dispatch(updateLectureFee({ id, lectureFee: editOptionDesc }));
     } else if (optionTitle === '학력 및 경력') {
-      dispatch(updateCareer({ userId, career: editOptionDesc }));
+      dispatch(updateCareer({ id, career: editOptionDesc }));
     } else if (optionTitle === '수업옵션') {
-      dispatch(updateOption({ userId, option: editOptionDesc }));
+      dispatch(updateOption({ id, option: editOptionDesc }));
     } else if (!optionTitle) {
-      dispatch(updateIntroduction({ userId, introduction: editOptionDesc }));
+      dispatch(updateIntroduction({ id, introduction: editOptionDesc }));
+      console.log(editOptionDesc);
     }
   };
 
@@ -43,33 +41,15 @@ const Option = ({
     <>
       {optionTitle && <p className="mb-5 text-sm font-bold">{optionTitle}</p>}
       <ul>
-        <li className="right-0 flex justify-end m-4">
-          {!isEditing && <BsPencil onClick={() => setIsEditing(true)} />}
-          {isEditing && (
-            <ConfirmModal
-              title="변경사항을 저장하시겠습니까?"
-              btnCheck="확인"
-              onClick={() => {
-                setIsEditing(false);
-                saveChanges();
-                console.log(editOptionDesc);
-              }}
-            />
-          )}
-        </li>
-        <li className="text-xs leading-5">
-          {isEditing ? (
-            <Textarea
-              color="blue"
-              label="저장 버튼을 누르면 수정사항이 저장됩니다."
-              value={editOptionDesc}
-              onChange={(e) => setEditOptionDesc(e.target.value)}
-              className="px-2 min-h-[100px]"
-            />
-          ) : (
-            optionDesc
-          )}
-        </li>
+        <EditandSave
+          optionTitle={optionTitle}
+          optionDesc={optionDesc}
+          editOptionDesc={editOptionDesc}
+          isEditing={isEditing}
+          setIsEditing={setIsEditing}
+          setEditOptionDesc={setEditOptionDesc}
+          saveChanges={saveChanges}
+        />
         <div className="py-8"></div>
       </ul>
     </>

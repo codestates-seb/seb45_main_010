@@ -42,6 +42,7 @@ const initialState = {
     address: null,
     career: null,
     email: '',
+    teacher: false,
     id: 0,
     introduction: '',
     lectureFee: '',

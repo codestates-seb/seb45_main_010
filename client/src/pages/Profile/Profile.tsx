@@ -8,59 +8,42 @@ const Profile = () => {
   const dispatch = useAppDispatch();
   const profileState = useAppSelector((state) => state.profile);
 
-  const handleClassMethodUpdate = (onLine?: boolean, offLine?: boolean) => {
-    if (onLine !== undefined) {
-      dispatch(updateOnline({ userId, onLine })).then(() => dispatch(FetchProfile(userId)));
-    }
-    if (offLine !== undefined) {
-      dispatch(updateOffline({ userId, offLine })).then(() => dispatch(FetchProfile(userId)));
-    }
-  };
-  const userId = 1;
-  // const userId = 2;
+  const id = 1;
+  // const id = 2;
   const user = profileState.value;
 
   useEffect(() => {
-    dispatch(FetchProfile(userId))
+    dispatch(FetchProfile(id))
       .then((response) => {
         console.log('Profile fetched successfully:', response);
       })
       .catch((error) => {
         console.error('Error fetching profile:', error);
       });
-  }, [dispatch, userId]);
+  }, [dispatch, id]);
 
   return (
     <>
-      {user ? (
-        <>
-          <ProfileHeader
-            name={user.name}
-            introduction={user.introduction}
-            userId={user.id}
-            profileImg={user.profileImg}
-            subjects={user.subjects}
-            regions={user.regions}
-            classMethod={{
-              onLine: user.onLine,
-              offLine: user.offLine,
-            }}
-          />
-          <ProfileTabs
-            userId={user.id}
-            // requests={request}
-            teacher={user.teacher}
-            lectureFee={user.lectureFee}
-            career={user.career}
-            option={user.option}
-            classMethod={{
-              onLine: user.onLine,
-              offLine: user.offLine,
-            }}
-            handleClassMethodUpdate={handleClassMethodUpdate}
-          />
-        </>
-      ) : null}
+      <ProfileHeader
+        name={user.name}
+        introduction={user.introduction}
+        id={user.id}
+        profileImg={user.profileImg}
+        subjects={user.subjects}
+        regions={user.regions}
+        onLine={user.onLine}
+        offLine={user.offLine}
+      />
+      <ProfileTabs
+        id={user.id}
+        // requests={request}
+        teacher={user.teacher}
+        lectureFee={user.lectureFee}
+        career={user.career}
+        option={user.option}
+        onLine={user.onLine}
+        offLine={user.offLine}
+      />
     </>
   );
 };

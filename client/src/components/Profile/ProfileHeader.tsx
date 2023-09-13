@@ -1,34 +1,26 @@
 import { Button } from '@material-tailwind/react';
 import userExampleImage from '/assets/Image/user-example.png';
 import ProfileDropdown from './ProfileDropdown';
-import { Link } from 'react-router-dom';
 import { User } from 'Types/Types';
+import { Link } from 'react-router-dom';
 import OnlineDiv from 'components/Items/OnlineDiv';
 import Option from './ProfileTab/Option';
 
-type ProfileHeaderProps = {
-  name: string;
-  introduction: string;
-  userId: number;
-  subjects: string[];
-  regions: string[];
-  profileImg: string | null;
-  classMethod: {
-    onLine: boolean;
-    offLine: boolean;
-  };
-};
+type ProfileHeaderProps = Pick<
+  User,
+  'name' | 'introduction' | 'id' | 'subjects' | 'regions' | 'profileImg' | 'onLine' | 'offLine'
+>;
 
 const ProfileHeader: React.FC<ProfileHeaderProps> = ({
   name,
   introduction,
-  userId,
+  id,
   profileImg,
-  classMethod = { onLine: false, offLine: false },
+  onLine,
+  offLine,
   subjects,
   regions,
 }) => {
-  const { onLine, offLine } = classMethod;
   const category = {
     subjects: ['수학', '과학', '외국어', '국사', '사회'],
     regions: ['서울', '강서', '강원', '강남', '강북', '충북', '제주'],
@@ -62,9 +54,9 @@ const ProfileHeader: React.FC<ProfileHeaderProps> = ({
           {offLine ? <OnlineDiv onoff="오프라인" /> : null}
         </div>
       </>
-      <ProfileDropdown title="과목" selections={category.subjects} categories={user.subjects} />
-      <ProfileDropdown title="지역" selections={category.regions} categories={user.regions} />
-      <Option optionDesc={introduction} userId={userId} />
+      <ProfileDropdown title="과목" selections={category.subjects} categories={subjects} />
+      <ProfileDropdown title="지역" selections={category.regions} categories={regions} />
+      <Option optionDesc={introduction} id={id} />
       <div className="mt-10 border-b-2 border-gray-1"></div>
     </div>
   );
