@@ -15,6 +15,7 @@ import com.codestates.connectInstructor.utils.UriCreator;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.lang.Nullable;
 import org.springframework.security.core.parameters.P;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -198,6 +199,12 @@ public class TeacherController {
                                       @RequestParam(required = false) List<String> regionNames,
                                       @Positive @RequestParam int page,
                                       @Positive @RequestParam int size) {
+        if(subjectNames != null)
+            if(subjectNames.contains("전체"))
+                subjectNames = null;
+        if(regionNames != null)
+            if(regionNames.contains("전체"))
+                regionNames = null;
 
         Page<Teacher> pageTeachers = teacherService.searchTeachers(teacherName, subjectNames, regionNames,page-1, size);
         List<Teacher> teachers = pageTeachers.getContent();
