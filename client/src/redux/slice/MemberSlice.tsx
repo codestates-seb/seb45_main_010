@@ -38,8 +38,8 @@ export const memberSlice = createSlice({
           email: action.payload.email,
           teacher: action.payload.teacher,
           id: action.payload.id,
-          phone: action.payload.phone,
-          img: action.payload.img,
+          phone: action.payload.phoneNumber,
+          img: action.payload.profileImg,
         };
       })
       .addCase(fetchUserDetails.rejected, (state) => {
@@ -53,10 +53,12 @@ export default memberSlice.reducer;
 
 export const fetchUserDetails = createAsyncThunk(
   'member/fetchUserDetails',
-  async (id: number, { rejectWithValue }) => {
+  async ({ id, teacher }, { rejectWithValue }) => {
     try {
       const apiURL = 'http://ec2-3-34-116-209.ap-northeast-2.compute.amazonaws.com:8080';
-      const response = await axios.get(`${apiURL}/students/${id}`);
+      const response = await axios.get(
+        `${apiURL}/${teacher === 'STUDENT' ? 'teachers' : 'students'}/${id}`
+      );
       console.log(response);
       const data = response.data;
       console.log(data);
@@ -67,7 +69,9 @@ export const fetchUserDetails = createAsyncThunk(
     } catch (error) {
       const axiosError = error as AxiosError;
       if (!axiosError) {
-        return rejectWithValue('서버와 통신오류가 발생했습니다. 다시 시도해주세요');
+        return rejectWithValue(
+          '고객정보를 받아오는 중에 통신오류가 발생했습니다. 다시 시도해주세요'
+        );
       }
       if (axiosError.response && axiosError.response.status)
         // return rejectWithValue('서버와 통신오류' + axiosError.response.status);

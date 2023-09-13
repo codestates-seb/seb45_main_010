@@ -10,11 +10,10 @@ const Private: React.FC = () => {
   const userDetails = useAppSelector((state) => state.member.user);
   console.log(userDetails);
 
-  const userId = 1;
-  const LoginInfo: number = userId;
   useEffect(() => {
-    dispatch(fetchUserDetails(LoginInfo));
-  }, [dispatch]);
+    // 페이지가 로딩될 때 사용자 정보를 가져옵니다.
+    dispatch(fetchUserDetails());
+  }, [dispatch, userDetails.id]);
 
   return (
     <div className="flex flex-col justify-center px-[12.5px]">

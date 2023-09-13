@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ChangeEvent, FormEvent } from 'react';
 import { Button } from '@material-tailwind/react';
@@ -8,6 +8,7 @@ import { fetchUserDetails } from 'redux/slice/MemberSlice';
 import { useAppDispatch, useAppSelector } from 'hooks/hooks';
 import IsLoading from 'components/Loading/Loading';
 import axios from 'axios';
+import { checkAuth } from 'components/Auth/CheckAuth';
 
 const Login: React.FC = () => {
   const [LoginInfo, setLoginInfo] = useState<LoginType>({
@@ -15,12 +16,20 @@ const Login: React.FC = () => {
     email: '',
     password: '',
   });
+
   const apiURL = 'http://ec2-3-34-116-209.ap-northeast-2.compute.amazonaws.com:8080';
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const userInfo = useAppSelector((state) => state.member);
   const isLoading = userInfo.isLoading;
   console.log(userInfo);
+
+  useEffect(() => {
+    const authData = checkAuth();
+    dispatch(fetchUserDetails(authData));
+    alert(`반갑습니다.${userInfo.user.name} 회원님!`);
+    navigate('/private');
+  }, [navigate]);
 
   const handleLoginInfo = (e: ChangeEvent<HTMLInputElement>) => {
     const key = e.target.name;
@@ -46,9 +55,25 @@ const Login: React.FC = () => {
     }
 
     // Login 및 토큰받기
+    try {
+      const userLogin = await axios.post(`${apiURL}/login`, {
+        username: LoginInfo.email,
+        password: LoginInfo.password,
+      });
+      const accessToken = userLogin.headers.authorization.split(' ')[1];
+      console.log(accessToken);
+      if (accessToken) {
+        localStorage.setItem('access_jwt', accessToken);
+      }
+    } catch (error) {
+      console.log('로그인 실패, error');
+      return;
+    }
+
+    //사용자 정보 Redux
 
     try {
-      const resultAction = await dispatch(fetchUserDetails(LoginInfo.email));
+      const resultAction = await dispatch(fetchUserDetails(userInfo.user.id));
 
       if (fetchUserDetails.fulfilled.match(resultAction)) {
         console.log(userInfo.user);
