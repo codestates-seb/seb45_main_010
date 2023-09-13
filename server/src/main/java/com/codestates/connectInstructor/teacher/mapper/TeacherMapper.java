@@ -51,6 +51,7 @@ public interface TeacherMapper {
             response.setId(teacher.getId());
             response.setEmail(teacher.getEmail());
             response.setName(teacher.getName());
+            response.setTeacher(true);
             response.setPhone(teacher.getPhone());
             response.setProfileImg(teacher.getProfileImg());
             response.setIntroduction(teacher.getIntroduction());
