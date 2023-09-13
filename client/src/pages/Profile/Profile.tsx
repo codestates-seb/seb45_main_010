@@ -51,7 +51,6 @@ const Profile = () => {
               offLine: user.classMethod.offLine,
             }}
             handleClassMethodUpdate={handleClassMethodUpdate}
-            schedule={user.date}
           />
         </>
       ) : profileState.status === 'pending' ? (

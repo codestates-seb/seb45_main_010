@@ -13,9 +13,9 @@ const initialState: initialStateType = {
     name: '',
     email: '',
     teacher: false,
-    id: null as unknown as number,
-    phone: null as unknown as number,
-    img: '',
+    id: undefined as unknown as number,
+    phone: undefined as unknown as number,
+    img: undefined as unknown as string,
   },
   isLoading: false,
   isError: false,
@@ -53,10 +53,12 @@ export default memberSlice.reducer;
 
 export const fetchUserDetails = createAsyncThunk(
   'member/fetchUserDetails',
-  async (email: string, { rejectWithValue }) => {
+  async (id: number, { rejectWithValue }) => {
     try {
-      const response = await axios.get(`http://localhost:8080/member?email=${email}`);
-      const data = response.data[0];
+      const apiURL = 'http://ec2-3-34-116-209.ap-northeast-2.compute.amazonaws.com:8080';
+      const response = await axios.get(`${apiURL}/students/${id}`);
+      console.log(response);
+      const data = response.data;
       console.log(data);
       if (!data) {
         return rejectWithValue('등록된 계정이 없거나 비밀번호가 일치하지 않습니다');

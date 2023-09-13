@@ -15,13 +15,13 @@ export const FetchRequest = createAsyncThunk('FetchRequest', async (userId: numb
 });
 
 export const FetchSchedule = createAsyncThunk('schedule/fetchSchedule', async (userId: number) => {
-  const response = await axios.get(`http://localhost:8081/profile/${userId}`);
+  const response = await axios.get(`http://localhost:8081/schedule/${userId}`);
   const data = response.data;
   return data;
 });
 
 export const updateSchedule = createAsyncThunk(
-  'profile/updateSchedule',
+  'schedule/updateSchedule',
   async ({
     userId,
     date,
@@ -33,18 +33,17 @@ export const updateSchedule = createAsyncThunk(
   }) => {
     let response;
     if (method === 'POST') {
-      response = await axios.post(`http://localhost:8081/profile/${userId}`, { date });
+      response = await axios.post(`http://localhost:8081/schedule/${userId}`, { date });
     } else if (method === 'PATCH') {
-      response = await axios.patch(`http://localhost:8081/profile/${userId}`, { date });
+      response = await axios.patch(`http://localhost:8081/schedule/${userId}`, { date });
     } else {
-      response = await axios.delete(`http://localhost:8081/profile/${userId}`, {
-        data: date, //  date: dateToBeDeleted
+      response = await axios.delete(`http://localhost:8081/schedule/${userId}`, {
+        data: date,
       });
     }
     return response.data;
   }
 );
-
 export const updateClassMethod = createAsyncThunk(
   'profile/updateClassMethod',
   async ({ userId, onLine, offLine }: { userId: number; onLine: boolean; offLine: boolean }) => {
