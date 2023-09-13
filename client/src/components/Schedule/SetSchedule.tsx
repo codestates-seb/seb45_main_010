@@ -3,62 +3,72 @@ import DatePicker from 'react-datepicker';
 import { ko } from 'date-fns/locale';
 import { Button, Option, Select } from '@material-tailwind/react';
 import { useState, useEffect, useRef } from 'react';
-import { TimeSlot } from 'Types/Types';
+import { TimeSlotType, ScheduleArrayType, ScheduleType } from 'Types/Types';
 import { generateAvailableTimeSlots, generateTimeSlots, formatDate } from './Functions';
 import { updateSchedule, FetchSchedule } from 'redux/thunk/Thunk';
-import { useAppDispatch } from 'hooks/hooks';
+import { useAppDispatch, useAppSelector } from 'hooks/hooks';
+import GetSchedule from './GetSchedule';
 
 type ScheduleProps = {
-  schedule: { date: string; timeslots: string[] }[];
   userId: number;
 };
 
 const availableTimeSlots = generateAvailableTimeSlots();
 
-const SetSchedule: React.FC<ScheduleProps> = ({ schedule, userId }) => {
+const SetSchedule: React.FC<ScheduleProps> = ({ userId }) => {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
-  const [timeSlots, setTimeSlots] = useState<TimeSlot['timeslots']>([]);
+  const [timeSlots, setTimeSlots] = useState<TimeSlotType['timeslots']>([]);
   const [selectedTimeSlots, setSelectedTimeSlots] = useState<
     { date: string; timeslots: string[] }[]
-  >(schedule ? schedule : []);
-  const formatSelectedDate = selectedDate ? formatDate(selectedDate) : null;
-  const [newSchedule, setNewSchedule] = useState<{ date: string; timeslots: string[] }[]>(
-    schedule ? selectedTimeSlots : []
-  );
+  >([]);
+  const [newSchedule, setNewSchedule] = useState<TimeSlotType[]>([]);
   const dispatch = useAppDispatch();
 
-  const prevScheduleRef = useRef(schedule ? schedule : []);
+  const prevScheduleRef = useRef<{ date: string; timeslots: string[] }[]>([]);
 
   useEffect(() => {
-    prevScheduleRef.current = schedule;
-  }, [schedule, timeSlots]);
+    dispatch(FetchSchedule(userId))
+      .then((response) => {
+        const schedule = response.payload.date;
+        // console.log('스케쥴 정보 fetch 성공');
+        // console.log(schedule);
+        setSelectedTimeSlots(schedule);
+        setNewSchedule(schedule);
+        prevScheduleRef.current = schedule;
+      })
+      .catch((error) => {
+        console.error('Error fetching schedule:', error);
+      });
+  }, [dispatch, userId]);
+  // console.log(newSchedule);
+  // console.log(selectedTimeSlots);
+  // console.log(prevScheduleRef.current);
+  // console.log(prevScheduleRef.length);
+  const formatSelectedDate = selectedDate ? formatDate(selectedDate) : null;
 
   const handleSave = async () => {
     let method: 'POST' | 'PATCH' | 'DELETE';
-
-    if (schedule === null) {
+    if (prevScheduleRef.current === null) {
       prevScheduleRef.current = [];
     }
     const prevSchedule = prevScheduleRef.current;
-    if (newSchedule.length === 0 && prevSchedule.length === 0) {
-      return;
-    } else if (newSchedule.length > 0 && prevSchedule.length === 0) {
-      method = 'POST';
-      console.log('POST');
-    } else if (
-      newSchedule.length > 0 &&
-      JSON.stringify(newSchedule) !== JSON.stringify(prevSchedule)
-    ) {
-      method = 'PATCH';
-      console.log('PATCH');
-    } else if (newSchedule.length === 0 && prevSchedule.length > 0) {
-      method = 'DELETE';
-      console.log('DELETE');
+    if (JSON.stringify(newSchedule) !== JSON.stringify(prevSchedule)) {
+      if (newSchedule.length > 0 && (!prevSchedule || prevSchedule.length === 0)) {
+        method = 'POST';
+        console.log('POST');
+      } else if (newSchedule.length === 0 && prevSchedule && prevSchedule.length > 0) {
+        method = 'DELETE';
+        console.log('DELETE');
+      } else {
+        method = 'PATCH';
+        console.log('PATCH');
+      }
     } else {
-      console.log('No matching condition, please check the logic.', newSchedule, prevSchedule);
+      console.log('No changes to update.', newSchedule, prevSchedule);
       return;
     }
-    console.log('Updating schedule with:', { userId: userId, date: newSchedule, method });
+
+    console.log('Updating schedule with:', { userId: userId, date: newSchedule });
     return dispatch(updateSchedule({ userId: userId, date: newSchedule, method }));
   };
   const today = new Date();
@@ -103,11 +113,12 @@ const SetSchedule: React.FC<ScheduleProps> = ({ schedule, userId }) => {
       }
 
       setNewSchedule(newSlots); // newSchedule 상태 업데이트
-      console.log(`"newSlots" ${newSlots}`);
+      // console.log('newSlots', newSlots);
+
       return newSlots;
     });
   };
-
+  // console.log(newSchedule);
   const handleSelectedTimeSlot = (
     timeSlotObj: { date: string; timeslots: string[] },
     timeslot: string
@@ -146,9 +157,9 @@ const SetSchedule: React.FC<ScheduleProps> = ({ schedule, userId }) => {
         locale={ko}
       />
 
-      {prevScheduleRef.current || timeSlots ? (
+      {selectedDate ? (
         <div className="w-full mt-5">
-          <span className="text-xs">available</span>
+          <span className="mb-5 text-sm font-bold">선택 가능한 시간 목록</span>
           <div className="my-10">
             <Select color="blue" label="선택 가능한 시간 목록">
               {timeSlots.map((perHour: string) => (
@@ -162,7 +173,7 @@ const SetSchedule: React.FC<ScheduleProps> = ({ schedule, userId }) => {
               ))}
             </Select>
           </div>
-          <span className="mb-5 text-sm font-bold">Selected</span>
+          <span className="mb-5 text-sm font-bold">선택한 시간 목록</span>
           <div className="my-10">
             {selectedTimeSlots.map((timeSlotObj, index) => (
               <div key={timeSlotObj.date + timeSlotObj.timeslots[index]}>
@@ -196,6 +207,7 @@ const SetSchedule: React.FC<ScheduleProps> = ({ schedule, userId }) => {
       >
         <span className="flex-1 text-center">저장</span>
       </Button>
+      <GetSchedule />
     </div>
   );
 };
