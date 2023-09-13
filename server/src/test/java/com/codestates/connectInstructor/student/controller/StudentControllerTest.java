@@ -525,6 +525,7 @@ public class StudentControllerTest {
                                         fieldWithPath("status").type(JsonFieldType.STRING).description("회원 상태"),
                                         fieldWithPath("subjects").type(JsonFieldType.ARRAY).description("회원 관심 과목"),
                                         fieldWithPath("regions").type(JsonFieldType.ARRAY).description("회원 지역"),
+                                        fieldWithPath("teacher").type(JsonFieldType.BOOLEAN).description("강사여부. false면 학생"),
                                         fieldWithPath("matches").type(JsonFieldType.ARRAY).description("매칭 정보"),
                                         fieldWithPath("matches[].matchId").type(JsonFieldType.NUMBER).description("매칭 식별자"),
                                         fieldWithPath("matches[].teacherName").type(JsonFieldType.STRING).description("강사 이름"),

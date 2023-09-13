@@ -121,6 +121,7 @@ public class StudentDto {
         private List<String> subjects;
         private List<String> regions;
         private List<MatchResponse> matches;
+        private boolean teacher = false;
     }
 
     @Getter

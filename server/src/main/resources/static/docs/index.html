@@ -1747,7 +1747,7 @@ Host: localhost:8080</code></pre>
 <div class="content">
 <pre class="prettyprint highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
 Content-Type: application/json
-Content-Length: 763
+Content-Length: 785
 
 {
   "id" : 1,
@@ -1773,6 +1773,7 @@ Content-Length: 763
     "subjects" : [ "국어", "수학" ],
     "status" : "MATCH_ANSWERED"
   } ],
+  "teacher" : false,
   "oauth" : false
 }</code></pre>
 </div>
@@ -1804,6 +1805,7 @@ Content-Length: 763
     "subjects" : [ "국어", "수학" ],
     "status" : "MATCH_ANSWERED"
   } ],
+  "teacher" : false,
   "oauth" : false
 }</code></pre>
 </div>
@@ -1882,6 +1884,11 @@ Content-Length: 763
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>regions</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">회원 지역</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>teacher</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">강사여부. false면 학생</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>matches</code></p></td>
@@ -2741,12 +2748,13 @@ Host: localhost:8080</code></pre>
 <div class="content">
 <pre class="prettyprint highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
 Content-Type: application/json
-Content-Length: 976
+Content-Length: 997
 
 {
   "id" : 1,
   "email" : "hgd@gmail.com",
   "name" : "홍길동",
+  "teacher" : true,
   "phone" : "010-1234-5678",
   "profileImg" : "프로필 이미지가 저장된 곳 데이터",
   "introduction" : "안녕하세요. 저는 OO대학교를 졸업하고~~~",
@@ -2771,9 +2779,9 @@ Content-Length: 976
     "id" : 2,
     "regionName" : "수원시"
   } ],
-  "lastLogin" : "2023-09-13T08:32:05.8921251",
-  "lastModified" : "2023-09-13T08:32:05.8921251",
-  "createdAt" : "2023-09-06T08:32:05.8921251"
+  "lastLogin" : "2023-09-13T12:52:44.7406756",
+  "lastModified" : "2023-09-13T12:52:44.7406756",
+  "createdAt" : "2023-09-06T12:52:44.7406756"
 }</code></pre>
 </div>
 </div>
@@ -2784,6 +2792,7 @@ Content-Length: 976
   "id" : 1,
   "email" : "hgd@gmail.com",
   "name" : "홍길동",
+  "teacher" : true,
   "phone" : "010-1234-5678",
   "profileImg" : "프로필 이미지가 저장된 곳 데이터",
   "introduction" : "안녕하세요. 저는 OO대학교를 졸업하고~~~",
@@ -2808,9 +2817,9 @@ Content-Length: 976
     "id" : 2,
     "regionName" : "수원시"
   } ],
-  "lastLogin" : "2023-09-13T08:32:05.8921251",
-  "lastModified" : "2023-09-13T08:32:05.8921251",
-  "createdAt" : "2023-09-06T08:32:05.8921251"
+  "lastLogin" : "2023-09-13T12:52:44.7406756",
+  "lastModified" : "2023-09-13T12:52:44.7406756",
+  "createdAt" : "2023-09-06T12:52:44.7406756"
 }</code></pre>
 </div>
 </div>
@@ -2843,6 +2852,11 @@ Content-Length: 976
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>name</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">강사의 이름</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>teacher</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">강사 여부</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>phone</code></p></td>
@@ -3035,7 +3049,7 @@ Content-Length: 1123
     } ],
     "name" : "홍길동",
     "profileImg" : "프로필 이미지가 저장된 곳 데이터",
-    "createdAt" : "2023-09-13T08:32:05.9150426"
+    "createdAt" : "2023-09-13T12:52:44.8137659"
   }, {
     "id" : 2,
     "onLine" : false,
@@ -3056,7 +3070,7 @@ Content-Length: 1123
     } ],
     "name" : "임꺽정",
     "profileImg" : "프로필 이미지가 저장된 곳 데이터",
-    "createdAt" : "2023-09-13T08:32:05.9150426"
+    "createdAt" : "2023-09-13T12:52:44.8137659"
   } ],
   "pageInfo" : {
     "page" : 2,
@@ -3091,7 +3105,7 @@ Content-Length: 1123
     } ],
     "name" : "홍길동",
     "profileImg" : "프로필 이미지가 저장된 곳 데이터",
-    "createdAt" : "2023-09-13T08:32:05.9150426"
+    "createdAt" : "2023-09-13T12:52:44.8137659"
   }, {
     "id" : 2,
     "onLine" : false,
@@ -3112,7 +3126,7 @@ Content-Length: 1123
     } ],
     "name" : "임꺽정",
     "profileImg" : "프로필 이미지가 저장된 곳 데이터",
-    "createdAt" : "2023-09-13T08:32:05.9150426"
+    "createdAt" : "2023-09-13T12:52:44.8137659"
   } ],
   "pageInfo" : {
     "page" : 2,
@@ -5642,7 +5656,7 @@ Content-Length: 434
 <div id="footer">
 <div id="footer-text">
 Version 0.0.1-SNAPSHOT<br>
-Last updated 2023-09-13 08:31:53 +0900
+Last updated 2023-09-13 12:45:36 +0900
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.css">
