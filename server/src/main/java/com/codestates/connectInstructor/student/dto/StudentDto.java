@@ -45,7 +45,7 @@ public class StudentDto {
         @NotNull
         private long id;
         @NotBlank
-        private String lessonOption;
+        private String option;
     }
 
     @Getter
@@ -72,7 +72,7 @@ public class StudentDto {
         @NotNull
         private long id;
         @NotNull
-        private String phoneNumber;
+        private String phone;
     }
 
     @Getter
@@ -101,7 +101,7 @@ public class StudentDto {
         private String email;
         private String name;
         private String profileImg;
-        private String phoneNumber;
+        private String phone;
         private boolean isOauth;
         private MemberStatus status;
     }
@@ -114,8 +114,8 @@ public class StudentDto {
         private String email;
         private String profileImg;
         private String introduction;
-        private String lessonOption;
-        private String phoneNumber;
+        private String option;
+        private String phone;
         private boolean isOauth;
         private MemberStatus status;
         private List<String> subjects;
