@@ -138,7 +138,7 @@ public class TeacherControllerTest {
         regions.add(region1);
         regions.add(region2);
         TeacherDto.Response response = new TeacherDto.Response(1L,"hgd@gmail.com",
-                "홍길동","010-1234-5678",
+                "홍길동", true, "010-1234-5678",
                 "프로필 이미지가 저장된 곳 데이터", "안녕하세요. 저는 OO대학교를 졸업하고~~~",
                 "OO학원에서 O년을 일했고 ~~", "일주일에 세시간 씩 매일 가능하고 시급은 ~~~",
                 "수학 수업의 경우는 고1 과정에서 고3과정의 ~~", true, false, "경기도 용인시 기흥구 ~~",
@@ -186,6 +186,7 @@ public class TeacherControllerTest {
                                         fieldWithPath("id").type(JsonFieldType.NUMBER).description("강사회원 식별자"),
                                         fieldWithPath("email").type(JsonFieldType.STRING).description("강사의 이메일"),
                                         fieldWithPath("name").type(JsonFieldType.STRING).description("강사의 이름"),
+                                        fieldWithPath("teacher").type(JsonFieldType.BOOLEAN).description("강사인지 여부"),
                                         fieldWithPath("phone").type(JsonFieldType.STRING).description("강사의 전화번호"),
                                         fieldWithPath("profileImg").type(JsonFieldType.STRING).description("강사의 프로필 이미지 저장 URL"),
                                         fieldWithPath("introduction").type(JsonFieldType.STRING).description("강사의 자기소개"),
@@ -226,7 +227,7 @@ public class TeacherControllerTest {
         regions.add(region1);
         regions.add(region2);
         TeacherDto.Response response = new TeacherDto.Response(1L,"hgd@gmail.com",
-                "홍길동","010-1234-5678",
+                "홍길동", true, "010-1234-5678",
                 "프로필 이미지가 저장된 곳 데이터", "안녕하세요. 저는 OO대학교를 졸업하고~~~",
                 "OO학원에서 O년을 일했고 ~~", "일주일에 세시간 씩 매일 가능하고 시급은 ~~~",
                 "수학 수업의 경우는 고1 과정에서 고3과정의 ~~", true, false, "경기도 용인시 기흥구 ~~",
@@ -254,6 +255,7 @@ public class TeacherControllerTest {
                                         fieldWithPath("id").type(JsonFieldType.NUMBER).description("강사회원 식별자"),
                                         fieldWithPath("email").type(JsonFieldType.STRING).description("강사의 이메일"),
                                         fieldWithPath("name").type(JsonFieldType.STRING).description("강사의 이름"),
+                                        fieldWithPath("teacher").type(JsonFieldType.BOOLEAN).description("강사 여부"),
                                         fieldWithPath("phone").type(JsonFieldType.STRING).description("강사의 전화번호"),
                                         fieldWithPath("profileImg").type(JsonFieldType.STRING).description("강사의 프로필 이미지 저장 URL"),
                                         fieldWithPath("introduction").type(JsonFieldType.STRING).description("강사의 자기소개"),

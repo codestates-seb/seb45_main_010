@@ -102,6 +102,7 @@ public class TeacherDto {
         private long id;
         private String email;
         private String name;
+        private boolean teacher = true;
         private String phone;
         private String profileImg;
         private String introduction;

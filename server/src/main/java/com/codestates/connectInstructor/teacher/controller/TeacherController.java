@@ -194,8 +194,8 @@ public class TeacherController {
 
     @GetMapping
     public ResponseEntity getTeachers(@RequestParam String teacherName,
-                                      @RequestParam List<String> subjectNames,
-                                      @RequestParam List<String> regionNames,
+                                      @RequestParam(required = false) List<String> subjectNames,
+                                      @RequestParam(required = false) List<String> regionNames,
                                       @Positive @RequestParam int page,
                                       @Positive @RequestParam int size) {
 
