@@ -15,7 +15,7 @@ const DetailPage = () => {
   const dispatch = useAppDispatch();
 
   dispatch(getData);
-
+  
   return (
         <>
           <p className="m-5 text-sm mt-[40px]">수업 가능 시간</p>

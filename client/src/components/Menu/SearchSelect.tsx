@@ -1,5 +1,5 @@
-import React from 'react';
-import { Select, Option } from '@material-tailwind/react';
+import React, { MouseEvent } from 'react';
+import { Menu, MenuHandler, Button, MenuList, MenuItem } from '@material-tailwind/react';
 
 type props = {
   searchList: string[];
@@ -7,7 +7,7 @@ type props = {
 };
 
 const SearchSelect = ({ searchList, setSearchList }: props) => {
-  const handlerSearching = (e: React.MouseEvent<HTMLLIElement>) => {
+  const handlerSearching = (e: MouseEvent) => {
     const newText: string = e.currentTarget.innerHTML;
     const newSearch: string[] = Array.from(new Set([...searchList, newText]));
 
@@ -16,17 +16,29 @@ const SearchSelect = ({ searchList, setSearchList }: props) => {
 
   return (
     <>
-      <div className="mb-3">
-        <Select label="과목" size="lg">
-          <Option onClick={handlerSearching}>국어</Option>
-          <Option onClick={handlerSearching}>수학</Option>
-        </Select>
-      </div>
-      <div className="mb-3">
-        <Select label="지역" size="lg">
-          <Option onClick={handlerSearching}>서울</Option>
-          <Option onClick={handlerSearching}>제주</Option>
-        </Select>
+      <div className="flex justify-center py-3 mb-4">
+        <Menu>
+          <MenuHandler>
+            <Button className="w-full mx-1 text-base text-black bg-mint-300 hover:bg-mint-400">
+              과목 검색
+            </Button>
+          </MenuHandler>
+          <MenuList>
+            <MenuItem onClick={handlerSearching}>수학</MenuItem>
+            <MenuItem onClick={handlerSearching}>국어</MenuItem>
+          </MenuList>
+        </Menu>
+        <Menu>
+          <MenuHandler>
+            <Button className="w-full mx-1 text-base text-black bg-mint-300 hover:bg-mint-400">
+              지역 검색
+            </Button>
+          </MenuHandler>
+          <MenuList>
+            <MenuItem onClick={handlerSearching}>수학</MenuItem>
+            <MenuItem onClick={handlerSearching}>국어</MenuItem>
+          </MenuList>
+        </Menu>
       </div>
     </>
   );

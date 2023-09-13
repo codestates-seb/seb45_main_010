@@ -7,11 +7,7 @@ type props = {
   setCurrentPage: (index: number) => void;
 };
 
-export const PageNumbers = ({
-  numPages,
-  currentPage,
-  setCurrentPage,
-}: props) => {
+export const PageNumbers = ({ numPages, currentPage, setCurrentPage }: props) => {
   const pagesToShow = 4;
   const pageNumbers = [];
 
@@ -42,11 +38,7 @@ export const PageNumbers = ({
         <span className="mx-2">...</span>
       ) : (
         <IconButton
-          className={
-            currentPage === page
-              ? 'bg-mint-2 rounded-full text-black'
-              : 'rounded-full'
-          }
+          className={currentPage === page ? 'bg-mint-200 rounded-full text-black' : 'rounded-full'}
           onClick={() => setCurrentPage(page)}
           variant={currentPage === page ? 'filled' : 'text'}
         >

@@ -6,12 +6,15 @@ import { footerInfo } from 'configs/Footer/configs';
 export const Footer = () => {
   return (
     <footer className="absolute bottom-0 w-full bg-blue-gray-50">
-      <div className="flex gap-4 p-1 text-black">
-        <FooterIcon />
-      </div>
       <div className="p-2">
         <FooterGithub />
-        <Typography color="blue-gray" className="mt-2 text-xs text-gray-600">
+        <div className="flex justify-end gap-2 text-black">
+          <FooterIcon />
+        </div>
+        <Typography
+          color="blue-gray"
+          className="mt-2 text-xs text-center text-gray-600 border-t-2 border-gray-300"
+        >
           &copy; {footerInfo.footerMessage}
         </Typography>
       </div>
