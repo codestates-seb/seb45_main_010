@@ -13,8 +13,7 @@ const ListPage = () => {
   const teacher = useAppSelector(teacherList);
   const dispatch = useAppDispatch();
 
-  dispatch(getData());
-  console.log(teacher);
+  // dispatch(getData());
 
   return (
     <>
