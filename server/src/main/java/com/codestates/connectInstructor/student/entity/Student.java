@@ -43,9 +43,9 @@ public class Student extends Auditable implements Member {
     private String introduction;
 
     @Column(columnDefinition = "TEXT")
-    private String lessonOption;
+    private String option;
 
-    private String phoneNumber;
+    private String phone;
 
     @Column(nullable = false, name = "is_oauth")
     private boolean isOauth = false;

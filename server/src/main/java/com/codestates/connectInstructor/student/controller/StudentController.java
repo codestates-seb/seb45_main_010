@@ -58,7 +58,7 @@ public class StudentController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @PatchMapping("/lessonOption")
+    @PatchMapping("/option")
     public ResponseEntity patchIntroduction(@RequestBody @Valid StudentDto.PatchLessonOption request) {
         Student student = mapper.patchPatchLessonOptionToStudent(request);
 
@@ -96,7 +96,7 @@ public class StudentController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PatchMapping("/phoneNumber")
+    @PatchMapping("/phone")
     public ResponseEntity patchPhoneNumber(@RequestBody @Valid StudentDto.PatchPhoneNumber request) {
         Student student = mapper.patchPhoneNumberToStudent(request);
 

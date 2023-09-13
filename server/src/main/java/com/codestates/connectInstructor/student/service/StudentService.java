@@ -2,6 +2,7 @@ package com.codestates.connectInstructor.student.service;
 
 import com.codestates.connectInstructor.common.MemberStatus;
 import com.codestates.connectInstructor.email.event.SignupEvent;
+import com.codestates.connectInstructor.email.event.VerifyEmailEvent;
 import com.codestates.connectInstructor.exception.BusinessLogicException;
 import com.codestates.connectInstructor.exception.ExceptionCode;
 import com.codestates.connectInstructor.region.entity.Region;
@@ -53,7 +54,7 @@ public class StudentService {
 
         Student saved = repository.save(student);
 
-        applicationEventPublisher.publishEvent(new SignupEvent(saved.getEmail(), saved.getName()));
+        applicationEventPublisher.publishEvent(new VerifyEmailEvent(saved.getEmail(), saved.getName()));
 
         return saved;
     }
@@ -104,7 +105,7 @@ public class StudentService {
 
         Student found = findStudentById(student.getId());
 
-        found.setLessonOption(student.getLessonOption());
+        found.setOption(student.getOption());
 
         return repository.save(found);
     }
@@ -159,7 +160,7 @@ public class StudentService {
 
         Student found = findStudentById(student.getId());
 
-        found.setPhoneNumber(student.getPhoneNumber());
+        found.setPhone(student.getPhone());
 
         return repository.save(found);
     }

@@ -50,7 +50,7 @@ public class MatchService {
                         .collect(Collectors.toList())
         );
         response.setStudentName(student.getName());
-        response.setStudentPhoneNumber(student.getPhoneNumber());
+        response.setStudentPhone(student.getPhone());
         response.setStudentEmail(student.getEmail());
 
         //TODO 스케줄 구현 후 수정
@@ -83,7 +83,7 @@ public class MatchService {
         match.setStudent(studentService.findStudentById(request.getStudentId()));
         match.setTeacher(teacherService.findVerifiedTeacher(request.getTeacherId()));
         match.setStudentName(request.getStudentName());
-        match.setStudentPhoneNumber(request.getStudentPhoneNumber());
+        match.setStudentPhone(request.getStudentPhone());
         match.setStudentEmail(request.getStudentEmail());
         match.setRemarks(request.getRemarks());
 
