@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { ChangeEvent, FormEvent } from 'react';
 import { Button, Checkbox } from '@material-tailwind/react';
 import { User } from '../Types/Types';
+import { SocialModal } from 'components/Modal/SocialModal';
 import axios from 'axios';
 
 type MemberSignUp = Pick<User, 'name' | 'email' | 'password' | 'teacher'>;
@@ -21,16 +22,18 @@ const SignUp: React.FC = () => {
   const navigate = useNavigate();
   const isValidEmail: boolean = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(userInfo.email);
   const isValiePassword: boolean = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(userInfo.password);
+  const apiURL = 'http://ec2-3-34-116-209.ap-northeast-2.compute.amazonaws.com:8080';
 
-  const handleEmailCheck = async (userEmail: string) => {
+  const handleEmailCheck = async (email: string) => {
     if (!isValidEmail) {
       alert('유효한 이메일을 입력해주세요');
       return;
     }
 
     try {
-      const response = await axios.get(`http://localhost:8080/verify`);
-      const isDuplicate = response.data.indexOf(userEmail) !== -1; // 중복시 true
+      const response = await axios.get(`${apiURL}/students/check/${userInfo.email}`);
+      console.log(`${apiURL}/students/check/${userInfo.email}`);
+      const isDuplicate = response.data.used === true;
       if (isDuplicate === false) {
         setResiterable(true);
         setCheckEmail(true);
@@ -40,7 +43,7 @@ const SignUp: React.FC = () => {
       }
     } catch (error) {
       console.log('이메일 중복체크 통신오류', error);
-      alert('서비스 개선중입니다. 잠시후에 다시 시도하여 주세요');
+      alert('서버와의 통신에 실패했습니다. 잠시후에 다시 시도하여 주세요');
     }
   };
 
@@ -71,7 +74,7 @@ const SignUp: React.FC = () => {
     }
 
     await axios
-      .post(`http://localhost:8080/${userInfo.teacher ? 'teachers' : 'students'}`, userInfo)
+      .post(`${apiURL}/${userInfo.teacher ? 'teachers' : 'students'}`, userInfo)
       .then((response) => {
         console.log('회원가입 비동기요청', response.data);
         alert('회원가입을 축하드립니다');
@@ -109,7 +112,7 @@ const SignUp: React.FC = () => {
               type="email"
               id="email"
               name="email"
-              className="border-2 text-sm rounded-lg p-2 w-[90%] h-[50px] mb-5"
+              className="border-2 text-sm rounded-lg p-2 w-[90%] h-[50px]"
               placeholder="이메일을 입력하세요"
               value={userInfo.email}
               onChange={handleUserInfo}
@@ -124,11 +127,11 @@ const SignUp: React.FC = () => {
               <div>확인</div>
             </button>
           </div>
-          <div>
+          <div className="mb-3">
             {checkEmail === true && registerable === true ? (
-              <div className="ml-4 text-xs text-gray-800">등록 가능한 이메일입니다.</div>
+              <div className="text-xs text-gray-800">등록 가능한 이메일입니다.</div>
             ) : checkEmail === true && registerable === false ? (
-              <div className="ml-4 text-xs text-red">이미 등록된 이메일입니다.</div>
+              <div className="text-xs text-red">이미 등록된 이메일입니다.</div>
             ) : null}
           </div>
 
@@ -164,14 +167,7 @@ const SignUp: React.FC = () => {
             이메일 회원가입
           </Button>
         </form>
-        <form className="flex flex-col gap-2 py-4 rounded-lg" onSubmit={(e) => e.preventDefault()}>
-          <Button
-            type="submit"
-            className="text-xl text-black border-2 border-kakao-1 bg-kakao-1 rounded-lg shadow-lg shadow-gray-900/30 p-1 h-[50px] hover:bg-kakao-2"
-          >
-            카카오 회원가입
-          </Button>
-        </form>
+        <SocialModal />
       </div>
     </div>
   );

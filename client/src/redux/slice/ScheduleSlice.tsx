@@ -1,23 +1,21 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { FetchSchedule, updateSchedule } from 'redux/thunk/Thunk';
+import { TimeSlotType, ScheduleArrayType } from 'Types/Types';
 
 type initialStateType = {
   status: string;
-  value: { date: string; timeslots: string[] }[] | null;
-  schedule: { date: string; timeslots: string[] }[] | null;
-  error: string | null;
-  selectedDate: { date: string; timeslots: string[] }[] | null;
-  selectedTimeSlots: { date: string; timeslots: string[] }[] | null;
-  newSchedule: { date: string; timeslots: string[] }[] | null;
+  schedule: ScheduleArrayType | null;
+  error: string | undefined;
+  newSchedule: TimeSlotType[] | null;
+  teacherId: number;
 };
 
 const initialState: initialStateType = {
   status: '',
-  value: null,
-  schedule: null,
-  error: null,
-  selectedDate: null,
-  selectedTimeSlots: [],
+  schedule: [],
+  error: undefined,
   newSchedule: [],
+  teacherId: 0,
 };
 
 export const ScheduleSlice = createSlice({
@@ -27,31 +25,38 @@ export const ScheduleSlice = createSlice({
     setSchedule(state, action) {
       state.schedule = action.payload;
     },
-    setSelectedDate(state, action) {
-      state.selectedDate = action.payload;
-    },
-    setSelectedTimeSlots(state, action) {
-      state.selectedTimeSlots = action.payload;
-    },
     setNewSchedule(state, action) {
       state.newSchedule = action.payload;
     },
+    setTeacherId(state, action) {
+      state.teacherId = action.payload;
+    },
   },
-  //   extraReducers: (builder) => {
-  //     builder.addCase(FetchSchedule.pending, (state, action) => {
-  //       state.status = 'Loading';
-  //     });
-  //     builder.addCase(FetchSchedule.fulfilled, (state, action) => {
-  //       state.value = action.payload;
-  //       state.status = 'complete';
-  //     });
-  //     builder.addCase(FetchSchedule.rejected, (state, action) => {
-  //       state.status = 'fail';
-  //     });
-  //   },
+  extraReducers: (builder) => {
+    builder
+      .addCase(FetchSchedule.pending, (state) => {
+        state.status = 'pending';
+      })
+      .addCase(FetchSchedule.fulfilled, (state, action) => {
+        state.status = 'fulfilled';
+        state.schedule = action.payload;
+      })
+      .addCase(FetchSchedule.rejected, (state, action) => {
+        state.status = 'rejected';
+        state.error = action.error.message;
+      })
+      .addCase(updateSchedule.fulfilled, (state, action) => {
+        console.log('Payload:', action.payload);
+        console.log('State before:', state.schedule);
+
+        state.status = 'fulfilled';
+        state.schedule = action.payload;
+
+        console.log('State after:', state.schedule);
+      });
+  },
 });
 
-export const { setSchedule, setSelectedDate, setSelectedTimeSlots, setNewSchedule } =
-  ScheduleSlice.actions;
+export const { setSchedule, setNewSchedule, setTeacherId } = ScheduleSlice.actions;
 
 export default ScheduleSlice.reducer;

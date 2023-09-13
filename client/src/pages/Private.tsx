@@ -10,7 +10,8 @@ const Private: React.FC = () => {
   const userDetails = useAppSelector((state) => state.member.user);
   console.log(userDetails);
 
-  const LoginInfo: string = 'abcd@gmail.com';
+  const userId = 1;
+  const LoginInfo: number = userId;
   useEffect(() => {
     dispatch(fetchUserDetails(LoginInfo));
   }, [dispatch]);
@@ -87,7 +88,9 @@ const Private: React.FC = () => {
         <div className="text-sm">전화번호</div>
         <div className="flex items-center">
           <div className="flex items-center border text-xs h-[50px] border-blue-800/60 rounded-lg w-80 p-2">
-            {userDetails.phone === null ? 'your phone number here' : userDetails.phone.toString()}
+            {userDetails.phone === undefined
+              ? 'your phone number here'
+              : userDetails.phone.toString()}
           </div>
           <div className="m-2">
             <ChangeModal
