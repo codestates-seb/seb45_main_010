@@ -1,6 +1,7 @@
 package com.codestates.connectInstructor.teacher.service;
 
 import com.codestates.connectInstructor.email.event.SignupEvent;
+import com.codestates.connectInstructor.email.event.VerifyEmailEvent;
 import com.codestates.connectInstructor.exception.BusinessLogicException;
 import com.codestates.connectInstructor.exception.ExceptionCode;
 import com.codestates.connectInstructor.region.entity.Region;
@@ -60,7 +61,7 @@ public class TeacherService {
 
         Teacher saved = teacherRepository.save(teacher);
 
-        applicationEventPublisher.publishEvent(new SignupEvent(saved.getEmail(), saved.getName()));
+        applicationEventPublisher.publishEvent(new VerifyEmailEvent(saved.getEmail(), saved.getName()));
 
         return saved;
     }

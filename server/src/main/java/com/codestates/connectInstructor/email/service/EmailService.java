@@ -105,6 +105,8 @@ public class EmailService {
 
             teacher.setStatus(MemberStatus.ACTIVE);
             teacherRepository.save(teacher);
+
+            applicationEventPublisher.publishEvent(new SignupEvent(email, name));
         } else {
             throw new BusinessLogicException(ExceptionCode.MEMBER_NOT_FOUND);
         }
