@@ -327,7 +327,7 @@ public class StudentControllerTest {
         long id = 1L;
         List<String> subjects = List.of("국어", "영어");
 
-        StudentDto.PatchSubject request = StudentDto.PatchSubject.builder().studentId(id).subjects(subjects).build();
+        StudentDto.PatchSubject request = StudentDto.PatchSubject.builder().id(id).subjects(subjects).build();
 
         Student student = new Student();
         student.setId(id);
@@ -348,13 +348,13 @@ public class StudentControllerTest {
                         getResponsePreProcessor(),
                         requestFields(
                                 List.of(
-                                        fieldWithPath("studentId").type(JsonFieldType.NUMBER).description("회원 식별자"),
+                                        fieldWithPath("id").type(JsonFieldType.NUMBER).description("회원 식별자"),
                                         fieldWithPath("subjects").type(JsonFieldType.ARRAY).description("학생의 모든 관심 과목")
                                 )
                         ),
                         responseFields(
                                 List.of(
-                                        fieldWithPath("studentId").type(JsonFieldType.NUMBER).description("회원 식별자"),
+                                        fieldWithPath("id").type(JsonFieldType.NUMBER).description("회원 식별자"),
                                         fieldWithPath("subjects").type(JsonFieldType.ARRAY).description("학생의 모든 관심 과목")
                                 )
                         )
@@ -420,7 +420,7 @@ public class StudentControllerTest {
         long id = 1L;
         List<String> regions = List.of("강남", "강서");
 
-        StudentDto.PatchRegion request = StudentDto.PatchRegion.builder().studentId(id).regions(regions).build();
+        StudentDto.PatchRegion request = StudentDto.PatchRegion.builder().id(id).regions(regions).build();
 
         Student student = new Student();
         student.setId(id);
@@ -441,13 +441,13 @@ public class StudentControllerTest {
                         getResponsePreProcessor(),
                         requestFields(
                                 List.of(
-                                        fieldWithPath("studentId").type(JsonFieldType.NUMBER).description("회원 식별자"),
+                                        fieldWithPath("id").type(JsonFieldType.NUMBER).description("회원 식별자"),
                                         fieldWithPath("regions").type(JsonFieldType.ARRAY).description("학생의 모든 지역")
                                 )
                         ),
                         responseFields(
                                 List.of(
-                                        fieldWithPath("studentId").type(JsonFieldType.NUMBER).description("회원 식별자"),
+                                        fieldWithPath("id").type(JsonFieldType.NUMBER).description("회원 식별자"),
                                         fieldWithPath("regions").type(JsonFieldType.ARRAY).description("수정 후, 학생의 모든 지역")
                                 )
                         )
