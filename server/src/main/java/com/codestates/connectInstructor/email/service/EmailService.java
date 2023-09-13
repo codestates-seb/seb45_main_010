@@ -10,12 +10,16 @@ import com.codestates.connectInstructor.teacher.entity.Teacher;
 import com.codestates.connectInstructor.teacher.repository.TeacherRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.jasypt.encryption.StringEncryptor;
 import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -23,8 +27,9 @@ import java.util.Optional;
 @Slf4j
 @RequiredArgsConstructor
 @Service
+@Transactional
 public class EmailService {
-    private StandardPBEStringEncryptor jasypt = new StandardPBEStringEncryptor();
+
     private final StudentRepository studentRepository;
     private final TeacherRepository teacherRepository;
     private final ApplicationEventPublisher applicationEventPublisher;
@@ -33,30 +38,35 @@ public class EmailService {
     String password;
 
     public String encodePath(String email, String name) {
+        StandardPBEStringEncryptor jasypt = new StandardPBEStringEncryptor();
 
         jasypt.setPassword(password);
         jasypt.setAlgorithm("PBEWITHMD5ANDDES");
 
-        String text = email.concat("|").concat(name);
+        String text = email.concat(",,,").concat(name);
 
         String encrypted = jasypt.encrypt(text);
 
         log.info("before encrypt : {}", text);
         log.info("after encrypt : {}", encrypted);
 
-        return encrypted;
+        return Base64.getEncoder().encodeToString(encrypted.getBytes());
     }
 
     public Map<String, String> decodePath(String encrypted) {
+        String base64Decoded = new String(Base64.getDecoder().decode(encrypted));
+
+        StandardPBEStringEncryptor jasypt = new StandardPBEStringEncryptor();
+
         jasypt.setPassword(password);
         jasypt.setAlgorithm("PBEWITHMD5ANDDES");
 
-        String decrypted = jasypt.decrypt(encrypted);
+        String decrypted = jasypt.decrypt(base64Decoded);
 
         log.info("before decrypted : {}", encrypted);
         log.info("after decrypted : {}", decrypted);
 
-        String[] splits = decrypted.split("|");
+        String[] splits = decrypted.split(",,,");
 
         Map<String, String> map = new HashMap<>();
 
