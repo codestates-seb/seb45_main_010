@@ -32,10 +32,20 @@ export type PrivateType = Pick<User, 'img' | 'name' | 'email' | 'password' | 'ph
 
 export type LoginType = Pick<User, 'email' | 'password'>;
 
-export type ListPageType = Pick<
-  TeacherType,
-  'name' | 'category' | 'area' | 'classMethod' | 'img'
->[];
+export type ListPageType = Pick<User, 'name' | 'category' | 'area' | 'classMethod' | 'img'>[];
+
+export type DetailType = Pick<
+  User,
+  | 'name'
+  | 'img'
+  | 'classMethod'
+  | 'category'
+  | 'area'
+  | 'date'
+  | 'introduce'
+  | 'lectureFee'
+  | 'career'
+>;
 
 export type RequestType = {
   id: string;

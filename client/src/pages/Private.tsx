@@ -7,11 +7,11 @@ import { ChangeModal } from 'components/Modal/ChangeModal';
 
 const Private: React.FC = () => {
   const dispatch = useAppDispatch();
-  const userDetails = useAppSelector((state) => state.member);
+  const userDetails = useAppSelector((state) => state.member.user);
   console.log(userDetails);
 
-  // 연동을 구현하면 삭제해야 할 코드, 해당 페이지 로딩시 새로고침으로 초기화되어 삽입한 내용임
-  const LoginInfo: string = 'abcd@gmail.com';
+  const userId = 1;
+  const LoginInfo: number = userId;
   useEffect(() => {
     dispatch(fetchUserDetails(LoginInfo));
   }, [dispatch]);
@@ -22,10 +22,7 @@ const Private: React.FC = () => {
         <div className="flex">
           <div className="flex flex-row justify-center item-center mr-[-30px]">
             {userDetails.img ? (
-              <img
-                src={userDetails.img}
-                className="m-2 mx-6 rounded-lg h-14 w-14"
-              />
+              <img src={userDetails.img} className="m-2 mx-6 rounded-lg h-14 w-14" />
             ) : (
               <img src={Thumbnail} className="m-2 mx-6 rounded-lg h-14 w-14" />
             )}
@@ -46,9 +43,9 @@ const Private: React.FC = () => {
       </div>
 
       <div className="flex-col my-5">
-        <div className="text-xm self-align-center">이름</div>
-        <div className="flex items-center text-sm">
-          <div className="border text-xs h-[60px] border-blue-800/60 rounded-lg w-80 p-2">
+        <div className="text-sm">이름</div>
+        <div className="flex items-center">
+          <div className="flex items-center border text-xs h-[50px] border-blue-800/60 rounded-lg w-80 p-2">
             {userDetails.name}
           </div>
           <div className="m-2">
@@ -58,15 +55,18 @@ const Private: React.FC = () => {
               warning=""
               btnName="변경"
               btnCheck="제출"
+              changeItem="name"
+              userId={userDetails.id}
+              API="http://localhost:8080/member"
             />
           </div>
         </div>
       </div>
 
       <div className="flex-col my-5">
-        <div className="text-xm self-align-center">비밀번호</div>
-        <div className="flex items-center text-sm">
-          <div className="border text-xs h-[60px] border-blue-800/60 rounded-lg w-80 p-2">
+        <div className="text-sm">비밀번호</div>
+        <div className="flex items-center">
+          <div className="flex items-center border text-xs h-[50px] border-blue-800/60 rounded-lg w-80 p-2">
             *********
           </div>
           <div className="m-2">
@@ -76,16 +76,19 @@ const Private: React.FC = () => {
               warning="숫자+영문조합으로 8자이상 입력해주세요"
               btnName="변경"
               btnCheck="제출"
+              changeItem="password"
+              userId={userDetails.id}
+              API="http://localhost:8080/member"
             />
           </div>
         </div>
       </div>
 
       <div className="flex-col my-5">
-        <div className="text-xm self-align-center">전화번호</div>
-        <div className="flex items-center text-sm">
-          <div className="border text-xs h-[60px] border-blue-800/60 rounded-lg w-80 p-2">
-            {userDetails.phone === null
+        <div className="text-sm">전화번호</div>
+        <div className="flex items-center">
+          <div className="flex items-center border text-xs h-[50px] border-blue-800/60 rounded-lg w-80 p-2">
+            {userDetails.phone === undefined
               ? 'your phone number here'
               : userDetails.phone.toString()}
           </div>
@@ -96,12 +99,13 @@ const Private: React.FC = () => {
               warning="숫자로만 입력해주세요"
               btnName="변경"
               btnCheck="제출"
+              changeItem="phone"
+              userId={userDetails.id}
+              API="http://localhost:8080/member"
             />
           </div>
         </div>
-        <div className="p-1 text-sm text-gray-700">
-          전화번호는 숫자로만 입력해주세요
-        </div>
+        <div className="p-1 text-sm text-gray-700">전화번호는 숫자로만 입력해주세요</div>
       </div>
     </div>
   );
