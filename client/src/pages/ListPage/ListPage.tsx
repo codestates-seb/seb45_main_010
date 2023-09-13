@@ -13,7 +13,11 @@ const ListPage = () => {
   const teacher = useAppSelector(teacherList);
   const dispatch = useAppDispatch();
 
-  // dispatch(getData());
+  useEffect(() => {
+    dispatch(getData());
+  }, [dispatch]);
+
+  useEffect(() => {}, [teacher]);
 
   return (
     <>
