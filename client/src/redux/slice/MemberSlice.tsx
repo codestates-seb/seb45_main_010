@@ -25,7 +25,17 @@ const initialState: initialStateType = {
 export const memberSlice = createSlice({
   name: 'member',
   initialState,
-  reducers: {},
+  reducers: {
+    updateUserName: (state, action) => {
+      state.user.name = action.payload;
+    },
+    updateUserPhone: (state, action) => {
+      state.user.phone = action.payload;
+    },
+    updateUserImage: (state, action) => {
+      state.user.profileImg = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchUserDetails.pending, (state) => {
@@ -51,6 +61,7 @@ export const memberSlice = createSlice({
   },
 });
 
+export const { updateUserName, updateUserPhone, updateUserImage } = memberSlice.actions;
 export default memberSlice.reducer;
 
 export const fetchUserDetails = createAsyncThunk(
@@ -62,6 +73,7 @@ export const fetchUserDetails = createAsyncThunk(
         `${apiURL}/${teacher === 'STUDENT' ? 'students' : 'teachers'}/${id}`
       );
       const data = response.data;
+      console.log(data);
       if (!data) {
         return rejectWithValue('등록된 계정이 없거나 비밀번호가 일치하지 않습니다');
       }

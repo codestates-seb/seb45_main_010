@@ -4,6 +4,7 @@ import { AiFillCamera } from 'react-icons/ai';
 import { fetchUserDetails } from 'redux/slice/MemberSlice';
 import { useAppDispatch, useAppSelector } from 'hooks/hooks';
 import { ChangeModal } from 'components/Modal/ChangeModal';
+import { ImageChangeModal } from 'components/Modal/ImageChangeModal';
 import { checkAuth } from 'components/Auth/CheckAuth';
 
 const Private: React.FC = () => {
@@ -13,8 +14,7 @@ const Private: React.FC = () => {
   console.log(userDetails);
 
   useEffect(() => {
-    // 페이지가 로딩될 때 사용자 정보를 가져옵니다.
-    dispatch(fetchUserDetails(authData));
+    dispatch(fetchUserDetails());
   }, [dispatch]);
 
   return (
@@ -32,6 +32,15 @@ const Private: React.FC = () => {
             <div className="flex items-center justify-center bg-gray-100 rounded-full h-7 w-7 opacity-80">
               <AiFillCamera className="w-5 h-5" />
             </div>
+            <ImageChangeModal
+              text="변경할 이미지의 URL을 입력하세요"
+              warning="이미지 URL로만 업데이트됩니다"
+              btnName=""
+              btnCheck="제출"
+              changeItem="profileImg"
+              userId={userDetails.id}
+              teacher={userDetails.teacher}
+            />
           </div>
         </div>
         <div className="flex flex-col justify-center">
@@ -51,13 +60,13 @@ const Private: React.FC = () => {
           </div>
           <div className="m-2">
             <ChangeModal
-              title=""
               text="변경할 이름을 입력하세요"
               warning=""
               btnName="변경"
               btnCheck="제출"
               changeItem="name"
               userId={userDetails.id}
+              teacher={userDetails.teacher}
             />
           </div>
         </div>
@@ -71,13 +80,13 @@ const Private: React.FC = () => {
           </div>
           <div className="m-2">
             <ChangeModal
-              title=""
               text="변경할 비밀번호를 입력하세요"
               warning="숫자+영문조합으로 8자이상 입력해주세요"
               btnName="변경"
               btnCheck="제출"
               changeItem="password"
               userId={userDetails.id}
+              teacher={userDetails.teacher}
             />
           </div>
         </div>
@@ -93,13 +102,13 @@ const Private: React.FC = () => {
           </div>
           <div className="m-2">
             <ChangeModal
-              title=""
               text="새로운 전화번호를 입력하세요"
               warning="숫자로만 입력해주세요"
               btnName="변경"
               btnCheck="제출"
               changeItem="phone"
               userId={userDetails.id}
+              teacher={userDetails.teacher}
             />
           </div>
         </div>

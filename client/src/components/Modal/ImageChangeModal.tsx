@@ -3,7 +3,7 @@ import { ChangeEvent } from 'react';
 import { Button, Dialog, DialogBody, DialogFooter, Input } from '@material-tailwind/react';
 import { useAppDispatch } from 'hooks/hooks';
 import axios from 'axios';
-import { updateUserName, updateUserPhone } from '../../redux/slice/MemberSlice';
+import { updateUserImage } from '../../redux/slice/MemberSlice';
 
 type props = {
   text: string;
@@ -15,7 +15,7 @@ type props = {
   teacher: boolean;
 };
 
-export const ChangeModal = ({
+export const ImageChangeModal = ({
   text,
   warning,
   btnName,
@@ -39,7 +39,7 @@ export const ChangeModal = ({
       };
       console.log(data);
       const accessToken = localStorage.getItem('access_jwt');
-      const targetURL = `${apiURL}/${teacher === true ? 'teachers' : 'students'}/${changeItem}`;
+      const targetURL = `${apiURL}/${teacher === false ? 'students' : 'teachers'}/${changeItem}`;
       const updateItems = `updateUser${changeItem}`;
       console.log(updateItems);
       const response = await axios.patch(targetURL, data, {
@@ -48,15 +48,7 @@ export const ChangeModal = ({
         },
       });
       console.log(response.data);
-      {
-        changeItem === 'name'
-          ? dispatch(updateUserName(response.data.name))
-          : changeItem === 'phone'
-          ? dispatch(updateUserPhone(response.data.phone))
-          : changeItem === 'password'
-          ? alert('비밀번호 변경')
-          : '';
-      }
+      dispatch(updateUserImage(response.data.profileImg));
     } catch (error) {
       console.log(`${changeItem}`, error);
     }
@@ -77,7 +69,12 @@ export const ChangeModal = ({
 
   return (
     <>
-      <Button onClick={handleOpen} size="sm">
+      <Button
+        onClick={handleOpen}
+        size="sm"
+        color="gray"
+        className="w-5 h-5 rounded-full mt-[-25px] bg-gray opacity-0"
+      >
         {btnName}
       </Button>
       <Dialog open={open} handler={handleOpen} size="xs" className="overflow-hidden">
