@@ -22,8 +22,10 @@ const TeacherInfo1 = ({ teacherInfo }: props) => {
           alt="프로필이미지"
         ></img>
         <div className="flex flex-col gap-2">
-          <h1 className="ml-3 text-2xl">{teacherInfo.name}</h1>
-          <h6 className="font-normal text-[#8E98A8] text-xs ml-[75px] mt-[-10px]">강사님</h6>
+          <h1 className="ml-3 text-2xl text-center">{teacherInfo.name}</h1>
+          <h6 className="font-normal text-end text-[#8E98A8] text-xs ml-[75px] mt-[-10px]">
+            강사님
+          </h6>
         </div>
       </section>
       <section className="flex justify-end gap-5 m-10 mt-5">
