@@ -39,7 +39,7 @@ public class VerifyEmailEventListener {
                     .concat("<b>").concat(name).concat("</b> 님<br>")
                     .concat("ConnecT 서비스의 회원가입을 위한 인증메일입니다.<br>")
                     .concat("아래 링크를 클릭하여 이메일 인증을 완료해 주세요..<br><br>")
-                    .concat("<a href=\"http://localhost:8080/email/verify/")
+                    .concat("<a href=\"http://ec2-3-34-116-209.ap-northeast-2.compute.amazonaws.com:8080/email/verify/")
                     .concat(encryptedPath)
                     .concat("\">이메일 인증하기</a>");
 
