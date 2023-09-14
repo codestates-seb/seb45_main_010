@@ -29,7 +29,7 @@ const TeacherInfo1 = ({ teacherInfo }: props) => {
         </div>
       </section>
       <section className="flex justify-end gap-5 m-10 mt-5">
-        <p className="flex items-center justify-center p-2 text-sm rounded-full bg-mint-200">
+        <p className="flex items-center justify-center px-2 py-1 text-sm rounded-xl bg-mint-200">
           {teachingStyle}
         </p>
       </section>
@@ -39,7 +39,14 @@ const TeacherInfo1 = ({ teacherInfo }: props) => {
         </h2>
         <div className="right-0 flex flex-wrap gap-4 text-xs basis-3/5">
           {teacherInfo.subjects?.map((item, index) => {
-            return <h5 key={index}>{item}</h5>;
+            return (
+              <h5
+                key={index}
+                className="flex items-center justify-center px-2 py-1 text-sm rounded-xl bg-mint-200"
+              >
+                {item}
+              </h5>
+            );
           })}
         </div>
       </section>
@@ -49,7 +56,14 @@ const TeacherInfo1 = ({ teacherInfo }: props) => {
         </div>
         <div className="right-0 flex flex-wrap gap-4 text-xs basis-3/5">
           {teacherInfo.regions?.map((item, index) => {
-            return <h5 key={index}>{item}</h5>;
+            return (
+              <h5
+                key={index}
+                className="flex items-center justify-center px-2 py-1 text-sm rounded-xl bg-mint-200"
+              >
+                {item}
+              </h5>
+            );
           })}
         </div>
       </section>
