@@ -32,20 +32,10 @@ public class TeacherController {
     private final static String TEACHER_DEFAULT_URL = "/teachers";
     private final TeacherService teacherService;
     private final TeacherMapper teacherMapper;
-    private final SubjectService subjectService;
-    private final SubjectMapper subjectMapper;
-    private final RegionService regionService;
-    private final RegionMapper regionMapper;
-
-    public TeacherController(TeacherService teacherService, TeacherMapper teacherMapper,
-                             SubjectService subjectService, SubjectMapper subjectMapper,
-                             RegionService regionService, RegionMapper regionMapper) {
+    public TeacherController(TeacherService teacherService,
+                             TeacherMapper teacherMapper) {
         this.teacherService = teacherService;
         this.teacherMapper = teacherMapper;
-        this.subjectService = subjectService;
-        this.subjectMapper = subjectMapper;
-        this.regionService = regionService;
-        this.regionMapper = regionMapper;
     }
 
     @PostMapping
@@ -56,6 +46,24 @@ public class TeacherController {
 
         return ResponseEntity.created(location).build();
 
+    }
+    @PatchMapping("/subjects")
+    public ResponseEntity patchSubject(@RequestBody @Valid TeacherDto.PatchSubject requestBody) {
+
+        Teacher updated = teacherService.updateSubject(requestBody.getId(), requestBody.getSubjects());
+
+        TeacherDto.PatchSubject response = teacherMapper.teacherToPatchSubject(updated);
+
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+    @PatchMapping("/regions")
+    public ResponseEntity patchRegion(@RequestBody @Valid TeacherDto.PatchRegion requestBody) {
+
+        Teacher updated = teacherService.updateRegion(requestBody.getId(), requestBody.getRegions());
+
+        TeacherDto.PatchRegion response = teacherMapper.teacherToPatchRegion(updated);
+
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
     @PatchMapping("/password")
     public ResponseEntity patchPassword(@RequestBody @Valid TeacherDto.PatchPassword requestBody) {
@@ -179,16 +187,14 @@ public class TeacherController {
         requestBody.setId(teacherId);
         Teacher teacher = teacherMapper.patchToTeacher(requestBody);
         Teacher updated = teacherService.updateTeacher(teacher);
-        TeacherDto.Response response = teacherMapper.teacherToTeacherResponse(updated,
-                subjectService, regionService, subjectMapper, regionMapper);
+        TeacherDto.Response response = teacherMapper.teacherToTeacherResponse(updated);
 
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
     @GetMapping("/{teacher-id}")
     public ResponseEntity getTeacher(@PathVariable("teacher-id") @Positive long teacherId){
         Teacher teacher = teacherService.findTeacher(teacherId);
-        TeacherDto.Response response = teacherMapper.teacherToTeacherResponse(teacher,
-                subjectService, regionService, subjectMapper, regionMapper);
+        TeacherDto.Response response = teacherMapper.teacherToTeacherResponse(teacher);
 
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
@@ -210,8 +216,7 @@ public class TeacherController {
         List<Teacher> teachers = pageTeachers.getContent();
 
         return new ResponseEntity<>(
-                new TeacherListDto<>(teacherMapper.teachersToTeacherElements(teachers,
-                        subjectService, regionService, subjectMapper, regionMapper),
+                new TeacherListDto<>(teacherMapper.teachersToTeacherElements(teachers),
                         pageTeachers),HttpStatus.OK);
 
     }

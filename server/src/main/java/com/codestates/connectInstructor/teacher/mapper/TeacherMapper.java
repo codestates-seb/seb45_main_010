@@ -13,6 +13,7 @@ import org.mapstruct.Mapper;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Mapper(componentModel = "spring")
 public interface TeacherMapper {
@@ -39,11 +40,25 @@ public interface TeacherMapper {
     TeacherDto.PatchAddress teacherToPatchAddress(Teacher updated);
     Teacher postToTeacher(TeacherDto.Post request);
     Teacher patchToTeacher(TeacherDto.Patch requestBody);
-    default TeacherDto.Response teacherToTeacherResponse(Teacher teacher,
-                                                         SubjectService subjectService,
-                                                         RegionService regionService,
-                                                         SubjectMapper subjectMapper,
-                                                         RegionMapper regionMapper){
+    default TeacherDto.PatchSubject teacherToPatchSubject(Teacher teacher){
+        TeacherDto.PatchSubject patchSubject = new TeacherDto.PatchSubject();
+        patchSubject.setId(teacher.getId());
+        patchSubject.setSubjects(teacher.getTeacherSubjects().stream()
+                .map(teacherSubject -> teacherSubject.getSubject().getSubjectName())
+                .collect(Collectors.toList()));
+
+        return patchSubject;
+    }
+    default TeacherDto.PatchRegion teacherToPatchRegion(Teacher teacher){
+        TeacherDto.PatchRegion patchRegion = new TeacherDto.PatchRegion();
+        patchRegion.setId(teacher.getId());
+        patchRegion.setRegions(teacher.getTeacherRegions().stream()
+                .map(teacherRegion -> teacherRegion.getRegion().getRegionName())
+                .collect(Collectors.toList()));
+
+        return patchRegion;
+    }
+    default TeacherDto.Response teacherToTeacherResponse(Teacher teacher){
         if (teacher == null) {
             return null;
         } else {
@@ -62,19 +77,19 @@ public interface TeacherMapper {
             response.setOffLine(teacher.isOffLine());
             response.setAddress(teacher.getAddress());
             response.setOauth(teacher.isOauth());
-            response.setSubjects(subjectMapper.subjectsToSubjectResponses(subjectService.findSubjectsWithTeacherId(teacher.getId())));
-            response.setRegions(regionMapper.regionsToRegionResponses(regionService.findRegionsWithTeacherId(teacher.getId())));
+            response.setSubjects(teacher.getTeacherSubjects().stream()
+                    .map(teacherSubject -> teacherSubject.getSubject().getSubjectName())
+                    .collect(Collectors.toList()));
+            response.setRegions(teacher.getTeacherRegions().stream()
+                    .map(teacherRegion -> teacherRegion.getRegion().getRegionName())
+                    .collect(Collectors.toList()));
             response.setLastLogin(teacher.getLastLogin());
             response.setLastModified(teacher.getLastModified());
             response.setCreatedAt(teacher.getCreatedAt());
             return response;
         }
     }
-    default TeacherDto.Element teacherToTeacherElement(Teacher teacher,
-                                                       SubjectService subjectService,
-                                                       RegionService regionService,
-                                                       SubjectMapper subjectMapper,
-                                                       RegionMapper regionMapper){
+    default TeacherDto.Element teacherToTeacherElement(Teacher teacher){
         if (teacher == null) {
             return null;
         } else {
@@ -84,17 +99,17 @@ public interface TeacherMapper {
             element.setOffLine(teacher.isOffLine());
             element.setName(teacher.getName());
             element.setProfileImg(teacher.getProfileImg());
-            element.setSubjects(subjectMapper.subjectsToSubjectResponses(subjectService.findSubjectsWithTeacherId(teacher.getId())));
-            element.setRegions(regionMapper.regionsToRegionResponses(regionService.findRegionsWithTeacherId(teacher.getId())));
+            element.setSubjects(teacher.getTeacherSubjects().stream()
+                    .map(teacherSubject -> teacherSubject.getSubject().getSubjectName())
+                    .collect(Collectors.toList()));
+            element.setRegions(teacher.getTeacherRegions().stream()
+                    .map(teacherRegion -> teacherRegion.getRegion().getRegionName())
+                    .collect(Collectors.toList()));
             element.setCreatedAt(teacher.getCreatedAt());
             return element;
         }
     }
-    default List<TeacherDto.Element> teachersToTeacherElements(List<Teacher> teachers,
-                                                       SubjectService subjectService,
-                                                       RegionService regionService,
-                                                       SubjectMapper subjectMapper,
-                                                       RegionMapper regionMapper){
+    default List<TeacherDto.Element> teachersToTeacherElements(List<Teacher> teachers){
         if (teachers == null) {
             return null;
         } else {
@@ -103,8 +118,7 @@ public interface TeacherMapper {
 
             while(var3.hasNext()) {
                 Teacher teacher = (Teacher)var3.next();
-                list.add(this.teacherToTeacherElement(teacher,
-                        subjectService, regionService, subjectMapper, regionMapper));
+                list.add(this.teacherToTeacherElement(teacher));
             }
 
             return list;

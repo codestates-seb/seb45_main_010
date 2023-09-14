@@ -58,6 +58,7 @@ public class TeacherService {
             teacher.setPassword(passwordEncoder.encode(teacher.getPassword()));
         }
         teacher.setRoles(customAuthorityUtils.getTEACHER_ROLES_STRING());
+        teacher.setLastModified(LocalDateTime.now());
 
         Teacher saved = teacherRepository.save(teacher);
 
@@ -71,6 +72,7 @@ public class TeacherService {
         Teacher findTeacher = findVerifiedTeacher(teacher.getId());
         findTeacher.setPassword(passwordEncoder.encode(teacher.getPassword()));
 
+        findTeacher.setLastModified(LocalDateTime.now());
         return teacherRepository.save(findTeacher);
     }
     public Teacher updateName(Teacher teacher){
@@ -79,6 +81,7 @@ public class TeacherService {
         Teacher findTeacher = findVerifiedTeacher(teacher.getId());
         findTeacher.setName(teacher.getName());
 
+        findTeacher.setLastModified(LocalDateTime.now());
         return teacherRepository.save(findTeacher);
     }
     public Teacher updatePhone(Teacher teacher){
@@ -87,6 +90,7 @@ public class TeacherService {
         Teacher findTeacher = findVerifiedTeacher(teacher.getId());
         findTeacher.setPhone(teacher.getPhone());
 
+        findTeacher.setLastModified(LocalDateTime.now());
         return teacherRepository.save(findTeacher);
     }
     public Teacher updateProfileImg(Teacher teacher){
@@ -95,6 +99,7 @@ public class TeacherService {
         Teacher findTeacher = findVerifiedTeacher(teacher.getId());
         findTeacher.setProfileImg(teacher.getProfileImg());
 
+        findTeacher.setLastModified(LocalDateTime.now());
         return teacherRepository.save(findTeacher);
     }
     public Teacher updateIntroduction(Teacher teacher){
@@ -103,6 +108,7 @@ public class TeacherService {
         Teacher findTeacher = findVerifiedTeacher(teacher.getId());
         findTeacher.setIntroduction(teacher.getIntroduction());
 
+        findTeacher.setLastModified(LocalDateTime.now());
         return teacherRepository.save(findTeacher);
     }
     public Teacher updateCareer(Teacher teacher){
@@ -111,6 +117,7 @@ public class TeacherService {
         Teacher findTeacher = findVerifiedTeacher(teacher.getId());
         findTeacher.setCareer(teacher.getCareer());
 
+        findTeacher.setLastModified(LocalDateTime.now());
         return teacherRepository.save(findTeacher);
     }
     public Teacher updateLectureFee(Teacher teacher){
@@ -119,6 +126,7 @@ public class TeacherService {
         Teacher findTeacher = findVerifiedTeacher(teacher.getId());
         findTeacher.setLectureFee(teacher.getLectureFee());
 
+        findTeacher.setLastModified(LocalDateTime.now());
         return teacherRepository.save(findTeacher);
     }
     public Teacher updateOption(Teacher teacher){
@@ -127,6 +135,7 @@ public class TeacherService {
         Teacher findTeacher = findVerifiedTeacher(teacher.getId());
         findTeacher.setOption(teacher.getOption());
 
+        findTeacher.setLastModified(LocalDateTime.now());
         return teacherRepository.save(findTeacher);
     }
     public Teacher updateOnLine(Teacher teacher){
@@ -135,6 +144,7 @@ public class TeacherService {
         Teacher findTeacher = findVerifiedTeacher(teacher.getId());
         findTeacher.setOnLine(teacher.isOnLine());
 
+        findTeacher.setLastModified(LocalDateTime.now());
         return teacherRepository.save(findTeacher);
     }
     public Teacher updateOffLine(Teacher teacher){
@@ -143,6 +153,7 @@ public class TeacherService {
         Teacher findTeacher = findVerifiedTeacher(teacher.getId());
         findTeacher.setOffLine(teacher.isOffLine());
 
+        findTeacher.setLastModified(LocalDateTime.now());
         return teacherRepository.save(findTeacher);
     }
     public Teacher updateAddress(Teacher teacher){
@@ -151,6 +162,7 @@ public class TeacherService {
         Teacher findTeacher = findVerifiedTeacher(teacher.getId());
         findTeacher.setAddress(teacher.getAddress());
 
+        findTeacher.setLastModified(LocalDateTime.now());
         return teacherRepository.save(findTeacher);
     }
     public Teacher updateTeacher( Teacher teacher ){
@@ -204,6 +216,7 @@ public class TeacherService {
 
         teacher.addTeacherRegion(teacherRegion);
 
+        teacher.setLastModified(LocalDateTime.now());
         teacherRepository.save(teacher);
     }
     public void deleteRegionFromTeacher( long teacherId, String regionName ){
@@ -230,6 +243,7 @@ public class TeacherService {
             }
         }
 
+        teacher.setLastModified(LocalDateTime.now());
         teacherRepository.save(teacher);
     }
     public void addSubjectToTeacher( long teacherId, String subjectName ){
@@ -252,6 +266,7 @@ public class TeacherService {
 
         teacher.addTeacherSubject(teacherSubject);
 
+        teacher.setLastModified(LocalDateTime.now());
         teacherRepository.save(teacher);
     }
     public void deleteSubjectFromTeacher( long teacherId, String subjectName ){
@@ -270,6 +285,7 @@ public class TeacherService {
         }
         System.out.println(teacher.getTeacherSubjects().size());
 
+        teacher.setLastModified(LocalDateTime.now());
         teacherRepository.save(teacher);
     }
     public Teacher findTeacher( long teacherId){
@@ -294,13 +310,71 @@ public class TeacherService {
 
         if (optionalTeacher.isPresent()) throw new BusinessLogicException(ExceptionCode.USED_EMAIL);
     }
+    public Teacher updateSubject(long teacherId, List<String> subjectNames){
+        verifyIdentity(teacherId);
+
+        Teacher found = findVerifiedTeacher(teacherId);
+        List<TeacherSubject> teacherSubjects = found.getTeacherSubjects();
+        TeacherSubject[] ts = new TeacherSubject[teacherSubjects.size()];
+        ts = teacherSubjects.toArray(ts);
+
+        for( TeacherSubject teacherSubject : ts){
+            if(!subjectNames.contains(teacherSubject.getSubject().getSubjectName()))
+                found.getTeacherSubjects().remove(teacherSubject);
+        }
+        for( String subjectName : subjectNames){
+            boolean exist = false;
+            for(TeacherSubject teacherSubject: teacherSubjects){
+                if(subjectName.equals(teacherSubject.getSubject().getSubjectName()))
+                    exist = true;
+            }
+            if(!exist) {
+                TeacherSubject teacherSubject = new TeacherSubject();
+                teacherSubject.setSubject(subjectService.findVerifiedSubject(subjectName));
+                teacherSubject.setTeacher(found);
+
+                found.getTeacherSubjects().add(teacherSubject);
+            }
+        }
+        found.setLastModified(LocalDateTime.now());
+        return teacherRepository.save(found);
+    }
+    public Teacher updateRegion(long teacherId, List<String> regionNames){
+        verifyIdentity(teacherId);
+
+        Teacher found = findVerifiedTeacher(teacherId);
+        List<TeacherRegion> teacherRegions = found.getTeacherRegions();
+        TeacherRegion[] trs = new TeacherRegion[teacherRegions.size()];
+        trs = teacherRegions.toArray(trs);
+
+        for( TeacherRegion teacherRegion : trs){
+            if(!regionNames.contains(teacherRegion.getRegion().getRegionName()))
+                found.getTeacherRegions().remove(teacherRegion);
+        }
+        for( String regionName : regionNames){
+            boolean exist = false;
+            for(TeacherRegion teacherRegion: teacherRegions){
+                if(regionName.equals(teacherRegion.getRegion().getRegionName()))
+                    exist = true;
+            }
+            if(!exist) {
+                TeacherRegion teacherRegion = new TeacherRegion();
+                teacherRegion.setRegion(regionService.findVerifiedRegion(regionName));
+                teacherRegion.setTeacher(found);
+
+                found.getTeacherRegions().add(teacherRegion);
+            }
+        }
+        found.setLastModified(LocalDateTime.now());
+        return teacherRepository.save(found);
+    }
     private void verifyIdentity(long teacherId){
 //        SecurityContext securityContext = SecurityContextHolder.getContext();
 //        Authentication authentication = securityContext.getAuthentication();
 //
 //        Teacher teacher = findVerifiedTeacher(teacherId);
 //
-//       if(!authentication.getName().equals(teacher.getEmail()))
+//        if(!authentication.getName().equals(teacher.getEmail()))
 //            throw new BusinessLogicException(ExceptionCode.NOT_AUTHORIZED);
     }
 }

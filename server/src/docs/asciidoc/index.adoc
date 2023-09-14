@@ -502,109 +502,42 @@ include::{snippets}/get-teachers/response-body.adoc[]
 .response-fields
 include::{snippets}/get-teachers/response-fields.adoc[]
 
-=== 강사 지역 등록
+=== 강사 과목 수정
 
 .curl-request
-include::{snippets}/post-teacher-region/curl-request.adoc[]
-
+include::{snippets}/patch-teacher-subjects/curl-request.adoc[]
 .http-request
-include::{snippets}/post-teacher-region/http-request.adoc[]
-
+include::{snippets}/patch-teacher-subjects/http-request.adoc[]
 .httpie-request
-include::{snippets}/post-teacher-region/httpie-request.adoc[]
-
-.path-parameters
-include::{snippets}/post-teacher-region/path-parameters.adoc[]
-
+include::{snippets}/patch-teacher-subjects/httpie-request.adoc[]
 .request-body
-include::{snippets}/post-teacher-region/request-body.adoc[]
-
-.request-parameters
-include::{snippets}/post-teacher-region/request-parameters.adoc[]
-
+include::{snippets}/patch-teacher-subjects/request-body.adoc[]
+.request-fields
+include::{snippets}/patch-teacher-subjects/request-fields.adoc[]
 .http-response
-include::{snippets}/post-teacher-region/http-response.adoc[]
-
+include::{snippets}/patch-teacher-subjects/http-response.adoc[]
 .response-body
-include::{snippets}/post-teacher-region/response-body.adoc[]
+include::{snippets}/patch-teacher-subjects/response-body.adoc[]
+.response-fields
+include::{snippets}/patch-teacher-subjects/response-fields.adoc[]
 
-=== 강사 지역 삭제
-
+=== 강사 지역 수정
 .curl-request
-include::{snippets}/delete-teacher-region/curl-request.adoc[]
-
+include::{snippets}/patch-teacher-regions/curl-request.adoc[]
 .http-request
-include::{snippets}/delete-teacher-region/http-request.adoc[]
-
+include::{snippets}/patch-teacher-regions/http-request.adoc[]
 .httpie-request
-include::{snippets}/delete-teacher-region/httpie-request.adoc[]
-
-.path-parameters
-include::{snippets}/delete-teacher-region/path-parameters.adoc[]
-
+include::{snippets}/patch-teacher-regions/httpie-request.adoc[]
 .request-body
-include::{snippets}/delete-teacher-region/request-body.adoc[]
-
-.request-parameters
-include::{snippets}/delete-teacher-region/request-parameters.adoc[]
-
+include::{snippets}/patch-teacher-regions/request-body.adoc[]
+.request-fields
+include::{snippets}/patch-teacher-regions/request-fields.adoc[]
 .http-response
-include::{snippets}/delete-teacher-region/http-response.adoc[]
-
+include::{snippets}/patch-teacher-regions/http-response.adoc[]
 .response-body
-include::{snippets}/delete-teacher-region/response-body.adoc[]
-
-=== 강사 과목 등록
-
-.curl-request
-include::{snippets}/post-teacher-subject/curl-request.adoc[]
-
-.http-request
-include::{snippets}/post-teacher-subject/http-request.adoc[]
-
-.httpie-request
-include::{snippets}/post-teacher-subject/httpie-request.adoc[]
-
-.path-parameters
-include::{snippets}/post-teacher-subject/path-parameters.adoc[]
-
-.request-body
-include::{snippets}/post-teacher-subject/request-body.adoc[]
-
-.request-parameters
-include::{snippets}/post-teacher-subject/request-parameters.adoc[]
-
-.http-response
-include::{snippets}/post-teacher-subject/http-response.adoc[]
-
-.response-body
-include::{snippets}/post-teacher-subject/response-body.adoc[]
-
-=== 강사 과목 삭제
-
-.curl-request
-include::{snippets}/delete-teacher-subject/curl-request.adoc[]
-
-.http-request
-include::{snippets}/delete-teacher-subject/http-request.adoc[]
-
-.httpie-request
-include::{snippets}/delete-teacher-subject/httpie-request.adoc[]
-
-.path-parameters
-include::{snippets}/delete-teacher-subject/path-parameters.adoc[]
-
-.request-body
-include::{snippets}/delete-teacher-subject/request-body.adoc[]
-
-.request-parameters
-include::{snippets}/delete-teacher-subject/request-parameters.adoc[]
-
-.http-response
-include::{snippets}/delete-teacher-subject/http-response.adoc[]
-
-.response-body
-include::{snippets}/delete-teacher-subject/response-body.adoc[]
+include::{snippets}/patch-teacher-regions/response-body.adoc[]
+.response-fields
+include::{snippets}/patch-teacher-regions/response-fields.adoc[]
 
 === 강사 비밀번호 수정
 
