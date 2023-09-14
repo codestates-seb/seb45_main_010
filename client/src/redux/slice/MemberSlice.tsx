@@ -14,7 +14,7 @@ const initialState: initialStateType = {
     email: '',
     teacher: false,
     id: null as unknown as number,
-    phoneNumber: null as unknown as string,
+    phone: null as unknown as string,
     profileImg: null as unknown as string,
     oauth: null as unknown as false,
   },
@@ -39,7 +39,7 @@ export const memberSlice = createSlice({
           email: action.payload.email,
           teacher: action.payload.teacher,
           id: action.payload.id,
-          phoneNumber: action.payload.phoneNumber,
+          phone: action.payload.phone,
           profileImg: action.payload.profileImg,
           oauth: action.payload.oauth,
         };
@@ -61,9 +61,7 @@ export const fetchUserDetails = createAsyncThunk(
       const response = await axios.get(
         `${apiURL}/${teacher === 'STUDENT' ? 'students' : 'teachers'}/${id}`
       );
-      console.log(response);
       const data = response.data;
-      console.log(data);
       if (!data) {
         return rejectWithValue('등록된 계정이 없거나 비밀번호가 일치하지 않습니다');
       }

@@ -87,9 +87,9 @@ const Private: React.FC = () => {
         <div className="text-sm">전화번호</div>
         <div className="flex items-center">
           <div className="flex items-center border text-xs h-[50px] border-blue-800/60 rounded-lg w-80 p-2">
-            {userDetails.phoneNumber === (null || undefined)
+            {userDetails.phone === (null || undefined)
               ? 'your phone number here'
-              : userDetails.phoneNumber}
+              : userDetails.phone}
           </div>
           <div className="m-2">
             <ChangeModal
