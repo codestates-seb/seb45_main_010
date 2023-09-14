@@ -1745,7 +1745,7 @@ Host: localhost:8080</code></pre>
 <div class="content">
 <pre class="prettyprint highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
 Content-Type: application/json
-Content-Length: 763
+Content-Length: 785
 
 {
   "id" : 1,
@@ -1771,6 +1771,7 @@ Content-Length: 763
     "subjects" : [ "국어", "수학" ],
     "status" : "MATCH_ANSWERED"
   } ],
+  "teacher" : false,
   "oauth" : false
 }</code></pre>
 </div>
@@ -1802,6 +1803,7 @@ Content-Length: 763
     "subjects" : [ "援��뼱", "�닔�븰" ],
     "status" : "MATCH_ANSWERED"
   } ],
+  "teacher" : false,
   "oauth" : false
 }</code></pre>
 </div>
@@ -1880,6 +1882,11 @@ Content-Length: 763
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>regions</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">회원 지역</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>teacher</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">강사여부. false면 학생</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>matches</code></p></td>
@@ -2741,6 +2748,7 @@ Host: localhost:8080</code></pre>
 Content-Type: application/json
 Content-Length: 1234
 
+
 {
   "id" : 1,
   "email" : "hgd@gmail.com",
@@ -2783,7 +2791,7 @@ Content-Length: 1234
 <pre class="prettyprint highlight nowrap"><code>{
   "id" : 1,
   "email" : "hgd@gmail.com",
-  "name" : "�솉湲몃룞",
+  "name" : "홍길동",
   "teacher" : true,
   "phone" : "010-1234-5678",
   "profileImg" : "�봽濡쒗븘 �씠誘몄�媛� ���옣�맂 怨� �뜲�씠�꽣",

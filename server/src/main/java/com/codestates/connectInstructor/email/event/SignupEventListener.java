@@ -1,4 +1,4 @@
-package com.codestates.connectInstructor.event;
+package com.codestates.connectInstructor.email.event;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,10 +28,15 @@ public class SignupEventListener {
             MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true, "UTF-8");
 
             mimeMessageHelper.setTo(email);
-            mimeMessageHelper.setSubject("회원 가입을 축하합니다!");
+            mimeMessageHelper.setSubject("ConnecT 회원 가입을 축하합니다!");
 
-            String body = "<b>".concat(name).concat("</b> 님.\n")
-                    .concat("환영합니다!!");
+            //TODO 이후에 배포 링크로 바꾸기
+            String body = "<b>".concat(name).concat("</b> 님, ")
+                    .concat("반갑습니다.<br>")
+                    .concat("학습 매칭 서비스 ConnecT의 회원가입을 축하드립니다.<br><br>")
+                    .concat("지금 접속하셔서 ConnecT의 우수한 강사진을 만나보세요.<br><br>")
+                    .concat("<a href=\"http://ec2-3-34-116-209.ap-northeast-2.compute.amazonaws.com:8080\">")
+                    .concat("ConnecT</a>");
 
             mimeMessageHelper.setText(body, true);
 

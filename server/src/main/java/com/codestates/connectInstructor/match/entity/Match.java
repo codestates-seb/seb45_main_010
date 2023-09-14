@@ -49,7 +49,7 @@ public class Match {
     private String studentName;
 
     @Column(nullable = false)
-    private String studentPhoneNumber;
+    private String studentPhone;
 
     private String studentEmail;
 

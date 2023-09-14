@@ -22,7 +22,7 @@ public class MatchDto {
         List<String> regions;
         List<String> schedules;
         String studentName;
-        String studentPhoneNumber;
+        String studentPhone;
         String studentEmail;
     }
     @Getter
@@ -35,7 +35,7 @@ public class MatchDto {
         List<String> regions;
         String schedule;
         String studentName;
-        String studentPhoneNumber;
+        String studentPhone;
         String studentEmail;
         String remarks;
     }
@@ -52,7 +52,7 @@ public class MatchDto {
         String schedule;
         boolean isOnline;
         String studentName;
-        String studentPhoneNumber;
+        String studentPhone;
         String studentEmail;
         String remarks;
         String teacherName;

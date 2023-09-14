@@ -53,7 +53,7 @@ public class MatchControllerTest {
         List<String> subjects = List.of("국어", "영어");
         List<String> regions = List.of("강서", "강북");
         String studentName = "김학생";
-        String studentPhoneNumber = "01011112222";
+        String studentPhone = "01011112222";
         String studentEmail = "student@example.com";
 
         MatchDto.GetResponse response = new MatchDto.GetResponse();
@@ -64,7 +64,7 @@ public class MatchControllerTest {
         response.setRegions(regions);
         response.setSchedules(List.of("9월 19일 화요일 / 13:00 ~ 14:00"));
         response.setStudentName(studentName);
-        response.setStudentPhoneNumber(studentPhoneNumber);
+        response.setStudentPhone(studentPhone);
         response.setStudentEmail(studentEmail);
 
         given(service.getBasicInformation(Mockito.anyLong(), Mockito.anyLong())).willReturn(response);
@@ -93,7 +93,7 @@ public class MatchControllerTest {
                                         fieldWithPath("regions").type(JsonFieldType.ARRAY).description("강사가 수업 가능한 지역"),
                                         fieldWithPath("schedules").type(JsonFieldType.ARRAY).description("강사가 수업 가능한 시간"),
                                         fieldWithPath("studentName").type(JsonFieldType.STRING).description("학생 이름"),
-                                        fieldWithPath("studentPhoneNumber").type(JsonFieldType.STRING).description("학생 연락처"),
+                                        fieldWithPath("studentPhone").type(JsonFieldType.STRING).description("학생 연락처"),
                                         fieldWithPath("studentEmail").type(JsonFieldType.STRING).description("학생 이메일")
                                 )
                         )
@@ -112,19 +112,19 @@ public class MatchControllerTest {
         List<String> regions = List.of("강서", "강남");
         String schedule = "9월 19일 화요일 / 13:00 ~ 14:00";
         String studentName = "김학생";
-        String studentPhoneNumber = "01012345678";
+        String studentPhone = "01012345678";
         String studentEmail = "student@example.com";
         String remarks = "특이사항";
 
         MatchDto.Post request = MatchDto.Post.builder()
                 .studentId(studentId).teacherId(teacherId).isOnline(isOnline)
                 .subjects(subjects).regions(regions).schedule(schedule).studentName(studentName)
-                .studentPhoneNumber(studentPhoneNumber).studentEmail(studentEmail).remarks(remarks).build();
+                .studentPhone(studentPhone).studentEmail(studentEmail).remarks(remarks).build();
 
         MatchDto.Response response = MatchDto.Response.builder()
                 .id(1L).studentId(studentId).teacherId(teacherId).status(Match.MatchStatus.MATCH_REQUEST)
                 .matchSubjects(subjects).matchRegions(regions).schedule(schedule).isOnline(isOnline)
-                .studentName(studentName).studentPhoneNumber(studentPhoneNumber).studentEmail(studentEmail)
+                .studentName(studentName).studentPhone(studentPhone).studentEmail(studentEmail)
                 .remarks(remarks).teacherName("박강사")
         .build();
 
@@ -151,7 +151,7 @@ public class MatchControllerTest {
                                         fieldWithPath("regions").type(JsonFieldType.ARRAY).description("수업 가능한 지역들"),
                                         fieldWithPath("schedule").type(JsonFieldType.STRING).description("수업 스케줄"),
                                         fieldWithPath("studentName").type(JsonFieldType.STRING).description("학생 이름"),
-                                        fieldWithPath("studentPhoneNumber").type(JsonFieldType.STRING).description("학생 연락처"),
+                                        fieldWithPath("studentPhone").type(JsonFieldType.STRING).description("학생 연락처"),
                                         fieldWithPath("studentEmail").type(JsonFieldType.STRING).description("학생 이메일"),
                                         fieldWithPath("remarks").type(JsonFieldType.STRING).description("기타 추가사항")
                                 )
@@ -167,7 +167,7 @@ public class MatchControllerTest {
                                         fieldWithPath("schedule").type(JsonFieldType.STRING).description("수업 스케줄"),
                                         fieldWithPath("online").type(JsonFieldType.BOOLEAN).description("온라인 수업 여부. true일 경우 온라인. false일 경우 오프라인"),
                                         fieldWithPath("studentName").type(JsonFieldType.STRING).description("학생 이름"),
-                                        fieldWithPath("studentPhoneNumber").type(JsonFieldType.STRING).description("학생 연락처"),
+                                        fieldWithPath("studentPhone").type(JsonFieldType.STRING).description("학생 연락처"),
                                         fieldWithPath("studentEmail").type(JsonFieldType.STRING).description("학생 이메일"),
                                         fieldWithPath("remarks").type(JsonFieldType.STRING).description("기타 추가사항"),
                                         fieldWithPath("teacherName").type(JsonFieldType.STRING).description("강사 이름")
@@ -187,14 +187,14 @@ public class MatchControllerTest {
         List<String> regions = List.of("강서", "강남");
         String schedule = "9월 19일 화요일 / 13:00 ~ 14:00";
         String studentName = "김학생";
-        String studentPhoneNumber = "01012345678";
+        String studentPhone = "01012345678";
         String studentEmail = "student@example.com";
         String remarks = "특이사항";
 
         MatchDto.Response response = MatchDto.Response.builder()
                 .id(1L).studentId(studentId).teacherId(teacherId).status(Match.MatchStatus.MATCH_REQUEST)
                 .matchSubjects(subjects).matchRegions(regions).schedule(schedule).isOnline(isOnline)
-                .studentName(studentName).studentPhoneNumber(studentPhoneNumber).studentEmail(studentEmail)
+                .studentName(studentName).studentPhone(studentPhone).studentEmail(studentEmail)
                 .remarks(remarks).teacherName("박강사")
                 .build();
 
@@ -224,7 +224,7 @@ public class MatchControllerTest {
                                         fieldWithPath("schedule").type(JsonFieldType.STRING).description("수업 스케줄"),
                                         fieldWithPath("online").type(JsonFieldType.BOOLEAN).description("온라인 수업 여부. true일 경우 온라인. false일 경우 오프라인"),
                                         fieldWithPath("studentName").type(JsonFieldType.STRING).description("학생 이름"),
-                                        fieldWithPath("studentPhoneNumber").type(JsonFieldType.STRING).description("학생 연락처"),
+                                        fieldWithPath("studentPhone").type(JsonFieldType.STRING).description("학생 연락처"),
                                         fieldWithPath("studentEmail").type(JsonFieldType.STRING).description("학생 이메일"),
                                         fieldWithPath("remarks").type(JsonFieldType.STRING).description("기타 추가사항"),
                                         fieldWithPath("teacherName").type(JsonFieldType.STRING).description("강사 이름")
@@ -247,14 +247,14 @@ public class MatchControllerTest {
         List<String> regions = List.of("강서", "강남");
         String schedule = "9월 19일 화요일 / 13:00 ~ 14:00";
         String studentName = "김학생";
-        String studentPhoneNumber = "01012345678";
+        String studentPhone = "01012345678";
         String studentEmail = "student@example.com";
         String remarks = "특이사항";
 
         MatchDto.Response response = MatchDto.Response.builder()
                 .id(1L).studentId(studentId).teacherId(teacherId).status(Match.MatchStatus.MATCH_CANCELLED)
                 .matchSubjects(subjects).matchRegions(regions).schedule(schedule).isOnline(isOnline)
-                .studentName(studentName).studentPhoneNumber(studentPhoneNumber).studentEmail(studentEmail)
+                .studentName(studentName).studentPhone(studentPhone).studentEmail(studentEmail)
                 .remarks(remarks).teacherName("박강사")
                 .build();
 
@@ -289,7 +289,7 @@ public class MatchControllerTest {
                                         fieldWithPath("schedule").type(JsonFieldType.STRING).description("수업 스케줄"),
                                         fieldWithPath("online").type(JsonFieldType.BOOLEAN).description("온라인 수업 여부. true일 경우 온라인. false일 경우 오프라인"),
                                         fieldWithPath("studentName").type(JsonFieldType.STRING).description("학생 이름"),
-                                        fieldWithPath("studentPhoneNumber").type(JsonFieldType.STRING).description("학생 연락처"),
+                                        fieldWithPath("studentPhone").type(JsonFieldType.STRING).description("학생 연락처"),
                                         fieldWithPath("studentEmail").type(JsonFieldType.STRING).description("학생 이메일"),
                                         fieldWithPath("remarks").type(JsonFieldType.STRING).description("기타 추가사항"),
                                         fieldWithPath("teacherName").type(JsonFieldType.STRING).description("강사 이름")

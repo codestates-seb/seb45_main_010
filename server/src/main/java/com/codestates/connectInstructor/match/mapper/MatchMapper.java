@@ -29,7 +29,7 @@ public interface MatchMapper {
                 .schedule(match.getSchedule())
                 .isOnline(match.isOnline())
                 .studentName(match.getStudentName())
-                .studentPhoneNumber(match.getStudentPhoneNumber())
+                .studentPhone(match.getStudentPhone())
                 .studentEmail(match.getStudentEmail())
                 .remarks(match.getRemarks())
                 .teacherName(match.getTeacher().getName())

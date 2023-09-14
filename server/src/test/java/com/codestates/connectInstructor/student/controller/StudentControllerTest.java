@@ -164,20 +164,20 @@ public class StudentControllerTest {
     @WithMockUser(authorities = {"ROLE_STUDENT"})
     public void patchLessonOptionTest() throws Exception {
         long id = 1L;
-        String lessonOption = "수업옵션";
+        String option = "수업옵션";
 
-        StudentDto.PatchLessonOption request = StudentDto.PatchLessonOption.builder().id(id).lessonOption(lessonOption).build();
+        StudentDto.PatchLessonOption request = StudentDto.PatchLessonOption.builder().id(id).option(option).build();
 
         Student student = new Student();
         student.setId(id);
-        student.setLessonOption(lessonOption);
+        student.setOption(option);
 
         given(mapper.patchPatchLessonOptionToStudent(Mockito.any(StudentDto.PatchLessonOption.class))).willReturn(student);
         given(service.updateLessonOption(Mockito.any(Student.class))).willReturn(student);
         given(mapper.studentToPatchLessonOption(Mockito.any(Student.class))).willReturn(request);
 
         ResultActions actions = mockMvc.perform(
-                RestDocumentationRequestBuilders.patch("/students/lessonOption")
+                RestDocumentationRequestBuilders.patch("/students/option")
                         .accept(MediaType.APPLICATION_JSON)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(gson.toJson(request))
@@ -190,13 +190,13 @@ public class StudentControllerTest {
                         requestFields(
                                 List.of(
                                         fieldWithPath("id").type(JsonFieldType.NUMBER).description("회원 식별자"),
-                                        fieldWithPath("lessonOption").type(JsonFieldType.STRING).description("수업옵션")
+                                        fieldWithPath("option").type(JsonFieldType.STRING).description("수업옵션")
                                 )
                         ),
                         responseFields(
                                 List.of(
                                         fieldWithPath("id").type(JsonFieldType.NUMBER).description("회원 식별자"),
-                                        fieldWithPath("lessonOption").type(JsonFieldType.STRING).description("수업옵션 수정 후")
+                                        fieldWithPath("option").type(JsonFieldType.STRING).description("수업옵션 수정 후")
                                 )
                         )
                 ));
@@ -283,20 +283,20 @@ public class StudentControllerTest {
     @WithMockUser(authorities = {"ROLE_STUDENT"})
     public void patchPhoneNumberTest() throws Exception {
         long id = 1L;
-        String phoneNumber = "01012345678";
+        String phone = "01012345678";
 
-        StudentDto.PatchPhoneNumber request = StudentDto.PatchPhoneNumber.builder().id(id).phoneNumber(phoneNumber).build();
+        StudentDto.PatchPhoneNumber request = StudentDto.PatchPhoneNumber.builder().id(id).phone(phone).build();
 
         Student student = new Student();
         student.setId(id);
-        student.setPhoneNumber(phoneNumber);
+        student.setPhone(phone);
 
         given(mapper.patchPhoneNumberToStudent(Mockito.any(StudentDto.PatchPhoneNumber.class))).willReturn(student);
         given(service.updatePhoneNumber(Mockito.any(Student.class))).willReturn(student);
         given(mapper.studentToPatchPhoneNumber(Mockito.any(Student.class))).willReturn(request);
 
         ResultActions actions = mockMvc.perform(
-                RestDocumentationRequestBuilders.patch("/students/phoneNumber")
+                RestDocumentationRequestBuilders.patch("/students/phone")
                         .accept(MediaType.APPLICATION_JSON)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(gson.toJson(request))
@@ -309,13 +309,13 @@ public class StudentControllerTest {
                         requestFields(
                                 List.of(
                                         fieldWithPath("id").type(JsonFieldType.NUMBER).description("회원 식별자"),
-                                        fieldWithPath("phoneNumber").type(JsonFieldType.STRING).description("연락처")
+                                        fieldWithPath("phone").type(JsonFieldType.STRING).description("연락처")
                                 )
                         ),
                         responseFields(
                                 List.of(
                                         fieldWithPath("id").type(JsonFieldType.NUMBER).description("회원 식별자"),
-                                        fieldWithPath("phoneNumber").type(JsonFieldType.STRING).description("연락처 수정 후")
+                                        fieldWithPath("phone").type(JsonFieldType.STRING).description("연락처 수정 후")
                                 )
                         )
                 ));
@@ -327,7 +327,7 @@ public class StudentControllerTest {
         long id = 1L;
         List<String> subjects = List.of("국어", "영어");
 
-        StudentDto.PatchSubject request = StudentDto.PatchSubject.builder().studentId(id).subjects(subjects).build();
+        StudentDto.PatchSubject request = StudentDto.PatchSubject.builder().id(id).subjects(subjects).build();
 
         Student student = new Student();
         student.setId(id);
@@ -348,13 +348,13 @@ public class StudentControllerTest {
                         getResponsePreProcessor(),
                         requestFields(
                                 List.of(
-                                        fieldWithPath("studentId").type(JsonFieldType.NUMBER).description("회원 식별자"),
+                                        fieldWithPath("id").type(JsonFieldType.NUMBER).description("회원 식별자"),
                                         fieldWithPath("subjects").type(JsonFieldType.ARRAY).description("학생의 모든 관심 과목")
                                 )
                         ),
                         responseFields(
                                 List.of(
-                                        fieldWithPath("studentId").type(JsonFieldType.NUMBER).description("회원 식별자"),
+                                        fieldWithPath("id").type(JsonFieldType.NUMBER).description("회원 식별자"),
                                         fieldWithPath("subjects").type(JsonFieldType.ARRAY).description("학생의 모든 관심 과목")
                                 )
                         )
@@ -368,7 +368,7 @@ public class StudentControllerTest {
         String email = "test@example.com";
         String name = "테스트";
         String profileImg = "프로필 이미지. 미구현";
-        String phoneNumber = "01012345678";
+        String phone = "01012345678";
         boolean isOauth = false;
         MemberStatus status = MemberStatus.ACTIVE;
 
@@ -376,12 +376,12 @@ public class StudentControllerTest {
         student.setEmail(email);
         student.setName(name);
         student.setProfileImg(profileImg);
-        student.setPhoneNumber(phoneNumber);
+        student.setPhone(phone);
         student.setOauth(isOauth);
         student.setStatus(status);
 
         StudentDto.SimpleResponse response = StudentDto.SimpleResponse.builder()
-                .id(id).email(email).name(name).profileImg(profileImg).phoneNumber(phoneNumber).isOauth(isOauth).status(status)
+                .id(id).email(email).name(name).profileImg(profileImg).phone(phone).isOauth(isOauth).status(status)
                 .build();
 
         given(service.findStudentById(Mockito.anyLong())).willReturn(student);
@@ -406,7 +406,7 @@ public class StudentControllerTest {
                                         fieldWithPath("email").type(JsonFieldType.STRING).description("이메일"),
                                         fieldWithPath("name").type(JsonFieldType.STRING).description("이름"),
                                         fieldWithPath("profileImg").type(JsonFieldType.STRING).description("프로필 사진 링크. 미구현"),
-                                        fieldWithPath("phoneNumber").type(JsonFieldType.STRING).description("연락처"),                                        fieldWithPath("oauth").type(JsonFieldType.BOOLEAN).description("소셜 회원가입 여부. true면 소셜 회원, false면 자체 가입 회원"),
+                                        fieldWithPath("phone").type(JsonFieldType.STRING).description("연락처"),                                        fieldWithPath("oauth").type(JsonFieldType.BOOLEAN).description("소셜 회원가입 여부. true면 소셜 회원, false면 자체 가입 회원"),
                                         fieldWithPath("status").type(JsonFieldType.STRING).description("회원 상태")
                                 )
                         )
@@ -420,7 +420,7 @@ public class StudentControllerTest {
         long id = 1L;
         List<String> regions = List.of("강남", "강서");
 
-        StudentDto.PatchRegion request = StudentDto.PatchRegion.builder().studentId(id).regions(regions).build();
+        StudentDto.PatchRegion request = StudentDto.PatchRegion.builder().id(id).regions(regions).build();
 
         Student student = new Student();
         student.setId(id);
@@ -441,13 +441,13 @@ public class StudentControllerTest {
                         getResponsePreProcessor(),
                         requestFields(
                                 List.of(
-                                        fieldWithPath("studentId").type(JsonFieldType.NUMBER).description("회원 식별자"),
+                                        fieldWithPath("id").type(JsonFieldType.NUMBER).description("회원 식별자"),
                                         fieldWithPath("regions").type(JsonFieldType.ARRAY).description("학생의 모든 지역")
                                 )
                         ),
                         responseFields(
                                 List.of(
-                                        fieldWithPath("studentId").type(JsonFieldType.NUMBER).description("회원 식별자"),
+                                        fieldWithPath("id").type(JsonFieldType.NUMBER).description("회원 식별자"),
                                         fieldWithPath("regions").type(JsonFieldType.ARRAY).description("수정 후, 학생의 모든 지역")
                                 )
                         )
@@ -462,8 +462,8 @@ public class StudentControllerTest {
         String email = "test@example.com";
         String profileImg = "프로필 이미지. 미구현";
         String introduction = "자기소개";
-        String lessonOption = "수업옵션";
-        String phoneNumber = "01012345678";
+        String option = "수업옵션";
+        String phone = "01012345678";
         boolean isOauth = false;
         MemberStatus status = MemberStatus.ACTIVE;
         List<String> subjects = List.of("국어", "수학");
@@ -488,12 +488,12 @@ public class StudentControllerTest {
         student.setEmail(email);
         student.setName(name);
         student.setProfileImg(profileImg);
-        student.setPhoneNumber(phoneNumber);
+        student.setPhone(phone);
         student.setOauth(isOauth);
         student.setStatus(status);
 
         StudentDto.DetailResponse response = StudentDto.DetailResponse.builder()
-                .id(id).email(email).name(name).profileImg(profileImg).phoneNumber(phoneNumber).isOauth(isOauth).status(status).introduction(introduction).lessonOption(lessonOption).status(status).subjects(subjects).regions(regions).matches(matches)
+                .id(id).email(email).name(name).profileImg(profileImg).phone(phone).isOauth(isOauth).status(status).introduction(introduction).option(option).status(status).subjects(subjects).regions(regions).matches(matches)
                 .build();
 
         given(service.findStudentById(Mockito.anyLong())).willReturn(student);
@@ -519,12 +519,13 @@ public class StudentControllerTest {
                                         fieldWithPath("name").type(JsonFieldType.STRING).description("이름"),
                                         fieldWithPath("profileImg").type(JsonFieldType.STRING).description("프로필 사진 링크. 미구현"),
                                         fieldWithPath("introduction").type(JsonFieldType.STRING).description("자기소개"),
-                                        fieldWithPath("lessonOption").type(JsonFieldType.STRING).description("수업옵션"),
+                                        fieldWithPath("option").type(JsonFieldType.STRING).description("수업옵션"),
                                         fieldWithPath("oauth").type(JsonFieldType.BOOLEAN).description("소셜 회원 여부. true일 경우 소셜 회원"),
-                                        fieldWithPath("phoneNumber").type(JsonFieldType.STRING).description("연락처"),                                        fieldWithPath("oauth").type(JsonFieldType.BOOLEAN).description("소셜 회원가입 여부. true면 소셜 회원, false면 자체 가입 회원"),
+                                        fieldWithPath("phone").type(JsonFieldType.STRING).description("연락처"),                                        fieldWithPath("oauth").type(JsonFieldType.BOOLEAN).description("소셜 회원가입 여부. true면 소셜 회원, false면 자체 가입 회원"),
                                         fieldWithPath("status").type(JsonFieldType.STRING).description("회원 상태"),
                                         fieldWithPath("subjects").type(JsonFieldType.ARRAY).description("회원 관심 과목"),
                                         fieldWithPath("regions").type(JsonFieldType.ARRAY).description("회원 지역"),
+                                        fieldWithPath("teacher").type(JsonFieldType.BOOLEAN).description("강사여부. false면 학생"),
                                         fieldWithPath("matches").type(JsonFieldType.ARRAY).description("매칭 정보"),
                                         fieldWithPath("matches[].matchId").type(JsonFieldType.NUMBER).description("매칭 식별자"),
                                         fieldWithPath("matches[].teacherName").type(JsonFieldType.STRING).description("강사 이름"),
