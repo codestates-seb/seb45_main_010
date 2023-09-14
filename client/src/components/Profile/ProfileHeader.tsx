@@ -7,7 +7,12 @@ import OnlineDiv from 'components/Items/OnlineDiv';
 import Option from './ProfileTab/Option';
 import { useAppDispatch, useAppSelector } from 'hooks/hooks';
 import { useEffect } from 'react';
-import { FetchSubjects, updateSubjects, FetchRegions, updateRegions } from 'redux/thunk/Thunk';
+import {
+  FetchSubjects,
+  updateSubjects,
+  FetchRegions,
+  updateRegions,
+} from 'redux/thunk/ProfilePageThunk';
 
 type ProfileHeaderProps = Pick<
   User,

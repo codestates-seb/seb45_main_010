@@ -10,17 +10,28 @@ export const FetchProfile = createAsyncThunk('FetchProfile', async (id: number) 
   return data;
 });
 
-export const FetchRequest = createAsyncThunk('FetchRequest', async (id: number) => {
-  const response = await axios.get(`http://localhost:8081/request/${id}`);
-  const data = response.data;
-  return data;
-});
-
 export const FetchSchedule = createAsyncThunk('schedule/fetchSchedule', async (id: number) => {
   const response = await axios.get(`http://localhost:8081/schedule/${id}`);
   const data = response.data;
   return data;
 });
+
+export const FetchRequest = createAsyncThunk('FetchRequest', async (id: number) => {
+  const response = await axios.get(`${APIurl}/matches/${id}`);
+  const data = response.data;
+  return data;
+});
+
+export const updateRequestStatus = createAsyncThunk(
+  'profile/updateRequestStatus',
+  async ({ id, status }: { id: number; status: string }) => {
+    const response = await axios.patch(`${APIurl}/matches`, {
+      id: id,
+      status: status,
+    });
+    return response.data;
+  }
+);
 
 export const updateSchedule = createAsyncThunk(
   'schedule/updateSchedule',

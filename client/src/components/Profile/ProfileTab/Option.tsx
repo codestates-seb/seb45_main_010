@@ -5,7 +5,7 @@ import {
   updateLectureFee,
   updateOption,
   updateIntroduction,
-} from 'redux/thunk/Thunk';
+} from 'redux/thunk/ProfilePageThunk';
 import EditandSave from 'components/Items/EditandSave';
 
 const Option = ({

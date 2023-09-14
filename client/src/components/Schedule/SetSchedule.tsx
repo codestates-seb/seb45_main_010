@@ -5,7 +5,7 @@ import { Button, Option, Select } from '@material-tailwind/react';
 import { useState, useEffect, useRef } from 'react';
 import { TimeSlotType, ScheduleArrayType, ScheduleType } from 'Types/Types';
 import { generateAvailableTimeSlots, generateTimeSlots, formatDate } from './Functions';
-import { updateSchedule, FetchSchedule } from 'redux/thunk/Thunk';
+import { updateSchedule, FetchSchedule } from 'redux/thunk/ProfilePageThunk';
 import { useAppDispatch, useAppSelector } from 'hooks/hooks';
 import GetSchedule from './GetSchedule';
 

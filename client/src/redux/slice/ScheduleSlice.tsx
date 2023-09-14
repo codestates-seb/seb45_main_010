@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { FetchSchedule, updateSchedule } from 'redux/thunk/Thunk';
+import { FetchSchedule, updateSchedule } from 'redux/thunk/ProfilePageThunk';
 import { TimeSlotType, ScheduleArrayType } from 'Types/Types';
 
 type initialStateType = {

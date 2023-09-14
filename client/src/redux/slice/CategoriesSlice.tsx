@@ -1,4 +1,4 @@
-import { FetchRegions, FetchSubjects } from 'redux/thunk/Thunk';
+import { FetchRegions, FetchSubjects } from 'redux/thunk/ProfilePageThunk';
 import { createSlice } from '@reduxjs/toolkit';
 import { RootState } from 'redux/store';
 

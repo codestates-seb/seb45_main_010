@@ -1,5 +1,5 @@
 import { RequestType } from 'Types/Types';
-import { FetchRequest } from 'redux/thunk/Thunk';
+import { FetchRequest } from 'redux/thunk/ProfilePageThunk';
 import { createSlice } from '@reduxjs/toolkit';
 
 type initialStateType = {

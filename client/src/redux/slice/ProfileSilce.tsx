@@ -9,7 +9,7 @@ import {
   updateIntroduction,
   updateRegions,
   updateSubjects,
-} from 'redux/thunk/Thunk';
+} from 'redux/thunk/ProfilePageThunk';
 import { createSlice } from '@reduxjs/toolkit';
 
 type initialStateType = {

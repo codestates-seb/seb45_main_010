@@ -7,7 +7,7 @@ import {
   updateCareer,
   updateOption,
   updateIntroduction,
-} from 'redux/thunk/Thunk';
+} from 'redux/thunk/ProfilePageThunk';
 import { createSlice } from '@reduxjs/toolkit';
 
 // type initialStateType = {
