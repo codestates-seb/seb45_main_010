@@ -83,6 +83,13 @@ public interface TeacherMapper {
             response.setRegions(teacher.getTeacherRegions().stream()
                     .map(teacherRegion -> teacherRegion.getRegion().getRegionName())
                     .collect(Collectors.toList()));
+            response.setMatches(teacher.getMatches().stream()
+                    .map(match -> new TeacherDto.MatchResponse(match.getId(),
+                            match.getStudent().getName(),
+                            match.getSchedule(),
+                            match.getMatchSubjects().stream().map(matchSubject -> matchSubject.getSubject().getSubjectName()).collect(Collectors.toList()),
+                            match.getStatus()))
+                    .collect(Collectors.toList()));
             response.setLastLogin(teacher.getLastLogin());
             response.setLastModified(teacher.getLastModified());
             response.setCreatedAt(teacher.getCreatedAt());

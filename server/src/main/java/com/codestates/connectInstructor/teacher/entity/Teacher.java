@@ -2,6 +2,7 @@ package com.codestates.connectInstructor.teacher.entity;
 
 import com.codestates.connectInstructor.audit.Auditable;
 import com.codestates.connectInstructor.common.MemberStatus;
+import com.codestates.connectInstructor.match.entity.Match;
 import com.codestates.connectInstructor.security.member.Member;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -76,6 +77,9 @@ public class Teacher extends Auditable implements Member {
 
     @OneToMany(mappedBy = "teacher", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<TeacherSubject> teacherSubjects = new ArrayList<>();
+
+    @OneToMany(mappedBy = "teacher", cascade = {CascadeType.ALL}, orphanRemoval = true)
+    private List<Match> matches = new ArrayList<>();
 
     @Column(name = "last_login_at")
     private LocalDateTime lastLogin;

@@ -1,5 +1,6 @@
 package com.codestates.connectInstructor.teacher.dto;
 
+import com.codestates.connectInstructor.match.entity.Match;
 import com.codestates.connectInstructor.region.dto.RegionDto;
 import com.codestates.connectInstructor.subject.dto.SubjectDto;
 import lombok.*;
@@ -125,6 +126,7 @@ public class TeacherDto {
         private boolean oauth;
         private List<String> subjects;
         private List<String> regions;
+        private List<TeacherDto.MatchResponse> matches;
         private LocalDateTime lastLogin;
         private LocalDateTime lastModified;
         private LocalDateTime createdAt;
@@ -141,5 +143,13 @@ public class TeacherDto {
         private String name;
         private String profileImg;
         private LocalDateTime createdAt;
+    }
+    @Setter@Getter@AllArgsConstructor@NoArgsConstructor
+    public static class MatchResponse {
+        private long matchId;
+        private String studentName;
+        private String schedule;
+        private List<String> subjects;
+        private Match.MatchStatus status;
     }
 }
