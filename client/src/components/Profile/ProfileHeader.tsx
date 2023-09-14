@@ -13,27 +13,28 @@ type ProfileHeaderProps = Pick<
   User,
   | 'name'
   | 'introduction'
+  | 'id'
   | 'subjects'
   | 'regions'
   | 'profileImg'
   | 'onLine'
   | 'offLine'
   | 'teacher'
-  | 'id'
 >;
 
 const ProfileHeader: React.FC<ProfileHeaderProps> = ({
   name,
   introduction,
+  id,
   profileImg,
   onLine,
   offLine,
   subjects,
   regions,
   teacher,
-  id,
 }) => {
   const dispatch = useAppDispatch();
+  const profile = useAppSelector((state) => state.profile.value);
 
   useEffect(() => {
     dispatch(FetchRegions());

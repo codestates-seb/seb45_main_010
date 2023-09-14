@@ -1,8 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { APIurl, APIUSERURL, PROFILEURL } from 'hooks/UseCheckAuth';
+import UseCheckAuth, { APIurl, APIUSERURL, PROFILEURL } from 'hooks/UseCheckAuth';
 import { ACCESSTOKEN } from 'configs/Url/config';
-
 export const FetchProfile = createAsyncThunk('FetchProfile', async (id: number) => {
   const response = await axios.get(`${PROFILEURL}/${id}`);
   const data = response.data;
