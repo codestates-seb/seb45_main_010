@@ -1,8 +1,9 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import UseCheckAuth, { APIurl, APIUSERURL, PROFILEURL } from 'hooks/UseCheckAuth';
+import GetInfoAuth from 'hooks/GetInfoAuth';
 import { ACCESSTOKEN } from 'configs/Url/config';
-
+import { APIurl } from 'hooks/GetInfoAuth';
+const { APIUSERURL, PROFILEURL } = GetInfoAuth();
 // <-- 프로필 관련 Thunks [start]-->
 export const FetchProfile = createAsyncThunk('FetchProfile', async (id: number) => {
   const response = await axios.get(`${PROFILEURL}/${id}`);
@@ -25,10 +26,18 @@ export const FetchRequest = createAsyncThunk('FetchRequest', async (id: number) 
 export const updateRequestStatus = createAsyncThunk(
   'profile/updateRequestStatus',
   async ({ id, status }: { id: number; status: string }) => {
-    const response = await axios.patch(`${APIurl}/matches`, {
-      id: id,
-      status: status,
-    });
+    const response = await axios.patch(
+      `${APIurl}/matches`,
+      {
+        id: id,
+        status: status,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${ACCESSTOKEN}`,
+        },
+      }
+    );
     return response.data;
   }
 );
@@ -60,10 +69,18 @@ export const updateSchedule = createAsyncThunk(
 export const updateOnline = createAsyncThunk(
   'profile/updateOnline',
   async ({ id, onLine }: { id: number; onLine: boolean }) => {
-    const response = await axios.patch(`${APIurl}/teachers/onLine`, {
-      id: id,
-      onLine: onLine,
-    });
+    const response = await axios.patch(
+      `${APIurl}/teachers/onLine`,
+      {
+        id: id,
+        onLine: onLine,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${ACCESSTOKEN}`,
+        },
+      }
+    );
     return response.data;
   }
 );
@@ -71,10 +88,18 @@ export const updateOnline = createAsyncThunk(
 export const updateOffline = createAsyncThunk(
   'profile/updateOffline',
   async ({ id, offLine }: { id: number; offLine: boolean }) => {
-    const response = await axios.patch(`${APIurl}/teachers/offLine`, {
-      id: id,
-      offLine: offLine,
-    });
+    const response = await axios.patch(
+      `${APIurl}/teachers/offLine`,
+      {
+        id: id,
+        offLine: offLine,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${ACCESSTOKEN}`,
+        },
+      }
+    );
     return response.data;
   }
 );
@@ -82,10 +107,18 @@ export const updateOffline = createAsyncThunk(
 export const updateLectureFee = createAsyncThunk(
   'profile/updateLectureFee',
   async ({ id, lectureFee }: { id: number; lectureFee: string }) => {
-    const response = await axios.patch(`${APIurl}/teachers/lectureFee`, {
-      id: id,
-      lectureFee: lectureFee,
-    });
+    const response = await axios.patch(
+      `${APIurl}/teachers/lectureFee`,
+      {
+        id: id,
+        lectureFee: lectureFee,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${ACCESSTOKEN}`,
+        },
+      }
+    );
     return response.data;
   }
 );
@@ -93,10 +126,18 @@ export const updateLectureFee = createAsyncThunk(
 export const updateCareer = createAsyncThunk(
   'profile/updateCareer',
   async ({ id, career }: { id: number; career: string }) => {
-    const response = await axios.patch(`${APIurl}/teachers/career`, {
-      id: id,
-      career: career,
-    });
+    const response = await axios.patch(
+      `${APIurl}/teachers/career`,
+      {
+        id: id,
+        career: career,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${ACCESSTOKEN}`,
+        },
+      }
+    );
     return response.data;
   }
 );
@@ -112,7 +153,7 @@ export const updateOption = createAsyncThunk(
       },
       {
         headers: {
-          Authorization: ACCESSTOKEN,
+          Authorization: `Bearer ${ACCESSTOKEN}`,
         },
       }
     );
@@ -131,7 +172,7 @@ export const updateIntroduction = createAsyncThunk(
       },
       {
         headers: {
-          Authorization: ACCESSTOKEN,
+          Authorization: `Bearer ${ACCESSTOKEN}`,
         },
       }
     );
@@ -151,7 +192,7 @@ export const updateSubjects = createAsyncThunk(
       },
       {
         headers: {
-          Authorization: ACCESSTOKEN,
+          Authorization: `Bearer ${ACCESSTOKEN}`,
         },
       }
     );
@@ -170,7 +211,7 @@ export const updateRegions = createAsyncThunk(
       },
       {
         headers: {
-          Authorization: ACCESSTOKEN,
+          Authorization: `Bearer ${ACCESSTOKEN}`,
         },
       }
     );

@@ -56,12 +56,12 @@ export type DetailType = Pick<
 >;
 
 export type RequestType = {
-  id: string;
-  name: string;
-  requestcategory: string[];
-  note: string;
+  matchId: number;
   schedule: string;
-};
+  status: string;
+  studentName: string;
+  subjects: string[];
+}[];
 
 export type footerType = {
   footerMessage: string;
