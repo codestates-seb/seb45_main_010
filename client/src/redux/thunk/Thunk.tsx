@@ -22,18 +22,6 @@ export const FetchSchedule = createAsyncThunk('schedule/fetchSchedule', async (i
   return data;
 });
 
-export const FetchSubjects = createAsyncThunk('subjects', async () => {
-  const response = await axios.get(`${APIurl}/subjects`);
-  const data = response.data;
-  return data.subjects;
-});
-
-export const FetchRegions = createAsyncThunk('regions', async () => {
-  const response = await axios.get(`${APIurl}/regions`);
-  const data = response.data;
-  return data.regions;
-});
-
 export const updateSchedule = createAsyncThunk(
   'schedule/updateSchedule',
   async ({ id, date, timeslots }: { id: number; date: string; timeslots: string[] }) => {
@@ -165,3 +153,18 @@ export const updateRegions = createAsyncThunk(
     return response.data;
   }
 );
+// <-- 프로필 관련 Thunks [end]-->
+
+// <-- 지역/과목 관련 Thunks [start]-->
+export const FetchSubjects = createAsyncThunk('subjects', async () => {
+  const response = await axios.get(`${APIurl}/subjects`);
+  const data = response.data;
+  return data.subjects;
+});
+
+export const FetchRegions = createAsyncThunk('regions', async () => {
+  const response = await axios.get(`${APIurl}/regions`);
+  const data = response.data;
+  return data.regions;
+});
+// <-- 지역/과목 관련 Thunks [end]-->

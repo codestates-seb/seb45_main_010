@@ -22,7 +22,6 @@ const Profile = () => {
         console.error('Error fetching profile:', error);
       });
   }, [userId]);
-
   return (
     <>
       <ProfileHeader
@@ -38,7 +37,7 @@ const Profile = () => {
       />
       <ProfileTabs
         id={userId}
-        // requests={request}
+        matches={user.matches}
         teacher={user.teacher}
         lectureFee={user.lectureFee}
         career={user.career}

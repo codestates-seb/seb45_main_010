@@ -18,6 +18,7 @@ export type User = {
   oauth: boolean;
   address: string;
   option: string | null;
+  matches: string[];
 };
 
 export type TeacherType = Omit<User, 'password'>;

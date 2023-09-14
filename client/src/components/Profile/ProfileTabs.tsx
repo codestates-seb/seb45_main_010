@@ -5,7 +5,6 @@ import OptionList from './ProfileTab/OptionList';
 import { RequestType, User } from 'Types/Types';
 
 type ProfileTabsProps = {
-  requests: RequestType[];
   teacher: boolean;
   lectureFee: string;
   career: string;
@@ -13,10 +12,10 @@ type ProfileTabsProps = {
   onLine: boolean;
   offLine: boolean;
   id: number;
+  matches: string[];
 };
 
 const ProfileTabs: React.FC<ProfileTabsProps> = ({
-  requests,
   teacher,
   lectureFee,
   career,
@@ -24,6 +23,7 @@ const ProfileTabs: React.FC<ProfileTabsProps> = ({
   onLine,
   offLine,
   id,
+  matches,
 }) => {
   type tabDataType = {
     id: string;
