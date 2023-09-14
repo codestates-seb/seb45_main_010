@@ -17,6 +17,7 @@ export type User = {
   offLine: boolean;
   oauth: boolean;
   address: string;
+  option: string | null;
 };
 
 export type TeacherType = Omit<User, 'password'>;
@@ -31,7 +32,7 @@ export type CommonUserType = Pick<
   'name' | 'email' | 'teacher' | 'id' | 'phone' | 'profileImg' | 'oauth'
 >;
 
-export type PrivateType = Pick<User, 'profileImg' | 'name' | 'email' | 'password' | 'phoneNumber'>;
+export type PrivateType = Pick<User, 'profileImg' | 'name' | 'email' | 'password' | 'phone'>;
 
 export type LoginType = Pick<User, 'email' | 'password'>;
 
@@ -42,7 +43,11 @@ export type ListPageType = Pick<
 
 export type DetailType = Pick<
   User,
+  | 'id'
+  | 'email'
   | 'name'
+  | 'teacher'
+  | 'phone'
   | 'profileImg'
   | 'onLine'
   | 'offLine'
@@ -52,6 +57,7 @@ export type DetailType = Pick<
   | 'introduction'
   | 'lectureFee'
   | 'career'
+  | 'option'
 >;
 
 export type RequestType = {
@@ -84,4 +90,6 @@ export type SearchType = {
   teacherName: string;
   subject: string[];
   regions: string[];
+  size: number;
+  page: number;
 };
