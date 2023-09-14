@@ -1,8 +1,10 @@
 import { Input } from '@material-tailwind/react';
-import useSearch from 'hooks/useSearch';
+import { search } from 'configs/Listpage/config';
+import { useAppDispatch } from 'hooks/hooks';
 import React, { ChangeEvent, FormEvent } from 'react';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { useNavigate } from 'react-router-dom';
+import { getData } from 'redux/thunk/ListPageThunk';
 
 type props = {
   inputText: string;
@@ -12,11 +14,13 @@ type props = {
 
 const SearchForm = ({ inputText, setInputText, handlerSearch }: props) => {
   const nav = useNavigate();
-  useSearch(inputText, [], []);
+  const dispatch = useAppDispatch();
 
   const handleFormSubmit = (e: FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
     handlerSearch();
+    search.teacherName = inputText;
+    dispatch(getData(search));
     nav('/');
   };
   const handlerInput = (e: ChangeEvent<HTMLInputElement>) => {
@@ -25,21 +29,24 @@ const SearchForm = ({ inputText, setInputText, handlerSearch }: props) => {
   };
 
   return (
-    <form id="myForm" className="relative flex w-full gap-2 w-100% mb-5">
-      <Input
-        type="text"
-        label="Search..."
-        value={inputText}
-        onChange={handlerInput}
-        crossOrigin={undefined}
-      />
-      <button
-        className="absolute right-0 m-2 text-xl cursor-pointer text-gray-3"
-        type="submit"
-        onClick={handleFormSubmit}
-      >
-        <AiOutlineSearch />
-      </button>
+    <form id="myForm">
+      <div className="relative flex w-full flex-col  gap-2 w-100% mb-5">
+        <h1 className="pl-1">강사 검색</h1>
+        <Input
+          type="text"
+          label="강사의 이름을 입력해 주세요."
+          value={inputText}
+          onChange={handlerInput}
+          crossOrigin={undefined}
+        />
+        <button
+          className="absolute bottom-0 right-0 m-2 text-xl cursor-pointer text-gray-3"
+          type="submit"
+          onClick={handleFormSubmit}
+        >
+          <AiOutlineSearch />
+        </button>
+      </div>
     </form>
   );
 };

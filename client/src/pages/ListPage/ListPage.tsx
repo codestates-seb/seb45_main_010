@@ -1,22 +1,32 @@
 import React, { useEffect, useState } from 'react';
 import TeacherCard from 'components/ListPage/TeacherCard';
 import Pagination from 'components/ListPage/Pagination';
+import { useAppDispatch, useAppSelector } from 'hooks/hooks';
+import { teacherList } from 'redux/slice/ListPageSlice';
+import { getData } from 'redux/thunk/ListPageThunk';
 import { ListPageType } from 'Types/Types';
-import useSearch from 'hooks/useSearch';
+import { search } from 'configs/Listpage/config';
 
 const ListPage = () => {
+  const dispatch = useAppDispatch();
+  const teacher = useAppSelector(teacherList);
   const [cardList, setCardList] = useState<ListPageType[]>([]);
   const [page, setPage] = useState<number>(0);
   const [totalPages, setTotalPages] = useState<number>(0);
   const size: number = 1;
-  const teacherList = useSearch('', [], [], size, page);
 
   useEffect(() => {
-    if (teacherList.status === 'fulfilled') {
-      setCardList(teacherList.value.data);
-      setTotalPages(teacherList.value.pageInfo.totalPages);
+    search.size = size;
+    search.page = page + 1;
+    dispatch(getData(search));
+  }, [page]);
+
+  useEffect(() => {
+    if (teacher.status === 'fulfilled') {
+      setCardList(teacher.value.data);
+      setTotalPages(teacher.value.pageInfo.totalPages);
     }
-  }, [teacherList]);
+  }, [teacher]);
 
   return (
     <>
