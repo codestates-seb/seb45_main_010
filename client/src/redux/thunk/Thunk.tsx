@@ -2,6 +2,8 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import UseCheckAuth, { APIurl, APIUSERURL, PROFILEURL } from 'hooks/UseCheckAuth';
 import { ACCESSTOKEN } from 'configs/Url/config';
+import { ScheduleType } from 'Types/Types';
+
 export const FetchProfile = createAsyncThunk('FetchProfile', async (id: number) => {
   const response = await axios.get(`${PROFILEURL}/${id}`);
   const data = response.data;
@@ -15,7 +17,7 @@ export const FetchRequest = createAsyncThunk('FetchRequest', async (id: number) 
 });
 
 export const FetchSchedule = createAsyncThunk('schedule/fetchSchedule', async (id: number) => {
-  const response = await axios.get(`http://localhost:8081/schedule/${id}`);
+  const response = await axios.get<ScheduleType>(`http://localhost:8081/schedule/${id}`);
   const data = response.data;
   return data;
 });
