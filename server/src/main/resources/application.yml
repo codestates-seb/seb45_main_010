@@ -12,9 +12,10 @@ spring:
     properties:
       hibernate:
         format_sql: true
-#  sql:
-#    init:
-#      data-locations: classpath*:db/h2/data.sql
+    defer-datasource-initialization: true
+  sql:
+    init:
+      data-locations: classpath*:db/h2/data.sql
   mail:
     host: smtp.gmail.com
     port: 587

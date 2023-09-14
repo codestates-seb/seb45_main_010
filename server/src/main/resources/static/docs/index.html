@@ -837,27 +837,27 @@ Content-Length: 52
 <div class="listingblock">
 <div class="title">curl-request</div>
 <div class="content">
-<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/students/lessonOption' -i -X PATCH \
+<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/students/option' -i -X PATCH \
     -H 'Content-Type: application/json' \
     -H 'Accept: application/json' \
     -d '{
   "id" : 1,
-  "lessonOption" : "수업옵션"
+  "option" : "수업옵션"
 }'</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">http-request</div>
 <div class="content">
-<pre class="prettyprint highlight nowrap"><code data-lang="http">PATCH /students/lessonOption HTTP/1.1
+<pre class="prettyprint highlight nowrap"><code data-lang="http">PATCH /students/option HTTP/1.1
 Content-Type: application/json
 Accept: application/json
-Content-Length: 52
+Content-Length: 46
 Host: localhost:8080
 
 {
   "id" : 1,
-  "lessonOption" : "수업옵션"
+  "option" : "수업옵션"
 }</code></pre>
 </div>
 </div>
@@ -866,8 +866,8 @@ Host: localhost:8080
 <div class="content">
 <pre class="prettyprint highlight"><code data-lang="bash">$ echo '{
   "id" : 1,
-  "lessonOption" : "수업옵션"
-}' | http PATCH 'http://localhost:8080/students/lessonOption' \
+  "option" : "수업옵션"
+}' | http PATCH 'http://localhost:8080/students/option' \
     'Content-Type:application/json' \
     'Accept:application/json'</code></pre>
 </div>
@@ -877,7 +877,7 @@ Host: localhost:8080
 <div class="content">
 <pre class="prettyprint highlight nowrap"><code>{
   "id" : 1,
-  "lessonOption" : "�닔�뾽�샃�뀡"
+  "option" : "�닔�뾽�샃�뀡"
 }</code></pre>
 </div>
 </div>
@@ -902,7 +902,7 @@ Host: localhost:8080
 <td class="tableblock halign-left valign-top"><p class="tableblock">회원 식별자</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>lessonOption</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>option</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">수업옵션</p></td>
 </tr>
@@ -913,11 +913,11 @@ Host: localhost:8080
 <div class="content">
 <pre class="prettyprint highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
 Content-Type: application/json
-Content-Length: 52
+Content-Length: 46
 
 {
   "id" : 1,
-  "lessonOption" : "수업옵션"
+  "option" : "수업옵션"
 }</code></pre>
 </div>
 </div>
@@ -926,7 +926,7 @@ Content-Length: 52
 <div class="content">
 <pre class="prettyprint highlight nowrap"><code>{
   "id" : 1,
-  "lessonOption" : "�닔�뾽�샃�뀡"
+  "option" : "�닔�뾽�샃�뀡"
 }</code></pre>
 </div>
 </div>
@@ -951,7 +951,7 @@ Content-Length: 52
 <td class="tableblock halign-left valign-top"><p class="tableblock">회원 식별자</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>lessonOption</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>option</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">수업옵션 수정 후</p></td>
 </tr>
@@ -1178,27 +1178,27 @@ Host: localhost:8080
 <div class="listingblock">
 <div class="title">curl-request</div>
 <div class="content">
-<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/students/phoneNumber' -i -X PATCH \
+<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/students/phone' -i -X PATCH \
     -H 'Content-Type: application/json' \
     -H 'Accept: application/json' \
     -d '{
   "id" : 1,
-  "phoneNumber" : "01012345678"
+  "phone" : "01012345678"
 }'</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">http-request</div>
 <div class="content">
-<pre class="prettyprint highlight nowrap"><code data-lang="http">PATCH /students/phoneNumber HTTP/1.1
+<pre class="prettyprint highlight nowrap"><code data-lang="http">PATCH /students/phone HTTP/1.1
 Content-Type: application/json
 Accept: application/json
-Content-Length: 50
+Content-Length: 44
 Host: localhost:8080
 
 {
   "id" : 1,
-  "phoneNumber" : "01012345678"
+  "phone" : "01012345678"
 }</code></pre>
 </div>
 </div>
@@ -1207,8 +1207,8 @@ Host: localhost:8080
 <div class="content">
 <pre class="prettyprint highlight"><code data-lang="bash">$ echo '{
   "id" : 1,
-  "phoneNumber" : "01012345678"
-}' | http PATCH 'http://localhost:8080/students/phoneNumber' \
+  "phone" : "01012345678"
+}' | http PATCH 'http://localhost:8080/students/phone' \
     'Content-Type:application/json' \
     'Accept:application/json'</code></pre>
 </div>
@@ -1218,7 +1218,7 @@ Host: localhost:8080
 <div class="content">
 <pre class="prettyprint highlight nowrap"><code>{
   "id" : 1,
-  "phoneNumber" : "01012345678"
+  "phone" : "01012345678"
 }</code></pre>
 </div>
 </div>
@@ -1243,7 +1243,7 @@ Host: localhost:8080
 <td class="tableblock halign-left valign-top"><p class="tableblock">회원 식별자</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>phoneNumber</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>phone</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">연락처</p></td>
 </tr>
@@ -1254,11 +1254,11 @@ Host: localhost:8080
 <div class="content">
 <pre class="prettyprint highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
 Content-Type: application/json
-Content-Length: 50
+Content-Length: 44
 
 {
   "id" : 1,
-  "phoneNumber" : "01012345678"
+  "phone" : "01012345678"
 }</code></pre>
 </div>
 </div>
@@ -1267,7 +1267,7 @@ Content-Length: 50
 <div class="content">
 <pre class="prettyprint highlight nowrap"><code>{
   "id" : 1,
-  "phoneNumber" : "01012345678"
+  "phone" : "01012345678"
 }</code></pre>
 </div>
 </div>
@@ -1292,7 +1292,7 @@ Content-Length: 50
 <td class="tableblock halign-left valign-top"><p class="tableblock">회원 식별자</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>phoneNumber</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>phone</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">연락처 수정 후</p></td>
 </tr>
@@ -1308,7 +1308,7 @@ Content-Length: 50
     -H 'Content-Type: application/json' \
     -H 'Accept: application/json' \
     -d '{
-  "studentId" : 1,
+  "id" : 1,
   "subjects" : [ "국어", "영어" ]
 }'</code></pre>
 </div>
@@ -1319,11 +1319,11 @@ Content-Length: 50
 <pre class="prettyprint highlight nowrap"><code data-lang="http">PATCH /students/subjects HTTP/1.1
 Content-Type: application/json
 Accept: application/json
-Content-Length: 63
+Content-Length: 56
 Host: localhost:8080
 
 {
-  "studentId" : 1,
+  "id" : 1,
   "subjects" : [ "국어", "영어" ]
 }</code></pre>
 </div>
@@ -1332,7 +1332,7 @@ Host: localhost:8080
 <div class="title">httpie-request</div>
 <div class="content">
 <pre class="prettyprint highlight"><code data-lang="bash">$ echo '{
-  "studentId" : 1,
+  "id" : 1,
   "subjects" : [ "국어", "영어" ]
 }' | http PATCH 'http://localhost:8080/students/subjects' \
     'Content-Type:application/json' \
@@ -1343,7 +1343,7 @@ Host: localhost:8080
 <div class="title">request-body</div>
 <div class="content">
 <pre class="prettyprint highlight nowrap"><code>{
-  "studentId" : 1,
+  "id" : 1,
   "subjects" : [ "援��뼱", "�쁺�뼱" ]
 }</code></pre>
 </div>
@@ -1364,7 +1364,7 @@ Host: localhost:8080
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>studentId</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>id</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">회원 식별자</p></td>
 </tr>
@@ -1380,10 +1380,10 @@ Host: localhost:8080
 <div class="content">
 <pre class="prettyprint highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
 Content-Type: application/json
-Content-Length: 63
+Content-Length: 56
 
 {
-  "studentId" : 1,
+  "id" : 1,
   "subjects" : [ "국어", "영어" ]
 }</code></pre>
 </div>
@@ -1392,7 +1392,7 @@ Content-Length: 63
 <div class="title">response-body</div>
 <div class="content">
 <pre class="prettyprint highlight nowrap"><code>{
-  "studentId" : 1,
+  "id" : 1,
   "subjects" : [ "援��뼱", "�쁺�뼱" ]
 }</code></pre>
 </div>
@@ -1413,7 +1413,7 @@ Content-Length: 63
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>studentId</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>id</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">회원 식별자</p></td>
 </tr>
@@ -1482,14 +1482,14 @@ Host: localhost:8080</code></pre>
 <div class="content">
 <pre class="prettyprint highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
 Content-Type: application/json
-Content-Length: 204
+Content-Length: 198
 
 {
   "id" : 1,
   "email" : "test@example.com",
   "name" : "테스트",
   "profileImg" : "프로필 이미지. 미구현",
-  "phoneNumber" : "01012345678",
+  "phone" : "01012345678",
   "status" : "ACTIVE",
   "oauth" : false
 }</code></pre>
@@ -1503,7 +1503,7 @@ Content-Length: 204
   "email" : "test@example.com",
   "name" : "�뀒�뒪�듃",
   "profileImg" : "�봽濡쒗븘 �씠誘몄�. 誘멸뎄�쁽",
-  "phoneNumber" : "01012345678",
+  "phone" : "01012345678",
   "status" : "ACTIVE",
   "oauth" : false
 }</code></pre>
@@ -1545,7 +1545,7 @@ Content-Length: 204
 <td class="tableblock halign-left valign-top"><p class="tableblock">프로필 사진 링크. 미구현</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>phoneNumber</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>phone</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">연락처</p></td>
 </tr>
@@ -1571,7 +1571,7 @@ Content-Length: 204
     -H 'Content-Type: application/json' \
     -H 'Accept: application/json' \
     -d '{
-  "studentId" : 1,
+  "id" : 1,
   "regions" : [ "강남", "강서" ]
 }'</code></pre>
 </div>
@@ -1582,11 +1582,11 @@ Content-Length: 204
 <pre class="prettyprint highlight nowrap"><code data-lang="http">PATCH /students/regions HTTP/1.1
 Content-Type: application/json
 Accept: application/json
-Content-Length: 62
+Content-Length: 55
 Host: localhost:8080
 
 {
-  "studentId" : 1,
+  "id" : 1,
   "regions" : [ "강남", "강서" ]
 }</code></pre>
 </div>
@@ -1595,7 +1595,7 @@ Host: localhost:8080
 <div class="title">httpie-request</div>
 <div class="content">
 <pre class="prettyprint highlight"><code data-lang="bash">$ echo '{
-  "studentId" : 1,
+  "id" : 1,
   "regions" : [ "강남", "강서" ]
 }' | http PATCH 'http://localhost:8080/students/regions' \
     'Content-Type:application/json' \
@@ -1606,7 +1606,7 @@ Host: localhost:8080
 <div class="title">request-body</div>
 <div class="content">
 <pre class="prettyprint highlight nowrap"><code>{
-  "studentId" : 1,
+  "id" : 1,
   "regions" : [ "媛뺣궓", "媛뺤꽌" ]
 }</code></pre>
 </div>
@@ -1627,7 +1627,7 @@ Host: localhost:8080
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>studentId</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>id</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">회원 식별자</p></td>
 </tr>
@@ -1643,10 +1643,10 @@ Host: localhost:8080
 <div class="content">
 <pre class="prettyprint highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
 Content-Type: application/json
-Content-Length: 62
+Content-Length: 55
 
 {
-  "studentId" : 1,
+  "id" : 1,
   "regions" : [ "강남", "강서" ]
 }</code></pre>
 </div>
@@ -1655,7 +1655,7 @@ Content-Length: 62
 <div class="title">response-body</div>
 <div class="content">
 <pre class="prettyprint highlight nowrap"><code>{
-  "studentId" : 1,
+  "id" : 1,
   "regions" : [ "媛뺣궓", "媛뺤꽌" ]
 }</code></pre>
 </div>
@@ -1676,7 +1676,7 @@ Content-Length: 62
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>studentId</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>id</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">회원 식별자</p></td>
 </tr>
@@ -1745,7 +1745,7 @@ Host: localhost:8080</code></pre>
 <div class="content">
 <pre class="prettyprint highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
 Content-Type: application/json
-Content-Length: 785
+Content-Length: 773
 
 {
   "id" : 1,
@@ -1753,8 +1753,8 @@ Content-Length: 785
   "email" : "test@example.com",
   "profileImg" : "프로필 이미지. 미구현",
   "introduction" : "자기소개",
-  "lessonOption" : "수업옵션",
-  "phoneNumber" : "01012345678",
+  "option" : "수업옵션",
+  "phone" : "01012345678",
   "status" : "ACTIVE",
   "subjects" : [ "국어", "수학" ],
   "regions" : [ "강서", "강남" ],
@@ -1785,8 +1785,8 @@ Content-Length: 785
   "email" : "test@example.com",
   "profileImg" : "�봽濡쒗븘 �씠誘몄�. 誘멸뎄�쁽",
   "introduction" : "�옄湲곗냼媛�",
-  "lessonOption" : "�닔�뾽�샃�뀡",
-  "phoneNumber" : "01012345678",
+  "option" : "�닔�뾽�샃�뀡",
+  "phone" : "01012345678",
   "status" : "ACTIVE",
   "subjects" : [ "援��뼱", "�닔�븰" ],
   "regions" : [ "媛뺤꽌", "媛뺣궓" ],
@@ -1849,7 +1849,7 @@ Content-Length: 785
 <td class="tableblock halign-left valign-top"><p class="tableblock">자기소개</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>lessonOption</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>option</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">수업옵션</p></td>
 </tr>
@@ -1859,7 +1859,7 @@ Content-Length: 785
 <td class="tableblock halign-left valign-top"><p class="tableblock">소셜 회원 여부. true일 경우 소셜 회원</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>phoneNumber</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>phone</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">연락처</p></td>
 </tr>
@@ -2748,7 +2748,6 @@ Host: localhost:8080</code></pre>
 Content-Type: application/json
 Content-Length: 1234
 
-
 {
   "id" : 1,
   "email" : "hgd@gmail.com",
@@ -2779,9 +2778,9 @@ Content-Length: 1234
     "subjects" : [ "국어", "영어" ],
     "status" : "MATCH_REQUEST"
   } ],
-  "lastLogin" : "2023-09-14T14:38:17.5022932",
-  "lastModified" : "2023-09-14T14:38:17.5022932",
-  "createdAt" : "2023-09-07T14:38:17.5022932"
+  "lastLogin" : "2023-09-14T16:42:31.4473886",
+  "lastModified" : "2023-09-14T16:42:31.4473886",
+  "createdAt" : "2023-09-07T16:42:31.4473886"
 }</code></pre>
 </div>
 </div>
@@ -2791,7 +2790,7 @@ Content-Length: 1234
 <pre class="prettyprint highlight nowrap"><code>{
   "id" : 1,
   "email" : "hgd@gmail.com",
-  "name" : "홍길동",
+  "name" : "�솉湲몃룞",
   "teacher" : true,
   "phone" : "010-1234-5678",
   "profileImg" : "�봽濡쒗븘 �씠誘몄�媛� ���옣�맂 怨� �뜲�씠�꽣",
@@ -2818,9 +2817,9 @@ Content-Length: 1234
     "subjects" : [ "援��뼱", "�쁺�뼱" ],
     "status" : "MATCH_REQUEST"
   } ],
-  "lastLogin" : "2023-09-14T14:38:17.5022932",
-  "lastModified" : "2023-09-14T14:38:17.5022932",
-  "createdAt" : "2023-09-07T14:38:17.5022932"
+  "lastLogin" : "2023-09-14T16:42:31.4473886",
+  "lastModified" : "2023-09-14T16:42:31.4473886",
+  "createdAt" : "2023-09-07T16:42:31.4473886"
 }</code></pre>
 </div>
 </div>
@@ -3048,7 +3047,7 @@ Content-Length: 735
     "regions" : [ "용인시", "수원시" ],
     "name" : "홍길동",
     "profileImg" : "프로필 이미지가 저장된 곳 데이터",
-    "createdAt" : "2023-09-14T14:38:17.5280913"
+    "createdAt" : "2023-09-14T16:42:31.4684254"
   }, {
     "id" : 2,
     "onLine" : false,
@@ -3057,7 +3056,7 @@ Content-Length: 735
     "regions" : [ "용인시", "수원시" ],
     "name" : "임꺽정",
     "profileImg" : "프로필 이미지가 저장된 곳 데이터",
-    "createdAt" : "2023-09-14T14:38:17.5280913"
+    "createdAt" : "2023-09-14T16:42:31.4684254"
   } ],
   "pageInfo" : {
     "page" : 2,
@@ -3080,7 +3079,7 @@ Content-Length: 735
     "regions" : [ "�슜�씤�떆", "�닔�썝�떆" ],
     "name" : "�솉湲몃룞",
     "profileImg" : "�봽濡쒗븘 �씠誘몄�媛� ���옣�맂 怨� �뜲�씠�꽣",
-    "createdAt" : "2023-09-14T14:38:17.5280913"
+    "createdAt" : "2023-09-14T16:42:31.4684254"
   }, {
     "id" : 2,
     "onLine" : false,
@@ -3089,7 +3088,7 @@ Content-Length: 735
     "regions" : [ "�슜�씤�떆", "�닔�썝�떆" ],
     "name" : "�엫爰쎌젙",
     "profileImg" : "�봽濡쒗븘 �씠誘몄�媛� ���옣�맂 怨� �뜲�씠�꽣",
-    "createdAt" : "2023-09-14T14:38:17.5280913"
+    "createdAt" : "2023-09-14T16:42:31.4684254"
   } ],
   "pageInfo" : {
     "page" : 2,
@@ -4852,7 +4851,7 @@ Host: localhost:8080</code></pre>
 <div class="content">
 <pre class="prettyprint highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
 Content-Type: application/json
-Content-Length: 299
+Content-Length: 293
 
 {
   "studentId" : 1,
@@ -4861,7 +4860,7 @@ Content-Length: 299
   "regions" : [ "강서", "강북" ],
   "schedules" : [ "9월 19일 화요일 / 13:00 ~ 14:00" ],
   "studentName" : "김학생",
-  "studentPhoneNumber" : "01011112222",
+  "studentPhone" : "01011112222",
   "studentEmail" : "student@example.com"
 }</code></pre>
 </div>
@@ -4876,7 +4875,7 @@ Content-Length: 299
   "regions" : [ "媛뺤꽌", "媛뺣턿" ],
   "schedules" : [ "9�썡 19�씪 �솕�슂�씪 / 13:00 ~ 14:00" ],
   "studentName" : "源��븰�깮",
-  "studentPhoneNumber" : "01011112222",
+  "studentPhone" : "01011112222",
   "studentEmail" : "student@example.com"
 }</code></pre>
 </div>
@@ -4927,7 +4926,7 @@ Content-Length: 299
 <td class="tableblock halign-left valign-top"><p class="tableblock">학생 이름</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>studentPhoneNumber</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>studentPhone</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">학생 연락처</p></td>
 </tr>
@@ -4955,7 +4954,7 @@ Content-Length: 299
   "regions" : [ "강서", "강남" ],
   "schedule" : "9월 19일 화요일 / 13:00 ~ 14:00",
   "studentName" : "김학생",
-  "studentPhoneNumber" : "01012345678",
+  "studentPhone" : "01012345678",
   "studentEmail" : "student@example.com",
   "remarks" : "특이사항"
 }'</code></pre>
@@ -4967,7 +4966,7 @@ Content-Length: 299
 <pre class="prettyprint highlight nowrap"><code data-lang="http">POST /matches HTTP/1.1
 Content-Type: application/json
 Accept: application/json
-Content-Length: 348
+Content-Length: 342
 Host: localhost:8080
 
 {
@@ -4978,7 +4977,7 @@ Host: localhost:8080
   "regions" : [ "강서", "강남" ],
   "schedule" : "9월 19일 화요일 / 13:00 ~ 14:00",
   "studentName" : "김학생",
-  "studentPhoneNumber" : "01012345678",
+  "studentPhone" : "01012345678",
   "studentEmail" : "student@example.com",
   "remarks" : "특이사항"
 }</code></pre>
@@ -4995,7 +4994,7 @@ Host: localhost:8080
   "regions" : [ "강서", "강남" ],
   "schedule" : "9월 19일 화요일 / 13:00 ~ 14:00",
   "studentName" : "김학생",
-  "studentPhoneNumber" : "01012345678",
+  "studentPhone" : "01012345678",
   "studentEmail" : "student@example.com",
   "remarks" : "특이사항"
 }' | http POST 'http://localhost:8080/matches' \
@@ -5014,7 +5013,7 @@ Host: localhost:8080
   "regions" : [ "媛뺤꽌", "媛뺣궓" ],
   "schedule" : "9�썡 19�씪 �솕�슂�씪 / 13:00 ~ 14:00",
   "studentName" : "源��븰�깮",
-  "studentPhoneNumber" : "01012345678",
+  "studentPhone" : "01012345678",
   "studentEmail" : "student@example.com",
   "remarks" : "�듅�씠�궗�빆"
 }</code></pre>
@@ -5071,7 +5070,7 @@ Host: localhost:8080
 <td class="tableblock halign-left valign-top"><p class="tableblock">학생 이름</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>studentPhoneNumber</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>studentPhone</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">학생 연락처</p></td>
 </tr>
@@ -5092,7 +5091,7 @@ Host: localhost:8080
 <div class="content">
 <pre class="prettyprint highlight nowrap"><code data-lang="http">HTTP/1.1 201 Created
 Content-Type: application/json
-Content-Length: 432
+Content-Length: 426
 
 {
   "id" : 1,
@@ -5103,7 +5102,7 @@ Content-Length: 432
   "matchRegions" : [ "강서", "강남" ],
   "schedule" : "9월 19일 화요일 / 13:00 ~ 14:00",
   "studentName" : "김학생",
-  "studentPhoneNumber" : "01012345678",
+  "studentPhone" : "01012345678",
   "studentEmail" : "student@example.com",
   "remarks" : "특이사항",
   "teacherName" : "박강사",
@@ -5123,7 +5122,7 @@ Content-Length: 432
   "matchRegions" : [ "媛뺤꽌", "媛뺣궓" ],
   "schedule" : "9�썡 19�씪 �솕�슂�씪 / 13:00 ~ 14:00",
   "studentName" : "源��븰�깮",
-  "studentPhoneNumber" : "01012345678",
+  "studentPhone" : "01012345678",
   "studentEmail" : "student@example.com",
   "remarks" : "�듅�씠�궗�빆",
   "teacherName" : "諛뺢컯�궗",
@@ -5186,7 +5185,7 @@ Host: localhost:8080</code></pre>
 <div class="content">
 <pre class="prettyprint highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
 Content-Type: application/json
-Content-Length: 432
+Content-Length: 426
 
 {
   "id" : 1,
@@ -5197,7 +5196,7 @@ Content-Length: 432
   "matchRegions" : [ "강서", "강남" ],
   "schedule" : "9월 19일 화요일 / 13:00 ~ 14:00",
   "studentName" : "김학생",
-  "studentPhoneNumber" : "01012345678",
+  "studentPhone" : "01012345678",
   "studentEmail" : "student@example.com",
   "remarks" : "특이사항",
   "teacherName" : "박강사",
@@ -5217,7 +5216,7 @@ Content-Length: 432
   "matchRegions" : [ "媛뺤꽌", "媛뺣궓" ],
   "schedule" : "9�썡 19�씪 �솕�슂�씪 / 13:00 ~ 14:00",
   "studentName" : "源��븰�깮",
-  "studentPhoneNumber" : "01012345678",
+  "studentPhone" : "01012345678",
   "studentEmail" : "student@example.com",
   "remarks" : "�듅�씠�궗�빆",
   "teacherName" : "諛뺢컯�궗",
@@ -5286,7 +5285,7 @@ Content-Length: 432
 <td class="tableblock halign-left valign-top"><p class="tableblock">학생 이름</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>studentPhoneNumber</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>studentPhone</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">학생 연락처</p></td>
 </tr>
@@ -5389,7 +5388,7 @@ Host: localhost:8080
 <div class="content">
 <pre class="prettyprint highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
 Content-Type: application/json
-Content-Length: 434
+Content-Length: 428
 
 {
   "id" : 1,
@@ -5400,7 +5399,7 @@ Content-Length: 434
   "matchRegions" : [ "강서", "강남" ],
   "schedule" : "9월 19일 화요일 / 13:00 ~ 14:00",
   "studentName" : "김학생",
-  "studentPhoneNumber" : "01012345678",
+  "studentPhone" : "01012345678",
   "studentEmail" : "student@example.com",
   "remarks" : "특이사항",
   "teacherName" : "박강사",
@@ -5420,7 +5419,7 @@ Content-Length: 434
   "matchRegions" : [ "媛뺤꽌", "媛뺣궓" ],
   "schedule" : "9�썡 19�씪 �솕�슂�씪 / 13:00 ~ 14:00",
   "studentName" : "源��븰�깮",
-  "studentPhoneNumber" : "01012345678",
+  "studentPhone" : "01012345678",
   "studentEmail" : "student@example.com",
   "remarks" : "�듅�씠�궗�빆",
   "teacherName" : "諛뺢컯�궗",
@@ -5489,7 +5488,7 @@ Content-Length: 434
 <td class="tableblock halign-left valign-top"><p class="tableblock">학생 이름</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>studentPhoneNumber</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>studentPhone</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">학생 연락처</p></td>
 </tr>
