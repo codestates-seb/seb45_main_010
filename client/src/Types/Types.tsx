@@ -28,7 +28,7 @@ export type StudentType = Omit<
 
 export type CommonUserType = Pick<
   User,
-  'name' | 'email' | 'teacher' | 'id' | 'phoneNumber' | 'profileImg'
+  'name' | 'email' | 'teacher' | 'id' | 'phoneNumber' | 'profileImg' | 'oauth'
 >;
 
 export type PrivateType = Pick<User, 'profileImg' | 'name' | 'email' | 'password' | 'phoneNumber'>;

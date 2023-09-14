@@ -12,10 +12,11 @@ const initialState: initialStateType = {
   user: {
     name: '',
     email: '',
-    teacher: undefined as unknown as false,
+    teacher: false,
     id: null as unknown as number,
-    phone: null as unknown as number,
-    img: null as unknown as string,
+    phoneNumber: null as unknown as string,
+    profileImg: null as unknown as string,
+    oauth: null as unknown as false,
   },
   isLoading: false,
   isError: false,
@@ -38,8 +39,9 @@ export const memberSlice = createSlice({
           email: action.payload.email,
           teacher: action.payload.teacher,
           id: action.payload.id,
-          phone: action.payload.phoneNumber,
-          img: action.payload.profileImg,
+          phoneNumber: action.payload.phoneNumber,
+          profileImg: action.payload.profileImg,
+          oauth: action.payload.oauth,
         };
       })
       .addCase(fetchUserDetails.rejected, (state) => {
