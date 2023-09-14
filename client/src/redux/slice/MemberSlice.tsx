@@ -13,9 +13,10 @@ const initialState: initialStateType = {
     name: '',
     email: '',
     teacher: false,
-    id: undefined as unknown as number,
-    phone: undefined as unknown as number,
-    img: undefined as unknown as string,
+    id: null as unknown as number,
+    phoneNumber: null as unknown as string,
+    profileImg: null as unknown as string,
+    oauth: null as unknown as false,
   },
   isLoading: false,
   isError: false,
@@ -38,8 +39,9 @@ export const memberSlice = createSlice({
           email: action.payload.email,
           teacher: action.payload.teacher,
           id: action.payload.id,
-          phone: action.payload.phone,
-          img: action.payload.img,
+          phoneNumber: action.payload.phoneNumber,
+          profileImg: action.payload.profileImg,
+          oauth: action.payload.oauth,
         };
       })
       .addCase(fetchUserDetails.rejected, (state) => {
@@ -53,10 +55,12 @@ export default memberSlice.reducer;
 
 export const fetchUserDetails = createAsyncThunk(
   'member/fetchUserDetails',
-  async (id: number, { rejectWithValue }) => {
+  async ({ id, teacher }, { rejectWithValue }) => {
     try {
       const apiURL = 'http://ec2-3-34-116-209.ap-northeast-2.compute.amazonaws.com:8080';
-      const response = await axios.get(`${apiURL}/students/${id}`);
+      const response = await axios.get(
+        `${apiURL}/${teacher === 'STUDENT' ? 'students' : 'teachers'}/${id}`
+      );
       console.log(response);
       const data = response.data;
       console.log(data);
@@ -67,7 +71,9 @@ export const fetchUserDetails = createAsyncThunk(
     } catch (error) {
       const axiosError = error as AxiosError;
       if (!axiosError) {
-        return rejectWithValue('서버와 통신오류가 발생했습니다. 다시 시도해주세요');
+        return rejectWithValue(
+          '고객정보를 받아오는 중에 통신오류가 발생했습니다. 다시 시도해주세요'
+        );
       }
       if (axiosError.response && axiosError.response.status)
         // return rejectWithValue('서버와 통신오류' + axiosError.response.status);

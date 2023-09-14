@@ -428,8 +428,14 @@
       "teacher": true,
       "phone": "01023457890",
       "id": "10",
-      "area": ["서울", "강남"],
-      "category": ["수학", "과학"],
+      "area": [
+        "서울",
+        "강남"
+      ],
+      "category": [
+        "수학",
+        "과학"
+      ],
       "classMethod": {
         "onLine": true,
         "offLine": false
@@ -447,8 +453,13 @@
       "teacher": true,
       "phone": "01156523453",
       "id": "15",
-      "area": ["강동", "강남"],
-      "category": ["국어"],
+      "area": [
+        "강동",
+        "강남"
+      ],
+      "category": [
+        "국어"
+      ],
       "classMethod": {
         "onLine": true,
         "offLine": true
@@ -467,8 +478,13 @@
       "teacher": true,
       "phone": "01156523453",
       "id": "yHPHHwR",
-      "area": ["강동", "강남"],
-      "category": ["국어"],
+      "area": [
+        "강동",
+        "강남"
+      ],
+      "category": [
+        "국어"
+      ],
       "img": "https://item.kakaocdn.net/do/d84248170c2c52303db27306a00fb861effd194bae87d73dd00522794070855d",
       "introduce": "저는 서울대학교를 목표로 하고 있는 고등학교 3학년입니다.꿈은 이루어진다~~~~"
     },

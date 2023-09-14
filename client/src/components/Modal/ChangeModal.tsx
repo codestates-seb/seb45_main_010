@@ -11,7 +11,6 @@ type props = {
   btnCheck: string;
   changeItem: string;
   userId: number;
-  API: string;
 };
 
 export const ChangeModal = ({
@@ -22,12 +21,11 @@ export const ChangeModal = ({
   btnCheck,
   changeItem,
   userId,
-  API,
 }: props) => {
   const [open, setOpen] = useState<boolean>(false);
   const [inputValue, setInputValue] = useState<string>('');
   const apiURL = 'http://ec2-3-34-116-209.ap-northeast-2.compute.amazonaws.com:8080';
-  console.log(userId, API);
+  console.log(userId);
 
   const handleNameChange = async (newName: string) => {
     try {
@@ -35,7 +33,18 @@ export const ChangeModal = ({
         id: userId,
         [changeItem]: newName,
       };
-      const response = await axios.patch(`${apiURL}/students/name`, data);
+      console.log(data);
+      const accessToken = localStorage.getItem('access_jwt');
+      // const headers = {
+      //   "Authorization": `Bearer ${accessToken}`,
+      // };
+      console.log(data);
+
+      const response = await axios.patch(`${apiURL}/students/name`, data, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
       console.log(response.data);
     } catch (error) {
       console.log(`${changeItem}`, error);
