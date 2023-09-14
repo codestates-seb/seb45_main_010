@@ -1,5 +1,5 @@
 import { Card } from '@material-tailwind/react';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import SearchForm from './SearchForm';
 import SearchSelect from './SearchSelect';
 
@@ -10,10 +10,6 @@ type props = {
 export const Search = ({ handlerSearch }: props) => {
   const [inputText, setInputText] = useState<string>('');
   const [searchList, setSearchList] = useState<string[]>([]);
-
-  useEffect(() => {
-    setInputText(searchList.join(','));
-  }, [searchList]);
 
   return (
     <>
@@ -26,7 +22,7 @@ export const Search = ({ handlerSearch }: props) => {
         <SearchForm
           inputText={inputText}
           setInputText={setInputText}
-          setSearchList={setSearchList}
+          handlerSearch={handlerSearch}
         />
       </Card>
     </>

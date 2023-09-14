@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { ListPageType } from 'Types/Types';
+import { ListPageType, SearchType } from 'Types/Types';
 import { RootState } from 'redux/store';
 import { getData } from 'redux/thunk/ListPageThunk';
 
@@ -13,6 +13,7 @@ type initialStateType = {
       totalElements: number;
       totalPages: number;
     };
+    search: SearchType;
   };
 };
 
@@ -25,6 +26,13 @@ const initialState: initialStateType = {
       size: 0,
       totalElements: 0,
       totalPages: 0,
+    },
+    search: {
+      teacherName: '',
+      subject: [],
+      regions: [],
+      size: 0,
+      page: 0,
     },
   },
 };
@@ -47,5 +55,4 @@ export const teacherListSlice = createSlice({
 });
 
 export const teacherList = (state: RootState) => state.teacherList;
-
 export default teacherListSlice.reducer;
