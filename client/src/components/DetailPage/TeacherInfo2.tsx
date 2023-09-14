@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Accordion, AccordionHeader, AccordionBody, Button } from '@material-tailwind/react';
 import { BsChevronDown } from 'react-icons/bs';
 
-const TeacherInfo2 = () => {
+const TeacherInfo2 = ({ teacherInfo }) => {
   const [openIntroduce, setOpenIntroduce] = useState(true);
   const [openOption, setOpenOption] = useState(true);
   const [openCareer, setOpenCareer] = useState(true);
@@ -16,19 +16,28 @@ const TeacherInfo2 = () => {
         <AccordionHeader onClick={handleOpenIntroduce} className="my-5 text-sm font-semibold">
           자기소개
         </AccordionHeader>
-        <AccordionBody className="text-xs font-normal leading-5 text-black">내용</AccordionBody>
+        <AccordionBody
+          className="text-xs font-normal leading-5 text-black"
+          children={teacherInfo.introduction || ''}
+        />
       </Accordion>
       <Accordion open={openOption}>
         <AccordionHeader onClick={handleOpenOption} className="my-5 text-sm font-semibold">
           수업설명
         </AccordionHeader>
-        <AccordionBody className="text-xs font-normal leading-5 text-black">내용</AccordionBody>
+        <AccordionBody
+          className="text-xs font-normal leading-5 text-black"
+          children={teacherInfo.option || ''}
+        />
       </Accordion>
       <Accordion open={openCareer}>
         <AccordionHeader onClick={handleOpenCareer} className="my-5 text-sm font-semibold">
           학력 및 경력
         </AccordionHeader>
-        <AccordionBody className="text-xs font-normal leading-5 text-black">내용</AccordionBody>
+        <AccordionBody
+          className="text-xs font-normal leading-5 text-black"
+          children={teacherInfo.career || ''}
+        />
       </Accordion>
       <h2 className="my-5 text-sm font-bold">수업 가능 시간</h2>
       <section className="flex flex-col items-center justify-center gap-5">

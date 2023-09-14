@@ -4,10 +4,10 @@ export type User = {
   password: string;
   teacher: boolean;
   id: number;
-  phoneNumber: string;
+  phone: string;
   regions: string[];
   subjects: string[];
-  profileImg: string;
+  profileImg: string | null;
   introduction: string;
   lectureFee: string;
   career: string;
@@ -28,7 +28,7 @@ export type StudentType = Omit<
 
 export type CommonUserType = Pick<
   User,
-  'name' | 'email' | 'teacher' | 'id' | 'phoneNumber' | 'profileImg' | 'oauth'
+  'name' | 'email' | 'teacher' | 'id' | 'phone' | 'profileImg' | 'oauth'
 >;
 
 export type PrivateType = Pick<User, 'profileImg' | 'name' | 'email' | 'password' | 'phoneNumber'>;
@@ -37,8 +37,8 @@ export type LoginType = Pick<User, 'email' | 'password'>;
 
 export type ListPageType = Pick<
   User,
-  'name' | 'subjects' | 'regions' | 'onLine' | 'offLine' | 'profileImg'
->[];
+  'id' | 'name' | 'subjects' | 'regions' | 'onLine' | 'offLine' | 'profileImg'
+>;
 
 export type DetailType = Pick<
   User,
@@ -79,3 +79,9 @@ export type ScheduleArrayType = {
   id: number;
   schedule: ScheduleType[];
 }[];
+
+export type SearchType = {
+  teacherName: string;
+  subject: string[];
+  regions: string[];
+};
