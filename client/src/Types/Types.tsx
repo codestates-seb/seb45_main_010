@@ -4,7 +4,7 @@ export type User = {
   password: string;
   teacher: boolean;
   id: number;
-  phoneNumber: string;
+  phone: string;
   regions: string[];
   subjects: string[];
   profileImg: string | null;
@@ -28,7 +28,7 @@ export type StudentType = Omit<
 
 export type CommonUserType = Pick<
   User,
-  'name' | 'email' | 'teacher' | 'id' | 'phoneNumber' | 'profileImg'
+  'name' | 'email' | 'teacher' | 'id' | 'phone' | 'profileImg' | 'oauth'
 >;
 
 export type PrivateType = Pick<User, 'profileImg' | 'name' | 'email' | 'password' | 'phoneNumber'>;
