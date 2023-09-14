@@ -5,8 +5,8 @@ import { useAppDispatch, useAppSelector } from 'hooks/hooks';
 import { setSchedule } from 'redux/slice/ScheduleSlice';
 import { FetchSchedule } from 'redux/thunk/Thunk';
 import { useEffect, useState } from 'react';
-import { TimeSlotType, ScheduleType } from 'Types/Types';
-import { Button } from '@material-tailwind/react';
+import { ScheduleType } from 'Types/Types';
+import { Select, Option } from '@material-tailwind/react';
 
 const GetSchedule = () => {
   const dispatch = useAppDispatch();
@@ -43,7 +43,7 @@ const GetSchedule = () => {
       .catch((error) => {
         console.error('Error fetching schedule:', error);
       });
-  }, [dispatch, id, selectedDate]);
+  }, [id, selectedDate]);
 
   useEffect(() => {
     if (selectedDate && schedule) {
@@ -57,6 +57,8 @@ const GetSchedule = () => {
       }
     }
   }, [selectedDate, schedule]);
+
+  // console.log(`${selectedDate.toISOString().split('T')[0]} / ${selectedTimeSlot}`);
 
   return (
     <>
@@ -72,28 +74,21 @@ const GetSchedule = () => {
         />
       </div>
       <div>
-        <span className="mb-5 text-sm font-bold">선택 가능한 시간</span>
-        <ul>
-          {availableTimeSlots.map((slot, index) => (
-            <Button
-              key={index}
-              className="flex items-center justify-between w-full p-2 mb-5 text-sm font-bold text-black bg-mint-200 rounded-xl border-mint-200"
-              size="sm"
-              onClick={() => setSelectedTimeSlot(slot)}
-            >
-              {slot}
-            </Button>
-          ))}
-        </ul>
+        {selectedDate ? (
+          <Select className="w-[300px]" color="blue" label="시간을 선택하세요">
+            {availableTimeSlots.map((slot, index) => (
+              <Option
+                key={index}
+                className="flex items-center justify-between w-full my-3 text-sm font-bold text-black bg-mint-200 rounded-xl border-mint-200"
+                onClick={() => setSelectedTimeSlot(slot)}
+              >
+                {slot}
+              </Option>
+            ))}
+          </Select>
+        ) : null}
       </div>
-      <div>
-        <span className="mb-5 text-sm font-bold">선택한 시간</span>
-        {selectedTimeSlot && (
-          <div className='className="flex items-center justify-between w-full p-2 mb-5 text-sm font-bold text-black bg-mint-200 rounded-xl border-mint-200"'>
-            {selectedTimeSlot}
-          </div>
-        )}
-      </div>
+      <div></div>
     </>
   );
 };

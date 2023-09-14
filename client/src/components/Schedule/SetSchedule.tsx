@@ -6,7 +6,7 @@ import { useState, useEffect, useRef } from 'react';
 import { TimeSlotType, ScheduleType } from 'Types/Types';
 import { generateAvailableTimeSlots, generateTimeSlots, formatDate } from './MakeDateFunctions';
 import { updateSchedule, FetchSchedule } from 'redux/thunk/Thunk';
-import { useAppDispatch, useAppSelector } from 'hooks/hooks';
+import { useAppDispatch } from 'hooks/hooks';
 import GetSchedule from './GetSchedule';
 
 type ScheduleProps = {
@@ -29,7 +29,6 @@ const SetSchedule: React.FC<ScheduleProps> = ({ id }) => {
       .then((response) => {
         if (response.payload) {
           const schedule = response.payload.date;
-          console.log(schedule);
           setSelectedTimeSlots(schedule);
           setNewSchedule(schedule);
           prevScheduleRef.current = schedule;
@@ -56,20 +55,19 @@ const SetSchedule: React.FC<ScheduleProps> = ({ id }) => {
     }
     const prevSchedule = prevScheduleRef.current;
     if (JSON.stringify(newSchedule) !== JSON.stringify(prevSchedule)) {
-      if (newSchedule.length > 0 && (!prevSchedule || prevSchedule.length === 0)) {
-        method = 'POST';
-        console.log('POST');
-      }
-      // else if (newSchedule.length === 0 && prevSchedule && prevSchedule.length > 0) {
-      //   method = 'DELETE';
-      //   console.log('DELETE');
-      // }
-      else {
-        method = 'PATCH';
-        console.log('PATCH');
-      }
+      //   if (newSchedule.length > 0 && (!prevSchedule || prevSchedule.length === 0)) {
+      //     method = 'POST';
+      //     console.log('POST');
+      //   }
+      //   // else if (newSchedule.length === 0 && prevSchedule && prevSchedule.length > 0) {
+      //   //   method = 'DELETE';
+      //   //   console.log('DELETE');
+      //   // }
+      //   else {
+      method = 'PATCH';
+      console.log('PATCH');
     } else {
-      console.log('No changes to update.', newSchedule, prevSchedule);
+      console.log('No changes to update.');
       return;
     }
 
