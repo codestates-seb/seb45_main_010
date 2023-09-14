@@ -71,14 +71,20 @@ export type footerType = {
   }[];
 };
 
-export type TimeSlotType = { schedule: string; timeslots: string[] };
+export type TimeSlotType = { date: string; timeslots: string[] };
 
-export type ScheduleType = { id: number; schedule: TimeSlotType[] };
-
-export type ScheduleArrayType = {
+export type ScheduleType = {
   id: number;
-  schedule: ScheduleType[];
-}[];
+  date: {
+    date: string;
+    timeslots: string[];
+  }[];
+};
+
+// export type ScheduleArrayType = {
+//   id: number;
+//   schedule: ScheduleType[];
+// }[];
 
 export type SearchType = {
   teacherName: string;

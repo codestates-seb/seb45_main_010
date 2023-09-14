@@ -5,7 +5,8 @@ import { useAppDispatch, useAppSelector } from 'hooks/hooks';
 import { setSchedule } from 'redux/slice/ScheduleSlice';
 import { FetchSchedule } from 'redux/thunk/Thunk';
 import { useEffect, useState } from 'react';
-import { TimeSlotType } from 'Types/Types';
+import { TimeSlotType, ScheduleType } from 'Types/Types';
+import { Button } from '@material-tailwind/react';
 
 const GetSchedule = () => {
   const dispatch = useAppDispatch();
@@ -13,60 +14,85 @@ const GetSchedule = () => {
   const [availableDates, setAvailableDates] = useState<Date[]>([]);
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [availableTimeSlots, setAvailableTimeSlots] = useState<string[]>([]);
+  const [selectedTimeSlot, setSelectedTimeSlot] = useState<string | null>(null);
   const schedule = useAppSelector((state) => state.schedule.schedule);
   // console.log(schedule);
 
   useEffect(() => {
     dispatch(FetchSchedule(id))
       .then((response) => {
-        const schedule = response.payload.date;
-        const availableDatesArray: Date[] = schedule.map(
-          (scheduleItem: TimeSlotType) => new Date(scheduleItem.date)
+        const payload = response.payload as ScheduleType;
+        const availableDatesArray: Date[] = payload.date.map(
+          (scheduleItem) => new Date(scheduleItem.date)
         );
         setAvailableDates(availableDatesArray);
-        dispatch(setSchedule(response.payload));
+        dispatch(setSchedule(payload));
+
+        // 선택된 날짜가 있으면 사용 가능한 시간대 설정
+        if (selectedDate) {
+          const selectedDateString = selectedDate.toISOString().split('T')[0];
+          const selectedSchedule = payload.date.find(
+            (dateItem) => dateItem.date === selectedDateString
+          );
+
+          if (selectedSchedule) {
+            setAvailableTimeSlots(selectedSchedule.timeslots);
+          }
+        }
       })
       .catch((error) => {
         console.error('Error fetching schedule:', error);
       });
-  }, [dispatch, id]);
+  }, [dispatch, id, selectedDate]);
 
-  // useEffect(() => {
-  //   if (selectedDate) {
-  //     const selectedDateString = selectedDate.toISOString().split('T')[0];
-  //     const selectedSchedule = (Object.values(schedule) as YourScheduleType[]).find(
-  //       (slot) => slot.date === selectedDateString
-  //     );
+  useEffect(() => {
+    if (selectedDate && schedule) {
+      const selectedDateString = selectedDate.toISOString().split('T')[0];
+      const selectedSchedule = schedule.date.find(
+        (dateItem) => dateItem.date === selectedDateString
+      );
 
-  //     if (selectedSchedule) {
-  //       setAvailableTimeSlots(selectedSchedule.timeSlots);
-  //     }
-  //   }
-  // }, [selectedDate, schedule]);
+      if (selectedSchedule) {
+        setAvailableTimeSlots(selectedSchedule.timeslots);
+      }
+    }
+  }, [selectedDate, schedule]);
 
   return (
     <>
-      <div>
+      <div className="container flex flex-col items-center justify-center gap-5 px-4">
         <DatePicker
-          className="text-sm font-bold text-center text-black bg-mint-4 rounded-xl border-mint-2"
+          className="flex items-center justify-between w-[350px] p-2 text-sm font-bold text-center text-black bg-mint-400 rounded-xl border-mint-200"
           placeholderText="날짜 선택"
           selected={selectedDate}
           onChange={(date: Date) => setSelectedDate(date)}
           includeDates={availableDates}
           locale={ko}
+          dateFormat="yyyy-MM-dd"
         />
       </div>
       <div>
-        <span>선택 가능한 시간</span>
+        <span className="mb-5 text-sm font-bold">선택 가능한 시간</span>
         <ul>
           {availableTimeSlots.map((slot, index) => (
-            <li key={index}>{slot}1</li>
+            <Button
+              key={index}
+              className="flex items-center justify-between w-full p-2 mb-5 text-sm font-bold text-black bg-mint-200 rounded-xl border-mint-200"
+              size="sm"
+              onClick={() => setSelectedTimeSlot(slot)}
+            >
+              {slot}
+            </Button>
           ))}
         </ul>
       </div>
       <div>
-        <span>선택한 시간</span>
-        {selectedDate && <div>{selectedDate.toLocaleDateString()}</div>}
+        <span className="mb-5 text-sm font-bold">선택한 시간</span>
+        {selectedTimeSlot && (
+          <div className='className="flex items-center justify-between w-full p-2 mb-5 text-sm font-bold text-black bg-mint-200 rounded-xl border-mint-200"'>
+            {selectedTimeSlot}
+          </div>
+        )}
       </div>
     </>
   );

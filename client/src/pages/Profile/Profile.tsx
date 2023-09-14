@@ -9,8 +9,8 @@ const Profile = () => {
   const dispatch = useAppDispatch();
   const profileState = useAppSelector((state) => state.profile);
 
-  const userId = UseCheckAuth();
-  // const id = 2;
+  // const userId = UseCheckAuth();
+  const userId = 1;
   const user = profileState.value;
 
   useEffect(() => {

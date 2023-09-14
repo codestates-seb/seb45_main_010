@@ -1,12 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { FetchSchedule, updateSchedule } from 'redux/thunk/Thunk';
-import { TimeSlotType, ScheduleArrayType } from 'Types/Types';
+import { TimeSlotType, ScheduleType } from 'Types/Types';
 
 type initialStateType = {
   status: string;
-  schedule: ScheduleArrayType | null;
+  schedule: ScheduleType;
   error: string | undefined;
-  newSchedule: TimeSlotType[] | null;
+  newSchedule: TimeSlotType[];
   teacherId: number;
 };
 
