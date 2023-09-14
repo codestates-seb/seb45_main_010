@@ -1,18 +1,20 @@
 import { Input } from '@material-tailwind/react';
 import { search } from 'configs/Listpage/config';
 import { useAppDispatch } from 'hooks/hooks';
-import React, { ChangeEvent, FormEvent } from 'react';
+import React, { ChangeEvent, FormEvent, useState } from 'react';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { useNavigate } from 'react-router-dom';
 import { getData } from 'redux/thunk/ListPageThunk';
 
 type props = {
-  inputText: string;
-  setInputText: (newText: string) => void;
+  regionsList: string[];
+  subjectList: string[];
   handlerSearch: () => void;
 };
 
-const SearchForm = ({ inputText, setInputText, handlerSearch }: props) => {
+const SearchForm = ({ regionsList, subjectList, handlerSearch }: props) => {
+  const [inputText, setInputText] = useState<string>('');
+
   const nav = useNavigate();
   const dispatch = useAppDispatch();
 
@@ -20,6 +22,8 @@ const SearchForm = ({ inputText, setInputText, handlerSearch }: props) => {
     e.preventDefault();
     handlerSearch();
     search.teacherName = inputText;
+    search.regions = regionsList;
+    search.subject = subjectList;
     dispatch(getData(search));
     nav('/');
   };

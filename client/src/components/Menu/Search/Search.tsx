@@ -8,8 +8,8 @@ type props = {
 };
 
 export const Search = ({ handlerSearch }: props) => {
-  const [inputText, setInputText] = useState<string>('');
-  const [searchList, setSearchList] = useState<string[]>([]);
+  const [subjectList, setSubjectList] = useState<string[]>([]);
+  const [regionsList, setRegionsList] = useState<string[]>([]);
 
   return (
     <>
@@ -18,10 +18,15 @@ export const Search = ({ handlerSearch }: props) => {
         onClick={handlerSearch}
       ></div>
       <Card className="w-[350px] p-2 shadow-2xl top-3 absolute mt-20 mx-3 z-50">
-        <SearchSelect searchList={searchList} setSearchList={setSearchList} />
+        <SearchSelect
+          regionsList={regionsList}
+          subjectList={subjectList}
+          setRegionsList={setRegionsList}
+          setSubjectList={setSubjectList}
+        />
         <SearchForm
-          inputText={inputText}
-          setInputText={setInputText}
+          regionsList={regionsList}
+          subjectList={subjectList}
           handlerSearch={handlerSearch}
         />
       </Card>
