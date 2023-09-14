@@ -1,7 +1,7 @@
 import ProfileTabs from 'components/Profile/ProfileTabs';
 import ProfileHeader from 'components/Profile/ProfileHeader';
 import { useEffect } from 'react';
-import { FetchProfile, updateOnline, updateOffline } from 'redux/thunk/Thunk';
+import { FetchProfile } from 'redux/thunk/Thunk';
 import { useAppDispatch, useAppSelector } from 'hooks/hooks';
 
 const Profile = () => {
@@ -20,7 +20,7 @@ const Profile = () => {
       .catch((error) => {
         console.error('Error fetching profile:', error);
       });
-  }, [dispatch, id]);
+  }, [id]);
 
   return (
     <>
@@ -33,6 +33,7 @@ const Profile = () => {
         regions={user.regions}
         onLine={user.onLine}
         offLine={user.offLine}
+        teacher={user.teacher}
       />
       <ProfileTabs
         id={user.id}

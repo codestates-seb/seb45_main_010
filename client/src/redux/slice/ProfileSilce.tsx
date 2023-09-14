@@ -12,37 +12,34 @@ import {
 } from 'redux/thunk/Thunk';
 import { createSlice } from '@reduxjs/toolkit';
 
-// type initialStateType = {
-//   status: string;
-//   value: {
-//     address: string | null;
-//     career: string | null;
-//     email: string;
-//     id: number;
-//     introduction: string;
-//     lastLogin: Date | null;
-//     lastModified: Date | null;
-//     lectureFee: number | null;
-//     name: string;
-//     oauth: boolean;
-//     offLine: boolean;
-//     onLine: boolean;
-//     option: string | null;
-//     phone: string | null;
-//     profileImg: string | null;
-//     regions: string[];
-//     subjects: string[];
-//   };
-//   error: string | null;
-// };
+type initialStateType = {
+  status: string;
+  value: {
+    career: string;
+    email: string;
+    id: number;
+    introduction: string;
+    lectureFee: string;
+    name: string;
+    offLine: boolean;
+    onLine: boolean;
+    option: string;
+    profileImg: string;
+    regions: string[];
+    subjects: string[];
+    teacher: boolean;
+    userId: number;
+  };
+  error: string | null;
+};
 
-const initialState = {
+const initialState: initialStateType = {
   status: '',
   value: {
-    address: null,
-    career: null,
+    career: '',
     email: '',
     teacher: false,
+    userId: 0,
     id: 0,
     introduction: '',
     lectureFee: '',
@@ -50,7 +47,6 @@ const initialState = {
     offLine: false,
     onLine: false,
     option: '',
-    phone: '',
     profileImg: '',
     regions: [],
     subjects: [],
@@ -61,7 +57,11 @@ const initialState = {
 export const ProfileSlice = createSlice({
   name: 'profile',
   initialState,
-  reducers: {},
+  reducers: {
+    setUserId: (state, action) => {
+      state.value.userId = action.payload;
+    },
+  },
 
   extraReducers: (builder) => {
     builder
@@ -70,7 +70,18 @@ export const ProfileSlice = createSlice({
       })
       .addCase(FetchProfile.fulfilled, (state, action) => {
         state.status = 'fulfilled';
-        state.value = action.payload;
+        state.value = {
+          ...action.payload,
+          career: action.payload.teacher ? action.payload.career ?? '' : action.payload.career,
+          profileImg: action.payload.teacher
+            ? action.payload.profileImg ?? ''
+            : action.payload.profileImg,
+          lectureFee: action.payload.teacher
+            ? action.payload.lectureFee ?? ''
+            : action.payload.lectureFee,
+          option: action.payload.option ?? '',
+          introduction: action.payload.introduction ?? '',
+        };
       })
 
       .addCase(updateOnline.fulfilled, (state, action) => {
@@ -109,12 +120,11 @@ export const ProfileSlice = createSlice({
         }
       })
       .addCase(updateIntroduction.fulfilled, (state, action) => {
-        console.log(action.payload);
         if (state.value) {
           state.value.introduction = action.payload.introduction;
         }
       });
   },
 });
-
+export const { setUserId } = ProfileSlice.actions;
 export default ProfileSlice.reducer;

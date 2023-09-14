@@ -21,23 +21,17 @@ export const FetchSchedule = createAsyncThunk('schedule/fetchSchedule', async (i
   return data;
 });
 
-export const FetchSubjects = createAsyncThunk(
-  'subjects',
-  async ([{ id, subjectName }]: [{ id: number; subjectName: string }]) => {
-    const response = await axios.get(`${APIurl}/subjects`);
-    const data = response.data;
-    return data;
-  }
-);
+export const FetchSubjects = createAsyncThunk('subjects', async () => {
+  const response = await axios.get(`${APIurl}/subjects`);
+  const data = response.data;
+  return data.subjects;
+});
 
-export const FetchRegions = createAsyncThunk(
-  'regions',
-  async ([{ id, regionName }]: [{ id: number; regionName: string }]) => {
-    const response = await axios.get(`${APIurl}/regions`);
-    const data = response.data;
-    return data;
-  }
-);
+export const FetchRegions = createAsyncThunk('regions', async () => {
+  const response = await axios.get(`${APIurl}/regions`);
+  const data = response.data;
+  return data.regions;
+});
 
 export const updateSchedule = createAsyncThunk(
   'schedule/updateSchedule',

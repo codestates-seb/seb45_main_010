@@ -33,7 +33,6 @@ const Option = ({
       dispatch(updateOption({ id, option: editOptionDesc }));
     } else if (!optionTitle) {
       dispatch(updateIntroduction({ id, introduction: editOptionDesc }));
-      console.log(editOptionDesc);
     }
   };
 

@@ -5,26 +5,47 @@ import { User } from 'Types/Types';
 import { Link } from 'react-router-dom';
 import OnlineDiv from 'components/Items/OnlineDiv';
 import Option from './ProfileTab/Option';
+import { useAppDispatch, useAppSelector } from 'hooks/hooks';
+import { useEffect } from 'react';
+import { FetchSubjects, updateSubjects, FetchRegions, updateRegions } from 'redux/thunk/Thunk';
 
 type ProfileHeaderProps = Pick<
   User,
-  'name' | 'introduction' | 'id' | 'subjects' | 'regions' | 'profileImg' | 'onLine' | 'offLine'
+  | 'name'
+  | 'introduction'
+  | 'subjects'
+  | 'regions'
+  | 'profileImg'
+  | 'onLine'
+  | 'offLine'
+  | 'teacher'
+  | 'id'
 >;
 
 const ProfileHeader: React.FC<ProfileHeaderProps> = ({
   name,
   introduction,
-  id,
   profileImg,
   onLine,
   offLine,
   subjects,
   regions,
+  teacher,
+  id,
 }) => {
-  const category = {
-    subjects: ['수학', '과학', '외국어', '국사', '사회'],
-    regions: ['서울', '강서', '강원', '강남', '강북', '충북', '제주'],
-  };
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(FetchRegions());
+    dispatch(FetchSubjects());
+  }, [dispatch]);
+
+  const subjectsList = useAppSelector((state) => state.categories.value.subjects);
+  const regionsList = useAppSelector((state) => state.categories.value.regions);
+
+  const subjectArray = subjectsList.map((subject) => subject.subjectName);
+  const regionArray = regionsList.map((region) => region.regionName);
+
   return (
     <div className="p-4 py-10">
       <>
@@ -48,14 +69,15 @@ const ProfileHeader: React.FC<ProfileHeaderProps> = ({
             </div>
           </div>
         </div>
-        {/* {teacher ? :} */}
-        <div className="flex justify-end gap-5 my-10">
-          {onLine ? <OnlineDiv onoff="온라인" /> : null}
-          {offLine ? <OnlineDiv onoff="오프라인" /> : null}
-        </div>
+        {teacher ? (
+          <div className="flex justify-end gap-5 my-10">
+            {onLine ? <OnlineDiv onoff="온라인" /> : null}
+            {offLine ? <OnlineDiv onoff="오프라인" /> : null}
+          </div>
+        ) : null}
       </>
-      <ProfileDropdown title="과목" selections={category.subjects} categories={subjects} />
-      <ProfileDropdown title="지역" selections={category.regions} categories={regions} />
+      <ProfileDropdown title="과목" selections={subjectArray} categories={subjects} id={id} />
+      <ProfileDropdown title="지역" selections={regionArray} categories={regions} id={id} />
       <Option optionDesc={introduction} id={id} />
       <div className="mt-10 border-b-2 border-gray-1"></div>
     </div>
