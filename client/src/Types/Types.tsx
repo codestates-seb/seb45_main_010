@@ -17,6 +17,7 @@ export type User = {
   offLine: boolean;
   oauth: boolean;
   address: string;
+  matches: string[];
 };
 
 export type TeacherType = Omit<User, 'password'>;
