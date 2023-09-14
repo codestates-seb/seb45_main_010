@@ -35,7 +35,12 @@ const Login: React.FC = () => {
   };
 
   useEffect(() => {
-    autoLogin();
+    const delay = setTimeout(async () => {
+      await autoLogin();
+    }, 500);
+    return () => {
+      clearTimeout(delay);
+    };
   }, []);
 
   useEffect(() => {
