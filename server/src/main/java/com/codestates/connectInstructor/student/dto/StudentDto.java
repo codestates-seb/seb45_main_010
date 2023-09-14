@@ -45,7 +45,7 @@ public class StudentDto {
         @NotNull
         private long id;
         @NotBlank
-        private String lessonOption;
+        private String option;
     }
 
     @Getter
@@ -72,14 +72,14 @@ public class StudentDto {
         @NotNull
         private long id;
         @NotNull
-        private String phoneNumber;
+        private String phone;
     }
 
     @Getter
     @Builder
     public static class PatchSubject {
         @NotNull
-        private long studentId;
+        private long id;
         @NotNull
         private List<String> subjects;
     }
@@ -88,7 +88,7 @@ public class StudentDto {
     @Builder
     public static class PatchRegion {
         @NotNull
-        private long studentId;
+        private long id;
         @NotNull
         private List<String> regions;
     }
@@ -101,7 +101,7 @@ public class StudentDto {
         private String email;
         private String name;
         private String profileImg;
-        private String phoneNumber;
+        private String phone;
         private boolean isOauth;
         private MemberStatus status;
     }
@@ -114,13 +114,14 @@ public class StudentDto {
         private String email;
         private String profileImg;
         private String introduction;
-        private String lessonOption;
-        private String phoneNumber;
+        private String option;
+        private String phone;
         private boolean isOauth;
         private MemberStatus status;
         private List<String> subjects;
         private List<String> regions;
         private List<MatchResponse> matches;
+        private boolean teacher = false;
     }
 
     @Getter
