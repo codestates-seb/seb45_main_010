@@ -1,15 +1,14 @@
 import React from 'react';
-import {
-  Button,
-  Dialog,
-  DialogHeader,
-  DialogFooter,
-  Textarea,
-  Input,
-} from '@material-tailwind/react';
+import { Button, Dialog, DialogHeader, DialogFooter } from '@material-tailwind/react';
 import CategoryDiv from 'components/Items/CategoryDiv';
+import { RequestType } from 'Types/Types';
 
-export const TInfoModal = () => {
+type InfoModalProps = {
+  teacher: boolean;
+  matches: RequestType;
+};
+
+const InfoModal: React.FC<InfoModalProps> = ({ teacher, matches }) => {
   const [open, setOpen] = React.useState(false);
 
   const handleOpen = () => setOpen(!open);
@@ -34,20 +33,39 @@ export const TInfoModal = () => {
           <CategoryDiv category="수학"></CategoryDiv>
         </section>
         <DialogHeader className="p-2 text-sm">이름</DialogHeader>
-        <section className="flex items-center bg-mint-300 rounded-2xl">
-          <Input label="이름" crossOrigin={undefined} />
+        <section className="flex bg-mint-300 rounded-2xl">
+          <span className="flex items-center h-[45px] px-3">
+            {teacher ? matches.studentName : matches.name}
+          </span>
         </section>
-        <DialogHeader className="p-2 text-sm">연락처</DialogHeader>
-        <section className="flex items-center bg-mint-300 rounded-2xl">
-          <Input label="연락처" crossOrigin={undefined} />
-        </section>
-        <DialogHeader className="p-2 text-sm">이메일</DialogHeader>
-        <section className="flex items-center bg-mint-300 rounded-2xl">
-          <Input label="이메일" type="email" crossOrigin={undefined} />
-        </section>
+        {teacher ? (
+          <>
+            <DialogHeader className="p-2 text-sm">연락처</DialogHeader>
+            <section className="flex items-center bg-mint-300 rounded-2xl">
+              <span className="flex items-center h-[45px] px-3">연락처</span>
+            </section>
+            <DialogHeader className="p-2 text-sm">이메일</DialogHeader>
+            <section className="flex items-center bg-mint-300 rounded-2xl">
+              <span className="flex items-center h-[45px] px-3">이메일</span>
+            </section>
+          </>
+        ) : (
+          <>
+            <DialogHeader className="p-2 text-sm">온/오프라인</DialogHeader>
+            <section className="flex items-center bg-mint-300 rounded-2xl">
+              <CategoryDiv category="온라인" />
+              <CategoryDiv category="오프라인" />
+            </section>
+            <DialogHeader className="p-2 text-sm">지역</DialogHeader>
+            <section className="flex items-center bg-mint-300 rounded-2xl">
+              <CategoryDiv category="강서구" />
+              <CategoryDiv category="마포구" />
+            </section>
+          </>
+        )}
         <DialogHeader className="p-2 text-sm">특이사항</DialogHeader>
         <section className="flex items-center bg-mint-300 rounded-2xl">
-          <Textarea label="특이사항" />
+          <span className="h-[100px] flex py-3 px-3">특이사항</span>
         </section>
         <DialogFooter className="p-2">
           <Button
@@ -71,3 +89,5 @@ export const TInfoModal = () => {
     </>
   );
 };
+
+export default InfoModal;

@@ -59,7 +59,7 @@ const ProfileDropdown = ({
               <BsChevronDown />
             </Button>
           </MenuHandler>
-          <MenuList className=" border-mint-200">
+          <MenuList className=" border-mint-200 max-h-72">
             {selections.map((item) => (
               <MenuItem key={item} onClick={() => handleCategorySelect(item)}>
                 {item}

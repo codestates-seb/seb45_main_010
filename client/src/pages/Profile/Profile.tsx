@@ -3,24 +3,24 @@ import ProfileHeader from 'components/Profile/ProfileHeader';
 import { useEffect } from 'react';
 import { FetchProfile } from 'redux/thunk/ProfilePageThunk';
 import { useAppDispatch, useAppSelector } from 'hooks/hooks';
-import UseCheckAuth from 'hooks/UseCheckAuth';
+import GetInfoAuth from 'hooks/GetInfoAuth';
 
 const Profile = () => {
   const dispatch = useAppDispatch();
   const profileState = useAppSelector((state) => state.profile);
 
-  // const userId = UseCheckAuth();
-  const userId = 1;
+  const { userId } = GetInfoAuth();
+  // const id = 2;
   const user = profileState.value;
-
   useEffect(() => {
-    dispatch(FetchProfile(userId))
-      .then((response) => {
-        console.log('Profile fetched successfully:', response);
-      })
-      .catch((error) => {
-        console.error('Error fetching profile:', error);
-      });
+    if (userId !== null)
+      dispatch(FetchProfile(userId))
+        .then((response) => {
+          console.log('Profile fetched successfully:', response);
+        })
+        .catch((error) => {
+          console.error('Error fetching profile:', error);
+        });
   }, [userId]);
   return (
     <>

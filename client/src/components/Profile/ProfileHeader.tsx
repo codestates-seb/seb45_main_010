@@ -39,12 +39,11 @@ const ProfileHeader: React.FC<ProfileHeaderProps> = ({
   teacher,
 }) => {
   const dispatch = useAppDispatch();
-  const profile = useAppSelector((state) => state.profile.value);
 
   useEffect(() => {
     dispatch(FetchRegions());
     dispatch(FetchSubjects());
-  }, [dispatch]);
+  }, []);
 
   const subjectsList = useAppSelector((state) => state.categories.value.subjects);
   const regionsList = useAppSelector((state) => state.categories.value.regions);

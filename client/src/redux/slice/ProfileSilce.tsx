@@ -29,7 +29,13 @@ type initialStateType = {
     subjects: string[];
     teacher: boolean;
     userId: number;
-    matches: string[];
+    matches: {
+      matchId: number;
+      schedule: string;
+      status: string;
+      studentName: string;
+      subjects: string[];
+    }[];
   };
   error: string | null;
 };
@@ -51,7 +57,7 @@ const initialState: initialStateType = {
     profileImg: '',
     regions: [],
     subjects: [],
-    matches: [],
+    matches: { matchId: 0, schedule: '', status: '', studentName: '', subjects: [] },
   },
   error: null,
 };
