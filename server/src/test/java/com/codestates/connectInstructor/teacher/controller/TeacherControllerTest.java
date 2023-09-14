@@ -1,5 +1,6 @@
 package com.codestates.connectInstructor.teacher.controller;
 
+import com.codestates.connectInstructor.match.entity.Match;
 import com.codestates.connectInstructor.region.dto.RegionDto;
 import com.codestates.connectInstructor.region.mapper.RegionMapper;
 import com.codestates.connectInstructor.region.service.RegionService;
@@ -126,12 +127,17 @@ public class TeacherControllerTest {
         List<String> regions = new ArrayList<>();
         regions.add("용인시");
         regions.add("수원시");
+        List<TeacherDto.MatchResponse> matchResponses = new ArrayList<>();
+        matchResponses.add(new TeacherDto.MatchResponse(1L, "홍길동", "9월 19일 화요일 / 13:00 ~ 14:00",
+                List.of("영어","수학"), Match.MatchStatus.MATCH_REQUEST));
+        matchResponses.add(new TeacherDto.MatchResponse(3L, "임꺽정", "9월 19일 화요일 / 13:00 ~ 14:00",
+                List.of("국어","영어"), Match.MatchStatus.MATCH_REQUEST));
         TeacherDto.Response response = new TeacherDto.Response(1L, "hgd@gmail.com",
                 "홍길동", true, "010-1234-5678",
                 "프로필 이미지가 저장된 곳 데이터", "안녕하세요. 저는 OO대학교를 졸업하고~~~",
                 "OO학원에서 O년을 일했고 ~~", "일주일에 세시간 씩 매일 가능하고 시급은 ~~~",
                 "수학 수업의 경우는 고1 과정에서 고3과정의 ~~", true, false, "경기도 용인시 기흥구 ~~",
-                false, subjects, regions, LocalDateTime.now(), LocalDateTime.now(),
+                false, subjects, regions, matchResponses, LocalDateTime.now(), LocalDateTime.now(),
                 LocalDateTime.now().minus(1, ChronoUnit.WEEKS));
         //stubbing
         given(teacherMapper.patchToTeacher(Mockito.any(TeacherDto.Patch.class))).willReturn(new Teacher());
@@ -188,6 +194,12 @@ public class TeacherControllerTest {
                                         fieldWithPath("oauth").type(JsonFieldType.BOOLEAN).description("OAuth 회원인지 여부"),
                                         fieldWithPath("subjects").type(JsonFieldType.ARRAY).description("강사가 가능한 과목들"),
                                         fieldWithPath("regions").type(JsonFieldType.ARRAY).description("강사가 가능한 지역들"),
+                                        fieldWithPath("matches").type(JsonFieldType.ARRAY).description("매칭 정보 "),
+                                        fieldWithPath("matches[].matchId").type(JsonFieldType.NUMBER).description("매칭 식별자"),
+                                        fieldWithPath("matches[].studentName").type(JsonFieldType.STRING).description("학생 이름"),
+                                        fieldWithPath("matches[].schedule").type(JsonFieldType.STRING).description("스케줄"),
+                                        fieldWithPath("matches[].subjects").type(JsonFieldType.ARRAY).description("과목"),
+                                        fieldWithPath("matches[].status").type(JsonFieldType.STRING).description("매칭 상태"),
                                         fieldWithPath("lastLogin").type(JsonFieldType.STRING).description("마지막 로그인 일시"),
                                         fieldWithPath("lastModified").type(JsonFieldType.STRING).description("마지막 강사회원 정보 수정 일시"),
                                         fieldWithPath("createdAt").type(JsonFieldType.STRING).description("회원 가입 일시")
@@ -208,12 +220,17 @@ public class TeacherControllerTest {
         List<String> regions = new ArrayList<>();
         regions.add("용인시");
         regions.add("수원시");
+        List<TeacherDto.MatchResponse> matchResponses = new ArrayList<>();
+        matchResponses.add(new TeacherDto.MatchResponse(1L, "홍길동", "9월 19일 화요일 / 13:00 ~ 14:00",
+                List.of("영어","수학"), Match.MatchStatus.MATCH_REQUEST));
+        matchResponses.add(new TeacherDto.MatchResponse(3L, "임꺽정", "9월 19일 화요일 / 13:00 ~ 14:00",
+                List.of("국어","영어"), Match.MatchStatus.MATCH_REQUEST));
         TeacherDto.Response response = new TeacherDto.Response(1L, "hgd@gmail.com",
                 "홍길동", true, "010-1234-5678",
                 "프로필 이미지가 저장된 곳 데이터", "안녕하세요. 저는 OO대학교를 졸업하고~~~",
                 "OO학원에서 O년을 일했고 ~~", "일주일에 세시간 씩 매일 가능하고 시급은 ~~~",
                 "수학 수업의 경우는 고1 과정에서 고3과정의 ~~", true, false, "경기도 용인시 기흥구 ~~",
-                false, subjects, regions, LocalDateTime.now(), LocalDateTime.now(),
+                false, subjects, regions, matchResponses,  LocalDateTime.now(), LocalDateTime.now(),
                 LocalDateTime.now().minus(1, ChronoUnit.WEEKS));
         //stubbing
         given(teacherService.findTeacher(Mockito.anyLong())).willReturn(new Teacher());
@@ -250,6 +267,12 @@ public class TeacherControllerTest {
                                         fieldWithPath("oauth").type(JsonFieldType.BOOLEAN).description("OAuth 회원인지 여부"),
                                         fieldWithPath("subjects").type(JsonFieldType.ARRAY).description("강사가 가능한 과목들"),
                                         fieldWithPath("regions").type(JsonFieldType.ARRAY).description("강사가 가능한 지역들"),
+                                        fieldWithPath("matches").type(JsonFieldType.ARRAY).description("매칭 정보 "),
+                                        fieldWithPath("matches[].matchId").type(JsonFieldType.NUMBER).description("매칭 식별자"),
+                                        fieldWithPath("matches[].studentName").type(JsonFieldType.STRING).description("학생 이름"),
+                                        fieldWithPath("matches[].schedule").type(JsonFieldType.STRING).description("스케줄"),
+                                        fieldWithPath("matches[].subjects").type(JsonFieldType.ARRAY).description("과목"),
+                                        fieldWithPath("matches[].status").type(JsonFieldType.STRING).description("매칭 상태"),
                                         fieldWithPath("lastLogin").type(JsonFieldType.STRING).description("마지막 로그인 일시"),
                                         fieldWithPath("lastModified").type(JsonFieldType.STRING).description("마지막 강사회원 정보 수정 일시"),
                                         fieldWithPath("createdAt").type(JsonFieldType.STRING).description("회원 가입 일시")
