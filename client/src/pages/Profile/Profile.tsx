@@ -1,20 +1,17 @@
 import ProfileTabs from 'components/Profile/ProfileTabs';
 import ProfileHeader from 'components/Profile/ProfileHeader';
 import { useEffect } from 'react';
-import { FetchProfile, updateClassMethod } from 'redux/thunk/Thunk';
+import { FetchProfile } from 'redux/thunk/Thunk';
 import { useAppDispatch, useAppSelector } from 'hooks/hooks';
+import UseCheckAuth from 'hooks/UseCheckAuth';
 
 const Profile = () => {
   const dispatch = useAppDispatch();
   const profileState = useAppSelector((state) => state.profile);
-  const requestState = useAppSelector((state) => state.request);
-  const handleClassMethodUpdate = (onLine: boolean, offLine: boolean) => {
-    dispatch(updateClassMethod({ userId, onLine, offLine }));
-  };
-  const userId = 1;
-  // const userId = 2;
+
+  const userId = UseCheckAuth();
+  // const id = 2;
   const user = profileState.value;
-  const request = requestState.value;
 
   useEffect(() => {
     dispatch(FetchProfile(userId))
@@ -24,40 +21,31 @@ const Profile = () => {
       .catch((error) => {
         console.error('Error fetching profile:', error);
       });
-  }, [dispatch, userId]);
+  }, [userId]);
 
   return (
     <>
-      {user ? (
-        <>
-          <ProfileHeader
-            name={user.name}
-            introduce={user.introduce}
-            user={user}
-            classMethod={{
-              onLine: user.classMethod.onLine,
-              offLine: user.classMethod.offLine,
-            }}
-          />
-          <ProfileTabs
-            userId={user.id}
-            requests={request}
-            teacher={user.teacher}
-            lectureFee={user.lectureFee}
-            career={user.career}
-            option={user.option}
-            classMethod={{
-              onLine: user.classMethod.onLine,
-              offLine: user.classMethod.offLine,
-            }}
-            handleClassMethodUpdate={handleClassMethodUpdate}
-          />
-        </>
-      ) : profileState.status === 'pending' ? (
-        <div>Loading...</div>
-      ) : (
-        <div>Error loading data</div>
-      )}
+      <ProfileHeader
+        name={user.name}
+        introduction={user.introduction}
+        id={userId}
+        profileImg={user.profileImg}
+        subjects={user.subjects}
+        regions={user.regions}
+        onLine={user.onLine}
+        offLine={user.offLine}
+        teacher={user.teacher}
+      />
+      <ProfileTabs
+        id={userId}
+        // requests={request}
+        teacher={user.teacher}
+        lectureFee={user.lectureFee}
+        career={user.career}
+        option={user.option}
+        onLine={user.onLine}
+        offLine={user.offLine}
+      />
     </>
   );
 };

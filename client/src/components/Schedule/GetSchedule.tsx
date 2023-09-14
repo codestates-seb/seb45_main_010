@@ -9,7 +9,7 @@ import { TimeSlotType } from 'Types/Types';
 
 const GetSchedule = () => {
   const dispatch = useAppDispatch();
-  const userId = 1;
+  const id = 1;
   const [availableDates, setAvailableDates] = useState<Date[]>([]);
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [availableTimeSlots, setAvailableTimeSlots] = useState<string[]>([]);
@@ -17,7 +17,7 @@ const GetSchedule = () => {
   // console.log(schedule);
 
   useEffect(() => {
-    dispatch(FetchSchedule(userId))
+    dispatch(FetchSchedule(id))
       .then((response) => {
         const schedule = response.payload.date;
         const availableDatesArray: Date[] = schedule.map(
@@ -29,7 +29,7 @@ const GetSchedule = () => {
       .catch((error) => {
         console.error('Error fetching schedule:', error);
       });
-  }, [dispatch, userId]);
+  }, [dispatch, id]);
 
   // useEffect(() => {
   //   if (selectedDate) {

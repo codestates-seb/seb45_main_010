@@ -10,12 +10,12 @@ import { useAppDispatch, useAppSelector } from 'hooks/hooks';
 import GetSchedule from './GetSchedule';
 
 type ScheduleProps = {
-  userId: number;
+  id: number;
 };
 
 const availableTimeSlots = generateAvailableTimeSlots();
 
-const SetSchedule: React.FC<ScheduleProps> = ({ userId }) => {
+const SetSchedule: React.FC<ScheduleProps> = ({ id }) => {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [timeSlots, setTimeSlots] = useState<TimeSlotType['timeslots']>([]);
   const [selectedTimeSlots, setSelectedTimeSlots] = useState<
@@ -27,7 +27,7 @@ const SetSchedule: React.FC<ScheduleProps> = ({ userId }) => {
   const prevScheduleRef = useRef<{ date: string; timeslots: string[] }[]>([]);
 
   useEffect(() => {
-    dispatch(FetchSchedule(userId))
+    dispatch(FetchSchedule(id))
       .then((response) => {
         const schedule = response.payload.date;
         // console.log('스케쥴 정보 fetch 성공');
@@ -39,7 +39,7 @@ const SetSchedule: React.FC<ScheduleProps> = ({ userId }) => {
       .catch((error) => {
         console.error('Error fetching schedule:', error);
       });
-  }, [dispatch, userId]);
+  }, [dispatch, id]);
   // console.log(newSchedule);
   // console.log(selectedTimeSlots);
   // console.log(prevScheduleRef.current);
@@ -68,8 +68,8 @@ const SetSchedule: React.FC<ScheduleProps> = ({ userId }) => {
       return;
     }
 
-    console.log('Updating schedule with:', { userId: userId, date: newSchedule });
-    return dispatch(updateSchedule({ userId: userId, date: newSchedule, method }));
+    console.log('Updating schedule with:', { id: id, date: newSchedule });
+    return dispatch(updateSchedule({ id: id, date: newSchedule, method }));
   };
   const today = new Date();
   today.setHours(0, 0, 0, 0);

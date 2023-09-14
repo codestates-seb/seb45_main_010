@@ -2,18 +2,17 @@ import { Checkbox } from '@material-tailwind/react';
 import Option from './Option';
 import OnlineDiv from 'components/Items/OnlineDiv';
 import { useState } from 'react';
+import { updateOnline, updateOffline, FetchProfile } from 'redux/thunk/Thunk';
+import { useAppDispatch } from 'hooks/hooks';
 
 type OptionListProps = {
   teacher: boolean;
   lectureFee: string;
   career: string;
   option: string;
-  classMethod: {
-    onLine: boolean;
-    offLine: boolean;
-  };
-  handleClassMethodUpdate: (onLine: boolean, offLine: boolean) => void;
-  userId: number;
+  onLine: boolean;
+  offLine: boolean;
+  id: number;
 };
 
 const OptionList: React.FC<OptionListProps> = ({
@@ -21,22 +20,26 @@ const OptionList: React.FC<OptionListProps> = ({
   lectureFee,
   career,
   option,
-  classMethod = { onLine: true, offLine: false },
-  handleClassMethodUpdate,
-  userId,
+  onLine,
+  offLine,
+  id,
 }) => {
-  const [onLine, setOnLine] = useState(classMethod.onLine);
-  const [offLine, setOffLine] = useState(classMethod.offLine);
+  const dispatch = useAppDispatch();
+  const [onLineState, setOnLineState] = useState(onLine);
+  const [offLineState, setOffLineState] = useState(offLine);
+
   const handleOnLineChange = () => {
     const newOnLineState = !onLine;
-    setOnLine(newOnLineState);
-    handleClassMethodUpdate(newOnLineState, offLine);
+    setOnLineState(newOnLineState);
+    dispatch(updateOnline({ id, onLine: newOnLineState })).then(() => dispatch(FetchProfile(id)));
   };
 
   const handleOffLineChange = () => {
     const newOffLineState = !offLine;
-    setOffLine(newOffLineState);
-    handleClassMethodUpdate(onLine, newOffLineState);
+    setOffLineState(newOffLineState);
+    dispatch(updateOffline({ id, offLine: newOffLineState })).then(() =>
+      dispatch(FetchProfile(id))
+    );
   };
   return (
     <>
@@ -62,21 +65,13 @@ const OptionList: React.FC<OptionListProps> = ({
             />
             <OnlineDiv onoff="오프라인" />
           </div>
-          <Option
-            optionTitle="강의료 ( 강사 소개에 노출됩니다 )"
-            optionDesc={lectureFee}
-            userId={userId}
-          />
-          <Option
-            optionTitle="학력 및 경력"
-            optionDesc={career}
-            userId={userId}
-          />
-          <Option optionTitle="수업옵션" optionDesc={option} userId={userId} />
+          <Option optionTitle="강의료 ( 강사 소개에 노출됩니다 )" optionDesc={lectureFee} id={id} />
+          <Option optionTitle="학력 및 경력" optionDesc={career} id={id} />
+          <Option optionTitle="수업옵션" optionDesc={option} id={id} />
         </div>
       ) : (
         <>
-          <Option optionTitle="수업옵션" optionDesc={option} userId={userId} />
+          <Option optionTitle="수업옵션" optionDesc={option} id={id} />
         </>
       )}
     </>

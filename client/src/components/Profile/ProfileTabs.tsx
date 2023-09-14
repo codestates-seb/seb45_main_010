@@ -10,12 +10,9 @@ type ProfileTabsProps = {
   lectureFee: string;
   career: string;
   option: string;
-  classMethod: {
-    onLine: boolean;
-    offLine: boolean;
-  };
-  handleClassMethodUpdate: (onLine: boolean, offLine: boolean) => void;
-  userId: number;
+  onLine: boolean;
+  offLine: boolean;
+  id: number;
 };
 
 const ProfileTabs: React.FC<ProfileTabsProps> = ({
@@ -24,9 +21,9 @@ const ProfileTabs: React.FC<ProfileTabsProps> = ({
   lectureFee,
   career,
   option,
-  classMethod,
-  handleClassMethodUpdate,
-  userId,
+  onLine,
+  offLine,
+  id,
 }) => {
   type tabDataType = {
     id: string;
@@ -38,14 +35,14 @@ const ProfileTabs: React.FC<ProfileTabsProps> = ({
     {
       id: 'request',
       title: '내 강의 조회',
-      subtitle: <RequestList requests={requests} teacher={teacher} />,
+      subtitle: <RequestList teacher={teacher} />,
     },
     ...(teacher
       ? [
           {
             id: 'schedule',
             title: '스케쥴 관리',
-            subtitle: <ScheduleList userId={userId} />,
+            subtitle: <ScheduleList id={id} />,
           },
         ]
       : []),
@@ -58,9 +55,9 @@ const ProfileTabs: React.FC<ProfileTabsProps> = ({
           lectureFee={lectureFee}
           career={career}
           option={option}
-          classMethod={classMethod}
-          handleClassMethodUpdate={handleClassMethodUpdate}
-          userId={userId}
+          onLine={onLine}
+          offLine={offLine}
+          id={id}
         />
       ),
     },

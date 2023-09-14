@@ -1,39 +1,59 @@
 import { Button } from '@material-tailwind/react';
 import userExampleImage from '/assets/Image/user-example.png';
 import ProfileDropdown from './ProfileDropdown';
-import { Link } from 'react-router-dom';
 import { User } from 'Types/Types';
+import { Link } from 'react-router-dom';
 import OnlineDiv from 'components/Items/OnlineDiv';
 import Option from './ProfileTab/Option';
+import { useAppDispatch, useAppSelector } from 'hooks/hooks';
+import { useEffect } from 'react';
+import { FetchSubjects, updateSubjects, FetchRegions, updateRegions } from 'redux/thunk/Thunk';
 
-type ProfileHeaderProps = {
-  name: string;
-  introduce: string;
-  user: User;
-  classMethod: {
-    onLine: boolean;
-    offLine: boolean;
-  };
-};
+type ProfileHeaderProps = Pick<
+  User,
+  | 'name'
+  | 'introduction'
+  | 'id'
+  | 'subjects'
+  | 'regions'
+  | 'profileImg'
+  | 'onLine'
+  | 'offLine'
+  | 'teacher'
+>;
 
 const ProfileHeader: React.FC<ProfileHeaderProps> = ({
   name,
-  introduce,
-  user,
-  classMethod = { onLine: false, offLine: false },
+  introduction,
+  id,
+  profileImg,
+  onLine,
+  offLine,
+  subjects,
+  regions,
+  teacher,
 }) => {
-  const { onLine, offLine } = classMethod;
-  const category = {
-    subject: ['수학', '과학', '외국어', '국사', '사회'],
-    area: ['서울', '강서', '강원', '강남', '강북', '충북', '제주'],
-  };
+  const dispatch = useAppDispatch();
+  const profile = useAppSelector((state) => state.profile.value);
+
+  useEffect(() => {
+    dispatch(FetchRegions());
+    dispatch(FetchSubjects());
+  }, [dispatch]);
+
+  const subjectsList = useAppSelector((state) => state.categories.value.subjects);
+  const regionsList = useAppSelector((state) => state.categories.value.regions);
+
+  const subjectArray = subjectsList.map((subject) => subject.subjectName);
+  const regionArray = regionsList.map((region) => region.regionName);
+
   return (
     <div className="p-4 py-10">
       <>
         <div className="flex flex-row items-center gap-6 mb-10">
           <img
-            src={userExampleImage}
-            className="border rounded-full w-14 h-14 border-mint-200"
+            src={profileImg ? profileImg : userExampleImage}
+            className="border rounded-full w-14 h-14 border-mint-2"
             alt="프로필이미지"
           ></img>
           <div className="flex flex-col gap-2">
@@ -50,14 +70,16 @@ const ProfileHeader: React.FC<ProfileHeaderProps> = ({
             </div>
           </div>
         </div>
-        <div className="flex justify-end gap-5 my-10">
-          {onLine ? <OnlineDiv onoff="온라인" /> : null}
-          {offLine ? <OnlineDiv onoff="오프라인" /> : null}
-        </div>
+        {teacher ? (
+          <div className="flex justify-end gap-5 my-10">
+            {onLine ? <OnlineDiv onoff="온라인" /> : null}
+            {offLine ? <OnlineDiv onoff="오프라인" /> : null}
+          </div>
+        ) : null}
       </>
-      <ProfileDropdown title="과목" selections={category.subject} categories={user.category} />
-      <ProfileDropdown title="지역" selections={category.area} categories={user.area} />
-      <Option optionDesc={introduce} userId={user.id} />
+      <ProfileDropdown title="과목" selections={subjectArray} categories={subjects} id={id} />
+      <ProfileDropdown title="지역" selections={regionArray} categories={regions} id={id} />
+      <Option optionDesc={introduction} id={id} />
       <div className="mt-10 border-b-2 border-gray-1"></div>
     </div>
   );
