@@ -3,7 +3,7 @@ import DatePicker from 'react-datepicker';
 import { ko } from 'date-fns/locale';
 import { useAppDispatch, useAppSelector } from 'hooks/hooks';
 import { setSchedule } from 'redux/slice/ScheduleSlice';
-import { FetchSchedule } from 'redux/thunk/Thunk';
+import { FetchSchedule } from 'redux/thunk/ProfilePageThunk';
 import { useEffect, useState } from 'react';
 import { ScheduleObjType } from 'Types/Types';
 import { Select, Option } from '@material-tailwind/react';

@@ -3,7 +3,7 @@ import { Menu, MenuHandler, MenuList, MenuItem, Button } from '@material-tailwin
 import { BsX, BsChevronDown } from 'react-icons/bs';
 import { useAppDispatch, useAppSelector } from 'hooks/hooks';
 import { useEffect } from 'react';
-import { updateSubjects, updateRegions } from 'redux/thunk/Thunk';
+import { updateSubjects, updateRegions } from 'redux/thunk/ProfilePageThunk';
 
 const ProfileDropdown = ({
   title,

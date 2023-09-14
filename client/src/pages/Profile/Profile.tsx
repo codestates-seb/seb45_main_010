@@ -1,7 +1,7 @@
 import ProfileTabs from 'components/Profile/ProfileTabs';
 import ProfileHeader from 'components/Profile/ProfileHeader';
 import { useEffect } from 'react';
-import { FetchProfile } from 'redux/thunk/Thunk';
+import { FetchProfile } from 'redux/thunk/ProfilePageThunk';
 import { useAppDispatch, useAppSelector } from 'hooks/hooks';
 import UseCheckAuth from 'hooks/UseCheckAuth';
 
