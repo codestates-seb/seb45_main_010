@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
 import { Accordion, AccordionHeader, AccordionBody, Button } from '@material-tailwind/react';
 import { BsChevronDown } from 'react-icons/bs';
+import { DetailType } from 'Types/Types';
 
-const TeacherInfo2 = ({ teacherInfo }) => {
+type props = {
+  teacherInfo: DetailType;
+};
+
+const TeacherInfo2 = ({ teacherInfo }: props) => {
   const [openIntroduce, setOpenIntroduce] = useState(true);
   const [openOption, setOpenOption] = useState(true);
   const [openCareer, setOpenCareer] = useState(true);

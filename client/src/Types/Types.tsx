@@ -17,6 +17,7 @@ export type User = {
   offLine: boolean;
   oauth: boolean;
   address: string;
+  option: string | null;
 };
 
 export type TeacherType = Omit<User, 'password'>;
@@ -56,9 +57,8 @@ export type DetailType = Pick<
   | 'introduction'
   | 'lectureFee'
   | 'career'
-> & {
-  option: string | null;
-};
+  | 'option'
+>;
 
 export type RequestType = {
   id: string;

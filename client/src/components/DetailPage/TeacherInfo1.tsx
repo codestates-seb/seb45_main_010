@@ -2,7 +2,11 @@ import React from 'react';
 import userExampleImage from '/assets/Image/user-example.png';
 import { DetailType } from 'Types/Types';
 
-const TeacherInfo1 = ({ teacherInfo }) => {
+type props = {
+  teacherInfo: DetailType;
+};
+
+const TeacherInfo1 = ({ teacherInfo }: props) => {
   const teachingStyle: string = teacherInfo.onLine
     ? '온라인'
     : teacherInfo.offLine

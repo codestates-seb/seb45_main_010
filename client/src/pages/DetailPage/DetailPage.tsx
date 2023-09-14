@@ -1,5 +1,3 @@
-import { Button } from '@material-tailwind/react';
-import { BsChevronDown } from 'react-icons/bs';
 import { DetailType } from 'Types/Types';
 import RequestBtn from 'components/DetailPage/RequestBtn';
 import TeacherInfo1 from 'components/DetailPage/TeacherInfo1';
@@ -14,7 +12,23 @@ const DetailPage = () => {
   const detailInfo = useAppSelector(teacherDetail);
   const dispatch = useAppDispatch();
   const local = useLocation();
-  const [teacherInfo, setTeacherInfo] = useState<DetailType>({});
+  const [teacherInfo, setTeacherInfo] = useState<DetailType>({
+    id: 0,
+    email: '',
+    name: '',
+    teacher: false,
+    phone: '',
+    profileImg: null,
+    onLine: false,
+    offLine: false,
+    subjects: [],
+    regions: [],
+    schedule: [],
+    introduction: '',
+    lectureFee: '',
+    career: '',
+    option: null,
+  });
 
   useEffect(() => {
     const currentId: string = local.pathname.slice(1);
