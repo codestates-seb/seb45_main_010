@@ -5,14 +5,14 @@ import { PageNumbers } from './PageNumbers';
 import { ListPageType } from 'Types/Types';
 
 type props = {
-  test: ListPageType;
+  cardList: ListPageType[];
   limit: number;
   currentPage: number;
   setCurrentPage: (index: number) => void;
 };
 
-const Pagination = ({ test, limit, currentPage, setCurrentPage }: props) => {
-  const total: number = test.length;
+const Pagination = ({ cardList, limit, currentPage, setCurrentPage }: props) => {
+  const total: number = cardList.length;
   const numPages: number = Math.ceil(total / limit);
 
   const first = () => {
