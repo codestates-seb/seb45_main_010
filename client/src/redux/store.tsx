@@ -7,6 +7,7 @@ import { teacherDetailSlice } from './slice/DetailPageSlice';
 import { ScheduleSlice } from './slice/ScheduleSlice';
 import { TeacherSlice } from './slice/TeacherSlice';
 import { CategoriesSlice } from './slice/CategoriesSlice';
+import { oAuthSlice } from './slice/OauthSlice';
 
 export const store = configureStore({
   reducer: {
@@ -18,6 +19,7 @@ export const store = configureStore({
     schedule: ScheduleSlice.reducer,
     teacher: TeacherSlice.reducer,
     categories: CategoriesSlice.reducer,
+    auth: oAuthSlice.reducer,
   },
 });
 
