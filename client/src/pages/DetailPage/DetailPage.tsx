@@ -46,7 +46,7 @@ const DetailPage = () => {
       <article className="w-full px-[7.5px] flex flex-col ">
         <TeacherInfo1 teacherInfo={teacherInfo} />
         <TeacherInfo2 teacherInfo={teacherInfo} />
-        <RequestBtn />
+        <RequestBtn lectureFee={teacherInfo.lectureFee} />
       </article>
     </>
   );
