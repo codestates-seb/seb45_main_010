@@ -4,7 +4,7 @@ export type User = {
   password: string;
   teacher: boolean;
   id: number;
-  phoneNumber: string;
+  phone: string;
   regions: string[];
   subjects: string[];
   profileImg: string | null;
@@ -28,10 +28,10 @@ export type StudentType = Omit<
 
 export type CommonUserType = Pick<
   User,
-  'name' | 'email' | 'teacher' | 'id' | 'phoneNumber' | 'profileImg'
+  'name' | 'email' | 'teacher' | 'id' | 'phone' | 'profileImg'
 >;
 
-export type PrivateType = Pick<User, 'profileImg' | 'name' | 'email' | 'password' | 'phoneNumber'>;
+export type PrivateType = Pick<User, 'profileImg' | 'name' | 'email' | 'password' | 'phone'>;
 
 export type LoginType = Pick<User, 'email' | 'password'>;
 
@@ -42,7 +42,11 @@ export type ListPageType = Pick<
 
 export type DetailType = Pick<
   User,
+  | 'id'
+  | 'email'
   | 'name'
+  | 'teacher'
+  | 'phone'
   | 'profileImg'
   | 'onLine'
   | 'offLine'
@@ -52,7 +56,9 @@ export type DetailType = Pick<
   | 'introduction'
   | 'lectureFee'
   | 'career'
->;
+> & {
+  option: string | null;
+};
 
 export type RequestType = {
   id: string;
@@ -84,4 +90,6 @@ export type SearchType = {
   teacherName: string;
   subject: string[];
   regions: string[];
+  size: number;
+  page: number;
 };

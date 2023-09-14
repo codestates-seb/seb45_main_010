@@ -11,22 +11,21 @@ type initialStateType = {
 const initialState: initialStateType = {
   status: '',
   value: {
+    id: 0,
+    email: '',
     name: '',
-    img: '',
-    classMethod: {
-      onLine: false,
-      offLine: false,
-    },
-    category: [],
-    area: [],
-    date: {
-      select: {
-        ['']: [''],
-      },
-    },
-    introduce: '',
-    lectureFee: '',
+    teacher: false,
+    phone: '',
+    profileImg: '',
+    introduction: '',
     career: '',
+    lectureFee: '',
+    option: '',
+    onLine: false,
+    offLine: false,
+    subjects: [],
+    regions: [],
+    schedule: [],
   },
 };
 
