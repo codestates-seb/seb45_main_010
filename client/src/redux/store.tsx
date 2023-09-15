@@ -5,6 +5,8 @@ import { RequestSlice } from './slice/RequestSlice';
 import { memberSlice } from './slice/MemberSlice';
 import { teacherDetailSlice } from './slice/DetailPageSlice';
 import { ScheduleSlice } from './slice/ScheduleSlice';
+import { subjectListSlice } from './slice/SubjectSlice';
+import { regionListSlice } from './slice/RegionsSlice';
 
 export const store = configureStore({
   reducer: {
@@ -14,6 +16,8 @@ export const store = configureStore({
     member: memberSlice.reducer,
     teacherDetail: teacherDetailSlice.reducer,
     schedule: ScheduleSlice.reducer,
+    subjectList: subjectListSlice.reducer,
+    regionList: regionListSlice.reducer,
   },
 });
 
