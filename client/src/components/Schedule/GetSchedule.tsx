@@ -13,7 +13,7 @@ const GetSchedule = ({
   onDateSelect,
 }: {
   id: number;
-  onDateSelect: (dateString: string | null, timeSlot: string | null) => void;
+  onDateSelect?: (dateString: string | null, timeSlot: string | null) => void;
 }) => {
   const dispatch = useAppDispatch();
   const [availableDates, setAvailableDates] = useState<Date[]>([]);
@@ -64,7 +64,7 @@ const GetSchedule = ({
 
   useEffect(() => {
     const selectedDateString = selectedDate ? selectedDate.toISOString().split('T')[0] : null;
-    onDateSelect(selectedDateString, selectedTimeSlot);
+    if (onDateSelect) onDateSelect(selectedDateString, selectedTimeSlot);
   }, [selectedDate, selectedTimeSlot]);
 
   // const selectedDateString = selectedDate ? selectedDate.toISOString().split('T')[0] : null;
