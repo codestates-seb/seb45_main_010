@@ -8,6 +8,10 @@ import com.codestates.connectInstructor.match.entity.MatchRegion;
 import com.codestates.connectInstructor.match.entity.MatchSubject;
 import com.codestates.connectInstructor.match.repository.MatchRepository;
 import com.codestates.connectInstructor.region.service.RegionService;
+import com.codestates.connectInstructor.schedule.dto.ScheduleDto;
+import com.codestates.connectInstructor.schedule.entity.Schedule;
+import com.codestates.connectInstructor.schedule.repository.ScheduleRepository;
+import com.codestates.connectInstructor.schedule.service.ScheduleService;
 import com.codestates.connectInstructor.student.entity.Student;
 import com.codestates.connectInstructor.student.service.StudentService;
 import com.codestates.connectInstructor.subject.service.SubjectService;
@@ -17,6 +21,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -30,6 +35,8 @@ public class MatchService {
     private final SubjectService subjectService;
     private final RegionService regionService;
     private final MatchRepository matchRepository;
+    private final ScheduleService scheduleService;
+    private final ScheduleRepository scheduleRepository;
     public MatchDto.GetResponse getBasicInformation(long studentId, long teacherId) {
         MatchDto.GetResponse response = new MatchDto.GetResponse();
 
@@ -53,8 +60,19 @@ public class MatchService {
         response.setStudentPhone(student.getPhone());
         response.setStudentEmail(student.getEmail());
 
-        //TODO 스케줄 구현 후 수정
-        response.setSchedules(List.of("9월 19일 화요일 / 13:00 ~ 14:00"));
+        List<Schedule> schedules = scheduleService.getAllSchedule(teacherId);
+        List<ScheduleDto.Data> dataList = new LinkedList<>();
+
+        for (Schedule schedule : schedules) {
+            ScheduleDto.Data data = ScheduleDto.Data.builder()
+                    .date(schedule.getDate())
+                    .timeslots(schedule.getTimeslots())
+                    .build();
+
+            dataList.add(data);
+        }
+
+        response.setSchedules(dataList);
 
         return response;
     }
@@ -86,8 +104,28 @@ public class MatchService {
         match.setStudentPhone(request.getStudentPhone());
         match.setStudentEmail(request.getStudentEmail());
         match.setRemarks(request.getRemarks());
+        match.setDate(request.getDate());
+        match.setTimeslot(request.getTimeslot());
+
+        verifyAndmodifySchedule(request.getTeacherId(), request.getDate(), request.getTimeslot());
 
         return matchRepository.save(match);
+    }
+
+    private void verifyAndmodifySchedule(long teacherId, String date, String timeslot) {
+        Optional<Schedule> optionalSchedule = scheduleRepository.findByTeacherIdAndDate(teacherId, date);
+
+        if (optionalSchedule.isEmpty()) throw new BusinessLogicException(ExceptionCode.SCHEDULE_NOT_FOUND);
+
+        Schedule schedule = optionalSchedule.get();
+
+        if (schedule.getTimeslots().contains(timeslot)) {
+            schedule.getTimeslots().remove(timeslot);
+
+            scheduleRepository.save(schedule);
+        } else {
+            throw new BusinessLogicException(ExceptionCode.SCHEDULE_NOT_FOUND);
+        }
     }
 
     public Match getMatch(long matchId) {

@@ -370,6 +370,7 @@ public class StudentControllerTest {
         String profileImg = "프로필 이미지. 미구현";
         String phone = "01012345678";
         boolean isOauth = false;
+        boolean teacher = false;
         MemberStatus status = MemberStatus.ACTIVE;
 
         Student student = new Student();
@@ -407,7 +408,8 @@ public class StudentControllerTest {
                                         fieldWithPath("name").type(JsonFieldType.STRING).description("이름"),
                                         fieldWithPath("profileImg").type(JsonFieldType.STRING).description("프로필 사진 링크. 미구현"),
                                         fieldWithPath("phone").type(JsonFieldType.STRING).description("연락처"),                                        fieldWithPath("oauth").type(JsonFieldType.BOOLEAN).description("소셜 회원가입 여부. true면 소셜 회원, false면 자체 가입 회원"),
-                                        fieldWithPath("status").type(JsonFieldType.STRING).description("회원 상태")
+                                        fieldWithPath("status").type(JsonFieldType.STRING).description("회원 상태"),
+                                        fieldWithPath("teacher").type(JsonFieldType.BOOLEAN).description("강사 여부. false면 학생")
                                 )
                         )
                         ));
@@ -465,6 +467,7 @@ public class StudentControllerTest {
         String option = "수업옵션";
         String phone = "01012345678";
         boolean isOauth = false;
+        boolean teacher = false;
         MemberStatus status = MemberStatus.ACTIVE;
         List<String> subjects = List.of("국어", "수학");
         List<String> regions = List.of("강서", "강남");
@@ -472,14 +475,16 @@ public class StudentControllerTest {
                 StudentDto.MatchResponse.builder()
                     .matchId(1L)
                     .teacherName("김강사")
-                    .schedule("9월 19일 화요일 / 13:00 ~ 14:00")
+                    .date("2023-09-16")
+                        .timeslot("오후 03:00~오후 04:00")
                     .subjects(subjects)
                     .status(Match.MatchStatus.MATCH_REQUEST)
                     .build(),
                 StudentDto.MatchResponse.builder()
                         .matchId(2L)
                         .teacherName("박선생")
-                        .schedule("9월 19일 화요일 / 13:00 ~ 14:00")
+                        .date("2023-09-16")
+                        .timeslot("오후 03:00~오후 04:00")
                         .subjects(subjects)
                         .status(Match.MatchStatus.MATCH_ANSWERED)
                         .build());
@@ -529,7 +534,8 @@ public class StudentControllerTest {
                                         fieldWithPath("matches").type(JsonFieldType.ARRAY).description("매칭 정보"),
                                         fieldWithPath("matches[].matchId").type(JsonFieldType.NUMBER).description("매칭 식별자"),
                                         fieldWithPath("matches[].teacherName").type(JsonFieldType.STRING).description("강사 이름"),
-                                        fieldWithPath("matches[].schedule").type(JsonFieldType.STRING).description("스케줄"),
+                                        fieldWithPath("matches[].date").type(JsonFieldType.STRING).description("수업 날짜"),
+                                        fieldWithPath("matches[].timeslot").type(JsonFieldType.STRING).description("수업 시간"),
                                         fieldWithPath("matches[].subjects").type(JsonFieldType.ARRAY).description("과목"),
                                         fieldWithPath("matches[].status").type(JsonFieldType.STRING).description("매칭 상태")
                                 )

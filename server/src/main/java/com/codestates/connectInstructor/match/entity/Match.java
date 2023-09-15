@@ -33,7 +33,10 @@ public class Match {
 
     //TODO schedule 구현 후 수정
     @Column(nullable = false)
-    private String schedule = "9월 19일 화요일 / 13:00 ~ 14:00";
+    private String date;
+
+    @Column(nullable = false)
+    private String timeslot;
 
     @Column(nullable = false)
     private boolean isOnline;
