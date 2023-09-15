@@ -3,32 +3,28 @@ import DatePicker from 'react-datepicker';
 import { ko } from 'date-fns/locale';
 import { Button, Option, Select } from '@material-tailwind/react';
 import { useState, useEffect, useRef } from 'react';
-import { TimeSlotType, ScheduleType } from 'Types/Types';
+import { ScheduleType, ScheduleObjType } from 'Types/Types';
 import { generateAvailableTimeSlots, generateTimeSlots, formatDate } from './MakeDateFunctions';
 import { updateSchedule, FetchSchedule } from 'redux/thunk/Thunk';
 import { useAppDispatch } from 'hooks/hooks';
-import GetSchedule from './GetSchedule';
-
-type ScheduleProps = {
-  id: number;
-};
 
 const availableTimeSlots = generateAvailableTimeSlots();
 
-const SetSchedule: React.FC<ScheduleProps> = ({ id }) => {
+const SetSchedule = ({ id }: { id: number }) => {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
-  const [oneDayTimeSlot, setOneDayTimeSlot] = useState<TimeSlotType['timeslots']>([]);
-  const [selectedTimeSlots, setSelectedTimeSlots] = useState<TimeSlotType[]>([]);
-  const [newSchedule, setNewSchedule] = useState<TimeSlotType[]>([]);
+  const [oneDayTimeSlot, setOneDayTimeSlot] = useState<ScheduleType['timeslots']>([]);
+  const [selectedTimeSlots, setSelectedTimeSlots] = useState<ScheduleType[]>([]);
+  const [newSchedule, setNewSchedule] = useState<ScheduleType[]>([]);
   const dispatch = useAppDispatch();
 
-  const prevScheduleRef = useRef<TimeSlotType[]>([]);
+  const prevScheduleRef = useRef<ScheduleType[]>([]);
 
   useEffect(() => {
     dispatch(FetchSchedule(id))
       .then((response) => {
         if (response.payload) {
-          const schedule = response.payload.date;
+          const payload = response.payload as ScheduleObjType;
+          const schedule = payload.schedules;
           setSelectedTimeSlots(schedule);
           setNewSchedule(schedule);
           prevScheduleRef.current = schedule;
@@ -42,38 +38,19 @@ const SetSchedule: React.FC<ScheduleProps> = ({ id }) => {
   const formatSelectedDate = selectedDate ? formatDate(selectedDate) : null;
 
   const handleSave = async () => {
-    let method: 'POST' | 'PATCH' | 'DELETE';
-
     const currentSchedule = newSchedule.find((slot) => slot.date === formatSelectedDate);
 
     if (!currentSchedule) {
       console.log('No selected date or no changes to update.');
       return;
     }
-    if (prevScheduleRef.current === null) {
-      prevScheduleRef.current = [];
-    }
-    const prevSchedule = prevScheduleRef.current;
-    if (JSON.stringify(newSchedule) !== JSON.stringify(prevSchedule)) {
-      //   if (newSchedule.length > 0 && (!prevSchedule || prevSchedule.length === 0)) {
-      //     method = 'POST';
-      //     console.log('POST');
-      //   }
-      //   // else if (newSchedule.length === 0 && prevSchedule && prevSchedule.length > 0) {
-      //   //   method = 'DELETE';
-      //   //   console.log('DELETE');
-      //   // }
-      //   else {
-      method = 'PATCH';
-      console.log('PATCH');
-    } else {
-      console.log('No changes to update.');
-      return;
-    }
 
-    console.log('Updating schedule with:', { id: id, date: newSchedule });
-    return dispatch(updateSchedule({ id: id, date: newSchedule, method }));
+    const { date, timeslots } = currentSchedule;
+
+    console.log('Updating schedule with:', { id: id, date, timeslots });
+    return dispatch(updateSchedule({ id: id, date, timeslots }));
   };
+
   const today = new Date();
   today.setHours(0, 0, 0, 0);
 
@@ -94,7 +71,7 @@ const SetSchedule: React.FC<ScheduleProps> = ({ id }) => {
     setSelectedTimeSlots((prevSlots) => {
       const existingDateIndex = prevSlots.findIndex((i) => i.date === formatSelectedDate);
 
-      let newSlots: TimeSlotType[] = [];
+      let newSlots: ScheduleType[] = [];
       if (existingDateIndex !== -1) {
         const alreadySelected = prevSlots[existingDateIndex].timeslots.includes(perHour);
 
@@ -224,7 +201,6 @@ const SetSchedule: React.FC<ScheduleProps> = ({ id }) => {
       >
         <span className="flex-1 text-center">저장</span>
       </Button>
-      <GetSchedule />
     </div>
   );
 };
