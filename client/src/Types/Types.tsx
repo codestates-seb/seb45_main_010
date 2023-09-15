@@ -77,19 +77,16 @@ export type footerType = {
   }[];
 };
 
-export type TimeSlotType = { date: string; timeslots: string[] };
+export type ScheduleType = { date: string; timeslots: string[] };
 
-export type ScheduleType = {
-  id: number;
-  date: {
-    date: string;
-    timeslots: string[];
-  }[];
+export type ScheduleObjType = {
+  teacherId: number;
+  schedules: ScheduleType[];
 };
 
 // export type ScheduleArrayType = {
-//   id: number;
-//   schedule: ScheduleType[];
+//   teacherId: number;
+//   schedules: ScheduleObjType[];
 // }[];
 
 export type SearchType = {

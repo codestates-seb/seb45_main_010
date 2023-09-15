@@ -5,24 +5,28 @@ import { useAppDispatch, useAppSelector } from 'hooks/hooks';
 import { setSchedule } from 'redux/slice/ScheduleSlice';
 import { FetchSchedule } from 'redux/thunk/Thunk';
 import { useEffect, useState } from 'react';
-import { ScheduleType } from 'Types/Types';
+import { ScheduleObjType } from 'Types/Types';
 import { Select, Option } from '@material-tailwind/react';
 
-const GetSchedule = () => {
+const GetSchedule = ({
+  id,
+  onDateSelect,
+}: {
+  id: number;
+  onDateSelect: (dateString: string | null, timeSlot: string | null) => void;
+}) => {
   const dispatch = useAppDispatch();
-  const id = 1;
   const [availableDates, setAvailableDates] = useState<Date[]>([]);
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [availableTimeSlots, setAvailableTimeSlots] = useState<string[]>([]);
   const [selectedTimeSlot, setSelectedTimeSlot] = useState<string | null>(null);
   const schedule = useAppSelector((state) => state.schedule.schedule);
-  // console.log(schedule);
 
   useEffect(() => {
     dispatch(FetchSchedule(id))
       .then((response) => {
-        const payload = response.payload as ScheduleType;
-        const availableDatesArray: Date[] = payload.date.map(
+        const payload = response.payload as ScheduleObjType;
+        const availableDatesArray: Date[] = payload.schedules.map(
           (scheduleItem) => new Date(scheduleItem.date)
         );
         setAvailableDates(availableDatesArray);
@@ -31,7 +35,7 @@ const GetSchedule = () => {
         // 선택된 날짜가 있으면 사용 가능한 시간대 설정
         if (selectedDate) {
           const selectedDateString = selectedDate.toISOString().split('T')[0];
-          const selectedSchedule = payload.date.find(
+          const selectedSchedule = payload.schedules.find(
             (dateItem) => dateItem.date === selectedDateString
           );
 
@@ -48,7 +52,7 @@ const GetSchedule = () => {
   useEffect(() => {
     if (selectedDate && schedule) {
       const selectedDateString = selectedDate.toISOString().split('T')[0];
-      const selectedSchedule = schedule.date.find(
+      const selectedSchedule = schedule.schedules.find(
         (dateItem) => dateItem.date === selectedDateString
       );
 
@@ -58,7 +62,13 @@ const GetSchedule = () => {
     }
   }, [selectedDate, schedule]);
 
-  // console.log(`${selectedDate.toISOString().split('T')[0]} / ${selectedTimeSlot}`);
+  useEffect(() => {
+    const selectedDateString = selectedDate ? selectedDate.toISOString().split('T')[0] : null;
+    onDateSelect(selectedDateString, selectedTimeSlot);
+  }, [selectedDate, selectedTimeSlot]);
+
+  // const selectedDateString = selectedDate ? selectedDate.toISOString().split('T')[0] : null;
+  // console.log(`${selectedDateString} / ${selectedTimeSlot}`);
 
   return (
     <>
@@ -79,7 +89,7 @@ const GetSchedule = () => {
             {availableTimeSlots.map((slot, index) => (
               <Option
                 key={index}
-                className="flex items-center justify-between w-full my-3 text-sm font-bold text-black bg-mint-200 rounded-xl border-mint-200"
+                className="flex items-center justify-between w-[350px] my-3 text-sm font-bold text-black bg-mint-200 rounded-xl border-mint-200"
                 onClick={() => setSelectedTimeSlot(slot)}
               >
                 {slot}

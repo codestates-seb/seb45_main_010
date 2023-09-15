@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import UseCheckAuth, { APIurl, APIUSERURL, PROFILEURL } from 'hooks/UseCheckAuth';
 import { ACCESSTOKEN } from 'configs/Url/config';
-import { ScheduleType } from 'Types/Types';
+import { ScheduleObjType, ScheduleType } from 'Types/Types';
 
 export const FetchProfile = createAsyncThunk('FetchProfile', async (id: number) => {
   const response = await axios.get(`${PROFILEURL}/${id}`);
@@ -17,7 +17,7 @@ export const FetchRequest = createAsyncThunk('FetchRequest', async (id: number) 
 });
 
 export const FetchSchedule = createAsyncThunk('schedule/fetchSchedule', async (id: number) => {
-  const response = await axios.get<ScheduleType>(`http://localhost:8081/schedule/${id}`);
+  const response = await axios.get<ScheduleObjType>(`${APIurl}/schedules?teacherId=${id}`);
   const data = response.data;
   return data;
 });
@@ -36,25 +36,12 @@ export const FetchRegions = createAsyncThunk('regions', async () => {
 
 export const updateSchedule = createAsyncThunk(
   'schedule/updateSchedule',
-  async ({
-    id,
-    date,
-    method,
-  }: {
-    id: number;
-    date: string[];
-    method: 'POST' | 'PATCH' | 'DELETE';
-  }) => {
-    let response;
-    if (method === 'POST') {
-      response = await axios.post(`http://localhost:8081/schedule/${id}`, { date });
-    } else if (method === 'PATCH') {
-      response = await axios.patch(`http://localhost:8081/schedule/${id}`, { date });
-    } else {
-      response = await axios.delete(`http://localhost:8081/schedule/${id}`, {
-        data: date,
-      });
-    }
+  async ({ id, date, timeslots }: { id: number; date: string; timeslots: string[] }) => {
+    const response = await axios.patch(`${APIurl}/schedules`, {
+      teacherId: id,
+      date,
+      timeslots,
+    });
     return response.data;
   }
 );
