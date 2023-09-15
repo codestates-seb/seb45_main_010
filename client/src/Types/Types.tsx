@@ -68,32 +68,24 @@ export type RequestInfoType = {
   status: string;
   matchSubjects: string[];
   matchRegions: string[];
-  schedule: string;
+  date: string;
+  timeslot: string;
   studentName: string;
   studentPhone: string;
   studentEmail: string;
   remarks: string;
   teacherName: string;
   online: boolean;
-}[];
-
-type StudentMatchType = {
-  matchId: number;
-  teacherName: string;
-  schedule: string;
-  subjects: string[];
-  status: string;
 };
 
-type TeacherMatchType = {
+export type MatchType = Array<{
   matchId: number;
-  studentName: string;
-  schedule: string;
+  status: StatusType;
   subjects: string[];
-  status: string;
-};
-
-export type MatchType = StudentMatchType | TeacherMatchType;
+  studentName?: string;
+  teacherName?: string;
+  schedule: string;
+}>;
 
 export type footerType = {
   footerMessage: string;
@@ -123,3 +115,9 @@ export type SearchType = {
   size: number;
   page: number;
 };
+export type ScheduleArrayType = {
+  id: number;
+  schedule: ScheduleType[];
+}[];
+
+export type StatusType = 'MATCH_ANSWERED' | 'MATCH_CANCELLED' | 'MATCH_REQUEST';

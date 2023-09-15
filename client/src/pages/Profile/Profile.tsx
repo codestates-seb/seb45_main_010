@@ -3,7 +3,7 @@ import ProfileHeader from 'components/Profile/ProfileHeader';
 import { useEffect } from 'react';
 import { FetchProfile } from 'redux/thunk/ProfilePageThunk';
 import { useAppDispatch, useAppSelector } from 'hooks/hooks';
-import GetInfoAuth from 'hooks/GetInfoAuth';
+import GetInfoAuth from 'components/Items/GetInfoAuth';
 
 const Profile = () => {
   const dispatch = useAppDispatch();

@@ -1,9 +1,9 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import GetInfoAuth from 'hooks/GetInfoAuth';
+import GetInfoAuth from 'components/Items/GetInfoAuth';
 import { ACCESSTOKEN } from 'configs/Url/config';
 import { ScheduleObjType, ScheduleType } from 'Types/Types';
-import { APIurl } from 'hooks/GetInfoAuth';
+import { APIurl } from 'components/Items/GetInfoAuth';
 import { ScheduleArrayType, MatchType } from 'Types/Types';
 const { APIUSERURL, PROFILEURL } = GetInfoAuth();
 export const FetchProfile = createAsyncThunk('FetchProfile', async (id: number) => {
