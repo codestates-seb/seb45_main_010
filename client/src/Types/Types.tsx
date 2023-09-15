@@ -12,7 +12,6 @@ export type User = {
   lectureFee: string;
   career: string;
   lessonOption: string;
-  matches: { date: string; timeslots: string[] }[];
   onLine: boolean;
   offLine: boolean;
   oauth: boolean;
