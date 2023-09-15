@@ -70,10 +70,9 @@ export const fetchUserDetails = createAsyncThunk(
     try {
       const apiURL = 'http://ec2-3-34-116-209.ap-northeast-2.compute.amazonaws.com:8080';
       const response = await axios.get(
-        `${apiURL}/${teacher === 'STUDENT' ? 'students' : 'teachers'}/${id}`
+        `${apiURL}/${teacher === 'STUDENT' ? 'students/mypage' : 'teachers'}/${id}`
       );
       const data = response.data;
-      console.log(data);
       if (!data) {
         return rejectWithValue('등록된 계정이 없거나 비밀번호가 일치하지 않습니다');
       }

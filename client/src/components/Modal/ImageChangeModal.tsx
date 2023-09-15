@@ -29,8 +29,6 @@ export const ImageChangeModal = ({
   const apiURL = 'http://ec2-3-34-116-209.ap-northeast-2.compute.amazonaws.com:8080';
   const dispatch = useAppDispatch();
 
-  console.log(userId, teacher);
-
   const handleNameChange = async (newName: string) => {
     try {
       const data = {
@@ -40,8 +38,6 @@ export const ImageChangeModal = ({
       console.log(data);
       const accessToken = localStorage.getItem('access_jwt');
       const targetURL = `${apiURL}/${teacher === false ? 'students' : 'teachers'}/${changeItem}`;
-      const updateItems = `updateUser${changeItem}`;
-      console.log(updateItems);
       const response = await axios.patch(targetURL, data, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
