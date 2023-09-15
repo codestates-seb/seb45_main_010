@@ -1,6 +1,11 @@
-import React, { MouseEvent } from 'react';
+import React, { MouseEvent, useEffect, useState } from 'react';
 import { Menu, MenuHandler, Button, MenuList, MenuItem } from '@material-tailwind/react';
 import { BsXCircle } from 'react-icons/bs';
+import { useAppDispatch, useAppSelector } from 'hooks/hooks';
+import { getRegionsList, getSubjectList } from 'redux/thunk/SearchListThink';
+import { selectSubject } from 'redux/slice/SubjectSlice';
+import { regionsListType, subjectListType } from 'Types/Types';
+import { selectRegion } from 'redux/slice/RegionsSlice';
 
 type props = {
   regionsList: string[];
@@ -10,6 +15,24 @@ type props = {
 };
 
 const SearchSelect = ({ regionsList, subjectList, setSubjectList, setRegionsList }: props) => {
+  const dispatch = useAppDispatch();
+  const subject = useAppSelector(selectSubject);
+  const region = useAppSelector(selectRegion);
+  const [subjects, setSubjects] = useState<subjectListType[] | undefined>([]);
+  const [regions, setRegions] = useState<regionsListType[] | undefined>([]);
+
+  useEffect(() => {
+    dispatch(getSubjectList());
+    dispatch(getRegionsList());
+  }, []);
+
+  useEffect(() => {
+    if (subject.status === 'fulfilled') {
+      setSubjects(subject.value.subjects);
+      setRegions(region.value.regions);
+    }
+  }, [subject, region]);
+
   const handlerSubjectList = (e: MouseEvent) => {
     const newText: string = e.currentTarget.innerHTML;
     const newList: string[] = Array.from(new Set([...subjectList, newText]));
@@ -34,22 +57,30 @@ const SearchSelect = ({ regionsList, subjectList, setSubjectList, setRegionsList
     <>
       <article className="flex flex-col py-3 mb-4">
         <section>
-          <Menu>
-            <MenuHandler className="w-full mb-5 text-base shadow-blue-gray-200 text-blue-gray-900 bg-mint-300 hover:bg-mint-400">
-              <Button children={'과목검색'} />
+          <Menu
+            animate={{
+              mount: { y: 0, x: 70 },
+              unmount: { y: 0, x: -150 },
+            }}
+            offset={-150}
+          >
+            <MenuHandler className="w-full my-5 text-base shadow-blue-gray-200 text-blue-gray-900 bg-mint-300 hover:bg-mint-400">
+              <Button children={'지역검색'} />
             </MenuHandler>
             <MenuList>
-              <MenuItem onClick={handlerSubjectList}>수학</MenuItem>
-              <MenuItem onClick={handlerSubjectList}>국어</MenuItem>
-              <MenuItem onClick={handlerSubjectList}>영어</MenuItem>
+              {regions?.map((item) => {
+                return (
+                  <MenuItem key={item.id} onClick={handlerRegionsList} children={item.regionName} />
+                );
+              })}
             </MenuList>
           </Menu>
-          {subjectList?.map((itme, index) => {
+          {regionsList?.map((itme, index) => {
             return (
               <span
                 key={index}
                 className="relative inline-flex items-end justify-end m-1 cursor-pointer"
-                onClick={() => delSubjectList(itme)}
+                onClick={() => delRegionsList(itme)}
               >
                 <Button
                   className="py-1 pl-3 pr-6 text-sm text-left text-black bg-mint-300 rounded-2xl hover:bg-mint-400"
@@ -61,22 +92,34 @@ const SearchSelect = ({ regionsList, subjectList, setSubjectList, setRegionsList
           })}
         </section>
         <section>
-          <Menu>
-            <MenuHandler className="w-full my-5 text-base shadow-blue-gray-200 text-blue-gray-900 bg-mint-300 hover:bg-mint-400">
-              <Button children={'지역검색'} />
+          <Menu
+            animate={{
+              mount: { y: 0, x: 70 },
+              unmount: { y: 0, x: -150 },
+            }}
+            offset={5}
+          >
+            <MenuHandler className="w-full mb-5 text-base shadow-blue-gray-200 text-blue-gray-900 bg-mint-300 hover:bg-mint-400">
+              <Button children={'과목검색'} />
             </MenuHandler>
             <MenuList>
-              <MenuItem onClick={handlerRegionsList}>중구</MenuItem>
-              <MenuItem onClick={handlerRegionsList}>송파구</MenuItem>
-              <MenuItem onClick={handlerRegionsList}>강남구</MenuItem>
+              {subjects?.map((item) => {
+                return (
+                  <MenuItem
+                    key={item.id}
+                    onClick={handlerSubjectList}
+                    children={item.subjectName}
+                  />
+                );
+              })}
             </MenuList>
           </Menu>
-          {regionsList?.map((itme, index) => {
+          {subjectList?.map((itme, index) => {
             return (
               <span
                 key={index}
                 className="relative inline-flex items-end justify-end m-1 cursor-pointer"
-                onClick={() => delRegionsList(itme)}
+                onClick={() => delSubjectList(itme)}
               >
                 <Button
                   className="py-1 pl-3 pr-6 text-sm text-left text-black bg-mint-300 rounded-2xl hover:bg-mint-400"

@@ -22,8 +22,8 @@ const SearchForm = ({ regionsList, subjectList, handlerSearch }: props) => {
     e.preventDefault();
     handlerSearch();
     search.teacherName = inputText;
-    search.regions = regionsList;
-    search.subject = subjectList;
+    search.regionsNames = regionsList;
+    search.subjectNames = subjectList;
     dispatch(getData(search));
     nav('/');
   };
