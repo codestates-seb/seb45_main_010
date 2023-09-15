@@ -5,6 +5,8 @@ import { useAppDispatch, useAppSelector } from 'hooks/hooks';
 import { useState, useEffect } from 'react';
 import { FetchRequestInfo, updateRequestStatus } from 'redux/thunk/RequestThunks';
 import { unwrapResult } from '@reduxjs/toolkit';
+import ReactDOM from 'react-dom';
+
 
 type InfoModalProps = {
   teacher: boolean;
@@ -150,6 +152,81 @@ const InfoModal: React.FC<InfoModalProps> = ({ teacher, matchId, open, setOpen }
               ) : (
                 <>
                   {status === 'MATCH_REQUEST' && (
+          {ReactDOM.createPortal(
+            <Dialog
+              size="xs"
+              open={open}
+              handler={handleOpen}
+              className="p-2 bg-mint-200 overflow-y-scroll max-h-[660px]"
+            >
+              <DialogHeader className="p-2 text-sm ">요청 과목</DialogHeader>
+              <section className="flex items-center bg-mint-300 rounded-2xl ">
+                {requestDetails.matchSubjects.map((item) => (
+                  <CategoryDiv key={item} category={item}></CategoryDiv>
+                ))}
+              </section>
+              <DialogHeader className="p-2 text-sm">요청 날짜</DialogHeader>
+              <section className="flex items-center bg-mint-300 rounded-2xl">
+                <CategoryDiv
+                  category={`${requestDetails.date}   |   ${requestDetails.timeslot}`}
+                ></CategoryDiv>
+              </section>
+              <DialogHeader className="p-2 text-sm">이름</DialogHeader>
+              <section className="flex bg-mint-300 rounded-2xl">
+                <span className="flex items-center h-[45px] px-3">
+                  {teacher ? requestDetails.studentName : requestDetails.teacherName}
+                </span>
+              </section>
+              {teacher ? (
+                <>
+                  <DialogHeader className="p-2 text-sm">연락처</DialogHeader>
+                  <section className="flex items-center bg-mint-300 rounded-2xl">
+                    <span className="flex items-center h-[45px] px-3">
+                      {requestDetails.studentPhone}
+                    </span>
+                  </section>
+                  <DialogHeader className="p-2 text-sm">이메일</DialogHeader>
+                  <section className="flex items-center bg-mint-300 rounded-2xl">
+                    <span className="flex items-center h-[45px] px-3">
+                      {requestDetails.studentEmail}
+                    </span>
+                  </section>
+                </>
+              ) : (
+                <>
+                  <DialogHeader className="p-2 text-sm">온/오프라인</DialogHeader>
+                  <section className="flex items-center bg-mint-300 rounded-2xl">
+                    {requestDetails.online ? (
+                      <CategoryDiv category="온라인" />
+                    ) : (
+                      <CategoryDiv category="오프라인" />
+                    )}
+                  </section>
+                  <DialogHeader className="p-2 text-sm">지역</DialogHeader>
+                  <section className="flex items-center bg-mint-300 rounded-2xl">
+                    {requestDetails.matchRegions.map((item) => (
+                      <CategoryDiv key={item} category={item}></CategoryDiv>
+                    ))}
+                  </section>
+                </>
+              )}
+              <DialogHeader className="p-2 text-sm">특이사항</DialogHeader>
+              <section className="flex items-center bg-mint-300 rounded-2xl">
+                <span className="h-[100px] flex py-3 px-3">{requestDetails.remarks}</span>
+              </section>
+              <DialogFooter className="p-2">
+                {teacher ? (
+                  <>
+                    {status !== 'MATCH_REQUEST' && (
+                      <Button
+                        variant="text"
+                        color="red"
+                        onClick={handleAccept}
+                        className="p-2 mx-3 my-1 text-black rounded-full bg-mint-300"
+                      >
+                        <span>수락하기</span>
+                      </Button>
+                    )}
                     <Button
                       variant="gradient"
                       color="green"
@@ -163,6 +240,27 @@ const InfoModal: React.FC<InfoModalProps> = ({ teacher, matchId, open, setOpen }
               )}
             </DialogFooter>
           </Dialog>
+                      <span>거절하기</span>
+                    </Button>
+                  </>
+                ) : (
+                  <>
+                    {status === 'MATCH_REQUEST' && (
+                      <Button
+                        variant="gradient"
+                        color="green"
+                        onClick={handleCancel}
+                        className="p-2 mx-3 my-1 text-black rounded-full bg-mint-300"
+                      >
+                        <span>취소하기</span>
+                      </Button>
+                    )}
+                  </>
+                )}
+              </DialogFooter>
+            </Dialog>,
+            document.getElementById('portal-root') as Element
+          )}
         </>
       ) : null}
     </>

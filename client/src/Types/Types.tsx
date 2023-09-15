@@ -4,10 +4,10 @@ export type User = {
   password: string;
   teacher: boolean;
   id: number;
-  phoneNumber: string;
+  phone: string;
   regions: string[];
   subjects: string[];
-  profileImg: string;
+  profileImg: string | null;
   introduction: string;
   lectureFee: string;
   career: string;
@@ -17,6 +17,7 @@ export type User = {
   offLine: boolean;
   oauth: boolean;
   address: string;
+  option: string | null;
   matches: string[];
 };
 
@@ -29,21 +30,25 @@ export type StudentType = Omit<
 
 export type CommonUserType = Pick<
   User,
-  'name' | 'email' | 'teacher' | 'id' | 'phoneNumber' | 'profileImg' | 'oauth'
+  'name' | 'email' | 'teacher' | 'id' | 'phone' | 'profileImg' | 'oauth'
 >;
 
-export type PrivateType = Pick<User, 'profileImg' | 'name' | 'email' | 'password' | 'phoneNumber'>;
+export type PrivateType = Pick<User, 'profileImg' | 'name' | 'email' | 'password' | 'phone'>;
 
 export type LoginType = Pick<User, 'email' | 'password'>;
 
 export type ListPageType = Pick<
   User,
-  'name' | 'subjects' | 'regions' | 'onLine' | 'offLine' | 'profileImg'
->[];
+  'id' | 'name' | 'subjects' | 'regions' | 'onLine' | 'offLine' | 'profileImg'
+>;
 
 export type DetailType = Pick<
   User,
+  | 'id'
+  | 'email'
   | 'name'
+  | 'teacher'
+  | 'phone'
   | 'profileImg'
   | 'onLine'
   | 'offLine'
@@ -53,6 +58,7 @@ export type DetailType = Pick<
   | 'introduction'
   | 'lectureFee'
   | 'career'
+  | 'option'
 >;
 
 export type RequestInfoType = {
@@ -90,10 +96,25 @@ export type footerType = {
   }[];
 };
 
-export type TimeSlotType = { schedule: string; timeslots: string[] };
+export type ScheduleType = { date: string; timeslots: string[] };
 
-export type ScheduleType = { id: number; schedule: TimeSlotType[] };
+export type ScheduleObjType = {
+  teacherId: number;
+  schedules: ScheduleType[];
+};
 
+// export type ScheduleArrayType = {
+//   teacherId: number;
+//   schedules: ScheduleObjType[];
+// }[];
+
+export type SearchType = {
+  teacherName: string;
+  subject: string[];
+  regions: string[];
+  size: number;
+  page: number;
+};
 export type ScheduleArrayType = {
   id: number;
   schedule: ScheduleType[];

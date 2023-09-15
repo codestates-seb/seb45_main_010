@@ -84,8 +84,13 @@
       "password": "test1234",
       "teacher": false,
       "id": "yHPHHwR",
-      "area": ["강동", "강남"],
-      "category": ["국어"],
+      "area": [
+        "강동",
+        "강남"
+      ],
+      "category": [
+        "국어"
+      ],
       "classMethod": {
         "onLine": true,
         "offLine": true
@@ -97,21 +102,27 @@
         {
           "id": "usMU8Hr7",
           "name": "홍길동",
-          "requestcategory": ["수학"],
+          "requestcategory": [
+            "수학"
+          ],
           "note": "수업요청",
           "date": "2023.09.01"
         },
         {
           "id": "usMU8Hr8",
           "name": "홍나라",
-          "requestcategory": ["국어"],
+          "requestcategory": [
+            "국어"
+          ],
           "note": "답변완료",
           "date": "2023.09.01"
         },
         {
           "id": "usMU8Hr9",
           "name": "김뚱땅",
-          "requestcategory": ["과학"],
+          "requestcategory": [
+            "과학"
+          ],
           "note": "취소완료",
           "date": "2023.09.01"
         }
@@ -125,8 +136,14 @@
       "password": "test1234",
       "teacher": true,
       "id": 1,
-      "area": ["서울", "강남"],
-      "category": ["수학", "과학"],
+      "area": [
+        "서울",
+        "강남"
+      ],
+      "category": [
+        "수학",
+        "과학"
+      ],
       "classMethod": {
         "onLine": true,
         "offLine": false
@@ -139,27 +156,33 @@
         {
           "id": "usMU8Hr1",
           "name": "홍길동",
-          "requestcategory": ["수학"],
+          "requestcategory": [
+            "수학"
+          ],
           "note": "수업요청",
           "date": "2023.09.01"
         },
         {
           "id": "usMU8Hr2",
           "name": "홍나라",
-          "requestcategory": ["국어"],
+          "requestcategory": [
+            "국어"
+          ],
           "note": "답변완료",
           "date": "2023.09.01"
         },
         {
           "id": "usMU8Hr3",
           "name": "김뚱땅",
-          "requestcategory": ["과학"],
+          "requestcategory": [
+            "과학"
+          ],
           "note": "취소완료",
           "date": "2023.09.01"
         }
       ],
       "onLine": true,
-      "offLine": false
+      "offLine": true
     },
     {
       "name": "김뚱땅",
@@ -167,8 +190,13 @@
       "password": "test1234",
       "teacher": false,
       "id": 2,
-      "area": ["강동", "강남"],
-      "category": ["국어"],
+      "area": [
+        "강동",
+        "강남"
+      ],
+      "category": [
+        "국어"
+      ],
       "classMethod": {
         "onLine": true,
         "offLine": true
@@ -179,21 +207,27 @@
         {
           "id": "usMU8Hr7",
           "name": "홍길동",
-          "requestcategory": ["수학"],
+          "requestcategory": [
+            "수학"
+          ],
           "note": "수업요청",
           "date": "2023.09.01"
         },
         {
           "id": "usMU8Hr8",
           "name": "홍나라",
-          "requestcategory": ["국어"],
+          "requestcategory": [
+            "국어"
+          ],
           "note": "답변완료",
           "date": "2023.09.01"
         },
         {
           "id": "usMU8Hr9",
           "name": "김뚱땅",
-          "requestcategory": ["과학"],
+          "requestcategory": [
+            "과학"
+          ],
           "note": "취소완료",
           "date": "2023.09.01"
         }
@@ -205,8 +239,13 @@
       "password": "test1234",
       "teacher": true,
       "id": 3,
-      "area": ["강동", "강남"],
-      "category": ["국어"],
+      "area": [
+        "강동",
+        "강남"
+      ],
+      "category": [
+        "국어"
+      ],
       "classMethod": {
         "onLine": true,
         "offLine": true
@@ -231,21 +270,27 @@
       {
         "id": "usMU8Hr1",
         "name": "홍길동",
-        "requestcategory": ["수학"],
+        "requestcategory": [
+          "수학"
+        ],
         "note": "수업요청",
         "date": "2023.09.01"
       },
       {
         "id": "usMU8Hr2",
         "name": "홍나라",
-        "requestcategory": ["국어"],
+        "requestcategory": [
+          "국어"
+        ],
         "note": "답변완료",
         "date": "2023.09.01"
       },
       {
         "id": "usMU8Hr3",
         "name": "김뚱땅",
-        "requestcategory": ["과학"],
+        "requestcategory": [
+          "과학"
+        ],
         "note": "취소완료",
         "date": "2023.09.01"
       }
@@ -256,12 +301,46 @@
       "id": 1,
       "date": [
         {
-          "date": "2023-09-13",
-          "timeslots": ["오전 02:00~오전 03:00", "오전 03:00~오전 04:00"]
+          "date": "2023-09-27",
+          "timeslots": [
+            "오전 05:00~오전 06:00"
+          ]
         },
         {
-          "date": "2023-09-15",
-          "timeslots": ["오후 02:00~오후 03:00", "오후 03:00~오후 04:00"]
+          "date": "2023-09-28",
+          "timeslots": [
+            "오전 01:00~오전 02:00",
+            "오전 03:00~오전 04:00"
+          ]
+        },
+        {
+          "date": "2023-09-20",
+          "timeslots": [
+            "오전 02:00~오전 03:00"
+          ]
+        },
+        {
+          "date": "2023-09-21",
+          "timeslots": [
+            "오전 05:00~오전 06:00",
+            "오전 07:00~오전 08:00",
+            "오전 10:00~오전 11:00",
+            "오후 04:00~오후 05:00",
+            "오전 03:00~오전 04:00"
+          ]
+        },
+        {
+          "date": "2023-09-26",
+          "timeslots": [
+            "오전 01:00~오전 02:00",
+            "오전 03:00~오전 04:00"
+          ]
+        },
+        {
+          "date": "2023-09-19",
+          "timeslots": [
+            "오전 05:00~오전 06:00"
+          ]
         }
       ]
     },
@@ -270,11 +349,17 @@
       "date": [
         {
           "date": "2023-09-13",
-          "timeslots": ["오전 02:00~오전 03:00", "오전 03:00~오전 04:00"]
+          "timeslots": [
+            "오전 02:00~오전 03:00",
+            "오전 03:00~오전 04:00"
+          ]
         },
         {
           "date": "2023-09-15",
-          "timeslots": ["오후 02:00~오후 03:00", "오후 03:00~오후 04:00"]
+          "timeslots": [
+            "오후 02:00~오후 03:00",
+            "오후 03:00~오후 04:00"
+          ]
         }
       ]
     }
