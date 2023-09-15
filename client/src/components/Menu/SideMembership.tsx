@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { List, ListItem, Typography } from '@material-tailwind/react';
 import { AiOutlineUser, AiOutlineUserAdd } from 'react-icons/ai';
+import { useAppDispatch, useAppSelector } from 'hooks/hooks';
 import { Link } from 'react-router-dom';
+import { RootState } from 'redux/store';
+import { handleLogout } from '../Auth/logoutUtils';
 
 type props = {
   handlerMenu: () => void;
@@ -9,16 +12,25 @@ type props = {
 
 const SideMembership = ({ handlerMenu }: props) => {
   const [isLogin, setIsLogin] = useState<boolean>(false);
-
+  const dispatch = useAppDispatch();
   const handlerLogin = (): void => {
     setIsLogin(!isLogin);
     handlerMenu();
   };
 
+  const handleLogoutClick = () => {
+    handleLogout(dispatch);
+  };
+
+  const userInfo = useAppSelector((state) => state.member);
+
   return (
     <>
-      {isLogin ? (
-        <List className="grid items-center grid-cols-2 p-4 border-b-2 border-gray-3">
+      {userInfo.user.id ? (
+        <List
+          className="grid items-center grid-cols-2 p-4 border-b-2 border-gray-3"
+          onClick={handleLogoutClick}
+        >
           <ListItem className="flex items-center justify-center">
             <AiOutlineUser className="mr-2 text-xl" />
             <Link to={'/'} onClick={handlerLogin}>
