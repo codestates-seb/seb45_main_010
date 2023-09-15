@@ -5,8 +5,7 @@ import { handleLogout } from './logoutUtils';
 import { RootState } from 'redux/store';
 
 export const Logout = () => {
-  const isAuthenticated = useAppSelector((state: RootState) => state.auth.isAuthenticated);
-  const isDisabled = !isAuthenticated;
+  const userDetails = useAppSelector((state) => state.member.user);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const handleLogoutClick = () => {
@@ -15,9 +14,11 @@ export const Logout = () => {
   };
   return (
     <div>
-      <Button onClick={handleLogoutClick} disabled={isDisabled} className="bg-blue-1">
-        Logout
-      </Button>
+      {userDetails.id && (
+        <Button onClick={handleLogoutClick} className="bg-blue-1">
+          Logout
+        </Button>
+      )}
     </div>
   );
 };
