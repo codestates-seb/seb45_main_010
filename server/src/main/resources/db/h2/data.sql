@@ -36,3 +36,6 @@ INSERT INTO region (region_name) VALUES ('은평구');
 INSERT INTO region (region_name) VALUES ('종로구');
 INSERT INTO region (region_name) VALUES ('중구');
 INSERT INTO region (region_name) VALUES ('중랑구');
+
+INSERT INTO teacher (created_at, address, career, email, introduction, last_login_at, last_modified_at, lecture_fee, name, is_oauth, off_line, on_line, option, password, phone, profile_img, status) VALUES ('2023-09-15 17:29:11.481138',	null,	null,	'teacher@gmail.com',	null,	null,	'2023-09-15 17:29:11.45939',	null,	'홍길동',	FALSE,	FALSE,	FALSE,	null,	'{bcrypt}$2a$10$JUfnVYxPWCgPhU/wHiP2Seuq15FDlPyLs9H.Rhw27E975Xbju8BQm',	null,	null,	0);
+INSERT INTO teacher (created_at, address, career, email, introduction, last_login_at, last_modified_at, lecture_fee, name, is_oauth, off_line, on_line, option, password, phone, profile_img, status) VALUES ('2023-09-15 17:39:15.426081',	null,	null,	'teacher2@gmail.com',	null,	null,	'2023-09-15 17:39:15.40705',	null,	'임꺽정',	FALSE,	FALSE,	FALSE,	null,	'{bcrypt}$2a$10$NbG3mr4Qu8nTV5QOx55ycumkRJeGi0iagK9IqZToTPXE0F.ryCisG',	null,	null,	0);

@@ -95,7 +95,7 @@ public class SecurityConfiguration {
                         .antMatchers(HttpMethod.PATCH, "/matches").hasAnyRole("TEACHER","STUDENT")
                         .antMatchers(HttpMethod.PATCH, "/schedules").hasRole("TEACHER")
                         .antMatchers(HttpMethod.GET, "/schedules").permitAll()
-                        .anyRequest().denyAll()
+                        .anyRequest().permitAll() // denyAll()하면 되는데 h2 DB 접속이 안 되서 일단..
                 )
 
         ;
