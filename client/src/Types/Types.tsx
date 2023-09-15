@@ -12,7 +12,7 @@ export type User = {
   lectureFee: string;
   career: string;
   lessonOption: string;
-  schedule: { date: string; timeslots: string[] }[];
+  matches: { date: string; timeslots: string[] }[];
   onLine: boolean;
   offLine: boolean;
   oauth: boolean;
@@ -24,7 +24,7 @@ export type TeacherType = Omit<User, 'password'>;
 
 export type StudentType = Omit<
   User,
-  'password' | 'schedule' | 'onLine' | 'offLine' | 'lectureFee' | 'career' | 'lessonOption'
+  'password' | 'matches' | 'onLine' | 'offLine' | 'lectureFee' | 'career' | 'lessonOption'
 >;
 
 export type CommonUserType = Pick<
@@ -53,7 +53,7 @@ export type DetailType = Pick<
   | 'offLine'
   | 'subjectNames'
   | 'regionsNames'
-  | 'schedule'
+  | 'matches'
   | 'introduction'
   | 'lectureFee'
   | 'career'
@@ -65,7 +65,7 @@ export type RequestType = {
   name: string;
   requestcategory: string[];
   note: string;
-  schedule: string;
+  matches: string;
 };
 
 export type footerType = {
@@ -77,13 +77,13 @@ export type footerType = {
   }[];
 };
 
-export type TimeSlotType = { schedule: string; timeslots: string[] };
+export type TimeSlotType = { matches: string; timeslots: string[] };
 
-export type ScheduleType = { id: number; schedule: TimeSlotType[] };
+export type ScheduleType = { id: number; matches: TimeSlotType[] };
 
 export type ScheduleArrayType = {
   id: number;
-  schedule: ScheduleType[];
+  matches: ScheduleType[];
 }[];
 
 export type SearchType = Pick<User, 'subjectNames' | 'regionsNames'> & {

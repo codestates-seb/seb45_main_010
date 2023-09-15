@@ -18,8 +18,8 @@ const SearchSelect = ({ regionsList, subjectList, setSubjectList, setRegionsList
   const dispatch = useAppDispatch();
   const subject = useAppSelector(selectSubject);
   const region = useAppSelector(selectRegion);
-  const [subjects, setSubjects] = useState<subjectListType[] | undefined>([]);
-  const [regions, setRegions] = useState<regionsListType[] | undefined>([]);
+  const [subjects, setSubjects] = useState<subjectListType[]>([]);
+  const [regions, setRegions] = useState<regionsListType[]>([]);
 
   useEffect(() => {
     dispatch(getSubjectList());

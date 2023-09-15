@@ -6,17 +6,14 @@ import { getSubjectList } from 'redux/thunk/SearchListThink';
 type initialStateType = {
   status: string;
   value: {
-    subjects: subjectListType;
+    subjects: subjectListType[];
   };
 };
 
 const initialState: initialStateType = {
   status: '',
   value: {
-    subjects: {
-      id: 0,
-      subjectName: '',
-    },
+    subjects: [],
   },
 };
 

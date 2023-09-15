@@ -6,17 +6,14 @@ import { getRegionsList } from 'redux/thunk/SearchListThink';
 type initialStateType = {
   status: string;
   value: {
-    regions: regionsListType;
+    regions: regionsListType[];
   };
 };
 
 const initialState: initialStateType = {
   status: '',
   value: {
-    regions: {
-      id: 0,
-      regionsName: '',
-    },
+    regions: [],
   },
 };
 
