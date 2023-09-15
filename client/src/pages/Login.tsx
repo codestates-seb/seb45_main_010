@@ -29,6 +29,7 @@ const Login: React.FC = () => {
 
   const autoLogin = async () => {
     const result = await dispatch(authenticateUser());
+    console.log(result);
     if (result.payload) {
       await dispatch(fetchUserDetails(result.payload));
     }
