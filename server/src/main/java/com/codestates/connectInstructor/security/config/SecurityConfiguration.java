@@ -13,7 +13,9 @@ import com.codestates.connectInstructor.security.oauth2.service.CustomOauth2Serv
 import com.codestates.connectInstructor.security.utils.CustomAuthorityUtils;
 import com.codestates.connectInstructor.student.repository.StudentRepository;
 import com.codestates.connectInstructor.student.service.StudentService;
+import com.codestates.connectInstructor.teacher.repository.TeacherRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -40,15 +42,20 @@ public class SecurityConfiguration {
     private final StudentRepository studentRepository;
     private final StudentService studentService;
     private final ClientRegistrationRepository clientRegistrationRepository;
+    private final ApplicationEventPublisher publisher;
+    private final TeacherRepository teacherRepository;
 
     @Autowired
     public SecurityConfiguration(JwtTokenizer jwtTokenizer,
-                                 CustomAuthorityUtils authorityUtils, StudentRepository studentRepository, StudentService studentService, ClientRegistrationRepository clientRegistrationRepository) {
+                                 CustomAuthorityUtils authorityUtils, StudentRepository studentRepository, StudentService studentService, ClientRegistrationRepository clientRegistrationRepository, ApplicationEventPublisher publisher, TeacherRepository teacherRepository) {
         this.jwtTokenizer = jwtTokenizer;
         this.authorityUtils = authorityUtils;
         this.studentRepository = studentRepository;
         this.studentService = studentService;
         this.clientRegistrationRepository = clientRegistrationRepository;
+        this.publisher = publisher;
+
+        this.teacherRepository = teacherRepository;
     }
 
     @Bean
@@ -57,11 +64,13 @@ public class SecurityConfiguration {
                 .headers().frameOptions().sameOrigin()
                 .and()
                 .oauth2Login(oauth2 -> oauth2
-                        .successHandler(new OAuth2SuccessHandler(studentRepository, authorityUtils, jwtTokenizer))
+                        .successHandler(new OAuth2SuccessHandler(studentRepository, authorityUtils, jwtTokenizer, publisher, teacherRepository))
                         .failureHandler(new OAuth2FailureHandler())
                         .userInfoEndpoint(user -> user.userService(new CustomOauth2Service(studentRepository, studentService, authorityUtils)))
 //                        .authorizationEndpoint(authorizationEndpoint -> authorizationEndpoint
-//                                .authorizationRequestResolver(new CustomRequestResolver(clientRegistrationRepository, "/oauth2/authorize-client")))
+//                                .authorizationRequestResolver(new CustomRequestResolver(defaul)))
+//                                .authorizationEndpoint()
+//                                .authorizationRequestResolver(auth2AuthorizationRequestResolver())
                         )
                 .csrf().disable()
                 .cors(Customizer.withDefaults())
@@ -99,6 +108,14 @@ public class SecurityConfiguration {
         source.registerCorsConfiguration("/**", configuration);
         return source;
     }
+
+//    @Bean
+//    public OAuth2AuthorizationRequestResolver auth2AuthorizationRequestResolver() {
+//        OAuth2AuthorizationRequestResolver resolver = new DefaultOAuth2AuthorizationRequestResolver(clientRegistrationRepository,
+//                OAuth2AuthorizationRequestRedirectFilter.DEFAULT_AUTHORIZATION_REQUEST_BASE_URI);
+//
+//        return new CustomRequestResolver(resolver);
+//    }
 
 
     public class CustomFilterConfigurer extends AbstractHttpConfigurer<CustomFilterConfigurer, HttpSecurity> {
