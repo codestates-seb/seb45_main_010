@@ -35,11 +35,6 @@ public class CustomOauth2Service implements OAuth2UserService<OAuth2UserRequest,
 
     @Override
     public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
-        log.info("load User 호출 성공");
-
-//        if (userRequest.getAdditionalParameters().get("memberType").equals("student")) {
-//            log.info("학생이다!!!!!");
-//        }
 
         OAuth2UserService<OAuth2UserRequest, OAuth2User> delegate = new DefaultOAuth2UserService();
         OAuth2User user = delegate.loadUser(userRequest);
@@ -48,35 +43,17 @@ public class CustomOauth2Service implements OAuth2UserService<OAuth2UserRequest,
         String oauthType = userRequest.getClientRegistration().getRegistrationId();
         String userNameAttributeName = userRequest.getClientRegistration().getProviderDetails().getUserInfoEndpoint().getUserNameAttributeName();
 
-
-        String email = new String();
-
-        if (oauthType.toLowerCase().equals("kakao")) {
-            email = ((Map<String, Object>) attributes.get("kakao_account")).get("email").toString();
-        }
-
-        Optional<Student> optionalStudent = studentRepository.findByEmail(email);
-        Student student = new Student();
-
-        if (optionalStudent.isEmpty()) {
-            student.setEmail(email);
-            student.setRoles(authorityUtils.getSTUDENT_ROLES_STRING());
-            student.setOauth(true);
-            student.setName(((Map<String, Object>)((Map<String, Object>) attributes.get("kakao_account")).get("profile")).get("nickname").toString());
-            student.setProfileImg(((Map<String, Object>)((Map<String, Object>) attributes.get("kakao_account")).get("profile")).get("profile_image_url").toString());
-
-            student = studentService.createStudent(student);
-        }
-        else {
-            student = optionalStudent.get();
-        }
+        String email = ((Map<String, Object>) attributes.get("kakao_account")).get("email").toString();
+        String name = ((Map<String, Object>)((Map<String, Object>) attributes.get("kakao_account")).get("profile")).get("nickname").toString();
+        String profileImg = ((Map<String, Object>)((Map<String, Object>) attributes.get("kakao_account")).get("profile")).get("profile_image_url").toString();
 
         return new CustomOAuth2User(
                 Collections.singleton(authorityUtils.getSTUDENT_ROLES().get(0)),
                 attributes,
                 userNameAttributeName,
-                student.getEmail(),
-                student.getName()
+                email,
+                name,
+                profileImg
         );
     }
 }

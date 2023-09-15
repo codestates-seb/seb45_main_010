@@ -29,7 +29,7 @@ public class Teacher extends Auditable implements Member {
     @Column(nullable = false, unique = true, updatable = false)
     private String email;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String password;
 
     @Column(nullable = false, length = 30)

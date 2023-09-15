@@ -6,61 +6,63 @@
 //import org.springframework.security.oauth2.client.web.OAuth2AuthorizationRequestResolver;
 //import org.springframework.security.oauth2.core.endpoint.OAuth2AuthorizationRequest;
 //import org.springframework.stereotype.Component;
+//import org.springframework.web.util.UriComponentsBuilder;
 //
 //import javax.servlet.http.HttpServletRequest;
 //import java.util.HashMap;
 //import java.util.Map;
+//import java.util.UUID;
 //
 //@Slf4j
 //public class CustomRequestResolver implements OAuth2AuthorizationRequestResolver {
 //    private OAuth2AuthorizationRequestResolver defaultResolver;
+//    private static final String CUSTOM_PARAM = "role";
 //
-//    public CustomRequestResolver(
-//            ClientRegistrationRepository repo, String authorizationRequestBaseUri
-//    ) {
-//
-//        defaultResolver = new DefaultOAuth2AuthorizationRequestResolver(repo, authorizationRequestBaseUri);
+//    public CustomRequestResolver (OAuth2AuthorizationRequestResolver defaultResolver) {
+//        this.defaultResolver = defaultResolver;
 //    }
 //
 //    @Override
 //    public OAuth2AuthorizationRequest resolve(HttpServletRequest request) {
-//        //짐작가는 이유 찾음 defaultResolver로 푸니까 현재 공급자를 kakaostudent로 인식해서 resolve가 안되니까 null이 리턴됨
+//        OAuth2AuthorizationRequest authorizationRequest = this.defaultResolver.resolve(request);
 //
-//
-//        OAuth2AuthorizationRequest req = defaultResolver.resolve(request);
-//
-//        String pathInfo = request.getRequestURI();
-//
-//        log.info("pathInfo : {}", pathInfo);
-//
-//
-//        String registrationId = pathInfo.substring(pathInfo.lastIndexOf("/") + 1);
-//
-//        log.info("registrationId : {}", registrationId);
-//
-//        Map<String, Object> additionalParameters = new HashMap<>();
-//
-//        if ("kakaostudent".equals(registrationId)) {
-//            additionalParameters.put("memberType", "student");
-//
-//        } else if ("kakaoteacher".equals(registrationId)) {
-//            additionalParameters.put("memberType", "teacher");
-//        } else {
-//            return req;
-//        }
-//
-//
-//        OAuth2AuthorizationRequest customReq = OAuth2AuthorizationRequest
-//                .from(req)
-//                .clientId("kakao")
-//                .additionalParameters(additionalParameters)
-//                .build();
-//
-//        return customReq;
+//        return processAdditionalParameters(authorizationRequest);
 //    }
 //
 //    @Override
 //    public OAuth2AuthorizationRequest resolve(HttpServletRequest request, String clientRegistrationId) {
-//        return defaultResolver.resolve(request, clientRegistrationId);
+//        OAuth2AuthorizationRequest authorizationRequest = this.defaultResolver.resolve(request, clientRegistrationId);
+//
+//        return processAdditionalParameters(authorizationRequest);
 //    }
+//
+//    private OAuth2AuthorizationRequest processAdditionalParameters(OAuth2AuthorizationRequest authorizationRequest) {
+//        if (authorizationRequest == null) return null;
+//
+//        String redirectUri = UriComponentsBuilder
+//                .fromUriString(authorizationRequest.getRedirectUri())
+////                .queryParams(CUSTOM_PARAM, UUID.randomUUID())
+//                .build(true).toUriString();
+//
+//        String test = authorizationRequest.getState();
+//        log.info("{}", test);
+////
+////        String test2 =
+////                authorizationRequest.getAdditionalParameters().get("role").toString();
+////
+////        if (test2 != null) log.info("role {}", test2);
+//
+////                authorizationRequest.getAdditionalParameters().get("role").toString(); null
+//
+////                authorizationRequest.getAuthorizationUri();
+////        https://kauth.kakao.com/oauth/authorize
+//
+////                authorizationRequest.getAuthorizationRequestUri();
+////        https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=21c47a1414c2f59aa53b7b7fc02ed513&scope=profile_nickname%20profile_image%20account_email&state=R7wCpbdai__Vg_LwalRhUjBAMGUHBI76qOQGP9HdC1k%3D&redirect_uri=http://localhost:8080/login/oauth2/code/kakao
+//
+////        log.info("test2 {}", test2);
+//
+//        return OAuth2AuthorizationRequest.from(authorizationRequest).redirectUri(redirectUri).build();
+//    }
+//
 //}
