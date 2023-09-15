@@ -10,6 +10,7 @@ import {
   updateIntroduction,
   updateRegions,
   updateSubjects,
+  updateRequestStatus,
 } from 'redux/thunk/ProfilePageThunk';
 import { createSlice } from '@reduxjs/toolkit';
 
@@ -30,7 +31,16 @@ type initialStateType = {
     subjects: string[];
     teacher: boolean;
     userId: number;
-    matches: MatchType[];
+    matches: [
+      {
+        matchId: 0;
+        schedule: '';
+        status: '';
+        studentName: '';
+        subjects: [];
+        teacherName: '';
+      },
+    ];
   };
   error: string | null;
 };
@@ -52,7 +62,9 @@ const initialState: initialStateType = {
     profileImg: '',
     regions: [],
     subjects: [],
-    matches: [{ matchId: 0, schedule: '', status: '', studentName: '', subjects: [] }],
+    matches: [
+      { matchId: 0, schedule: '', status: '', studentName: '', subjects: [], teacherName: '' },
+    ],
   },
   error: null,
 };
@@ -125,6 +137,16 @@ export const ProfileSlice = createSlice({
       .addCase(updateIntroduction.fulfilled, (state, action) => {
         if (state.value) {
           state.value.introduction = action.payload.introduction;
+        }
+      })
+      .addCase(updateRequestStatus.fulfilled, (state, action) => {
+        if (state.value) {
+          const match = state.value.matches.find(
+            (match) => match.matchId === action.payload.matchId
+          );
+          if (match) {
+            match.status = action.payload.status;
+          }
         }
       });
   },

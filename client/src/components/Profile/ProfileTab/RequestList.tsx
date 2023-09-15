@@ -1,8 +1,9 @@
 import { Button } from '@material-tailwind/react';
 import NoRequestStatus from 'components/Items/NoRequestStatus';
 import InfoModal from 'components/Modal/InfoModal';
+import useStatusTranslator from 'hooks/useStatusTranslator';
 import { useState } from 'react';
-import { MatchType } from 'Types/Types';
+import { MatchType, StatusType } from 'Types/Types';
 
 type RequestListProps = {
   teacher: boolean;
@@ -11,6 +12,8 @@ type RequestListProps = {
 
 const RequestList: React.FC<RequestListProps> = ({ teacher, matches }) => {
   const [showModal, setShowModal] = useState(false);
+  const [selectedMatchId, setSelectedMatchId] = useState<number | null>(null); // 상태 추가
+  const translateStatus = useStatusTranslator();
   const noFn = () => {};
 
   return (
@@ -32,43 +35,48 @@ const RequestList: React.FC<RequestListProps> = ({ teacher, matches }) => {
       </div>
       {matches.length > 0 ? (
         <div>
-          {matches.map((match) => (
-            <div
-              key={`match number ${match.matchId}`}
-              onClick={() => setShowModal(true)}
-              className={`my-5 border rounded-lg w-100% ${
-                match.status === '수업요청'
-                  ? 'bg-[#BEDEF1] border-blue-3 hover:bg-blue-1 hover:border-blue-1'
-                  : 'bg-mint-200 border-[#BEDEF1] hover:bg-gray-1 hover:border-gray-1'
-              } cursor-pointer duration-300`}
-            >
-              <div className="flex flex-row items-center justify-between p-4">
-                <span className="text-[16px] font-semibold">{match.status}</span>
-                <div className="flex h-6 text-sm font-normal bg-white rounded-md">
-                  <span className="flex items-center justify-center flex-1 p-2">
-                    {match.subjects.join('| ')}
-                  </span>
-                  <span className="flex items-center justify-center flex-1 w-20 p-2">
-                    {teacher ? match.studentName : match.teacherName}
-                  </span>
+          {matches.map((match) => {
+            const { text, className } = translateStatus(match.status);
+
+            return (
+              <div
+                key={`match number ${match.matchId}`}
+                onClick={() => {
+                  setShowModal(true);
+                  setSelectedMatchId(match.matchId);
+                }}
+                className={`my-5 border rounded-lg w-100% ${className} cursor-pointer duration-300`}
+              >
+                <div className="flex flex-row items-center justify-between p-4">
+                  <span className="text-[16px] font-semibold">{text}</span>
+                  <div className="flex h-6 text-sm font-normal bg-white rounded-md">
+                    <span className="flex items-center justify-center flex-1 p-2">
+                      {match.subjects.join(' | ')}
+                    </span>
+                    <span className="flex items-center justify-center flex-1 w-20 p-2">
+                      {teacher ? match.studentName : match.teacherName}
+                    </span>
+                  </div>
+                </div>
+                <div className="flex justify-end p-4 text-right">
+                  <span>{match.schedule}</span>
                 </div>
               </div>
-              <div className="flex justify-end p-4 text-right">
-                <span>{match.schedule}</span>
-              </div>
-              <InfoModal
-                teacher={teacher}
-                matchId={match.matchId}
-                open={showModal}
-                setOpen={setShowModal}
-              />
-            </div>
-          ))}
+            );
+          })}
         </div>
       ) : (
         <>
           <NoRequestStatus teacher={teacher} onClick={noFn} />
         </>
+      )}
+      {selectedMatchId !== null && (
+        <InfoModal
+          teacher={teacher}
+          matchId={selectedMatchId}
+          open={showModal}
+          setOpen={setShowModal}
+        />
       )}
     </div>
   );

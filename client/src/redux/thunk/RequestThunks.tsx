@@ -1,13 +1,13 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { APIurl } from 'hooks/GetInfoAuth';
+import { APIurl } from 'components/Items/GetInfoAuth';
 import { ACCESSTOKEN } from 'configs/Url/config';
 import { RequestInfoType } from 'Types/Types';
 
-export const FetchRequest = createAsyncThunk<RequestInfoType[], number>(
-  'FetchRequest',
-  async (id: number) => {
-    const response = await axios.get<RequestInfoType[]>(`${APIurl}/matches/${id}`);
+export const FetchRequestInfo = createAsyncThunk<RequestInfoType, number>(
+  'FetchRequestInfo',
+  async (matchId: number) => {
+    const response = await axios.get<RequestInfoType>(`${APIurl}/matches/${matchId}`);
     const data = response.data;
     return data;
   }
