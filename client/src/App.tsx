@@ -1,7 +1,7 @@
 import { Footer } from 'components/Footer/Footer';
 import Header from 'components/Header/Header';
-import { Search } from 'components/Menu/Search/Search';
 import { Sidebar } from 'components/Menu/Sidebar';
+import { Search } from 'components/Menu/Sidebar/Search';
 import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 
