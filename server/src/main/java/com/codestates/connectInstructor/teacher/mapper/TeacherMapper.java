@@ -86,7 +86,8 @@ public interface TeacherMapper {
             response.setMatches(teacher.getMatches().stream()
                     .map(match -> new TeacherDto.MatchResponse(match.getId(),
                             match.getStudent().getName(),
-                            match.getSchedule(),
+                            match.getDate(),
+                            match.getTimeslot(),
                             match.getMatchSubjects().stream().map(matchSubject -> matchSubject.getSubject().getSubjectName()).collect(Collectors.toList()),
                             match.getStatus()))
                     .collect(Collectors.toList()));

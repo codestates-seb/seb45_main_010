@@ -1,6 +1,7 @@
 package com.codestates.connectInstructor.match.dto;
 
 import com.codestates.connectInstructor.match.entity.Match;
+import com.codestates.connectInstructor.schedule.dto.ScheduleDto;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,7 +21,7 @@ public class MatchDto {
         long teacherId;
         List<String> subjects;
         List<String> regions;
-        List<String> schedules;
+        List<ScheduleDto.Data> schedules;
         String studentName;
         String studentPhone;
         String studentEmail;
@@ -33,7 +34,8 @@ public class MatchDto {
         boolean isOnline;
         List<String> subjects;
         List<String> regions;
-        String schedule;
+        String date;
+        String timeslot;
         String studentName;
         String studentPhone;
         String studentEmail;
@@ -49,7 +51,8 @@ public class MatchDto {
         Match.MatchStatus status;
         List<String> matchSubjects;
         List<String> matchRegions;
-        String schedule;
+        String date;
+        String timeslot;
         boolean isOnline;
         String studentName;
         String studentPhone;

@@ -849,3 +849,55 @@ include::{snippets}/patch-match/response-body.adoc[]
 
 .response-fields
 include::{snippets}/patch-match/response-fields.adoc[]
+
+== ScheduleController
+=== 날짜단위 스케줄 수정
+.curl-request
+include::{snippets}/patch-schedule/curl-request.adoc[]
+
+.http-request
+include::{snippets}/patch-schedule/http-request.adoc[]
+
+.httpie-request
+include::{snippets}/patch-schedule/httpie-request.adoc[]
+
+.request-fields
+include::{snippets}/patch-schedule/request-fields.adoc[]
+
+.request-body
+include::{snippets}/patch-schedule/request-body.adoc[]
+
+.http-response
+include::{snippets}/patch-schedule/http-response.adoc[]
+
+.respons-fields
+include::{snippets}/patch-schedule/response-fields.adoc[]
+
+.response-body
+include::{snippets}/patch-schedule/response-body.adoc[]
+
+== 강사 아이디로 스케줄 조회
+
+.curl-request
+include::{snippets}/get-schedule/curl-request.adoc[]
+
+.request-parameters
+include::{snippets}/get-schedule/request-parameters.adoc[]
+
+.http-request
+include::{snippets}/get-schedule/http-request.adoc[]
+
+.httpie-request
+include::{snippets}/get-schedule/httpie-request.adoc[]
+
+.request-body
+include::{snippets}/get-schedule/request-body.adoc[]
+
+.http-response
+include::{snippets}/get-schedule/http-response.adoc[]
+
+.response-fields
+include::{snippets}/get-schedule/response-fields.adoc[]
+
+.response-body
+include::{snippets}/get-schedule/response-body.adoc[]
