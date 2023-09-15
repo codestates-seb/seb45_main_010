@@ -47,9 +47,6 @@ public class EmailService {
 
         String encrypted = jasypt.encrypt(text);
 
-        log.info("before encrypt : {}", text);
-        log.info("after encrypt : {}", encrypted);
-
         return Base64.getEncoder().encodeToString(encrypted.getBytes());
     }
 
@@ -62,9 +59,6 @@ public class EmailService {
         jasypt.setAlgorithm("PBEWITHMD5ANDDES");
 
         String decrypted = jasypt.decrypt(base64Decoded);
-
-        log.info("before decrypted : {}", encrypted);
-        log.info("after decrypted : {}", decrypted);
 
         String[] splits = decrypted.split(",,,");
 
