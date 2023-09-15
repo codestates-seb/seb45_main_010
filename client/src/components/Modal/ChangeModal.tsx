@@ -29,25 +29,19 @@ export const ChangeModal = ({
   const apiURL = 'http://ec2-3-34-116-209.ap-northeast-2.compute.amazonaws.com:8080';
   const dispatch = useAppDispatch();
 
-  console.log(userId, teacher);
-
   const handleNameChange = async (newName: string) => {
     try {
       const data = {
         id: userId,
         [changeItem]: newName,
       };
-      console.log(data);
       const accessToken = localStorage.getItem('access_jwt');
       const targetURL = `${apiURL}/${teacher === true ? 'teachers' : 'students'}/${changeItem}`;
-      const updateItems = `updateUser${changeItem}`;
-      console.log(updateItems);
       const response = await axios.patch(targetURL, data, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
       });
-      console.log(response.data);
       {
         changeItem === 'name'
           ? dispatch(updateUserName(response.data.name))

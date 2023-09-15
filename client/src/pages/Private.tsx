@@ -11,7 +11,6 @@ const Private: React.FC = () => {
   const authData = checkAuth();
   const dispatch = useAppDispatch();
   const userDetails = useAppSelector((state) => state.member.user);
-  console.log(userDetails);
 
   useEffect(() => {
     dispatch(fetchUserDetails());
