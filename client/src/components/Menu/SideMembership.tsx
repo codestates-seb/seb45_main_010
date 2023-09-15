@@ -3,7 +3,6 @@ import { List, ListItem, Typography } from '@material-tailwind/react';
 import { AiOutlineUser, AiOutlineUserAdd } from 'react-icons/ai';
 import { useAppDispatch, useAppSelector } from 'hooks/hooks';
 import { Link } from 'react-router-dom';
-import { RootState } from 'redux/store';
 import { handleLogout } from '../Auth/logoutUtils';
 
 type props = {
