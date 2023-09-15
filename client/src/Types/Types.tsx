@@ -5,8 +5,8 @@ export type User = {
   teacher: boolean;
   id: number;
   phone: string;
-  regions: string[];
-  subjects: string[];
+  regionsNames: string[];
+  subjectNames: string[];
   profileImg: string | null;
   introduction: string;
   lectureFee: string;
@@ -38,7 +38,7 @@ export type LoginType = Pick<User, 'email' | 'password'>;
 
 export type ListPageType = Pick<
   User,
-  'id' | 'name' | 'subjects' | 'regions' | 'onLine' | 'offLine' | 'profileImg'
+  'id' | 'name' | 'subjectNames' | 'regionsNames' | 'onLine' | 'offLine' | 'profileImg'
 >;
 
 export type DetailType = Pick<
@@ -51,8 +51,8 @@ export type DetailType = Pick<
   | 'profileImg'
   | 'onLine'
   | 'offLine'
-  | 'subjects'
-  | 'regions'
+  | 'subjectNames'
+  | 'regionsNames'
   | 'schedule'
   | 'introduction'
   | 'lectureFee'
@@ -86,10 +86,15 @@ export type ScheduleArrayType = {
   schedule: ScheduleType[];
 }[];
 
-export type SearchType = {
+export type SearchType = Pick<User, 'subjectNames' | 'regionsNames'> & {
   teacherName: string;
-  subject: string[];
-  regions: string[];
   size: number;
   page: number;
+};
+
+export type subjectListType = Pick<User, 'id'> & {
+  subjectName: string;
+};
+export type regionsListType = Pick<User, 'id'> & {
+  regionName: string;
 };
