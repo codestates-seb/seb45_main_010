@@ -77,6 +77,7 @@ public class SecurityConfiguration {
                 .apply(new CustomFilterConfigurer())
                 .and()
                 .authorizeHttpRequests(authorize -> authorize
+                        .antMatchers("/h2/**").permitAll()
                         .antMatchers(HttpMethod.GET, "/subjects").permitAll()
                         .antMatchers(HttpMethod.GET, "/regions").permitAll()
                         .antMatchers(HttpMethod.POST, "/teachers").permitAll()
