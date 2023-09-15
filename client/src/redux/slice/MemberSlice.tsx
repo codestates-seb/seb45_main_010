@@ -35,6 +35,11 @@ export const memberSlice = createSlice({
     updateUserImage: (state, action) => {
       state.user.profileImg = action.payload;
     },
+    resetMember: (state) => {
+      state.user = initialState.user;
+      state.isLoading = false;
+      state.isError = false;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -61,7 +66,8 @@ export const memberSlice = createSlice({
   },
 });
 
-export const { updateUserName, updateUserPhone, updateUserImage } = memberSlice.actions;
+export const { updateUserName, updateUserPhone, updateUserImage, resetMember } =
+  memberSlice.actions;
 export default memberSlice.reducer;
 
 export const fetchUserDetails = createAsyncThunk(
@@ -70,7 +76,7 @@ export const fetchUserDetails = createAsyncThunk(
     try {
       const apiURL = 'http://ec2-3-34-116-209.ap-northeast-2.compute.amazonaws.com:8080';
       const response = await axios.get(
-        `${apiURL}/${teacher === 'STUDENT' ? 'students/mypage' : 'teachers'}/${id}`
+        `${apiURL}/${teacher === 'STUDENT' ? 'students' : 'teachers'}/${id}`
       );
       const data = response.data;
       if (!data) {

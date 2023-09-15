@@ -28,7 +28,6 @@ export const ChangeModal = ({
   const [inputValue, setInputValue] = useState<string>('');
   const apiURL = 'http://ec2-3-34-116-209.ap-northeast-2.compute.amazonaws.com:8080';
   const dispatch = useAppDispatch();
-
   const handleNameChange = async (newName: string) => {
     try {
       const data = {
@@ -48,7 +47,7 @@ export const ChangeModal = ({
           : changeItem === 'phone'
           ? dispatch(updateUserPhone(response.data.phone))
           : changeItem === 'password'
-          ? alert('비밀번호 변경')
+          ? alert('비밀번호가 변경됩니다')
           : '';
       }
     } catch (error) {
@@ -71,7 +70,7 @@ export const ChangeModal = ({
 
   return (
     <>
-      <Button onClick={handleOpen} size="sm">
+      <Button onClick={handleOpen} size="sm" className="bg-blue-1 opacity-100">
         {btnName}
       </Button>
       <Dialog open={open} handler={handleOpen} size="xs" className="overflow-hidden">
