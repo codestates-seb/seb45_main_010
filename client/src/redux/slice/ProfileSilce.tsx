@@ -1,4 +1,5 @@
-import { User } from 'Types/Types';
+import { MatchType } from 'Types/Types';
+
 import {
   FetchProfile,
   updateOnline,
@@ -29,13 +30,7 @@ type initialStateType = {
     subjects: string[];
     teacher: boolean;
     userId: number;
-    matches: {
-      matchId: number;
-      schedule: string;
-      status: string;
-      studentName: string;
-      subjects: string[];
-    }[];
+    matches: MatchType[];
   };
   error: string | null;
 };
@@ -57,7 +52,7 @@ const initialState: initialStateType = {
     profileImg: '',
     regions: [],
     subjects: [],
-    matches: { matchId: 0, schedule: '', status: '', studentName: '', subjects: [] },
+    matches: [{ matchId: 0, schedule: '', status: '', studentName: '', subjects: [] }],
   },
   error: null,
 };

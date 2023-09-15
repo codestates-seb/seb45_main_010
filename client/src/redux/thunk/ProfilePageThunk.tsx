@@ -3,6 +3,7 @@ import axios from 'axios';
 import GetInfoAuth from 'hooks/GetInfoAuth';
 import { ACCESSTOKEN } from 'configs/Url/config';
 import { APIurl } from 'hooks/GetInfoAuth';
+import { ScheduleArrayType, MatchType } from 'Types/Types';
 const { APIUSERURL, PROFILEURL } = GetInfoAuth();
 // <-- 프로필 관련 Thunks [start]-->
 export const FetchProfile = createAsyncThunk('FetchProfile', async (id: number) => {
@@ -12,13 +13,13 @@ export const FetchProfile = createAsyncThunk('FetchProfile', async (id: number) 
 });
 
 export const FetchSchedule = createAsyncThunk('schedule/fetchSchedule', async (id: number) => {
-  const response = await axios.get(`http://localhost:8081/schedule/${id}`);
+  const response = await axios.get<ScheduleArrayType>(`http://localhost:8081/schedule/${id}`);
   const data = response.data;
   return data;
 });
 
 export const FetchRequest = createAsyncThunk('FetchRequest', async (id: number) => {
-  const response = await axios.get(`${APIurl}/matches/${id}`);
+  const response = await axios.get<MatchType>(`${APIurl}/matches/${id}`);
   const data = response.data;
   return data;
 });

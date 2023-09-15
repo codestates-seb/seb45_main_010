@@ -2,19 +2,19 @@ import { Button } from '@material-tailwind/react';
 import NoRequestStatus from 'components/Items/NoRequestStatus';
 import InfoModal from 'components/Modal/InfoModal';
 import { useState } from 'react';
-import { RequestType } from 'Types/Types';
+import { MatchType } from 'Types/Types';
 
 type RequestListProps = {
   teacher: boolean;
-  matches: RequestType;
+  matches: MatchType;
 };
 
 const RequestList: React.FC<RequestListProps> = ({ teacher, matches }) => {
+  const [showModal, setShowModal] = useState(false);
   const noFn = () => {};
 
   return (
     <div className="py-5">
-      <InfoModal teacher={teacher} matches={matches} />
       <p className="flex-1 mb-4 text-sm font-bold">{teacher ? '강의요청목록' : '수업요청목록'}</p>
       <div className="flex justify-end text-right">
         <Button
@@ -49,14 +49,19 @@ const RequestList: React.FC<RequestListProps> = ({ teacher, matches }) => {
                     {match.subjects.join('| ')}
                   </span>
                   <span className="flex items-center justify-center flex-1 w-20 p-2">
-                    {teacher ? match.studentName : match.name}
+                    {teacher ? match.studentName : match.teacherName}
                   </span>
                 </div>
               </div>
               <div className="flex justify-end p-4 text-right">
                 <span>{match.schedule}</span>
               </div>
-              {}
+              <InfoModal
+                teacher={teacher}
+                matchId={match.matchId}
+                open={showModal}
+                setOpen={setShowModal}
+              />
             </div>
           ))}
         </div>

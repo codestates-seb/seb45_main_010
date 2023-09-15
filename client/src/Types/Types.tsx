@@ -55,13 +55,39 @@ export type DetailType = Pick<
   | 'career'
 >;
 
-export type RequestType = {
-  matchId: number;
-  schedule: string;
+export type RequestInfoType = {
+  id: number;
+  studentId: number;
+  teacherId: number;
   status: string;
+  matchSubjects: string[];
+  matchRegions: string[];
+  schedule: string;
   studentName: string;
-  subjects: string[];
+  studentPhone: string;
+  studentEmail: string;
+  remarks: string;
+  teacherName: string;
+  online: boolean;
 }[];
+
+type StudentMatchType = {
+  matchId: number;
+  teacherName: string;
+  schedule: string;
+  subjects: string[];
+  status: string;
+};
+
+type TeacherMatchType = {
+  matchId: number;
+  studentName: string;
+  schedule: string;
+  subjects: string[];
+  status: string;
+};
+
+export type MatchType = StudentMatchType | TeacherMatchType;
 
 export type footerType = {
   footerMessage: string;
