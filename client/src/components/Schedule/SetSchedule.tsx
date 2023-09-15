@@ -3,74 +3,54 @@ import DatePicker from 'react-datepicker';
 import { ko } from 'date-fns/locale';
 import { Button, Option, Select } from '@material-tailwind/react';
 import { useState, useEffect, useRef } from 'react';
-import { TimeSlotType, ScheduleArrayType, ScheduleType } from 'Types/Types';
-import { generateAvailableTimeSlots, generateTimeSlots, formatDate } from './Functions';
-import { updateSchedule, FetchSchedule } from 'redux/thunk/Thunk';
-import { useAppDispatch, useAppSelector } from 'hooks/hooks';
-import GetSchedule from './GetSchedule';
-
-type ScheduleProps = {
-  userId: number;
-};
+import { ScheduleType, ScheduleObjType } from 'Types/Types';
+import { generateAvailableTimeSlots, generateTimeSlots, formatDate } from './MakeDateFunctions';
+import { updateSchedule, FetchSchedule } from 'redux/thunk/ProfilePageThunk';
+import { useAppDispatch } from 'hooks/hooks';
 
 const availableTimeSlots = generateAvailableTimeSlots();
 
-const SetSchedule: React.FC<ScheduleProps> = ({ userId }) => {
+const SetSchedule = ({ id }: { id: number }) => {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
-  const [timeSlots, setTimeSlots] = useState<TimeSlotType['timeslots']>([]);
-  const [selectedTimeSlots, setSelectedTimeSlots] = useState<
-    { date: string; timeslots: string[] }[]
-  >([]);
-  const [newSchedule, setNewSchedule] = useState<TimeSlotType[]>([]);
+  const [oneDayTimeSlot, setOneDayTimeSlot] = useState<ScheduleType['timeslots']>([]);
+  const [selectedTimeSlots, setSelectedTimeSlots] = useState<ScheduleType[]>([]);
+  const [newSchedule, setNewSchedule] = useState<ScheduleType[]>([]);
   const dispatch = useAppDispatch();
 
-  const prevScheduleRef = useRef<{ date: string; timeslots: string[] }[]>([]);
+  const prevScheduleRef = useRef<ScheduleType[]>([]);
 
   useEffect(() => {
-    dispatch(FetchSchedule(userId))
+    dispatch(FetchSchedule(id))
       .then((response) => {
-        const schedule = response.payload.date;
-        // console.log('스케쥴 정보 fetch 성공');
-        // console.log(schedule);
-        setSelectedTimeSlots(schedule);
-        setNewSchedule(schedule);
-        prevScheduleRef.current = schedule;
+        if (response.payload) {
+          const payload = response.payload as ScheduleObjType;
+          const schedule = payload.schedules;
+          setSelectedTimeSlots(schedule);
+          setNewSchedule(schedule);
+          prevScheduleRef.current = schedule;
+        }
       })
       .catch((error) => {
         console.error('Error fetching schedule:', error);
       });
-  }, [dispatch, userId]);
-  // console.log(newSchedule);
-  // console.log(selectedTimeSlots);
-  // console.log(prevScheduleRef.current);
-  // console.log(prevScheduleRef.length);
+  }, [dispatch, id]);
+
   const formatSelectedDate = selectedDate ? formatDate(selectedDate) : null;
 
   const handleSave = async () => {
-    let method: 'POST' | 'PATCH' | 'DELETE';
-    if (prevScheduleRef.current === null) {
-      prevScheduleRef.current = [];
-    }
-    const prevSchedule = prevScheduleRef.current;
-    if (JSON.stringify(newSchedule) !== JSON.stringify(prevSchedule)) {
-      if (newSchedule.length > 0 && (!prevSchedule || prevSchedule.length === 0)) {
-        method = 'POST';
-        console.log('POST');
-      } else if (newSchedule.length === 0 && prevSchedule && prevSchedule.length > 0) {
-        method = 'DELETE';
-        console.log('DELETE');
-      } else {
-        method = 'PATCH';
-        console.log('PATCH');
-      }
-    } else {
-      console.log('No changes to update.', newSchedule, prevSchedule);
+    const currentSchedule = newSchedule.find((slot) => slot.date === formatSelectedDate);
+
+    if (!currentSchedule) {
+      console.log('No selected date or no changes to update.');
       return;
     }
 
-    console.log('Updating schedule with:', { userId: userId, date: newSchedule });
-    return dispatch(updateSchedule({ userId: userId, date: newSchedule, method }));
+    const { date, timeslots } = currentSchedule;
+
+    console.log('Updating schedule with:', { id: id, date, timeslots });
+    return dispatch(updateSchedule({ id: id, date, timeslots }));
   };
+
   const today = new Date();
   today.setHours(0, 0, 0, 0);
 
@@ -80,18 +60,18 @@ const SetSchedule: React.FC<ScheduleProps> = ({ userId }) => {
       const formattedDate = formatDate(date);
       const timeSlot = availableTimeSlots.find((slot) => slot.date === formattedDate);
 
-      setTimeSlots(
+      setOneDayTimeSlot(
         timeSlot ? timeSlot.timeslots : availableTimeSlots.flatMap((slot) => slot.timeslots)
       );
     } else {
-      setTimeSlots([]);
+      setOneDayTimeSlot([]);
     }
   };
   const handleTimeSlotSelection = (perHour: string) => {
-    setSelectedTimeSlots((prevSlots: { date: string; timeslots: string[] }[]) => {
+    setSelectedTimeSlots((prevSlots) => {
       const existingDateIndex = prevSlots.findIndex((i) => i.date === formatSelectedDate);
 
-      let newSlots;
+      let newSlots: ScheduleType[] = [];
       if (existingDateIndex !== -1) {
         const alreadySelected = prevSlots[existingDateIndex].timeslots.includes(perHour);
 
@@ -106,18 +86,30 @@ const SetSchedule: React.FC<ScheduleProps> = ({ userId }) => {
             : slot
         );
       } else if (formatSelectedDate) {
-        // 새로운 날짜 객체를 추가
         newSlots = [...prevSlots, { date: formatSelectedDate, timeslots: [perHour] }];
       } else {
         newSlots = prevSlots;
       }
 
-      setNewSchedule(newSlots); // newSchedule 상태 업데이트
-      // console.log('newSlots', newSlots);
+      setNewSchedule((prevNewSchedule) => {
+        const updatedSlot = newSlots.find((slot) => slot.date === formatSelectedDate);
+
+        const existingIndex = prevNewSchedule.findIndex((slot) => slot.date === formatSelectedDate);
+
+        let newScheduleUpdate = [...prevNewSchedule];
+        if (existingIndex !== -1) {
+          newScheduleUpdate[existingIndex] = updatedSlot!;
+        } else {
+          newScheduleUpdate.push(updatedSlot!);
+        }
+
+        return newScheduleUpdate;
+      });
 
       return newSlots;
     });
   };
+
   // console.log(newSchedule);
   const handleSelectedTimeSlot = (
     timeSlotObj: { date: string; timeslots: string[] },
@@ -162,7 +154,7 @@ const SetSchedule: React.FC<ScheduleProps> = ({ userId }) => {
           <span className="mb-5 text-sm font-bold">선택 가능한 시간 목록</span>
           <div className="my-10">
             <Select color="blue" label="선택 가능한 시간 목록">
-              {timeSlots.map((perHour: string) => (
+              {oneDayTimeSlot.map((perHour: string) => (
                 <Option
                   className="flex items-center justify-between w-full mb-5 text-sm font-bold text-black list-disc list-inside"
                   key={perHour}
@@ -175,24 +167,26 @@ const SetSchedule: React.FC<ScheduleProps> = ({ userId }) => {
           </div>
           <span className="mb-5 text-sm font-bold">선택한 시간 목록</span>
           <div className="my-10">
-            {selectedTimeSlots.map((timeSlotObj, index) => (
-              <div key={timeSlotObj.date + timeSlotObj.timeslots[index]}>
-                {timeSlotObj.timeslots.map((timeslot) => (
-                  <div key={timeSlotObj.date + timeslot}>
-                    <Button
-                      className="flex items-center justify-between w-full p-2 mb-5 text-sm font-bold text-black bg-mint-200 rounded-xl border-mint-200"
-                      size="sm"
-                      onClick={handleSelectedTimeSlot(timeSlotObj, timeslot)}
-                    >
-                      <div className="flex items-center justify-center text-sm rounded-lg h-[35px] w-auto p-3 bg-mint-300">
-                        {timeSlotObj.date}
-                      </div>
-                      <span className="flex-1 text-center">{timeslot}</span>
-                    </Button>
-                  </div>
-                ))}
-              </div>
-            ))}
+            {selectedTimeSlots
+              .filter((timeSlotObj) => timeSlotObj.date === formatSelectedDate)
+              .map((timeSlotObj, index) => (
+                <div key={timeSlotObj.date + timeSlotObj.timeslots[index]}>
+                  {timeSlotObj.timeslots.map((timeslot) => (
+                    <div key={timeSlotObj.date + timeslot}>
+                      <Button
+                        className="flex items-center justify-between w-full p-2 mb-5 text-sm font-bold text-black bg-mint-200 rounded-xl border-mint-200"
+                        size="sm"
+                        onClick={handleSelectedTimeSlot(timeSlotObj, timeslot)}
+                      >
+                        <div className="flex items-center justify-center text-sm rounded-lg h-[35px] w-auto p-3 bg-mint-300">
+                          {timeSlotObj.date}
+                        </div>
+                        <span className="flex-1 text-center">{timeslot}</span>
+                      </Button>
+                    </div>
+                  ))}
+                </div>
+              ))}
           </div>
         </div>
       ) : (
@@ -207,7 +201,6 @@ const SetSchedule: React.FC<ScheduleProps> = ({ userId }) => {
       >
         <span className="flex-1 text-center">저장</span>
       </Button>
-      <GetSchedule />
     </div>
   );
 };

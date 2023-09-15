@@ -18,6 +18,7 @@ export type User = {
   oauth: boolean;
   address: string;
   option: string | null;
+  matches: string[];
 };
 
 export type TeacherType = Omit<User, 'password'>;
@@ -67,6 +68,31 @@ export type RequestType = {
   note: string;
   matches: string;
 };
+export type RequestInfoType = {
+  id: number;
+  studentId: number;
+  teacherId: number;
+  status: string;
+  matchSubjects: string[];
+  matchRegions: string[];
+  date: string;
+  timeslot: string;
+  studentName: string;
+  studentPhone: string;
+  studentEmail: string;
+  remarks: string;
+  teacherName: string;
+  online: boolean;
+};
+
+export type MatchType = Array<{
+  matchId: number;
+  status: StatusType;
+  subjects: string[];
+  studentName?: string;
+  teacherName?: string;
+  schedule: string;
+}>;
 
 export type footerType = {
   footerMessage: string;
@@ -79,12 +105,23 @@ export type footerType = {
 
 export type TimeSlotType = { matches: string; timeslots: string[] };
 
-export type ScheduleType = { id: number; matches: TimeSlotType[] };
+export type ScheduleType1 = { id: number; matches: TimeSlotType[] };
 
-export type ScheduleArrayType = {
+export type ScheduleArrayType1 = {
   id: number;
   matches: ScheduleType[];
 }[];
+export type ScheduleType = { date: string; timeslots: string[] };
+
+export type ScheduleObjType = {
+  teacherId: number;
+  schedules: ScheduleType[];
+};
+
+// export type ScheduleArrayType = {
+//   teacherId: number;
+//   schedules: ScheduleObjType[];
+// }[];
 
 export type SearchType = Pick<User, 'subjectNames' | 'regionsNames'> & {
   teacherName: string;
@@ -98,3 +135,9 @@ export type subjectListType = Pick<User, 'id'> & {
 export type regionsListType = Pick<User, 'id'> & {
   regionName: string;
 };
+export type ScheduleArrayType2 = {
+  id: number;
+  schedule: ScheduleType[];
+}[];
+
+export type StatusType = 'MATCH_ANSWERED' | 'MATCH_CANCELLED' | 'MATCH_REQUEST';

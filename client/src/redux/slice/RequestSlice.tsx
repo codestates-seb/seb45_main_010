@@ -1,15 +1,30 @@
-import { RequestType } from 'Types/Types';
-import { FetchRequest } from 'redux/thunk/Thunk';
 import { createSlice } from '@reduxjs/toolkit';
+import { FetchRequestInfo, updateRequestStatus } from 'redux/thunk/RequestThunks';
+import { RequestInfoType } from 'Types/Types';
 
 type initialStateType = {
   status: string;
-  value: RequestType[];
+  value: RequestInfoType;
 };
 
 const initialState: initialStateType = {
   status: '',
-  value: [],
+  value: {
+    id: 0,
+    studentId: 0,
+    teacherId: 0,
+    status: '',
+    matchSubjects: [],
+    matchRegions: [],
+    date: '',
+    timeslot: '',
+    studentName: '',
+    studentPhone: '',
+    studentEmail: '',
+    remarks: '',
+    teacherName: '',
+    online: false,
+  },
 };
 
 export const RequestSlice = createSlice({
@@ -19,12 +34,15 @@ export const RequestSlice = createSlice({
 
   extraReducers: (builder) => {
     builder
-      .addCase(FetchRequest.pending, (state) => {
+      .addCase(FetchRequestInfo.pending, (state) => {
         state.status = 'pending';
       })
-      .addCase(FetchRequest.fulfilled, (state, action) => {
+      .addCase(FetchRequestInfo.fulfilled, (state, action) => {
         state.status = 'fulfilled';
         state.value = action.payload;
+      })
+      .addCase(updateRequestStatus.fulfilled, (state, action) => {
+        state.value.status = action.payload.status;
       });
   },
 });

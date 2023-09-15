@@ -2,31 +2,28 @@ import { useEffect, useRef } from 'react';
 import RequestList from './ProfileTab/RequestList';
 import ScheduleList from './ProfileTab/ScheduleList';
 import OptionList from './ProfileTab/OptionList';
-import { RequestType, User } from 'Types/Types';
+import { RequestType } from 'Types/Types';
 
 type ProfileTabsProps = {
-  requests: RequestType[];
   teacher: boolean;
   lectureFee: string;
   career: string;
   option: string;
-  classMethod: {
-    onLine: boolean;
-    offLine: boolean;
-  };
-  handleClassMethodUpdate: (onLine: boolean, offLine: boolean) => void;
-  userId: number;
+  onLine: boolean;
+  offLine: boolean;
+  id: number;
+  matches: RequestType;
 };
 
 const ProfileTabs: React.FC<ProfileTabsProps> = ({
-  requests,
   teacher,
   lectureFee,
   career,
   option,
-  classMethod,
-  handleClassMethodUpdate,
-  userId,
+  onLine,
+  offLine,
+  id,
+  matches,
 }) => {
   type tabDataType = {
     id: string;
@@ -38,14 +35,14 @@ const ProfileTabs: React.FC<ProfileTabsProps> = ({
     {
       id: 'request',
       title: '내 강의 조회',
-      subtitle: <RequestList requests={requests} teacher={teacher} />,
+      subtitle: <RequestList teacher={teacher} matches={matches} />,
     },
     ...(teacher
       ? [
           {
             id: 'schedule',
             title: '스케쥴 관리',
-            subtitle: <ScheduleList userId={userId} />,
+            subtitle: <ScheduleList id={id} />,
           },
         ]
       : []),
@@ -58,9 +55,9 @@ const ProfileTabs: React.FC<ProfileTabsProps> = ({
           lectureFee={lectureFee}
           career={career}
           option={option}
-          classMethod={classMethod}
-          handleClassMethodUpdate={handleClassMethodUpdate}
-          userId={userId}
+          onLine={onLine}
+          offLine={offLine}
+          id={id}
         />
       ),
     },
@@ -88,15 +85,15 @@ const ProfileTabs: React.FC<ProfileTabsProps> = ({
       if (window.scrollY < offsetForSticky) {
         tabsRef.current.classList.remove('fixed');
         tabsRef.current.classList.add('relative', 'top-0');
-        tabsRef.current.style.top = '0px'; // 위치조정 때문에 인라인 css 사용
+        tabsRef.current.style.top = '0px';
       } else if (window.scrollY >= offsetForSticky && window.scrollY <= bottomOfStickyContent) {
         tabsRef.current.classList.remove('fixed', 'top-0');
         tabsRef.current.classList.add('relative');
-        tabsRef.current.style.top = `${window.scrollY - offsetForSticky}px`; // 위치조정 때문에 인라인 css 사용
+        // tabsRef.current.style.top = `${window.scrollY - offsetForSticky}px`;
       } else {
         tabsRef.current.classList.remove('relative');
         tabsRef.current.classList.add('fixed', 'top-0');
-        tabsRef.current.style.top = '0px'; // 위치조정 때문에 인라인 css 사용
+        tabsRef.current.style.top = '0px';
       }
     };
 
@@ -110,7 +107,10 @@ const ProfileTabs: React.FC<ProfileTabsProps> = ({
   return (
     <>
       <section className="flex flex-col items-center justify-center text-center">
-        <div ref={tabsRef} className="flex w-[375px] h-10 shadow-md z-50">
+        <div
+          ref={tabsRef}
+          className="flex w-[375px] h-10 shadow-md z-50 transition-all duration-300 ease-linear"
+        >
           {tabData.map((tab) => (
             <a
               key={tab.id}

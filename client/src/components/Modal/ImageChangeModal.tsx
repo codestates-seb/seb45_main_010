@@ -3,7 +3,7 @@ import { ChangeEvent } from 'react';
 import { Button, Dialog, DialogBody, DialogFooter, Input } from '@material-tailwind/react';
 import { useAppDispatch } from 'hooks/hooks';
 import axios from 'axios';
-import { updateUserName, updateUserPhone } from '../../redux/slice/MemberSlice';
+import { updateUserImage } from '../../redux/slice/MemberSlice';
 
 type props = {
   text: string;
@@ -15,7 +15,7 @@ type props = {
   teacher: boolean;
 };
 
-export const ChangeModal = ({
+export const ImageChangeModal = ({
   text,
   warning,
   btnName,
@@ -28,28 +28,23 @@ export const ChangeModal = ({
   const [inputValue, setInputValue] = useState<string>('');
   const apiURL = 'http://ec2-3-34-116-209.ap-northeast-2.compute.amazonaws.com:8080';
   const dispatch = useAppDispatch();
+
   const handleNameChange = async (newName: string) => {
     try {
       const data = {
         id: userId,
         [changeItem]: newName,
       };
+      console.log(data);
       const accessToken = localStorage.getItem('access_jwt');
-      const targetURL = `${apiURL}/${teacher === true ? 'teachers' : 'students'}/${changeItem}`;
+      const targetURL = `${apiURL}/${teacher === false ? 'students' : 'teachers'}/${changeItem}`;
       const response = await axios.patch(targetURL, data, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
       });
-      {
-        changeItem === 'name'
-          ? dispatch(updateUserName(response.data.name))
-          : changeItem === 'phone'
-          ? dispatch(updateUserPhone(response.data.phone))
-          : changeItem === 'password'
-          ? alert('비밀번호가 변경됩니다')
-          : '';
-      }
+      console.log(response.data);
+      dispatch(updateUserImage(response.data.profileImg));
     } catch (error) {
       console.log(`${changeItem}`, error);
     }
@@ -70,7 +65,12 @@ export const ChangeModal = ({
 
   return (
     <>
-      <Button onClick={handleOpen} size="sm" className="bg-blue-1 opacity-100">
+      <Button
+        onClick={handleOpen}
+        size="sm"
+        color="gray"
+        className="w-5 h-5 rounded-full mt-[-25px] bg-gray opacity-0"
+      >
         {btnName}
       </Button>
       <Dialog open={open} handler={handleOpen} size="xs" className="overflow-hidden">

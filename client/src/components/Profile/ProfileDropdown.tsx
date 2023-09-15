@@ -1,19 +1,33 @@
 import { useState } from 'react';
 import { Menu, MenuHandler, MenuList, MenuItem, Button } from '@material-tailwind/react';
 import { BsX, BsChevronDown } from 'react-icons/bs';
+import { useAppDispatch, useAppSelector } from 'hooks/hooks';
+import { useEffect } from 'react';
+import { updateSubjects, updateRegions } from 'redux/thunk/ProfilePageThunk';
 
 const ProfileDropdown = ({
   title,
   selections,
   categories,
+  id,
 }: {
   title: string;
   selections: string[];
   categories: string[];
+  id: number;
 }) => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const dispatch = useAppDispatch();
   const [selectedCategory, setSelectedCategory] = useState<string>('');
   const [tags, setTags] = useState<string[]>(categories || []);
+  const profile = useAppSelector((state) => state.profile.value);
+
+  useEffect(() => {
+    if (title === '과목') {
+      dispatch(updateSubjects({ id: id, subjects: tags }));
+    } else if (title === '지역') {
+      dispatch(updateRegions({ id: id, regions: tags }));
+    }
+  }, [tags, title]);
 
   const handleCategorySelect = (item: string) => {
     setSelectedCategory(item);
@@ -45,7 +59,7 @@ const ProfileDropdown = ({
               <BsChevronDown />
             </Button>
           </MenuHandler>
-          <MenuList className=" border-mint-200">
+          <MenuList className=" border-mint-200 max-h-72">
             {selections.map((item) => (
               <MenuItem key={item} onClick={() => handleCategorySelect(item)}>
                 {item}

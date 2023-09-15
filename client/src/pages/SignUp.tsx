@@ -76,7 +76,6 @@ const SignUp: React.FC = () => {
     await axios
       .post(`${apiURL}/${userInfo.teacher ? 'teachers' : 'students'}`, userInfo)
       .then((response) => {
-        console.log('회원가입 비동기요청', response.data);
         alert('회원가입을 축하드립니다');
         navigate('/login');
       })
