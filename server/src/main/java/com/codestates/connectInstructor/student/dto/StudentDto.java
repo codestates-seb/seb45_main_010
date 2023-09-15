@@ -102,6 +102,7 @@ public class StudentDto {
         private String name;
         private String profileImg;
         private String phone;
+        private boolean teacher = false;
         private boolean isOauth;
         private MemberStatus status;
     }
@@ -129,7 +130,8 @@ public class StudentDto {
     public static class MatchResponse {
         private long matchId;
         private String teacherName;
-        private String schedule;
+        private String date;
+        private String timeslot;
         private List<String> subjects;
         private Match.MatchStatus status;
     }

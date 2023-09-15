@@ -148,7 +148,8 @@ public class TeacherDto {
     public static class MatchResponse {
         private long matchId;
         private String studentName;
-        private String schedule;
+        private String date;
+        private String timeslot;
         private List<String> subjects;
         private Match.MatchStatus status;
     }
