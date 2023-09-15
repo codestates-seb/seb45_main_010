@@ -18,15 +18,14 @@
     <title>Account Verification</title>
 </head>
 <body>
-<div>
-    <div style="background-color: #d9d9d9; vertical-align: middle">
+<div style="width: 400px">
+    <div style="width: 100%; background-color: #d9d9d9">
         <h3 style="padding: 20px">connectT</h3>
     </div>
     <div style="padding: 20px 20px">
         <p th:text="${name + '님, 반갑습니다.'}"></p>
-        <p>학습매칭 서비스 connectT의 회원가입을 축하드립니다.</p>
-        <br />
-        <p>지금 접속하셔서 connectT의 우수한 강사진을 만나보세요.</p>
+        <p>connectT 서비스의 회원가입을 위한 인증메일입니다.</p>
+        <p>아래의 버튼을 클릭하여 이메일 인증을 완료해 주세요</p>
         <p style="display: flex; justify-content: center; padding: 10px">
             <a
                     th:href="${site}"
@@ -39,7 +38,7 @@
               border-radius: 5px;
               box-shadow: 0 4px 4px rgba(69, 68, 68, 0.2);
             "
-            >나에게 딱맞는 선생님 찾아보기</a
+            >이메일 인증하기</a
             >
         </p>
     </div>
