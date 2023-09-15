@@ -4,6 +4,7 @@ import InfoModal from 'components/Modal/InfoModal';
 import useStatusTranslator from 'hooks/useStatusTranslator';
 import { useState } from 'react';
 import { MatchType, StatusType } from 'Types/Types';
+import ModalPortal from 'components/Items/ModalPortal';
 
 type RequestListProps = {
   teacher: boolean;
@@ -71,12 +72,14 @@ const RequestList: React.FC<RequestListProps> = ({ teacher, matches }) => {
         </>
       )}
       {selectedMatchId !== null && (
-        <InfoModal
-          teacher={teacher}
-          matchId={selectedMatchId}
-          open={showModal}
-          setOpen={setShowModal}
-        />
+        <ModalPortal>
+          <InfoModal
+            teacher={teacher}
+            matchId={selectedMatchId}
+            open={showModal}
+            setOpen={setShowModal}
+          />
+        </ModalPortal>
       )}
     </div>
   );
