@@ -4,6 +4,7 @@ import GetInfoAuth from 'hooks/GetInfoAuth';
 import { ACCESSTOKEN } from 'configs/Url/config';
 import { ScheduleObjType, ScheduleType } from 'Types/Types';
 import { APIurl } from 'hooks/GetInfoAuth';
+import { ScheduleArrayType, MatchType } from 'Types/Types';
 const { APIUSERURL, PROFILEURL } = GetInfoAuth();
 export const FetchProfile = createAsyncThunk('FetchProfile', async (id: number) => {
   const response = await axios.get(`${PROFILEURL}/${id}`);
@@ -18,7 +19,7 @@ export const FetchSchedule = createAsyncThunk('schedule/fetchSchedule', async (i
 });
 
 export const FetchRequest = createAsyncThunk('FetchRequest', async (id: number) => {
-  const response = await axios.get(`${APIurl}/matches/${id}`);
+  const response = await axios.get<MatchType>(`${APIurl}/matches/${id}`);
   const data = response.data;
   return data;
 });
