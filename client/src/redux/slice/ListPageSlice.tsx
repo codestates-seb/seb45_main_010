@@ -47,5 +47,4 @@ export const teacherListSlice = createSlice({
 });
 
 export const teacherList = (state: RootState) => state.teacherList;
-
 export default teacherListSlice.reducer;

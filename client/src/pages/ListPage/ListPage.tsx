@@ -4,7 +4,8 @@ import Pagination from 'components/ListPage/Pagination';
 import { useAppDispatch, useAppSelector } from 'hooks/hooks';
 import { teacherList } from 'redux/slice/ListPageSlice';
 import { getData } from 'redux/thunk/ListPageThunk';
-import { ListPageType, SearchType } from 'Types/Types';
+import { ListPageType } from 'Types/Types';
+import { search } from 'configs/Listpage/config';
 
 const ListPage = () => {
   const dispatch = useAppDispatch();
@@ -15,13 +16,8 @@ const ListPage = () => {
   const size: number = 1;
 
   useEffect(() => {
-    const search: SearchType = {
-      teacherName: '',
-      subject: [],
-      regions: [],
-      size: size,
-      page: page + 1,
-    };
+    search.size = size;
+    search.page = page + 1;
     dispatch(getData(search));
   }, [page]);
 

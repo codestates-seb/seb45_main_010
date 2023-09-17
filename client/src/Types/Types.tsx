@@ -5,14 +5,13 @@ export type User = {
   teacher: boolean;
   id: number;
   phone: string;
-  regions: string[];
-  subjects: string[];
+  regionsNames: string[];
+  subjectNames: string[];
   profileImg: string | null;
   introduction: string;
   lectureFee: string;
   career: string;
   lessonOption: string;
-  schedule: { date: string; timeslots: string[] }[];
   onLine: boolean;
   offLine: boolean;
   oauth: boolean;
@@ -25,7 +24,7 @@ export type TeacherType = Omit<User, 'password'>;
 
 export type StudentType = Omit<
   User,
-  'password' | 'schedule' | 'onLine' | 'offLine' | 'lectureFee' | 'career' | 'lessonOption'
+  'password' | 'matches' | 'onLine' | 'offLine' | 'lectureFee' | 'career' | 'lessonOption'
 >;
 
 export type CommonUserType = Pick<
@@ -39,7 +38,7 @@ export type LoginType = Pick<User, 'email' | 'password'>;
 
 export type ListPageType = Pick<
   User,
-  'id' | 'name' | 'subjects' | 'regions' | 'onLine' | 'offLine' | 'profileImg'
+  'id' | 'name' | 'subjectNames' | 'regionsNames' | 'onLine' | 'offLine' | 'profileImg'
 >;
 
 export type DetailType = Pick<
@@ -52,15 +51,22 @@ export type DetailType = Pick<
   | 'profileImg'
   | 'onLine'
   | 'offLine'
-  | 'subjects'
-  | 'regions'
-  | 'schedule'
+  | 'subjectNames'
+  | 'regionsNames'
+  | 'matches'
   | 'introduction'
   | 'lectureFee'
   | 'career'
   | 'option'
 >;
 
+export type RequestType = {
+  id: string;
+  name: string;
+  requestcategory: string[];
+  note: string;
+  matches: string;
+};
 export type RequestInfoType = {
   id: number;
   studentId: number;
@@ -96,6 +102,14 @@ export type footerType = {
   }[];
 };
 
+export type TimeSlotType = { matches: string; timeslots: string[] };
+
+export type ScheduleType1 = { id: number; matches: TimeSlotType[] };
+
+export type ScheduleArrayType1 = {
+  id: number;
+  matches: ScheduleType[];
+}[];
 export type ScheduleType = { date: string; timeslots: string[] };
 
 export type ScheduleObjType = {
@@ -108,14 +122,19 @@ export type ScheduleObjType = {
 //   schedules: ScheduleObjType[];
 // }[];
 
-export type SearchType = {
+export type SearchType = Pick<User, 'subjectNames' | 'regionsNames'> & {
   teacherName: string;
-  subject: string[];
-  regions: string[];
   size: number;
   page: number;
 };
-export type ScheduleArrayType = {
+
+export type subjectListType = Pick<User, 'id'> & {
+  subjectName: string;
+};
+export type regionsListType = Pick<User, 'id'> & {
+  regionName: string;
+};
+export type ScheduleArrayType2 = {
   id: number;
   schedule: ScheduleType[];
 }[];

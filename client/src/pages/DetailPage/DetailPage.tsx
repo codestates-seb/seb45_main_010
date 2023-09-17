@@ -21,9 +21,9 @@ const DetailPage = () => {
     profileImg: null,
     onLine: false,
     offLine: false,
-    subjects: [],
-    regions: [],
-    schedule: [],
+    subjectNames: [],
+    regionsNames: [],
+    matches: [],
     introduction: '',
     lectureFee: '',
     career: '',
@@ -38,6 +38,7 @@ const DetailPage = () => {
   useEffect(() => {
     if (detailInfo.status === 'fulfilled') {
       setTeacherInfo(detailInfo.value);
+      console.log(teacherInfo);
     }
   }, [detailInfo]);
 

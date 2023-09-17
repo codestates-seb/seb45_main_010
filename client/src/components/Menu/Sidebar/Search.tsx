@@ -1,5 +1,5 @@
 import { Card } from '@material-tailwind/react';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import SearchForm from './SearchForm';
 import SearchSelect from './SearchSelect';
 
@@ -8,12 +8,8 @@ type props = {
 };
 
 export const Search = ({ handlerSearch }: props) => {
-  const [inputText, setInputText] = useState<string>('');
-  const [searchList, setSearchList] = useState<string[]>([]);
-
-  useEffect(() => {
-    setInputText(searchList.join(','));
-  }, [searchList]);
+  const [subjectList, setSubjectList] = useState<string[]>([]);
+  const [regionsList, setRegionsList] = useState<string[]>([]);
 
   return (
     <>
@@ -22,11 +18,16 @@ export const Search = ({ handlerSearch }: props) => {
         onClick={handlerSearch}
       ></div>
       <Card className="w-[350px] p-2 shadow-2xl top-3 absolute mt-20 mx-3 z-50">
-        <SearchSelect searchList={searchList} setSearchList={setSearchList} />
+        <SearchSelect
+          regionsList={regionsList}
+          subjectList={subjectList}
+          setRegionsList={setRegionsList}
+          setSubjectList={setSubjectList}
+        />
         <SearchForm
-          inputText={inputText}
-          setInputText={setInputText}
-          setSearchList={setSearchList}
+          regionsList={regionsList}
+          subjectList={subjectList}
+          handlerSearch={handlerSearch}
         />
       </Card>
     </>
