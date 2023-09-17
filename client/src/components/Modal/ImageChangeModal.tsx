@@ -8,7 +8,6 @@ import { updateUserImage } from '../../redux/slice/MemberSlice';
 type props = {
   text: string;
   warning: string;
-  btnName: string;
   changeItem: string;
   userId: number;
   teacher: boolean;
