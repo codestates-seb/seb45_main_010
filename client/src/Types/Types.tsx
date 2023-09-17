@@ -17,7 +17,9 @@ export type User = {
   oauth: boolean;
   address: string;
   option: string | null;
-  matches: string[];
+  schedules: {
+    date: string[];
+  }[];
 };
 
 export type TeacherType = Omit<User, 'password'>;
@@ -53,7 +55,6 @@ export type DetailType = Pick<
   | 'offLine'
   | 'subjectNames'
   | 'regionsNames'
-  | 'matches'
   | 'introduction'
   | 'lectureFee'
   | 'career'
@@ -93,15 +94,6 @@ export type MatchType = Array<{
   schedule: string;
 }>;
 
-export type footerType = {
-  footerMessage: string;
-  member: {
-    name: string;
-    position: string;
-    profileImg: string;
-  }[];
-};
-
 export type TimeSlotType = { matches: string; timeslots: string[] };
 
 export type ScheduleType1 = { id: number; matches: TimeSlotType[] };
@@ -110,6 +102,7 @@ export type ScheduleArrayType1 = {
   id: number;
   matches: ScheduleType[];
 }[];
+
 export type ScheduleType = { date: string; timeslots: string[] };
 
 export type ScheduleObjType = {
@@ -140,3 +133,24 @@ export type ScheduleArrayType2 = {
 }[];
 
 export type StatusType = 'MATCH_ANSWERED' | 'MATCH_CANCELLED' | 'MATCH_REQUEST';
+
+export type footerType = {
+  footerMessage: string;
+  member: {
+    name: string;
+    position: string;
+    profileImg: string;
+  }[];
+};
+
+export type lessonGetType = {
+  studentId: string;
+  teacherId: string;
+  subjects: string[];
+  schedules: {
+    date: string[];
+  }[];
+  sudentName: string;
+  studentPhone: string;
+  studentEmail: string;
+};
