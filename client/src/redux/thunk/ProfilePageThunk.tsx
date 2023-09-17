@@ -46,11 +46,19 @@ export const updateRequestStatus = createAsyncThunk(
 export const updateSchedule = createAsyncThunk(
   'schedule/updateSchedule',
   async ({ id, date, timeslots }: { id: number; date: string; timeslots: string[] }) => {
-    const response = await axios.patch(`${APIurl}/schedules`, {
-      teacherId: id,
-      date,
-      timeslots,
-    });
+    const response = await axios.patch(
+      `${APIurl}/schedules`,
+      {
+        teacherId: id,
+        date,
+        timeslots,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${ACCESSTOKEN}`,
+        },
+      }
+    );
     return response.data;
   }
 );
