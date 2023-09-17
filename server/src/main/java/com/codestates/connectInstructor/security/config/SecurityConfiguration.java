@@ -68,10 +68,6 @@ public class SecurityConfiguration {
                         .successHandler(new OAuth2SuccessHandler(studentRepository, authorityUtils, jwtTokenizer, publisher, teacherRepository))
                         .failureHandler(new OAuth2FailureHandler())
                         .userInfoEndpoint(user -> user.userService(new CustomOauth2Service(studentRepository, studentService, authorityUtils)))
-//                        .authorizationEndpoint(authorizationEndpoint -> authorizationEndpoint
-//                                .authorizationRequestResolver(new CustomRequestResolver(defaul)))
-//                                .authorizationEndpoint()
-//                                .authorizationRequestResolver(auth2AuthorizationRequestResolver())
                         )
                 .csrf().disable()
                 .cors(Customizer.withDefaults())
