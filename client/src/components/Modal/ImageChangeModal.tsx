@@ -9,7 +9,6 @@ type props = {
   text: string;
   warning: string;
   btnName: string;
-  btnCheck: string;
   changeItem: string;
   userId: number;
   teacher: boolean;
@@ -19,7 +18,6 @@ export const ImageChangeModal = ({
   text,
   warning,
   btnName,
-  btnCheck,
   changeItem,
   userId,
   teacher,
@@ -82,7 +80,8 @@ export const ImageChangeModal = ({
               color="blue"
               className="text-black"
               value={inputValue}
-              onChange={handleChange} // 입력 값을 업데이트
+              onChange={handleChange}
+              placeholder="imageURL"
             />
             <Button
               variant="outlined"
@@ -90,7 +89,7 @@ export const ImageChangeModal = ({
               onClick={handleClick}
               className="col-span-1 p-2 ml-5"
             >
-              {btnCheck}
+              {btnName}
             </Button>
           </div>
         </DialogBody>
