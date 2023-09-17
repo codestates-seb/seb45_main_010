@@ -38,7 +38,6 @@ const DetailPage = () => {
   useEffect(() => {
     if (detailInfo.status === 'fulfilled') {
       setTeacherInfo(detailInfo.value);
-      console.log(teacherInfo);
     }
   }, [detailInfo]);
 
