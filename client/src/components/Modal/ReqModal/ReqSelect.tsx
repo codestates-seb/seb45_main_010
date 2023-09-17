@@ -15,15 +15,10 @@ const ReqSelect = ({ title, arr }: props) => {
     const newItem: string[] = [...selectItem];
     newButtonStates[index] = !newButtonStates[index];
     newItem[index] = newButtonStates[index] ? item : '';
-    const trim = newItem.filter((item) => item !== '');
 
-    setSelectItem(trim);
+    setSelectItem(newItem);
     setIsSelect(newButtonStates);
   };
-
-  useEffect(() => {
-    console.log(selectItem);
-  }, [selectItem]);
 
   return (
     <>
