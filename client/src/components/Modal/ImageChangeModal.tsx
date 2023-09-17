@@ -14,14 +14,7 @@ type props = {
   teacher: boolean;
 };
 
-export const ImageChangeModal = ({
-  text,
-  warning,
-  btnName,
-  changeItem,
-  userId,
-  teacher,
-}: props) => {
+export const ImageChangeModal = ({ text, warning, changeItem, userId, teacher }: props) => {
   const [open, setOpen] = useState<boolean>(false);
   const [inputValue, setInputValue] = useState<string>('');
   const apiURL = 'http://ec2-3-34-116-209.ap-northeast-2.compute.amazonaws.com:8080';
@@ -33,9 +26,12 @@ export const ImageChangeModal = ({
         id: userId,
         [changeItem]: newName,
       };
-      console.log(data);
       const accessToken = localStorage.getItem('access_jwt');
       const targetURL = `${apiURL}/${teacher === false ? 'students' : 'teachers'}/${changeItem}`;
+      if (!newName) {
+        alert('변경하실 내용을 입력해주세요');
+        return;
+      }
       const response = await axios.patch(targetURL, data, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
@@ -69,11 +65,11 @@ export const ImageChangeModal = ({
         color="gray"
         className="w-5 h-5 rounded-full mt-[-25px] bg-gray opacity-0"
       >
-        {btnName}
+        {' '}
       </Button>
       <Dialog open={open} handler={handleOpen} size="xs" className="overflow-hidden">
         <DialogBody divider>
-          <div className="grid grid-flow-col">
+          <div className="flex justify-center items-center">
             <Input
               label={text}
               crossOrigin={undefined}
@@ -84,12 +80,18 @@ export const ImageChangeModal = ({
               placeholder="imageURL"
             />
             <Button
-              variant="outlined"
-              color="red"
+              size="sm"
               onClick={handleClick}
-              className="col-span-1 p-2 ml-5"
+              className="w-10 h-10 p-0.5 ml-1 bg-blue-1 text-white"
             >
-              {btnName}
+              변경
+            </Button>
+            <Button
+              size="sm"
+              onClick={handleOpen}
+              className="w-10 h-10 p-0.5 ml-1 bg-gray-1 text-gray"
+            >
+              취소
             </Button>
           </div>
         </DialogBody>

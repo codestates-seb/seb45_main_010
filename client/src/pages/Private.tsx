@@ -34,7 +34,6 @@ const Private: React.FC = () => {
               <ImageChangeModal
                 text="변경할 이미지의 URL을 입력하세요"
                 warning="이미지 URL로만 업데이트됩니다"
-                btnName="변경"
                 changeItem="profileImg"
                 userId={userDetails.id}
                 teacher={userDetails.teacher}
@@ -63,7 +62,6 @@ const Private: React.FC = () => {
             <ChangeModal
               text="변경할 이름을 입력하세요"
               warning=""
-              btnName="변경"
               changeItem="name"
               userId={userDetails.id}
               teacher={userDetails.teacher}
@@ -83,7 +81,6 @@ const Private: React.FC = () => {
             <ChangeModal
               text="변경할 비밀번호를 입력하세요"
               warning="숫자+영문조합으로 8자이상 입력해주세요"
-              btnName="변경"
               changeItem="password"
               userId={userDetails.id}
               teacher={userDetails.teacher}
@@ -105,7 +102,6 @@ const Private: React.FC = () => {
             <ChangeModal
               text="새로운 전화번호를 입력하세요"
               warning="숫자로만 입력해주세요"
-              btnName="변경"
               changeItem="phone"
               userId={userDetails.id}
               teacher={userDetails.teacher}

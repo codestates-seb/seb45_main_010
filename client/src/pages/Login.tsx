@@ -29,7 +29,6 @@ const Login: React.FC = () => {
 
   const autoLogin = async () => {
     const result = await dispatch(authenticateUser());
-    console.log(result);
     if (result.payload) {
       await dispatch(fetchUserDetails(result.payload));
     }
@@ -97,9 +96,7 @@ const Login: React.FC = () => {
 
   return (
     <>
-      {isAuthenticated ? (
-        <div> </div>
-      ) : (
+      {!isAuthenticated && (
         <div className="flex flex-col item-center justify-center px-[12.5px]">
           <div className="text-2xl font-bold text-center">로그인</div>
           {isLoading ? (

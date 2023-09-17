@@ -8,22 +8,13 @@ import { updateUserName, updateUserPhone } from '../../redux/slice/MemberSlice';
 type props = {
   text: string;
   warning: string;
-  btnName: string;
   changeItem: string;
   userId: number;
   teacher: boolean;
   placeholder: string;
 };
 
-export const ChangeModal = ({
-  text,
-  warning,
-  btnName,
-  changeItem,
-  userId,
-  teacher,
-  placeholder,
-}: props) => {
+export const ChangeModal = ({ text, warning, changeItem, userId, teacher }: props) => {
   const [open, setOpen] = useState<boolean>(false);
   const [inputValue, setInputValue] = useState<string>('');
   const apiURL = 'http://ec2-3-34-116-209.ap-northeast-2.compute.amazonaws.com:8080';
@@ -36,23 +27,46 @@ export const ChangeModal = ({
       };
       const accessToken = localStorage.getItem('access_jwt');
       const targetURL = `${apiURL}/${teacher === true ? 'teachers' : 'students'}/${changeItem}`;
+      if (!newName) {
+        alert('변경하실 내용을 입력해주세요');
+        return;
+      }
+      if (changeItem === 'password') {
+        const isValiePassword: boolean = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(newName);
+        if (!isValiePassword) {
+          alert(
+            '고객님의 정보보안을 위해 비밀번호는 영문과 숫자를 조합하여 8자 이상으로 입력해주세요'
+          );
+          return;
+        }
+      }
+      if (changeItem === 'phone') {
+        const isValidPhone: boolean = /^\d{7,}$/.test(newName);
+        if (!isValidPhone) {
+          alert('유효한 전화번호를 입력해주세요(숫자, 7자리 이상)');
+          return;
+        }
+      }
       const response = await axios.patch(targetURL, data, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
       });
       {
-        changeItem === 'name'
-          ? dispatch(updateUserName(response.data.name))
-          : changeItem === 'phone'
-          ? dispatch(updateUserPhone(response.data.phone))
-          : changeItem === 'password'
-          ? alert('비밀번호가 변경됩니다')
-          : '';
+        if (changeItem === 'name') {
+          dispatch(updateUserName(response.data.name));
+          alert('이름이 변경됩니다');
+        } else if (changeItem === 'phone') {
+          dispatch(updateUserPhone(response.data.phone));
+          alert('전화번호가 변경됩니다');
+        } else if (changeItem === 'password') {
+          alert('비밀번호가 변경됩니다');
+        }
       }
     } catch (error) {
       console.log(`${changeItem}`, error);
     }
+    handleOpen();
   };
 
   const handleOpen = () => {
@@ -61,7 +75,6 @@ export const ChangeModal = ({
 
   const handleClick = () => {
     handleNameChange(inputValue);
-    handleOpen();
   };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -71,11 +84,11 @@ export const ChangeModal = ({
   return (
     <>
       <Button onClick={handleOpen} size="sm" className="bg-blue-1 opacity-100">
-        {btnName}
+        변경
       </Button>
       <Dialog open={open} handler={handleOpen} size="xs" className="overflow-hidden">
         <DialogBody divider>
-          <div className="grid grid-flow-col">
+          <div className="flex justify-center items-center">
             <Input
               label={text}
               crossOrigin={undefined}
@@ -83,15 +96,20 @@ export const ChangeModal = ({
               className="text-black"
               value={inputValue}
               onChange={handleChange} // 입력 값을 업데이트
-              placeholder={placeholder}
             />
             <Button
-              variant="outlined"
-              color="red"
+              size="sm"
               onClick={handleClick}
-              className="col-span-1 p-2 ml-5"
+              className="w-10 h-10 p-0.5 ml-1 bg-blue-1 text-white"
             >
-              {btnName}
+              변경
+            </Button>
+            <Button
+              size="sm"
+              onClick={handleOpen}
+              className="w-10 h-10 p-0.5 ml-1 bg-gray-1 text-gray"
+            >
+              취소
             </Button>
           </div>
         </DialogBody>
