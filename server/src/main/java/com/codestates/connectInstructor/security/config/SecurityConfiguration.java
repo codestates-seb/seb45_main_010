@@ -78,22 +78,27 @@ public class SecurityConfiguration {
                 .and()
                 .authorizeHttpRequests(authorize -> authorize
                         .antMatchers("/h2/**").permitAll()
+                        .antMatchers("/docs/**").permitAll()
                         .antMatchers(HttpMethod.GET, "/subjects").permitAll()
                         .antMatchers(HttpMethod.GET, "/regions").permitAll()
+
                         .antMatchers(HttpMethod.POST, "/teachers").permitAll()
                         .antMatchers(HttpMethod.PATCH, "/teachers/*").hasRole("TEACHER")
                         .antMatchers(HttpMethod.GET, "/teachers/*").permitAll()
                         .antMatchers(HttpMethod.GET, "/teachers").permitAll()
+
                         .antMatchers(HttpMethod.POST, "/students").permitAll()
                         .antMatchers(HttpMethod.GET, "/students/check/*").permitAll()
                         .antMatchers(HttpMethod.GET, "/students/*").permitAll()
                         .antMatchers(HttpMethod.PATCH, "/students/*").hasRole("STUDENT")
                         .antMatchers(HttpMethod.GET, "/students/mypage/*").permitAll() // students GET은 모두 permitAll 해도 될 듯.
                         .antMatchers(HttpMethod.DELETE, "/students/*").hasRole("STUDENT")
+
                         .antMatchers(HttpMethod.GET, "/matches").hasRole("STUDENT")
                         .antMatchers(HttpMethod.POST, "/matches").hasRole("STUDENT")
                         .antMatchers(HttpMethod.GET, "/matches/*").hasAnyRole("TEACHER","STUDENT")
                         .antMatchers(HttpMethod.PATCH, "/matches").hasAnyRole("TEACHER","STUDENT")
+
                         .antMatchers(HttpMethod.PATCH, "/schedules").hasRole("TEACHER")
                         .antMatchers(HttpMethod.GET, "/schedules").permitAll()
                         .anyRequest().permitAll() // denyAll()하면 되는데 h2 DB 접속이 안 되서 일단..

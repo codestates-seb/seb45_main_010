@@ -41,3 +41,5 @@ INSERT INTO teacher (created_at, address, career, email, introduction, last_logi
 INSERT INTO teacher (created_at, address, career, email, introduction, last_login_at, last_modified_at, lecture_fee, name, is_oauth, off_line, on_line, option, password, phone, profile_img, status) VALUES ('2023-09-15 17:39:15.426081',	null,	null,	'teacher2@gmail.com',	null,	null,	'2023-09-15 17:39:15.40705',	null,	'임꺽정',	FALSE,	FALSE,	FALSE,	null,	'{bcrypt}$2a$10$NbG3mr4Qu8nTV5QOx55ycumkRJeGi0iagK9IqZToTPXE0F.ryCisG',	null,	null,	0);
 INSERT INTO teacher_roles (teacher_id, roles) VALUES(1L, 'TEACHER');
 INSERT INTO teacher_roles (teacher_id, roles) VALUES(2L, 'TEACHER');
+-- INSERT INTO student(created_at, email, introduction, is_oauth, last_login_at, name, option, password, phone, profile_img, status) VALUES('2023-09-18 09:46:47.795288', 'student@gmail.com', null, false, null, '임꺽정', null, '{bcrypt}$2a$10$lkH/OXs0oDbbvKKfH51Nceh/1q.VrLDY1KykeKXODWAg9AkntZAEa', null, null, 'ACTIVE' );
+-- INSERT INTO student_roles (student_id, roles) VALUES(1L, 'STUDENT');
