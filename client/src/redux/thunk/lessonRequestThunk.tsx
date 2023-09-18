@@ -8,29 +8,21 @@ type id = {
   studentId: string;
 };
 
-type props = {
-  id: string;
-  requestPost: requestPostType;
-};
-
 export const lessonRequestGet = createAsyncThunk<lessonGetType, id>(
   'lessonRequestGet',
   async (id) => {
     const response = await axios.get(
       `${URL}/matches?teacherId=${id.teacherId}&studentId=${id.studentId}`
     );
-
     const data = response.data;
     return data;
   }
 );
 
-export const lessonRequestPost = createAsyncThunk<lessonPostType, props>(
+export const lessonRequestPost = createAsyncThunk<lessonPostType, requestPostType>(
   'lessonRequestPost',
-  async ({ id, requestPost }) => {
-    console.log(requestPost);
-
-    const response = await axios.post(`${URL}/teachers/${id}`, { requestPost });
+  async (requestPost) => {
+    const response = await axios.post(`${URL}/matches`, { requestPost });
     const data = response.data;
     return data;
   }
