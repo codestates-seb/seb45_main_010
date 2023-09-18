@@ -18,13 +18,15 @@ export const FetchProfile = createAsyncThunk('FetchProfile', async (id, thunkAPI
     const userId = authResult.payload?.id;
     const teacher = authResult.payload?.teacher;
     if (userId !== undefined && userId !== null) {
-      const response = await axios.get(`${PROFILEURL}/${userId}`);
-      let data = response.data;
-
-      if (data && data.teacher !== undefined) {
-        data.teacher = teacher === 'TEACHER' ? true : teacher === 'STUDENT' ? false : data.teacher;
+      let response;
+      if (teacher === 'TEACHER') {
+        response = await axios.get(`${APIurl}/teachers/${userId}`);
+      } else if (teacher === 'STUDENT') {
+        response = await axios.get(`${APIurl}/students/mypage/${userId}`);
       }
-      return data;
+      if (response) {
+        return response.data;
+      }
     }
   } catch (error) {
     console.error('Error fetching profile:', error);
