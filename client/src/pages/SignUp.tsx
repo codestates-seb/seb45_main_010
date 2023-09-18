@@ -76,12 +76,12 @@ const SignUp: React.FC = () => {
     await axios
       .post(`${apiURL}/${userInfo.teacher ? 'teachers' : 'students'}`, userInfo)
       .then((response) => {
-        alert('회원가입을 축하드립니다');
+        alert('회원 인증을 위한 링크를 이메일로 발송하였습니다. 인증후에 가입이 완료됩니다.');
         navigate('/login');
       })
       .catch((error) => {
         console.log('회원가입 비동기요청', error);
-        alert('서비스 개선중입니다. 잠시후에 다시 시도하여 주세요');
+        alert('통신 장애로 가입요청이 전달되지 않았습니다. 잠시후에 다시 시도하여 주세요');
       });
   };
 
@@ -147,7 +147,12 @@ const SignUp: React.FC = () => {
             onChange={handleUserInfo}
           />
 
-          <label className="flex items-center space-x-2">
+          {userInfo.teacher === true ? (
+            <div className="pt-4 text-xxs text-gray-500">강사로 가입됩니다</div>
+          ) : (
+            <div className="pt-4 text-xxs text-gray-500">일반회원(학생)으로 가입됩니다</div>
+          )}
+          <label className="flex items-center pb-2 space-x-2">
             <Checkbox
               crossOrigin={undefined}
               type="checkbox"
@@ -157,7 +162,7 @@ const SignUp: React.FC = () => {
               checked={userInfo.teacher}
               onChange={handleUserInfo}
             />
-            <span className="py-4 text-sm text-gray-700">강사로 가입하기</span>
+            <span className="text-sm text-gray-700 ">강사로 가입하기</span>
           </label>
           <Button
             type="submit"
