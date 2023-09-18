@@ -16,7 +16,7 @@ import javax.mail.internet.MimeMessage;
 
 @Component
 @Slf4j
-public class VerifyEmailEventListener {
+public class ResetPasswordEventListner {
     @Autowired
     private JavaMailSender javaMailSender;
     @Autowired
@@ -29,7 +29,7 @@ public class VerifyEmailEventListener {
 
     @TransactionalEventListener
     @Async
-    public void sendEmail(VerifyEmailEvent event) throws InterruptedException {
+    public void sendEmail(ResetPasswordEvent event) throws InterruptedException {
         String name = event.getName();
         String email = event.getEmail();
         String encryptedPath = emailService.encodePath(email, name);
@@ -40,13 +40,13 @@ public class VerifyEmailEventListener {
             MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true, "UTF-8");
 
             mimeMessageHelper.setTo(email);
-            mimeMessageHelper.setSubject("ConnecT 인증 메일입니다.");
+            mimeMessageHelper.setSubject("ConnecT 비밀번호 초기화를 위한 인증 메일입니다.");
 
             Context context = new Context();
             context.setVariable("name", name);
-            context.setVariable("site", EC2_URL + "email/verify/" + encryptedPath);
+            context.setVariable("site", EC2_URL + "email/password/" + encryptedPath);
 
-            String html = templateEngine.process("Cerfify", context);
+            String html = templateEngine.process("ResetPassword", context);
 
             mimeMessageHelper.setText(html, true);
 

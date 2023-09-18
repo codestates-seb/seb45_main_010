@@ -13,11 +13,16 @@ import com.codestates.connectInstructor.schedule.entity.Schedule;
 import com.codestates.connectInstructor.schedule.repository.ScheduleRepository;
 import com.codestates.connectInstructor.schedule.service.ScheduleService;
 import com.codestates.connectInstructor.student.entity.Student;
+import com.codestates.connectInstructor.student.repository.StudentRepository;
 import com.codestates.connectInstructor.student.service.StudentService;
 import com.codestates.connectInstructor.subject.service.SubjectService;
 import com.codestates.connectInstructor.teacher.entity.Teacher;
+import com.codestates.connectInstructor.teacher.repository.TeacherRepository;
 import com.codestates.connectInstructor.teacher.service.TeacherService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -37,7 +42,11 @@ public class MatchService {
     private final MatchRepository matchRepository;
     private final ScheduleService scheduleService;
     private final ScheduleRepository scheduleRepository;
+    private final StudentRepository studentRepository;
+    private final TeacherRepository teacherRepository;
     public MatchDto.GetResponse getBasicInformation(long studentId, long teacherId) {
+        if (!verifyStudentIdentity(studentId)) throw new BusinessLogicException(ExceptionCode.NOT_AUTHORIZED);
+
         MatchDto.GetResponse response = new MatchDto.GetResponse();
 
         Student student = studentService.findStudentById(studentId);
@@ -78,6 +87,8 @@ public class MatchService {
     }
 
     public Match postMatch(MatchDto.Post request) {
+        if (!verifyStudentIdentity(request.getStudentId())) throw new BusinessLogicException(ExceptionCode.NOT_AUTHORIZED);
+
         Match match = new Match();
         match.setStatus(Match.MatchStatus.MATCH_REQUEST);
 
@@ -142,6 +153,10 @@ public class MatchService {
     public Match patchMatch(long id, String status) {
         Match match = findverifyMatchById(id);
 
+        if (!verifyStudentIdentity(match.getStudent().getId()) && ! verifyTeacherIdentity(match.getTeacher().getId())) {
+            throw new BusinessLogicException(ExceptionCode.NOT_AUTHORIZED);
+        }
+
         if (status.equals("cancel")) {
             match.setStatus(Match.MatchStatus.MATCH_CANCELLED);
         } else if (status.equals("answer")) {
@@ -151,5 +166,31 @@ public class MatchService {
         }
 
         return matchRepository.save(match);
+    }
+
+    private boolean verifyStudentIdentity(long studentId) {
+        SecurityContext securityContext = SecurityContextHolder.getContext();
+        Authentication authentication = securityContext.getAuthentication();
+
+        Optional<Student> optionalStudent = studentRepository.findById(studentId);
+
+        if (optionalStudent.isEmpty()) throw new BusinessLogicException(ExceptionCode.MEMBER_NOT_FOUND);
+
+        Student found = optionalStudent.get();
+
+        return authentication.getName().toString().equals(found.getEmail()) ? true : false;
+    }
+
+    private boolean verifyTeacherIdentity(long teacherId) {
+        SecurityContext securityContext = SecurityContextHolder.getContext();
+        Authentication authentication = securityContext.getAuthentication();
+
+        Optional<Teacher> optionalTeacher = teacherRepository.findById(teacherId);
+
+        if (optionalTeacher.isEmpty()) throw new BusinessLogicException(ExceptionCode.MEMBER_NOT_FOUND);
+
+        Teacher found = optionalTeacher.get();
+
+        return authentication.getName().toString().equals(found.getEmail()) ? true : false;
     }
 }
