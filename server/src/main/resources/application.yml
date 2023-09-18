@@ -38,7 +38,7 @@ spring:
           kakao:
             client-id: ${KAKAO_CLIENT_ID}
             client-secret: ${KAKAO_CLIENT_SECRET}
-            redirect-uri: http://ec2-3-34-116-209.ap-northeast-2.compute.amazonaws.com:8080/login/oauth2/code/kakao
+            redirect-uri: ${EC2_URL}/login/oauth2/code/kakao
             authorization-grant-type: authorization_code
             client-authentication-method: POST
             client-name: Kakao
@@ -67,3 +67,4 @@ jasypt:
     bean: jasyptStringEncryptor
 
 emailEncryptionSecretKey: ${emailEncryptionSecretKey}
+EC2_URL : ${EC2_URL}

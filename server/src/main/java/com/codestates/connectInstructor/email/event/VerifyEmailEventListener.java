@@ -3,6 +3,7 @@ package com.codestates.connectInstructor.email.event;
 import com.codestates.connectInstructor.email.service.EmailService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.annotation.Async;
@@ -23,6 +24,9 @@ public class VerifyEmailEventListener {
     @Autowired
     private SpringTemplateEngine templateEngine;
 
+    @Value("${EC2_URL}")
+    private String EC2_URL;
+
     @TransactionalEventListener
     @Async
     public void sendEmail(VerifyEmailEvent event) throws InterruptedException {
@@ -40,7 +44,7 @@ public class VerifyEmailEventListener {
 
             Context context = new Context();
             context.setVariable("name", name);
-            context.setVariable("site", "http://ec2-3-34-116-209.ap-northeast-2.compute.amazonaws.com:8080/email/verify/" + encryptedPath);
+            context.setVariable("site", EC2_URL + "/email/verify/" + encryptedPath);
 
             String html = templateEngine.process("Cerfify", context);
 
