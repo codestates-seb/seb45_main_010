@@ -5,8 +5,8 @@ export type User = {
   teacher: boolean;
   id: number;
   phone: string;
-  regionsNames: string[];
-  subjectNames: string[];
+  regions: string[];
+  subjects: string[];
   profileImg: string | null;
   introduction: string;
   lectureFee: string;
@@ -40,7 +40,7 @@ export type LoginType = Pick<User, 'email' | 'password'>;
 
 export type ListPageType = Pick<
   User,
-  'id' | 'name' | 'subjectNames' | 'regionsNames' | 'onLine' | 'offLine' | 'profileImg'
+  'id' | 'name' | 'subjects' | 'regions' | 'onLine' | 'offLine' | 'profileImg'
 >;
 
 export type DetailType = Pick<
@@ -53,8 +53,8 @@ export type DetailType = Pick<
   | 'profileImg'
   | 'onLine'
   | 'offLine'
-  | 'subjectNames'
-  | 'regionsNames'
+  | 'subjects'
+  | 'regions'
   | 'introduction'
   | 'lectureFee'
   | 'career'
@@ -116,7 +116,7 @@ export type ScheduleObjType = {
 //   schedules: ScheduleObjType[];
 // }[];
 
-export type SearchType = Pick<User, 'subjectNames' | 'regionsNames'> & {
+export type SearchType = Pick<User, 'subjects' | 'regions'> & {
   teacherName: string;
   size: number;
   page: number;
@@ -144,14 +144,36 @@ export type footerType = {
   }[];
 };
 
-export type lessonGetType = {
+export type lessonGetType = Pick<User, 'subjects' | 'schedules'> & {
   studentId: string;
   teacherId: string;
-  subjects: string[];
-  schedules: {
-    date: string[];
-  }[];
   sudentName: string;
   studentPhone: string;
   studentEmail: string;
+};
+
+export type lessonPostType = {
+  id: number;
+  studentId: number;
+  teacherId: number;
+  status: string;
+  matchSubjects: string[];
+  matchRegions: string[];
+  date: string;
+  timeslot: string;
+  studentName: string;
+  studentPhone: string;
+  studentEmail: string;
+  remarks: string;
+  teacherName: string;
+  online: boolean;
+};
+
+export type requestPostType = Pick<User, 'subjects' | 'regions'> & {
+  isOnLine: boolean;
+  isOffLine: boolean;
+  studentName: string;
+  studentPhone: string;
+  studentEmail: string;
+  remaks: string;
 };

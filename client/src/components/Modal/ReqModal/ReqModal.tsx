@@ -3,9 +3,10 @@ import { Button, Dialog, DialogFooter } from '@material-tailwind/react';
 import ReqForm from './ReqForm';
 import { useAppDispatch, useAppSelector } from 'hooks/hooks';
 import { lessonRequest } from 'redux/slice/lessonRequestSlice';
-import { lessonGet } from 'redux/thunk/lessonRequestThunk';
 import ReqSelect from './ReqSelect';
-import { lessonGetType } from 'Types/Types';
+import { lessonGetType, requestPostType } from 'Types/Types';
+import { useLocation } from 'react-router-dom';
+import { lessonRequestGet, lessonRequestPost } from 'redux/thunk/lessonRequestThunk';
 
 type props = {
   subjectNames: string[];
@@ -25,13 +26,24 @@ type formType = {
 };
 
 export const ReqModal = ({ subjectNames, regionsNames, schedules, onLine, offLine }: props) => {
-  const onOff = ['온라인', '오프라인'];
+  const location = useLocation();
+  const dispatch = useAppDispatch();
+  const lesson = useAppSelector(lessonRequest);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [subjects, setSubjects] = useState<string[]>([]);
   const [regions, setRegions] = useState<string[]>([]);
   const [schedule, setSchedule] = useState<string[]>([]);
   const [isOnOffLine, setIsOnOffLine] = useState<string[]>(['', '']);
-  const [requestPost, setRequestPost] = useState({});
+  const [requestPost, setRequestPost] = useState<requestPostType>({
+    subjects: [],
+    regions: [],
+    isOnLine: false,
+    isOffLine: false,
+    studentName: '',
+    studentPhone: '',
+    studentEmail: '',
+    remaks: '',
+  });
   const [studentInfo, setStudentInfo] = useState<formType>({
     name: '',
     phone: '',
@@ -47,15 +59,15 @@ export const ReqModal = ({ subjectNames, regionsNames, schedules, onLine, offLin
     studentPhone: '',
     studentEmail: '',
   });
-  const lesson = useAppSelector(lessonRequest);
-  const dispatch = useAppDispatch();
-  const id = { teacherId: 'chod1510@gmail.com', studentId: 'chod1510@naver.com' };
+
+  const onOff = onLine && offLine ? ['온라인', '오프라인'] : offLine ? ['오프라인'] : ['온라인'];
+  const id = { teacherId: location.pathname.slice(1), studentId: '6' };
 
   const handleOpen = (): void => setIsOpen(!isOpen);
 
   useEffect(() => {
-    dispatch(lessonGet(id));
-  });
+    dispatch(lessonRequestGet(id));
+  }, []);
 
   useEffect(() => {
     setMatches(lesson.value);
@@ -73,6 +85,10 @@ export const ReqModal = ({ subjectNames, regionsNames, schedules, onLine, offLin
       remaks: studentInfo.remaks,
     });
   }, [subjects, regions, schedule, isOnOffLine, studentInfo]);
+
+  const handleRequestPost = () => {
+    dispatch(lessonRequestPost({ id: id.teacherId, requestPost: requestPost }));
+  };
 
   return (
     <>
@@ -105,6 +121,7 @@ export const ReqModal = ({ subjectNames, regionsNames, schedules, onLine, offLin
             color="red"
             className="p-2 mx-3 my-1 text-black rounded-full bg-mint-300"
             children="신청하기"
+            onClick={handleRequestPost}
           />
         </DialogFooter>
       </Dialog>
