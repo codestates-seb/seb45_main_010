@@ -88,7 +88,7 @@ export const ReqModal = ({ subjectNames, regionsNames, schedules, onLine, offLin
   }, [subjects, regions, schedule, isOnOffLine, studentInfo]);
 
   const handleRequestPost = () => {
-    dispatch(lessonRequestPost({ id: id.teacherId, requestPost: requestPost }));
+    dispatch(lessonRequestPost(requestPost));
     handleOpen();
   };
 
