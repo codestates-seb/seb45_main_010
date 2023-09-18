@@ -27,7 +27,7 @@ const ReqSelect = ({ title, arr, setItems }: props) => {
   return (
     <>
       <DialogHeader className="p-2 text-sm ">{title}</DialogHeader>
-      <section className="flex items-center ">
+      <section className="flex flex-wrap items-center">
         {arr?.map((item, index) => {
           return (
             <Button
@@ -35,7 +35,7 @@ const ReqSelect = ({ title, arr, setItems }: props) => {
               onClick={() => handleCategory(item, index)}
               className={`${
                 isSelect[index] ? 'bg-gray-3' : 'bg-mint-300'
-              } px-3 py-1 m-2 text-sm text-black rounded-2xl `}
+              } px-3 py-1 m-2 text-xs text-black rounded-2xl`}
               children={item}
             />
           );
