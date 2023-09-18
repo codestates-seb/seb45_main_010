@@ -13,29 +13,29 @@ type RequestListProps = {
 
 const RequestList: React.FC<RequestListProps> = ({ teacher, matches }) => {
   const [showModal, setShowModal] = useState(false);
-  const [selectedMatchId, setSelectedMatchId] = useState<number | null>(null); // 상태 추가
+  const [selectedMatchId, setSelectedMatchId] = useState<number | null>(null);
   const translateStatus = useStatusTranslator();
   const noFn = () => {};
 
   return (
     <div className="py-5">
       <p className="flex-1 mb-4 text-sm font-bold">{teacher ? '강의요청목록' : '수업요청목록'}</p>
-      <div className="flex justify-end text-right">
-        <Button
-          className="flex items-center mx-1 h-7 p-2 text-[8px] text-gray-700 bg-white rounded-xl border-mint-200"
-          variant="outlined"
-        >
-          과목
-        </Button>
-        <Button
-          className="flex items-center mx-1 h-7 p-2 text-[8px] text-gray-700 bg-white rounded-xl border-mint-200"
-          variant="outlined"
-        >
-          {!teacher ? '강사' : '학생'}
-        </Button>
-      </div>
       {matches.length > 0 ? (
-        <div>
+        <>
+          <div className="flex justify-end text-right">
+            <Button
+              className="flex items-center mx-1 h-7 p-2 text-[8px] text-gray-700 bg-white rounded-xl border-mint-200"
+              variant="outlined"
+            >
+              과목
+            </Button>
+            <Button
+              className="flex items-center mx-1 h-7 p-2 text-[8px] text-gray-700 bg-white rounded-xl border-mint-200"
+              variant="outlined"
+            >
+              {!teacher ? '강사' : '학생'}
+            </Button>
+          </div>
           {matches.map((match) => {
             const { text, className } = translateStatus(match.status);
 
@@ -65,7 +65,7 @@ const RequestList: React.FC<RequestListProps> = ({ teacher, matches }) => {
               </div>
             );
           })}
-        </div>
+        </>
       ) : (
         <>
           <NoRequestStatus teacher={teacher} onClick={noFn} />

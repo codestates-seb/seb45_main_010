@@ -1,4 +1,4 @@
-import { MatchType } from 'Types/Types';
+import { MatchType, StatusType } from 'Types/Types';
 
 import {
   FetchProfile,
@@ -35,7 +35,7 @@ type initialStateType = {
       {
         matchId: 0;
         schedule: '';
-        status: '';
+        status: StatusType;
         studentName: '';
         subjects: [];
         teacherName: '';
@@ -63,7 +63,14 @@ const initialState: initialStateType = {
     regions: [],
     subjects: [],
     matches: [
-      { matchId: 0, schedule: '', status: '', studentName: '', subjects: [], teacherName: '' },
+      {
+        matchId: 0,
+        schedule: '',
+        status: 'MATCH_REQUEST',
+        studentName: '',
+        subjects: [],
+        teacherName: '',
+      },
     ],
   },
   error: null,

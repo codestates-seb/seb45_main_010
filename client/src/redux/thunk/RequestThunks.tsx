@@ -1,9 +1,9 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { APIurl } from 'components/Items/GetInfoAuth';
-import { ACCESSTOKEN } from 'configs/Url/config';
+import { getAccessToken } from 'components/Items/GetAccessToken';
 import { RequestInfoType } from 'Types/Types';
-
+const token = getAccessToken();
 export const FetchRequestInfo = createAsyncThunk<RequestInfoType, number>(
   'FetchRequestInfo',
   async (matchId: number) => {
@@ -24,7 +24,7 @@ export const updateRequestStatus = createAsyncThunk(
       },
       {
         headers: {
-          Authorization: `Bearer ${ACCESSTOKEN}`,
+          Authorization: `Bearer ${token}`,
         },
       }
     );

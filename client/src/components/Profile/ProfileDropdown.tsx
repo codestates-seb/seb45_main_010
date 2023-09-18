@@ -18,14 +18,16 @@ const ProfileDropdown = ({
 }) => {
   const dispatch = useAppDispatch();
   const [selectedCategory, setSelectedCategory] = useState<string>('');
-  const [tags, setTags] = useState<string[]>(categories || []);
-  const profile = useAppSelector((state) => state.profile.value);
+
+  const [tags, setTags] = useState<string[]>(categories);
 
   useEffect(() => {
-    if (title === '과목') {
-      dispatch(updateSubjects({ id: id, subjects: tags }));
-    } else if (title === '지역') {
-      dispatch(updateRegions({ id: id, regions: tags }));
+    if (tags !== categories) {
+      if (title === '과목') {
+        dispatch(updateSubjects({ id: id, subjects: tags }));
+      } else if (title === '지역') {
+        dispatch(updateRegions({ id: id, regions: tags }));
+      }
     }
   }, [tags, title]);
 
