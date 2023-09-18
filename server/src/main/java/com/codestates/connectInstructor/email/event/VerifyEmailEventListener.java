@@ -44,7 +44,7 @@ public class VerifyEmailEventListener {
 
             Context context = new Context();
             context.setVariable("name", name);
-            context.setVariable("site", EC2_URL + "/email/verify/" + encryptedPath);
+            context.setVariable("site", EC2_URL + "email/verify/" + encryptedPath);
 
             String html = templateEngine.process("Cerfify", context);
 
