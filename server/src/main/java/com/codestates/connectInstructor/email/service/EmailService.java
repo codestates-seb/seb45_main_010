@@ -1,6 +1,7 @@
 package com.codestates.connectInstructor.email.service;
 
 import com.codestates.connectInstructor.common.MemberStatus;
+import com.codestates.connectInstructor.email.event.ResetPasswordEvent;
 import com.codestates.connectInstructor.email.event.SignupEvent;
 import com.codestates.connectInstructor.exception.BusinessLogicException;
 import com.codestates.connectInstructor.exception.ExceptionCode;
@@ -16,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -33,6 +35,7 @@ public class EmailService {
     private final StudentRepository studentRepository;
     private final TeacherRepository teacherRepository;
     private final ApplicationEventPublisher applicationEventPublisher;
+    private final PasswordEncoder passwordEncoder;
 
     @Value("${emailEncryptionSecretKey}")
     String password;
@@ -103,6 +106,61 @@ public class EmailService {
             applicationEventPublisher.publishEvent(new SignupEvent(email, name));
         } else {
             throw new BusinessLogicException(ExceptionCode.MEMBER_NOT_FOUND);
+        }
+    }
+
+    public void resetPassword(String encryptedPath) {
+        Map<String, String> map = decodePath(encryptedPath);
+
+        String email = map.get("email");
+        String name = map.get("name");
+
+        String password = passwordEncoder.encode("pass1234");
+
+        Optional<Student> optionalStudent = studentRepository.findByEmail(email);
+        Optional<Teacher> optionalTeacher = teacherRepository.findByEmail(email);
+
+        if (optionalStudent.isPresent()) {
+            Student student = optionalStudent.get();
+
+            if (!student.getName().equals(name)) throw new BusinessLogicException(ExceptionCode.MEMBER_NOT_FOUND);
+            if (student.isOauth()) throw new BusinessLogicException(ExceptionCode.SOCIAL_USER_PASSWORD);
+
+            student.setPassword(password);
+
+            studentRepository.save(student);
+        }
+
+        else {
+            Teacher teacher = optionalTeacher.get();
+
+            if (!teacher.getName().equals(name)) throw new BusinessLogicException(ExceptionCode.MEMBER_NOT_FOUND);
+            if (teacher.isOauth()) throw new BusinessLogicException(ExceptionCode.SOCIAL_USER_PASSWORD);
+
+            teacher.setPassword(password);
+
+            teacherRepository.save(teacher);
+        }
+    }
+
+    public void sendResetEmail(String email) {
+        Optional<Student> optionalStudent = studentRepository.findByEmail(email);
+        Optional<Teacher> optionalTeacher = teacherRepository.findByEmail(email);
+
+        if (optionalStudent.isPresent()) {
+            Student student = optionalStudent.get();
+
+            if (student.isOauth()) throw new BusinessLogicException(ExceptionCode.SOCIAL_USER_PASSWORD);
+
+            applicationEventPublisher.publishEvent(new ResetPasswordEvent(email, student.getName()));
+        }
+
+        else {
+            Teacher teacher = optionalTeacher.get();
+
+            if (teacher.isOauth()) throw new BusinessLogicException(ExceptionCode.SOCIAL_USER_PASSWORD);
+
+            applicationEventPublisher.publishEvent(new ResetPasswordEvent(email, teacher.getName()));
         }
     }
 }
