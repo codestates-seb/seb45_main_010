@@ -22,7 +22,7 @@ const Profile = () => {
   }, []);
 
   const user = useAppSelector((state) => state.profile.value);
-  console.log(user.teacher);
+  // console.log(user.teacher);
   return (
     <>
       <ProfileHeader

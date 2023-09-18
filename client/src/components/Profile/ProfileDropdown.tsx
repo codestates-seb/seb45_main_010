@@ -30,7 +30,7 @@ const ProfileDropdown = ({
       }
     }
   }, [tags, title]);
-  console.log(id);
+
   const handleCategorySelect = (item: string) => {
     setSelectedCategory(item);
     addTag(item);
