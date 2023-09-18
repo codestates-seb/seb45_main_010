@@ -4,6 +4,7 @@ import { Button, Dialog, DialogBody, DialogFooter, Input } from '@material-tailw
 import { useAppDispatch } from 'hooks/hooks';
 import axios from 'axios';
 import { updateUserName, updateUserPhone } from '../../redux/slice/MemberSlice';
+import { URL } from 'configs/Url/config';
 
 type props = {
   text: string;
@@ -26,7 +27,6 @@ export const ChangeModal = ({ text, warning, changeItem, userId, teacher, oauthU
     teacher: teacher,
     oauthUser: oauthUser,
   };
-  const apiURL = 'http://ec2-3-34-116-209.ap-northeast-2.compute.amazonaws.com:8080';
   const dispatch = useAppDispatch();
   const handleNameChange = async (newName: string) => {
     try {
@@ -35,7 +35,7 @@ export const ChangeModal = ({ text, warning, changeItem, userId, teacher, oauthU
         [changeItem]: newName,
       };
       const accessToken = localStorage.getItem('access_jwt');
-      const targetURL = `${apiURL}/${UpdateUser.teacher === true ? 'teachers' : 'students'}/${
+      const targetURL = `${URL}/${UpdateUser.teacher === true ? 'teachers' : 'students'}/${
         UpdateUser.changeItem
       }`;
       if (!newName) {

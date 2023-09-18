@@ -206,10 +206,7 @@ const SetSchedule = ({ id }: { id: number }) => {
       <Button
         className="flex items-center justify-between w-[350px] mb-5 text-sm font-bold text-white bg-blue-1 rounded-xl "
         size="sm"
-        onClick={() => {
-          handleSave();
-          handleSaveMessages();
-        }}
+        onClick={handleSave}
       >
         <span className="flex-1 text-center">저장</span>
       </Button>

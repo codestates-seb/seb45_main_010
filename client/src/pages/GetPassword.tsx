@@ -3,12 +3,12 @@ import { ChangeEvent, FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@material-tailwind/react';
 import axios from 'axios';
+import { URL } from 'configs/Url/config';
 
 const GetPassword: React.FC = () => {
   const [passwordkey, setpasswordkey] = useState<string>('');
 
   const navigate = useNavigate();
-  const apiURL = 'http://ec2-3-34-116-209.ap-northeast-2.compute.amazonaws.com:8080';
   const isValidEmail: boolean = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(passwordkey);
 
   const handleSecret = (e: ChangeEvent<HTMLInputElement>) => {
@@ -25,7 +25,7 @@ const GetPassword: React.FC = () => {
     }
 
     try {
-      const response = await axios.get(`${apiURL}/resetPassword/${passwordkey}`);
+      const response = await axios.get(`${URL}/resetPassword/${passwordkey}`);
       console.log(response.data);
       const matchingUser = response.data;
       if (matchingUser) {

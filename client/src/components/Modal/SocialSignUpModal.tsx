@@ -1,15 +1,15 @@
 import React, { useState, ChangeEvent } from 'react';
 import { Button, Dialog, DialogBody, DialogFooter, Radio } from '@material-tailwind/react';
 import axios from 'axios';
+import { URL } from 'configs/Url/config';
 
 export const SocialSignupModal = () => {
   const [open, setOpen] = useState<boolean>(false);
   const [userType, setUserType] = useState<string>('');
-  const apiURL = 'http://ec2-3-34-116-209.ap-northeast-2.compute.amazonaws.com:8080';
   const handleSubmit = async () => {
     console.log(userType);
     try {
-      const response = await axios.get(`${apiURL}/oauth2/authorization/${userType}`);
+      const response = await axios.get(`${URL}/oauth2/authorization/${userType}`);
       console.log(response.data);
     } catch (error) {
       console.log(error);

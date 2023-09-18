@@ -34,11 +34,12 @@ type initialStateType = {
     matches: [
       {
         matchId: 0;
-        schedule: '';
+        date: string;
+        timeslot: string;
         status: StatusType;
-        studentName: '';
+        studentName: string;
         subjects: [];
-        teacherName: '';
+        teacherName: string;
       },
     ];
   };
@@ -65,7 +66,8 @@ const initialState: initialStateType = {
     matches: [
       {
         matchId: 0,
-        schedule: '',
+        date: '',
+        timeslot: '',
         status: 'MATCH_REQUEST',
         studentName: '',
         subjects: [],
