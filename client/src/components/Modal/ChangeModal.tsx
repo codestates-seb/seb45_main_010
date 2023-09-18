@@ -12,9 +12,10 @@ type props = {
   userId: number;
   teacher: boolean;
   placeholder: string;
+  oauthUser: boolean;
 };
 
-export const ChangeModal = ({ text, warning, changeItem, userId, teacher }: props) => {
+export const ChangeModal = ({ text, warning, changeItem, userId, teacher, oauthUser }: props) => {
   const [open, setOpen] = useState<boolean>(false);
   const [inputValue, setInputValue] = useState<string>('');
   const apiURL = 'http://ec2-3-34-116-209.ap-northeast-2.compute.amazonaws.com:8080';
@@ -32,12 +33,17 @@ export const ChangeModal = ({ text, warning, changeItem, userId, teacher }: prop
         return;
       }
       if (changeItem === 'password') {
-        const isValiePassword: boolean = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(newName);
-        if (!isValiePassword) {
-          alert(
-            '고객님의 정보보안을 위해 비밀번호는 영문과 숫자를 조합하여 8자 이상으로 입력해주세요'
-          );
+        if (oauthUser) {
+          alert('카카오 가입회원은 비밀번호를 변경할수 없습니다');
           return;
+        } else {
+          const isValiePassword: boolean = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(newName);
+          if (!isValiePassword) {
+            alert(
+              '고객님의 정보보안을 위해 비밀번호는 영문과 숫자를 조합하여 8자 이상으로 입력해주세요'
+            );
+            return;
+          }
         }
       }
       if (changeItem === 'phone') {

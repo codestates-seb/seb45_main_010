@@ -66,6 +66,7 @@ const Private: React.FC = () => {
               userId={userDetails.id}
               teacher={userDetails.teacher}
               placeholder={userDetails.name}
+              oauthUser={userDetails.oauth}
             />
           </div>
         </div>
