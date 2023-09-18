@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { ChangeEvent, FormEvent } from 'react';
 import { Button, Checkbox } from '@material-tailwind/react';
 import { User } from '../Types/Types';
-import { SocialModal } from 'components/Modal/SocialModal';
+import { SocialSignupModal } from 'components/Modal/SocialSignUpModal';
 import axios from 'axios';
 
 type MemberSignUp = Pick<User, 'name' | 'email' | 'password' | 'teacher'>;
@@ -171,7 +171,7 @@ const SignUp: React.FC = () => {
             이메일 회원가입
           </Button>
         </form>
-        <SocialModal />
+        <SocialSignupModal />
       </div>
     </div>
   );

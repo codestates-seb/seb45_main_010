@@ -13,7 +13,7 @@ const ListPage = () => {
   const [cardList, setCardList] = useState<ListPageType[]>([]);
   const [page, setPage] = useState<number>(0);
   const [totalPages, setTotalPages] = useState<number>(0);
-  const size: number = 1;
+  const size: number = 7;
 
   useEffect(() => {
     search.size = size;

@@ -12,11 +12,20 @@ type props = {
   userId: number;
   teacher: boolean;
   placeholder: string;
+  oauthUser: boolean;
 };
 
-export const ChangeModal = ({ text, warning, changeItem, userId, teacher }: props) => {
+export const ChangeModal = ({ text, warning, changeItem, userId, teacher, oauthUser }: props) => {
   const [open, setOpen] = useState<boolean>(false);
   const [inputValue, setInputValue] = useState<string>('');
+  const UpdateUser = {
+    text: text,
+    warning: warning,
+    changeItem: changeItem,
+    userId: userId,
+    teacher: teacher,
+    oauthUser: oauthUser,
+  };
   const apiURL = 'http://ec2-3-34-116-209.ap-northeast-2.compute.amazonaws.com:8080';
   const dispatch = useAppDispatch();
   const handleNameChange = async (newName: string) => {
@@ -26,21 +35,28 @@ export const ChangeModal = ({ text, warning, changeItem, userId, teacher }: prop
         [changeItem]: newName,
       };
       const accessToken = localStorage.getItem('access_jwt');
-      const targetURL = `${apiURL}/${teacher === true ? 'teachers' : 'students'}/${changeItem}`;
+      const targetURL = `${apiURL}/${UpdateUser.teacher === true ? 'teachers' : 'students'}/${
+        UpdateUser.changeItem
+      }`;
       if (!newName) {
         alert('변경하실 내용을 입력해주세요');
         return;
       }
-      if (changeItem === 'password') {
-        const isValiePassword: boolean = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(newName);
-        if (!isValiePassword) {
-          alert(
-            '고객님의 정보보안을 위해 비밀번호는 영문과 숫자를 조합하여 8자 이상으로 입력해주세요'
-          );
+      if (UpdateUser.changeItem === 'password') {
+        if (oauthUser) {
+          alert('카카오 가입회원은 비밀번호를 변경할수 없습니다');
           return;
+        } else {
+          const isValiePassword: boolean = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(newName);
+          if (!isValiePassword) {
+            alert(
+              '고객님의 정보보안을 위해 비밀번호는 영문과 숫자를 조합하여 8자 이상으로 입력해주세요'
+            );
+            return;
+          }
         }
       }
-      if (changeItem === 'phone') {
+      if (UpdateUser.changeItem === 'phone') {
         const isValidPhone: boolean = /^\d{7,}$/.test(newName);
         if (!isValidPhone) {
           alert('유효한 전화번호를 입력해주세요(숫자, 7자리 이상)');
@@ -53,18 +69,18 @@ export const ChangeModal = ({ text, warning, changeItem, userId, teacher }: prop
         },
       });
       {
-        if (changeItem === 'name') {
+        if (UpdateUser.changeItem === 'name') {
           dispatch(updateUserName(response.data.name));
           alert('이름이 변경됩니다');
-        } else if (changeItem === 'phone') {
+        } else if (UpdateUser.changeItem === 'phone') {
           dispatch(updateUserPhone(response.data.phone));
           alert('전화번호가 변경됩니다');
-        } else if (changeItem === 'password') {
+        } else if (UpdateUser.changeItem === 'password') {
           alert('비밀번호가 변경됩니다');
         }
       }
     } catch (error) {
-      console.log(`${changeItem}`, error);
+      console.log(`${UpdateUser.changeItem}`, error);
     }
     handleOpen();
   };
