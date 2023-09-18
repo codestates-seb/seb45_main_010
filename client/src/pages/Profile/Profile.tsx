@@ -1,10 +1,12 @@
 import ProfileTabs from 'components/Profile/ProfileTabs';
 import ProfileHeader from 'components/Profile/ProfileHeader';
 import { useEffect, useState } from 'react';
-import { ProfileType, MatchType } from 'Types/Types';
+import { ProfileType } from 'Types/Types';
 import axios from 'axios';
-import { useAppSelector } from 'hooks/hooks';
+import { useAppSelector, useAppDispatch } from 'hooks/hooks';
 import { URL } from 'configs/Url/config';
+import IsLoading from 'components/Loading/Loading';
+import { updateOnline, updateOffline } from 'redux/thunk/ProfilePageThunk';
 
 const Profile = () => {
   const [user, setUser] = useState<ProfileType>({
@@ -34,20 +36,52 @@ const Profile = () => {
       },
     ],
   });
+
+  const [loading, setLoading] = useState(true);
   const userDetails = useAppSelector((state) => state.member.user);
   useEffect(() => {
     const getUser = async () => {
+      setLoading(true);
       if (userDetails) {
         const { id, teacher } = userDetails;
+
         const response = await axios.get(
           `${URL}/${teacher ? 'teachers' : 'students/mypage'}/${id}`
         );
         setUser(response.data);
+        setLoading(false);
       }
     };
 
     getUser();
   }, [userDetails]);
+  const dispatch = useAppDispatch();
+
+  const updateOnlineStatus = async (newState: boolean) => {
+    if (userDetails) {
+      try {
+        await dispatch(updateOnline({ id: userDetails.id, onLine: newState }));
+      } catch (error) {
+        console.error('Failed to update online status:', error);
+      }
+    }
+    return console.log('11111');
+  };
+
+  const updateOfflineStatus = async (newState: boolean) => {
+    if (userDetails) {
+      try {
+        await dispatch(updateOffline({ id: userDetails.id, offLine: newState }));
+      } catch (error) {
+        console.error('Failed to update offline status:', error);
+      }
+    }
+  };
+
+  if (loading) {
+    return <IsLoading />;
+  }
+
   return (
     <>
       <ProfileHeader
@@ -70,6 +104,8 @@ const Profile = () => {
         option={user.option}
         onLine={user.onLine}
         offLine={user.offLine}
+        onUpdateOnline={updateOnlineStatus}
+        onUpdateOffline={updateOfflineStatus}
       />
     </>
   );

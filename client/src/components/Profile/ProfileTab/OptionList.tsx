@@ -2,7 +2,6 @@ import { Checkbox } from '@material-tailwind/react';
 import Option from './Option';
 import OnlineDiv from 'components/Items/OnlineDiv';
 import { useState } from 'react';
-import { updateOnline, updateOffline, FetchProfile } from 'redux/thunk/ProfilePageThunk';
 import { useAppDispatch } from 'hooks/hooks';
 
 type OptionListProps = {
@@ -13,6 +12,8 @@ type OptionListProps = {
   onLine: boolean;
   offLine: boolean;
   id: number;
+  onUpdateOnline: (newState: boolean) => void;
+  onUpdateOffline: (newState: boolean) => void;
 };
 
 const OptionList: React.FC<OptionListProps> = ({
@@ -23,24 +24,24 @@ const OptionList: React.FC<OptionListProps> = ({
   onLine,
   offLine,
   id,
+  onUpdateOnline,
+  onUpdateOffline,
 }) => {
-  const dispatch = useAppDispatch();
   const [onLineState, setOnLineState] = useState(onLine);
   const [offLineState, setOffLineState] = useState(offLine);
 
   const handleOnLineChange = () => {
-    const newOnLineState = !onLine;
+    const newOnLineState = !onLineState;
     setOnLineState(newOnLineState);
-    dispatch(updateOnline({ id, onLine: newOnLineState })).then(() => dispatch(FetchProfile(id)));
+    onUpdateOnline(newOnLineState);
   };
 
   const handleOffLineChange = () => {
-    const newOffLineState = !offLine;
+    const newOffLineState = !offLineState;
     setOffLineState(newOffLineState);
-    dispatch(updateOffline({ id, offLine: newOffLineState })).then(() =>
-      dispatch(FetchProfile(id))
-    );
+    onUpdateOffline(newOffLineState);
   };
+
   return (
     <>
       {teacher ? (
@@ -50,8 +51,8 @@ const OptionList: React.FC<OptionListProps> = ({
             <Checkbox
               color="green"
               className="text-green bg-green"
-              checked={onLine}
-              onChange={() => handleOnLineChange()}
+              checked={onLineState}
+              onChange={handleOnLineChange}
               crossOrigin="anonymous"
             />
             <OnlineDiv onoff="온라인" />
@@ -59,8 +60,8 @@ const OptionList: React.FC<OptionListProps> = ({
             <Checkbox
               color="green"
               className="text-green bg-green"
-              checked={offLine}
-              onChange={() => handleOffLineChange()}
+              checked={offLineState}
+              onChange={handleOffLineChange}
               crossOrigin="anonymous"
             />
             <OnlineDiv onoff="오프라인" />

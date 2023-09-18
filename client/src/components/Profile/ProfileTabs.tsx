@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import RequestList from './ProfileTab/RequestList';
 import ScheduleList from './ProfileTab/ScheduleList';
 import OptionList from './ProfileTab/OptionList';
-import { MatchType, RequestType } from 'Types/Types';
+import { MatchType } from 'Types/Types';
 
 type ProfileTabsProps = {
   teacher: boolean;
@@ -13,6 +13,8 @@ type ProfileTabsProps = {
   offLine: boolean;
   id: number;
   matches: MatchType[];
+  onUpdateOnline: (newState: boolean) => void;
+  onUpdateOffline: (newState: boolean) => void;
 };
 
 const ProfileTabs: React.FC<ProfileTabsProps> = ({
@@ -24,6 +26,8 @@ const ProfileTabs: React.FC<ProfileTabsProps> = ({
   offLine,
   id,
   matches,
+  onUpdateOnline,
+  onUpdateOffline,
 }) => {
   type tabDataType = {
     id: string;
@@ -58,6 +62,8 @@ const ProfileTabs: React.FC<ProfileTabsProps> = ({
           onLine={onLine}
           offLine={offLine}
           id={id}
+          onUpdateOnline={onUpdateOnline}
+          onUpdateOffline={onUpdateOffline}
         />
       ),
     },
