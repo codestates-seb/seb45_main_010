@@ -27,7 +27,7 @@ const TeacherCard = ({ cardList }: props) => {
                 <h1 className="mb-2">수업 종류</h1>
                 <ul className="grid grid-cols-2 m-1 text-center ">
                   {items.subjects?.slice(0, 4).map((category, index) => (
-                    <li className="px-1" key={index}>
+                    <li className="px-1 text-xxs" key={index}>
                       {category.length > 4 ? `${category.slice(0, 4)}...` : category}
                     </li>
                   ))}
@@ -37,7 +37,7 @@ const TeacherCard = ({ cardList }: props) => {
                 <h1 className="mb-2">지역</h1>
                 <ul className="grid grid-cols-2 m-1 text-center ">
                   {items.regions?.slice(0, 4).map((area, index) => (
-                    <li className="px-1" key={index}>
+                    <li className="px-1 text-xxs" key={index}>
                       {area.length > 4 ? `${area.slice(0, 4)}...` : area}
                     </li>
                   ))}
