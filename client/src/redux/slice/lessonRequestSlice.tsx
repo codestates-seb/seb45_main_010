@@ -1,7 +1,7 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { lessonGetType } from 'Types/Types';
 import { RootState } from 'redux/store';
-import { lessonGet } from 'redux/thunk/lessonRequestThunk';
+import { lessonRequestGet } from 'redux/thunk/lessonRequestThunk';
 
 type initialStateType = {
   status: string;
@@ -28,10 +28,10 @@ export const lessonRequestSlice = createSlice({
 
   extraReducers: (builder) => {
     builder
-      .addCase(lessonGet.pending, (state) => {
+      .addCase(lessonRequestGet.pending, (state) => {
         state.status = 'loding';
       })
-      .addCase(lessonGet.fulfilled, (state, action: PayloadAction<lessonGetType>) => {
+      .addCase(lessonRequestGet.fulfilled, (state, action: PayloadAction<lessonGetType>) => {
         state.status = 'fulfilled';
         state.value = { ...state.value, ...action.payload };
       });

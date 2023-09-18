@@ -4,9 +4,10 @@ import React, { useEffect, useState } from 'react';
 type props = {
   title: string;
   arr: string[];
+  setItems: (selectItem: string[]) => void;
 };
 
-const ReqSelect = ({ title, arr }: props) => {
+const ReqSelect = ({ title, arr, setItems }: props) => {
   const [isSelect, setIsSelect] = useState<boolean[]>([]);
   const [selectItem, setSelectItem] = useState<string[]>([]);
 
@@ -19,12 +20,15 @@ const ReqSelect = ({ title, arr }: props) => {
     setSelectItem(newItem);
     setIsSelect(newButtonStates);
   };
+  useEffect(() => {
+    setItems(selectItem);
+  }, [selectItem]);
 
   return (
     <>
       <DialogHeader className="p-2 text-sm ">{title}</DialogHeader>
       <section className="flex items-center ">
-        {arr.map((item, index) => {
+        {arr?.map((item, index) => {
           return (
             <Button
               key={index}
