@@ -220,6 +220,12 @@ public class TeacherController {
                         pageTeachers),HttpStatus.OK);
 
     }
+    @DeleteMapping("/{teacher-id}")
+    public ResponseEntity deleteTeacher(@PathVariable("teacher-id") @Positive long teacherId) {
+        teacherService.deleteTeacher(teacherId); // 멤버 상태를 QUIT 으로...
+
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 
     @GetMapping("/verify/{email}")
     public ResponseEntity verifyEmail(@PathVariable("email") String email) {
