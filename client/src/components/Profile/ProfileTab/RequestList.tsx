@@ -50,17 +50,21 @@ const RequestList: React.FC<RequestListProps> = ({ teacher, matches }) => {
               >
                 <div className="flex flex-row items-center justify-between p-4">
                   <span className="text-[16px] font-semibold">{text}</span>
-                  <div className="flex h-6 text-sm font-normal bg-white rounded-md">
-                    <span className="flex items-center justify-center flex-1 p-2">
-                      {match.subjects.join(' | ')}
-                    </span>
-                    <span className="flex items-center justify-center flex-1 w-20 p-2">
-                      {teacher ? match.studentName : match.teacherName}
-                    </span>
+                  <div className="flex text-sm font-normal bg-white rounded-md h-15">
+                    <div>
+                      <span className="flex items-center justify-center flex-1 p-2">
+                        {match.subjects.join(' | ')}
+                      </span>
+                    </div>
+                    <div>
+                      <span className="flex items-center justify-center flex-1 w-20 p-2">
+                        {teacher ? match.studentName : match.teacherName}
+                      </span>
+                    </div>
                   </div>
                 </div>
                 <div className="flex justify-end p-4 text-right">
-                  <span>{match.schedule}</span>
+                  <span>{match.date}</span>
                 </div>
               </div>
             );

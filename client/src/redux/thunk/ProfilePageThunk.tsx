@@ -4,7 +4,7 @@ import getAuthUserInfo from 'components/Items/GetInfoAuth';
 import { getAccessToken } from 'components/Items/GetAccessToken';
 import { authenticateUser } from 'redux/slice/OauthSlice';
 import { ScheduleObjType, ScheduleType, MatchType } from 'Types/Types';
-import { APIurl } from 'components/Items/GetInfoAuth';
+import { URL } from 'configs/Url/config';
 const { APIUSERURL, PROFILEURL } = getAuthUserInfo();
 
 const token = getAccessToken();
@@ -18,13 +18,15 @@ export const FetchProfile = createAsyncThunk('FetchProfile', async (id, thunkAPI
     const userId = authResult.payload?.id;
     const teacher = authResult.payload?.teacher;
     if (userId !== undefined && userId !== null) {
-      const response = await axios.get(`${PROFILEURL}/${userId}`);
-      let data = response.data;
-
-      if (data && data.teacher !== undefined) {
-        data.teacher = teacher === 'TEACHER' ? true : teacher === 'STUDENT' ? false : data.teacher;
+      let response;
+      if (teacher === 'TEACHER') {
+        response = await axios.get(`${URL}/teachers/${userId}`);
+      } else if (teacher === 'STUDENT') {
+        response = await axios.get(`${URL}/students/mypage/${userId}`);
       }
-      return data;
+      if (response) {
+        return response.data;
+      }
     }
   } catch (error) {
     console.error('Error fetching profile:', error);
@@ -33,13 +35,17 @@ export const FetchProfile = createAsyncThunk('FetchProfile', async (id, thunkAPI
 });
 
 export const FetchSchedule = createAsyncThunk('schedule/fetchSchedule', async (id: number) => {
-  const response = await axios.get<ScheduleObjType>(`${APIurl}/schedules?teacherId=${id}`);
+  const response = await axios.get<ScheduleObjType>(`${URL}/schedules?teacherId=${id}`);
   const data = response.data;
   return data;
 });
 
 export const FetchRequest = createAsyncThunk('FetchRequest', async (id: number) => {
-  const response = await axios.get<MatchType>(`${APIurl}/matches/${id}`);
+  const response = await axios.get<MatchType>(`${URL}/matches/${id}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
   const data = response.data;
   return data;
 });
@@ -48,7 +54,7 @@ export const updateRequestStatus = createAsyncThunk(
   'profile/updateRequestStatus',
   async ({ id, status }: { id: number; status: string }) => {
     const response = await axios.patch(
-      `${APIurl}/matches`,
+      `${URL}/matches`,
       {
         id: id,
         status: status,
@@ -67,7 +73,7 @@ export const updateSchedule = createAsyncThunk(
   'schedule/updateSchedule',
   async ({ id, date, timeslots }: { id: number; date: string; timeslots: string[] }) => {
     const response = await axios.patch(
-      `${APIurl}/schedules`,
+      `${URL}/schedules`,
       {
         teacherId: id,
         date,
@@ -86,7 +92,7 @@ export const updateOnline = createAsyncThunk(
   'profile/updateOnline',
   async ({ id, onLine }: { id: number; onLine: boolean }) => {
     const response = await axios.patch(
-      `${APIurl}/teachers/onLine`,
+      `${URL}/teachers/onLine`,
       {
         id: id,
         onLine: onLine,
@@ -105,7 +111,7 @@ export const updateOffline = createAsyncThunk(
   'profile/updateOffline',
   async ({ id, offLine }: { id: number; offLine: boolean }) => {
     const response = await axios.patch(
-      `${APIurl}/teachers/offLine`,
+      `${URL}/teachers/offLine`,
       {
         id: id,
         offLine: offLine,
@@ -124,7 +130,7 @@ export const updateLectureFee = createAsyncThunk(
   'profile/updateLectureFee',
   async ({ id, lectureFee }: { id: number; lectureFee: string }) => {
     const response = await axios.patch(
-      `${APIurl}/teachers/lectureFee`,
+      `${URL}/teachers/lectureFee`,
       {
         id: id,
         lectureFee: lectureFee,
@@ -143,7 +149,7 @@ export const updateCareer = createAsyncThunk(
   'profile/updateCareer',
   async ({ id, career }: { id: number; career: string }) => {
     const response = await axios.patch(
-      `${APIurl}/teachers/career`,
+      `${URL}/teachers/career`,
       {
         id: id,
         career: career,
@@ -238,13 +244,13 @@ export const updateRegions = createAsyncThunk(
 
 // <-- 지역/과목 관련 Thunks [start]-->
 export const FetchSubjects = createAsyncThunk('subjects', async () => {
-  const response = await axios.get(`${APIurl}/subjects`);
+  const response = await axios.get(`${URL}/subjects`);
   const data = response.data;
   return data.subjects;
 });
 
 export const FetchRegions = createAsyncThunk('regions', async () => {
-  const response = await axios.get(`${APIurl}/regions`);
+  const response = await axios.get(`${URL}/regions`);
   const data = response.data;
   return data.regions;
 });
