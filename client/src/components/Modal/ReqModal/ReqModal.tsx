@@ -7,6 +7,7 @@ import ReqSelect from './ReqSelect';
 import { lessonGetType, requestPostType } from 'Types/Types';
 import { useLocation } from 'react-router-dom';
 import { lessonRequestGet, lessonRequestPost } from 'redux/thunk/lessonRequestThunk';
+import { SubmitModal } from './SubmitModal';
 
 type props = {
   subjectNames: string[];
@@ -88,6 +89,7 @@ export const ReqModal = ({ subjectNames, regionsNames, schedules, onLine, offLin
 
   const handleRequestPost = () => {
     dispatch(lessonRequestPost({ id: id.teacherId, requestPost: requestPost }));
+    handleOpen();
   };
 
   return (
@@ -115,13 +117,19 @@ export const ReqModal = ({ subjectNames, regionsNames, schedules, onLine, offLin
           email={matches.studentEmail}
           setStudentInfo={setStudentInfo}
         />
+
         <DialogFooter className="p-2">
+          <SubmitModal
+            title="신청이 완료되었습니다."
+            btnCheck="확인"
+            handleRequestPost={handleRequestPost}
+          />
           <Button
             variant="text"
             color="red"
             className="p-2 mx-3 my-1 text-black rounded-full bg-mint-300"
-            children="신청하기"
-            onClick={handleRequestPost}
+            children="취소하기"
+            onClick={handleOpen}
           />
         </DialogFooter>
       </Dialog>
