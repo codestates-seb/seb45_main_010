@@ -27,7 +27,7 @@ const Profile = () => {
       <ProfileHeader
         name={user.name}
         introduction={user.introduction}
-        id={userId ?? 0}
+        id={user.id}
         profileImg={user.profileImg}
         subjects={user.subjects}
         regions={user.regions}
@@ -36,7 +36,7 @@ const Profile = () => {
         teacher={user.teacher}
       />
       <ProfileTabs
-        id={userId ?? 0}
+        id={user.id}
         matches={user.matches}
         teacher={user.teacher}
         lectureFee={user.lectureFee}

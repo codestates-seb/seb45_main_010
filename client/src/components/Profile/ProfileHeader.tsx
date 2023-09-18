@@ -14,18 +14,17 @@ import {
   updateRegions,
 } from 'redux/thunk/ProfilePageThunk';
 
-type ProfileHeaderProps = Pick<
-  User,
-  | 'name'
-  | 'introduction'
-  | 'id'
-  | 'subjects'
-  | 'regions'
-  | 'profileImg'
-  | 'onLine'
-  | 'offLine'
-  | 'teacher'
->;
+type ProfileHeaderProps = {
+  name: string;
+  introduction: string;
+  id: number;
+  profileImg: string;
+  onLine: boolean;
+  offLine: boolean;
+  subjects: string[];
+  regions: string[];
+  teacher: boolean;
+};
 
 const ProfileHeader: React.FC<ProfileHeaderProps> = ({
   name,
