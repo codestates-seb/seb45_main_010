@@ -3,6 +3,7 @@ package com.codestates.connectInstructor.email.event;
 import com.codestates.connectInstructor.email.service.EmailService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.annotation.Async;
@@ -23,6 +24,9 @@ public class VerifyEmailEventListener {
     @Autowired
     private SpringTemplateEngine templateEngine;
 
+    @Value("${EC2_URL}")
+    private String EC2_URL;
+
     @TransactionalEventListener
     @Async
     public void sendEmail(VerifyEmailEvent event) throws InterruptedException {
@@ -38,17 +42,9 @@ public class VerifyEmailEventListener {
             mimeMessageHelper.setTo(email);
             mimeMessageHelper.setSubject("ConnecT 인증 메일입니다.");
 
-//            String body = "안녕하세요. "
-//                    .concat("<b>").concat(name).concat("</b> 님<br>")
-//                    .concat("ConnecT 서비스의 회원가입을 위한 인증메일입니다.<br>")
-//                    .concat("아래 링크를 클릭하여 이메일 인증을 완료해 주세요..<br><br>")
-//                    .concat("<a href=\"http://ec2-3-34-116-209.ap-northeast-2.compute.amazonaws.com:8080/email/verify/")
-//                    .concat(encryptedPath)
-//                    .concat("\">이메일 인증하기</a>");
-
             Context context = new Context();
             context.setVariable("name", name);
-            context.setVariable("site", "http://ec2-3-34-116-209.ap-northeast-2.compute.amazonaws.com:8080/email/verify/" + encryptedPath);
+            context.setVariable("site", EC2_URL + "/email/verify/" + encryptedPath);
 
             String html = templateEngine.process("Cerfify", context);
 
