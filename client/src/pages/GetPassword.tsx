@@ -25,10 +25,11 @@ const GetPassword: React.FC = () => {
     }
 
     try {
-      const response = await axios.get(`${apiURL}/${passwordkey}`);
+      const response = await axios.get(`${apiURL}/resetPassword/${passwordkey}`);
+      console.log(response.data);
       const matchingUser = response.data;
       if (matchingUser) {
-        alert(`${matchingUser.email}계정에서 비밀번호를 확인하세요`);
+        alert(`${matchingUser.email}계정으로 인증메일을 전송했습니다.`);
         navigate('/login');
       } else {
         alert('가입된 계정이 아닙니다. 이메일을 정확히 입력해주세요');
