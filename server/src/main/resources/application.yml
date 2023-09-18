@@ -1,17 +1,24 @@
 spring:
   datasource:
-    url: jdbc:h2:mem:test
-  h2:
-    console:
-      enabled: true
-      path: /h2
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://${RDS_ENDPOINT}?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    username: ${MYSQL_ID}
+    password: ${MYSQL_PASSWORD}
+#  datasource:
+#    url: jdbc:h2:mem:test
+#  h2:
+#    console:
+#      enabled: true
+#      path: /h2
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
     show-sql: true
     properties:
       hibernate:
         format_sql: true
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     defer-datasource-initialization: true
   sql:
     init:
