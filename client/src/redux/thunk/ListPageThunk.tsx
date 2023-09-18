@@ -8,7 +8,7 @@ export const getData = createAsyncThunk<ListPageType[], SearchType>('getData', a
   search.subjects = search.subjects.length === 0 ? ['전체'] : search.subjects;
 
   const response = await axios.get(
-    `${URL}/teachers?teacherName=${search.teacherName}&regionsNames=${search.regions}&subjectNames=${search.subjects}&page=${search.page}&size=${search.size}`
+    `${URL}/teachers?teacherName=${search.teacherName}&regionNames=${search.regions}&subjectNames=${search.subjects}&page=${search.page}&size=${search.size}`
   );
   const data = response.data;
   return data;
