@@ -1,5 +1,6 @@
 package com.codestates.connectInstructor.teacher.service;
 
+import com.codestates.connectInstructor.common.MemberStatus;
 import com.codestates.connectInstructor.email.event.SignupEvent;
 import com.codestates.connectInstructor.email.event.VerifyEmailEvent;
 import com.codestates.connectInstructor.exception.BusinessLogicException;
@@ -7,6 +8,7 @@ import com.codestates.connectInstructor.exception.ExceptionCode;
 import com.codestates.connectInstructor.region.entity.Region;
 import com.codestates.connectInstructor.region.service.RegionService;
 import com.codestates.connectInstructor.security.utils.CustomAuthorityUtils;
+import com.codestates.connectInstructor.student.entity.Student;
 import com.codestates.connectInstructor.subject.entity.Subject;
 import com.codestates.connectInstructor.subject.service.SubjectService;
 import com.codestates.connectInstructor.teacher.entity.Teacher;
@@ -379,5 +381,14 @@ public class TeacherService {
 
         if(!authentication.getName().equals(teacher.getEmail()))
             throw new BusinessLogicException(ExceptionCode.NOT_AUTHORIZED);
+    }
+    public void deleteTeacher(long teacherId) {
+        verifyIdentity(teacherId);
+
+        Teacher found = findVerifiedTeacher(teacherId);
+
+        found.setStatus(MemberStatus.QUIT);
+
+        teacherRepository.save(found);
     }
 }
