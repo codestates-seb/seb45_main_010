@@ -13,7 +13,6 @@ export const setAuth = async (email: string, password: string) => {
     }
     return true;
   } catch (error) {
-    console.log('로그인 실패, error');
     return false;
   }
 };

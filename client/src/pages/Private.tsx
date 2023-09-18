@@ -1,19 +1,13 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Thumbnail from '/assets/Image/mone.png';
 import { AiFillCamera } from 'react-icons/ai';
-import { fetchUserDetails } from 'redux/slice/MemberSlice';
-import { useAppDispatch, useAppSelector } from 'hooks/hooks';
+import { useAppSelector } from 'hooks/hooks';
 import { ChangeModal } from 'components/Modal/ChangeModal';
 import { ImageChangeModal } from 'components/Modal/ImageChangeModal';
 import { Logout } from 'components/Auth/Logout';
 
 const Private: React.FC = () => {
-  const dispatch = useAppDispatch();
   const userDetails = useAppSelector((state) => state.member.user);
-
-  useEffect(() => {
-    dispatch(fetchUserDetails());
-  }, [dispatch]);
 
   return (
     <div className="flex flex-col justify-center px-[12.5px]">
@@ -86,6 +80,7 @@ const Private: React.FC = () => {
               userId={userDetails.id}
               teacher={userDetails.teacher}
               placeholder=""
+              oauthUser={userDetails.oauth}
             />
           </div>
         </div>
@@ -107,6 +102,7 @@ const Private: React.FC = () => {
               userId={userDetails.id}
               teacher={userDetails.teacher}
               placeholder={userDetails.phone}
+              oauthUser={userDetails.oauth}
             />
           </div>
         </div>
