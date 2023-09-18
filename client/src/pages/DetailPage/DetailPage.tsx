@@ -21,8 +21,8 @@ const DetailPage = () => {
     profileImg: null,
     onLine: false,
     offLine: false,
-    subjectNames: [],
-    regionsNames: [],
+    subjects: [],
+    regions: [],
     introduction: '',
     lectureFee: '',
     career: '',
@@ -47,8 +47,8 @@ const DetailPage = () => {
         <TeacherInfo1 teacherInfo={teacherInfo} />
         <TeacherInfo2 teacherInfo={teacherInfo} />
         <RequestBtn
-          subjectNames={teacherInfo.subjectNames}
-          regionsNames={teacherInfo.regionsNames}
+          subjectNames={teacherInfo.subjects}
+          regionsNames={teacherInfo.regions}
           schedules={teacherInfo.schedules}
           onLine={teacherInfo.onLine}
           offLine={teacherInfo.offLine}
