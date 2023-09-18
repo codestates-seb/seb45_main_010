@@ -136,11 +136,6 @@ public class StudentService {
 
         Student found = findStudentById(id);
 
-        log.info("{}", found.getName());
-        log.info("{}", authentication.getName());
-        log.info("{}", found.getEmail());
-
-
         return authentication.getName().toString().equals(found.getEmail()) ? true : false;
     }
 
