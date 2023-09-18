@@ -11,7 +11,7 @@ type props = {
   member: {
     name: string;
     position: string;
-    img: string;
+    profileImg: string;
   };
 };
 
@@ -35,7 +35,7 @@ export const FooterMember = ({ member }: props) => {
       </PopoverHandler>
       <PopoverContent {...triggers} className="z-50 max-w-[6rem]">
         <div className="flex items-center justify-center gap-4 mb-2">
-          <Avatar size="md" variant="circular" src={member.img} alt={member.name} />
+          <Avatar size="md" variant="circular" src={member.profileImg} alt={member.name} />
         </div>
         <Typography
           variant="h6"
