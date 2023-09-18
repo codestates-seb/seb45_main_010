@@ -10,6 +10,7 @@ import { regionListSlice } from './slice/RegionsSlice';
 import { TeacherSlice } from './slice/TeacherSlice';
 import { CategoriesSlice } from './slice/CategoriesSlice';
 import { oAuthSlice } from './slice/OauthSlice';
+import { lessonRequestSlice } from './slice/lessonRequestSlice';
 
 export const store = configureStore({
   reducer: {
@@ -24,6 +25,7 @@ export const store = configureStore({
     teacher: TeacherSlice.reducer,
     categories: CategoriesSlice.reducer,
     auth: oAuthSlice.reducer,
+    lessonRequest: lessonRequestSlice.reducer,
   },
 });
 

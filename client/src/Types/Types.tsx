@@ -5,8 +5,8 @@ export type User = {
   teacher: boolean;
   id: number;
   phone: string;
-  regionsNames: string[];
-  subjectNames: string[];
+  regions: string[];
+  subjects: string[];
   profileImg: string | null;
   introduction: string;
   lectureFee: string;
@@ -17,7 +17,9 @@ export type User = {
   oauth: boolean;
   address: string;
   option: string | null;
-  matches: string[];
+  schedules: {
+    date: string[];
+  }[];
 };
 
 export type TeacherType = Omit<User, 'password'>;
@@ -38,7 +40,7 @@ export type LoginType = Pick<User, 'email' | 'password'>;
 
 export type ListPageType = Pick<
   User,
-  'id' | 'name' | 'subjectNames' | 'regionsNames' | 'onLine' | 'offLine' | 'profileImg'
+  'id' | 'name' | 'subjects' | 'regions' | 'onLine' | 'offLine' | 'profileImg'
 >;
 
 export type DetailType = Pick<
@@ -51,13 +53,13 @@ export type DetailType = Pick<
   | 'profileImg'
   | 'onLine'
   | 'offLine'
-  | 'subjectNames'
-  | 'regionsNames'
-  | 'matches'
+  | 'subjects'
+  | 'regions'
   | 'introduction'
   | 'lectureFee'
   | 'career'
   | 'option'
+  | 'schedules'
 >;
 
 export type RequestType = {
@@ -93,15 +95,6 @@ export type MatchType = Array<{
   schedule: string;
 }>;
 
-export type footerType = {
-  footerMessage: string;
-  member: {
-    name: string;
-    position: string;
-    profileImg: string;
-  }[];
-};
-
 export type TimeSlotType = { matches: string; timeslots: string[] };
 
 export type ScheduleType1 = { id: number; matches: TimeSlotType[] };
@@ -110,6 +103,7 @@ export type ScheduleArrayType1 = {
   id: number;
   matches: ScheduleType[];
 }[];
+
 export type ScheduleType = { date: string; timeslots: string[] };
 
 export type ScheduleObjType = {
@@ -122,7 +116,7 @@ export type ScheduleObjType = {
 //   schedules: ScheduleObjType[];
 // }[];
 
-export type SearchType = Pick<User, 'subjectNames' | 'regionsNames'> & {
+export type SearchType = Pick<User, 'subjects' | 'regions'> & {
   teacherName: string;
   size: number;
   page: number;
@@ -140,3 +134,46 @@ export type ScheduleArrayType2 = {
 }[];
 
 export type StatusType = 'MATCH_ANSWERED' | 'MATCH_CANCELLED' | 'MATCH_REQUEST';
+
+export type footerType = {
+  footerMessage: string;
+  member: {
+    name: string;
+    position: string;
+    profileImg: string;
+  }[];
+};
+
+export type lessonGetType = Pick<User, 'subjects' | 'schedules'> & {
+  studentId: string;
+  teacherId: string;
+  sudentName: string;
+  studentPhone: string;
+  studentEmail: string;
+};
+
+export type lessonPostType = {
+  id: number;
+  studentId: number;
+  teacherId: number;
+  status: string;
+  matchSubjects: string[];
+  matchRegions: string[];
+  date: string;
+  timeslot: string;
+  studentName: string;
+  studentPhone: string;
+  studentEmail: string;
+  remarks: string;
+  teacherName: string;
+  online: boolean;
+};
+
+export type requestPostType = Pick<User, 'subjects' | 'regions'> & {
+  isOnLine: boolean;
+  isOffLine: boolean;
+  studentName: string;
+  studentPhone: string;
+  studentEmail: string;
+  remaks: string;
+};

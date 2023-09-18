@@ -7,11 +7,12 @@ type props = {
 };
 
 const TeacherInfo1 = ({ teacherInfo }: props) => {
-  const teachingStyle: string = teacherInfo.onLine
-    ? '온라인'
-    : teacherInfo.offLine
-    ? '오프라인'
-    : '온/오프';
+  const teachingStyle: string =
+    teacherInfo.onLine && teacherInfo.offLine
+      ? '온/오프'
+      : teacherInfo.offLine
+      ? '오프라인'
+      : '온라인';
 
   return (
     <article className="mb-10 border-b-2 border-grey-1 px-[7.5px]">
