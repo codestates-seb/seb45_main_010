@@ -72,7 +72,7 @@ export default memberSlice.reducer;
 
 export const fetchUserDetails = createAsyncThunk(
   'member/fetchUserDetails',
-  async ({ id, teacher }, { rejectWithValue }) => {
+  async ({ id, teacher }: { id: number; teacher: string }, { rejectWithValue }) => {
     try {
       const apiURL = 'http://ec2-3-34-116-209.ap-northeast-2.compute.amazonaws.com:8080';
       const response = await axios.get(

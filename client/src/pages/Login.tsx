@@ -76,18 +76,15 @@ const Login: React.FC = () => {
       alert('이메일, 비밀번호를 모두 입력하세요.');
       return;
     }
-
     try {
       //처음 로그인하여 토큰을 받은 경우
       const loginSuccess = await setAuth(LoginInfo.email, LoginInfo.password);
       if (loginSuccess) {
         const authData = checkAuth();
-        const resultAction = await dispatch(fetchUserDetails(authData));
-        if (fetchUserDetails.rejected.match(resultAction)) {
-          // 서버 200, 304인데 데이터가 없는경우
-          // const errorMessage = resultAction.payload as string;
-          // console.log(errorMessage);
-          alert('고객정보 확인에 실패했습니다');
+        if (authData.id !== null && authData.teacher !== null) {
+          const resultAction = await dispatch(
+            fetchUserDetails({ id: authData.id, teacher: authData.teacher })
+          );
         }
       } else if (!loginSuccess) {
         alert('로그인에 실패했습니다. 계정을 확인하여 다시 시도하여 주세요');
