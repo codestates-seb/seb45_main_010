@@ -60,7 +60,7 @@ const RequestList: React.FC<RequestListProps> = ({ teacher, matches }) => {
                   </div>
                 </div>
                 <div className="flex justify-end p-4 text-right">
-                  <span>{match.schedule}</span>
+                  <span>{match.date}</span>
                 </div>
               </div>
             );

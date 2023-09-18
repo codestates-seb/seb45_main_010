@@ -39,7 +39,11 @@ export const FetchSchedule = createAsyncThunk('schedule/fetchSchedule', async (i
 });
 
 export const FetchRequest = createAsyncThunk('FetchRequest', async (id: number) => {
-  const response = await axios.get<MatchType>(`${APIurl}/matches/${id}`);
+  const response = await axios.get<MatchType>(`${APIurl}/matches/${id}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
   const data = response.data;
   return data;
 });

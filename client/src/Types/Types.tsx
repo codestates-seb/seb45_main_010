@@ -92,7 +92,8 @@ export type MatchType = Array<{
   subjects: string[];
   studentName?: string;
   teacherName?: string;
-  schedule: string;
+  date: string;
+  timeslot: string;
 }>;
 
 export type TimeSlotType = { matches: string; timeslots: string[] };

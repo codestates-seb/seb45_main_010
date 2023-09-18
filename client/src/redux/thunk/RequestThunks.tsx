@@ -7,8 +7,13 @@ const token = getAccessToken();
 export const FetchRequestInfo = createAsyncThunk<RequestInfoType, number>(
   'FetchRequestInfo',
   async (matchId: number) => {
-    const response = await axios.get<RequestInfoType>(`${APIurl}/matches/${matchId}`);
+    const response = await axios.get<RequestInfoType>(`${APIurl}/matches/${matchId}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     const data = response.data;
+
     return data;
   }
 );
