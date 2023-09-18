@@ -4,10 +4,14 @@ import com.codestates.connectInstructor.exception.BusinessLogicException;
 import com.codestates.connectInstructor.exception.ExceptionCode;
 import com.codestates.connectInstructor.schedule.entity.Schedule;
 import com.codestates.connectInstructor.schedule.repository.ScheduleRepository;
+import com.codestates.connectInstructor.student.entity.Student;
 import com.codestates.connectInstructor.teacher.entity.Teacher;
 import com.codestates.connectInstructor.teacher.repository.TeacherRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,6 +29,7 @@ public class ScheduleService {
 
     public Schedule updateSchedule(Schedule schedule, long teacherId) {
         verifyTeacherId(teacherId);
+        if (!verifyTeacherIdentity(teacherId)) throw new BusinessLogicException(ExceptionCode.NOT_AUTHORIZED);
 
         Optional<Schedule> optionalSchedule = repository.findByTeacherIdAndDate(teacherId, schedule.getDate());
 
@@ -68,7 +73,7 @@ public class ScheduleService {
         }
     }
 
-    public void verifyTeacherId(long id) {
+    private void verifyTeacherId(long id) {
         Optional<Teacher> optionalTeacher = teacherRepository.findById(id);
 
         if (optionalTeacher.isEmpty()) throw new BusinessLogicException(ExceptionCode.MEMBER_NOT_FOUND);
@@ -100,5 +105,14 @@ public class ScheduleService {
         List<Schedule> schedules = repository.findByTeacherId(teacherId);
 
         return schedules;
+    }
+
+    private boolean verifyTeacherIdentity(long teacherId) {
+        SecurityContext securityContext = SecurityContextHolder.getContext();
+        Authentication authentication = securityContext.getAuthentication();
+
+        Teacher found = teacherRepository.findById(teacherId).get();
+
+        return authentication.getName().toString().equals(found.getEmail()) ? true : false;
     }
 }
