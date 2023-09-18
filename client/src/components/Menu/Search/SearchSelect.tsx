@@ -1,6 +1,5 @@
 import React, { MouseEvent, useEffect, useState } from 'react';
 import { Menu, MenuHandler, Button, MenuList, MenuItem } from '@material-tailwind/react';
-import { BsXCircle } from 'react-icons/bs';
 import { useAppDispatch, useAppSelector } from 'hooks/hooks';
 import { getRegionsList, getSubjectList } from 'redux/thunk/SearchListThink';
 import { selectSubject } from 'redux/slice/SubjectSlice';
@@ -62,47 +61,12 @@ const SearchSelect = ({ regionsList, subjectList, setSubjectList, setRegionsList
               mount: { y: 0, x: 70 },
               unmount: { y: 0, x: -150 },
             }}
-            offset={-150}
-          >
-            <MenuHandler className="w-full my-5 text-base shadow-blue-gray-200 text-blue-gray-900 bg-mint-300 hover:bg-mint-400">
-              <Button children={'지역검색'} />
-            </MenuHandler>
-            <MenuList>
-              {regions?.map((item) => {
-                return (
-                  <MenuItem key={item.id} onClick={handlerRegionsList} children={item.regionName} />
-                );
-              })}
-            </MenuList>
-          </Menu>
-          {regionsList?.map((itme, index) => {
-            return (
-              <span
-                key={index}
-                className="relative inline-flex items-end justify-end m-1 cursor-pointer"
-                onClick={() => delRegionsList(itme)}
-              >
-                <Button
-                  className="py-1 pl-3 pr-6 text-sm text-left text-black bg-mint-300 rounded-2xl hover:bg-mint-400"
-                  children={itme}
-                />
-                <BsXCircle className="absolute bottom-1.5 right-1" />
-              </span>
-            );
-          })}
-        </section>
-        <section>
-          <Menu
-            animate={{
-              mount: { y: 0, x: 70 },
-              unmount: { y: 0, x: -150 },
-            }}
             offset={5}
           >
-            <MenuHandler className="w-full mb-5 text-base shadow-blue-gray-200 text-blue-gray-900 bg-mint-300 hover:bg-mint-400">
-              <Button children={'과목검색'} />
+            <MenuHandler className="flex items-center justify-center w-full h-10 my-2 text-base font-bold bg-white text-blue-gray-300 ">
+              <Button variant="text" children={'과목검색'} color="blue" />
             </MenuHandler>
-            <MenuList>
+            <MenuList className="max-h-72">
               {subjects?.map((item) => {
                 return (
                   <MenuItem
@@ -125,7 +89,42 @@ const SearchSelect = ({ regionsList, subjectList, setSubjectList, setRegionsList
                   className="py-1 pl-3 pr-6 text-sm text-left text-black bg-mint-300 rounded-2xl hover:bg-mint-400"
                   children={itme}
                 />
-                <BsXCircle className="absolute bottom-1.5 right-1" />
+                <p className="absolute bottom-0.5 right-2">X</p>
+              </span>
+            );
+          })}
+        </section>
+        <section>
+          <Menu
+            animate={{
+              mount: { y: 0, x: 70 },
+              unmount: { y: 0, x: -150 },
+            }}
+            offset={5}
+          >
+            <MenuHandler className="flex items-center justify-center w-full h-10 my-2 text-base font-bold bg-white text-blue-gray-300 ">
+              <Button variant="text" children={'지역검색'} color="blue" />
+            </MenuHandler>
+            <MenuList className="max-h-72">
+              {regions?.map((item) => {
+                return (
+                  <MenuItem key={item.id} onClick={handlerRegionsList} children={item.regionName} />
+                );
+              })}
+            </MenuList>
+          </Menu>
+          {regionsList?.map((itme, index) => {
+            return (
+              <span
+                key={index}
+                className="relative inline-flex items-end justify-end m-1 cursor-pointer"
+                onClick={() => delRegionsList(itme)}
+              >
+                <Button
+                  className="py-1 pl-3 pr-6 text-sm text-left text-black bg-mint-300 rounded-2xl hover:bg-mint-400"
+                  children={itme}
+                />
+                <p className="absolute bottom-0.5 right-2">X</p>
               </span>
             );
           })}
