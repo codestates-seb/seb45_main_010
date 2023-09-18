@@ -5,6 +5,7 @@ import { Button, Checkbox } from '@material-tailwind/react';
 import { User } from '../Types/Types';
 import { SocialSignupModal } from 'components/Modal/SocialSignUpModal';
 import axios from 'axios';
+import { URL } from 'configs/Url/config';
 
 type MemberSignUp = Pick<User, 'name' | 'email' | 'password' | 'teacher'>;
 
@@ -22,7 +23,6 @@ const SignUp: React.FC = () => {
   const navigate = useNavigate();
   const isValidEmail: boolean = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(userInfo.email);
   const isValiePassword: boolean = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(userInfo.password);
-  const apiURL = 'http://ec2-3-34-116-209.ap-northeast-2.compute.amazonaws.com:8080';
 
   const handleEmailCheck = async (email: string) => {
     if (!isValidEmail) {
@@ -31,8 +31,8 @@ const SignUp: React.FC = () => {
     }
 
     try {
-      const response = await axios.get(`${apiURL}/students/check/${userInfo.email}`);
-      console.log(`${apiURL}/students/check/${userInfo.email}`);
+      const response = await axios.get(`${URL}/students/check/${userInfo.email}`);
+      console.log(`${URL}/students/check/${userInfo.email}`);
       const isDuplicate = response.data.used === true;
       if (isDuplicate === false) {
         setResiterable(true);
@@ -74,7 +74,7 @@ const SignUp: React.FC = () => {
     }
 
     await axios
-      .post(`${apiURL}/${userInfo.teacher ? 'teachers' : 'students'}`, userInfo)
+      .post(`${URL}/${userInfo.teacher ? 'teachers' : 'students'}`, userInfo)
       .then((response) => {
         alert('회원 인증을 위한 링크를 이메일로 발송하였습니다. 인증후에 가입이 완료됩니다.');
         navigate('/login');
