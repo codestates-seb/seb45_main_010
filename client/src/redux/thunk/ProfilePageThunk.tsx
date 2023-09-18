@@ -1,15 +1,35 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import GetInfoAuth from 'components/Items/GetInfoAuth';
-import { ACCESSTOKEN } from 'configs/Url/config';
+import getAuthUserInfo from 'components/Items/GetInfoAuth';
+import { getAccessToken } from 'components/Items/GetAccessToken';
+import { authenticateUser } from 'redux/slice/OauthSlice';
 import { ScheduleObjType, ScheduleType, MatchType } from 'Types/Types';
 import { APIurl } from 'components/Items/GetInfoAuth';
-const { APIUSERURL, PROFILEURL } = GetInfoAuth();
+const { APIUSERURL, PROFILEURL } = getAuthUserInfo();
 
-export const FetchProfile = createAsyncThunk('FetchProfile', async (id: number) => {
-  const response = await axios.get(`${PROFILEURL}/${id}`);
-  const data = response.data;
-  return data;
+const token = getAccessToken();
+
+export const FetchProfile = createAsyncThunk('FetchProfile', async (id, thunkAPI) => {
+  try {
+    const dispatch = thunkAPI.dispatch;
+
+    const authResult = await dispatch(authenticateUser());
+
+    const userId = authResult.payload?.id;
+    const teacher = authResult.payload?.teacher;
+    if (userId !== undefined && userId !== null) {
+      const response = await axios.get(`${PROFILEURL}/${userId}`);
+      let data = response.data;
+
+      if (data && data.teacher !== undefined) {
+        data.teacher = teacher === 'TEACHER' ? true : teacher === 'STUDENT' ? false : data.teacher;
+      }
+      return data;
+    }
+  } catch (error) {
+    console.error('Error fetching profile:', error);
+    throw error;
+  }
 });
 
 export const FetchSchedule = createAsyncThunk('schedule/fetchSchedule', async (id: number) => {
@@ -35,7 +55,7 @@ export const updateRequestStatus = createAsyncThunk(
       },
       {
         headers: {
-          Authorization: `Bearer ${ACCESSTOKEN}`,
+          Authorization: `Bearer ${token}`,
         },
       }
     );
@@ -55,7 +75,7 @@ export const updateSchedule = createAsyncThunk(
       },
       {
         headers: {
-          Authorization: `Bearer ${ACCESSTOKEN}`,
+          Authorization: `Bearer ${token}`,
         },
       }
     );
@@ -73,7 +93,7 @@ export const updateOnline = createAsyncThunk(
       },
       {
         headers: {
-          Authorization: `Bearer ${ACCESSTOKEN}`,
+          Authorization: `Bearer ${token}`,
         },
       }
     );
@@ -92,7 +112,7 @@ export const updateOffline = createAsyncThunk(
       },
       {
         headers: {
-          Authorization: `Bearer ${ACCESSTOKEN}`,
+          Authorization: `Bearer ${token}`,
         },
       }
     );
@@ -111,7 +131,7 @@ export const updateLectureFee = createAsyncThunk(
       },
       {
         headers: {
-          Authorization: `Bearer ${ACCESSTOKEN}`,
+          Authorization: `Bearer ${token}`,
         },
       }
     );
@@ -130,7 +150,7 @@ export const updateCareer = createAsyncThunk(
       },
       {
         headers: {
-          Authorization: `Bearer ${ACCESSTOKEN}`,
+          Authorization: `Bearer ${token}`,
         },
       }
     );
@@ -149,7 +169,7 @@ export const updateOption = createAsyncThunk(
       },
       {
         headers: {
-          Authorization: `Bearer ${ACCESSTOKEN}`,
+          Authorization: `Bearer ${token}`,
         },
       }
     );
@@ -168,7 +188,7 @@ export const updateIntroduction = createAsyncThunk(
       },
       {
         headers: {
-          Authorization: `Bearer ${ACCESSTOKEN}`,
+          Authorization: `Bearer ${token}`,
         },
       }
     );
@@ -188,7 +208,7 @@ export const updateSubjects = createAsyncThunk(
       },
       {
         headers: {
-          Authorization: `Bearer ${ACCESSTOKEN}`,
+          Authorization: `Bearer ${token}`,
         },
       }
     );
@@ -207,7 +227,7 @@ export const updateRegions = createAsyncThunk(
       },
       {
         headers: {
-          Authorization: `Bearer ${ACCESSTOKEN}`,
+          Authorization: `Bearer ${token}`,
         },
       }
     );

@@ -13,7 +13,7 @@ const initialState: initialStateType = {
     id: 0,
     studentId: 0,
     teacherId: 0,
-    status: '',
+    status: 'MATCH_REQUEST',
     matchSubjects: [],
     matchRegions: [],
     date: '',

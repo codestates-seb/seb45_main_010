@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import RequestList from './ProfileTab/RequestList';
 import ScheduleList from './ProfileTab/ScheduleList';
 import OptionList from './ProfileTab/OptionList';
-import { RequestType } from 'Types/Types';
+import { MatchType, RequestType } from 'Types/Types';
 
 type ProfileTabsProps = {
   teacher: boolean;
@@ -12,7 +12,7 @@ type ProfileTabsProps = {
   onLine: boolean;
   offLine: boolean;
   id: number;
-  matches: RequestType;
+  matches: MatchType;
 };
 
 const ProfileTabs: React.FC<ProfileTabsProps> = ({

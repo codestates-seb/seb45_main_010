@@ -134,7 +134,15 @@ const SetSchedule = ({ id }: { id: number }) => {
       });
     };
   };
-
+  const handleSaveMessages = async () => {
+    try {
+      await handleSave();
+      alert('저장되었습니다.');
+    } catch (error) {
+      console.error('Error saving changes:', error);
+      alert('변경 사항을 저장하는 동안 오류가 발생했습니다. 다시 시도해주세요.');
+    }
+  };
   return (
     <div className="container flex flex-col items-center justify-center gap-5 px-4">
       <DatePicker
@@ -147,12 +155,13 @@ const SetSchedule = ({ id }: { id: number }) => {
         minDate={today}
         dateFormat="yyyy-MM-dd"
         locale={ko}
+        inline={selectedDate ? true : undefined}
       />
 
       {selectedDate ? (
         <div className="w-full mt-5">
           <span className="mb-5 text-sm font-bold">선택 가능한 시간 목록</span>
-          <div className="my-10">
+          <div className="my-10 w-72">
             <Select color="blue" label="선택 가능한 시간 목록">
               {oneDayTimeSlot.map((perHour: string) => (
                 <Option
@@ -197,7 +206,10 @@ const SetSchedule = ({ id }: { id: number }) => {
       <Button
         className="flex items-center justify-between w-[350px] mb-5 text-sm font-bold text-white bg-blue-1 rounded-xl "
         size="sm"
-        onClick={handleSave}
+        onClick={() => {
+          handleSave();
+          handleSaveMessages();
+        }}
       >
         <span className="flex-1 text-center">저장</span>
       </Button>
