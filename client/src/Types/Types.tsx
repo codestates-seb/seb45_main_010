@@ -59,6 +59,7 @@ export type DetailType = Pick<
   | 'lectureFee'
   | 'career'
   | 'option'
+  | 'schedules'
 >;
 
 export type RequestType = {

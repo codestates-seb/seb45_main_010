@@ -2,8 +2,8 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 type id = {
-  teacherId: number;
-  studentId: number;
+  teacherId: string;
+  studentId: string;
 };
 
 export const lessonGet = createAsyncThunk('matchesGet', async (id: id) => {
