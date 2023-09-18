@@ -44,7 +44,7 @@ public class ResetPasswordEventListner {
 
             Context context = new Context();
             context.setVariable("name", name);
-            context.setVariable("site", EC2_URL + "/email/password/" + encryptedPath);
+            context.setVariable("site", EC2_URL + "email/password/" + encryptedPath);
 
             String html = templateEngine.process("ResetPassword", context);
 
