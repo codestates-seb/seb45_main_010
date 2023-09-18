@@ -12,7 +12,7 @@ type ProfileTabsProps = {
   onLine: boolean;
   offLine: boolean;
   id: number;
-  matches: MatchType;
+  matches: MatchType[];
 };
 
 const ProfileTabs: React.FC<ProfileTabsProps> = ({

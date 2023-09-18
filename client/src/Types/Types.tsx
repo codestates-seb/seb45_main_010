@@ -62,6 +62,34 @@ export type DetailType = Pick<
   | 'schedules'
 >;
 
+export type ProfileType = {
+  career: string;
+  email: string;
+  teacher: boolean;
+  userId: number;
+  id: number;
+  introduction: string;
+  lectureFee: string;
+  name: string;
+  offLine: false;
+  onLine: false;
+  option: string;
+  profileImg: string;
+  regions: string[];
+  subjects: string[];
+  matches: [
+    {
+      matchId: number;
+      date: string;
+      timeslot: string;
+      status: StatusType;
+      studentName: string;
+      subjects: string[];
+      teacherName: string;
+    },
+  ];
+};
+
 export type RequestType = {
   id: string;
   name: string;
@@ -86,7 +114,7 @@ export type RequestInfoType = {
   online: boolean;
 };
 
-export type MatchType = Array<{
+export type MatchType = {
   matchId: number;
   status: StatusType;
   subjects: string[];
@@ -94,7 +122,7 @@ export type MatchType = Array<{
   teacherName?: string;
   date: string;
   timeslot: string;
-}>;
+};
 
 export type TimeSlotType = { matches: string; timeslots: string[] };
 
@@ -111,11 +139,6 @@ export type ScheduleObjType = {
   teacherId: number;
   schedules: ScheduleType[];
 };
-
-// export type ScheduleArrayType = {
-//   teacherId: number;
-//   schedules: ScheduleObjType[];
-// }[];
 
 export type SearchType = Pick<User, 'subjects' | 'regions'> & {
   teacherName: string;
@@ -134,7 +157,7 @@ export type ScheduleArrayType2 = {
   schedule: ScheduleType[];
 }[];
 
-export type StatusType = 'MATCH_ANSWERED' | 'MATCH_CANCELLED' | 'MATCH_REQUEST';
+export type StatusType = 'MATCH_ANSWERED' | 'MATCH_CANCELLED' | 'MATCH_REQUEST' | string;
 
 export type footerType = {
   footerMessage: string;

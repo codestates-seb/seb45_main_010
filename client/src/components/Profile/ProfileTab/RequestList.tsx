@@ -8,7 +8,7 @@ import ModalPortal from 'components/Items/ModalPortal';
 
 type RequestListProps = {
   teacher: boolean;
-  matches: MatchType;
+  matches: MatchType[];
 };
 
 const RequestList: React.FC<RequestListProps> = ({ teacher, matches }) => {
