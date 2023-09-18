@@ -11,7 +11,7 @@ import { useLocation } from 'react-router-dom';
 const DetailPage = () => {
   const detailInfo = useAppSelector(teacherDetail);
   const dispatch = useAppDispatch();
-  const local = useLocation();
+  const location = useLocation();
   const [teacherInfo, setTeacherInfo] = useState<DetailType>({
     id: 0,
     email: '',
@@ -23,15 +23,15 @@ const DetailPage = () => {
     offLine: false,
     subjectNames: [],
     regionsNames: [],
-    matches: [],
     introduction: '',
     lectureFee: '',
     career: '',
     option: null,
+    schedules: [{ date: [] }],
   });
 
   useEffect(() => {
-    const currentId: string = local.pathname.slice(1);
+    const currentId: string = location.pathname.slice(1);
     dispatch(getData(currentId));
   }, []);
 
@@ -46,7 +46,14 @@ const DetailPage = () => {
       <article className="w-full px-[7.5px] flex flex-col ">
         <TeacherInfo1 teacherInfo={teacherInfo} />
         <TeacherInfo2 teacherInfo={teacherInfo} />
-        <RequestBtn lectureFee={teacherInfo.lectureFee} />
+        <RequestBtn
+          subjectNames={teacherInfo.subjectNames}
+          regionsNames={teacherInfo.regionsNames}
+          schedules={teacherInfo.schedules}
+          onLine={teacherInfo.onLine}
+          offLine={teacherInfo.offLine}
+          lectureFee={teacherInfo.lectureFee}
+        />
       </article>
     </>
   );
