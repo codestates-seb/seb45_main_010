@@ -4,6 +4,7 @@ import { Button, Dialog, DialogBody, DialogFooter, Input } from '@material-tailw
 import { useAppDispatch } from 'hooks/hooks';
 import axios from 'axios';
 import { updateUserImage } from '../../redux/slice/MemberSlice';
+import { URL } from 'configs/Url/config';
 
 type props = {
   text: string;
@@ -16,7 +17,6 @@ type props = {
 export const ImageChangeModal = ({ text, warning, changeItem, userId, teacher }: props) => {
   const [open, setOpen] = useState<boolean>(false);
   const [inputValue, setInputValue] = useState<string>('');
-  const apiURL = 'http://ec2-3-34-116-209.ap-northeast-2.compute.amazonaws.com:8080';
   const dispatch = useAppDispatch();
 
   const handleNameChange = async (newName: string) => {
@@ -26,7 +26,7 @@ export const ImageChangeModal = ({ text, warning, changeItem, userId, teacher }:
         [changeItem]: newName,
       };
       const accessToken = localStorage.getItem('access_jwt');
-      const targetURL = `${apiURL}/${teacher === false ? 'students' : 'teachers'}/${changeItem}`;
+      const targetURL = `${URL}/${teacher === false ? 'students' : 'teachers'}/${changeItem}`;
       if (!newName) {
         alert('변경하실 내용을 입력해주세요');
         return;

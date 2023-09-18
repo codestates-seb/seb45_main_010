@@ -1,9 +1,9 @@
 import axios from 'axios';
+import { URL } from 'configs/Url/config';
 
 export const setAuth = async (email: string, password: string) => {
-  const apiURL = 'http://ec2-3-34-116-209.ap-northeast-2.compute.amazonaws.com:8080';
   try {
-    const userLogin = await axios.post(`${apiURL}/login`, {
+    const userLogin = await axios.post(`${URL}/login`, {
       username: email,
       password: password,
     });

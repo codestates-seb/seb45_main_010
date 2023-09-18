@@ -2,7 +2,6 @@ import { useAppDispatch, useAppSelector } from 'hooks/hooks';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@material-tailwind/react';
 import { handleLogout } from './logoutUtils';
-import { RootState } from 'redux/store';
 
 export const Logout = () => {
   const userDetails = useAppSelector((state) => state.member.user);

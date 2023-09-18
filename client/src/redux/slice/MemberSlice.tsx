@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios, { AxiosError } from 'axios';
 import { CommonUserType } from 'Types/Types';
+import { URL } from 'configs/Url/config';
 
 type initialStateType = {
   user: CommonUserType;
@@ -74,9 +75,8 @@ export const fetchUserDetails = createAsyncThunk(
   'member/fetchUserDetails',
   async ({ id, teacher }: { id: number; teacher: string }, { rejectWithValue }) => {
     try {
-      const apiURL = 'http://ec2-3-34-116-209.ap-northeast-2.compute.amazonaws.com:8080';
       const response = await axios.get(
-        `${apiURL}/${teacher === 'STUDENT' ? 'students' : 'teachers'}/${id}`
+        `${URL}/${teacher === 'STUDENT' ? 'students' : 'teachers'}/${id}`
       );
       const data = response.data;
       if (!data) {
