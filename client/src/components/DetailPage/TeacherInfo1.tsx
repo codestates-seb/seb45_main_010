@@ -34,7 +34,7 @@ const TeacherInfo1 = ({ teacherInfo }: props) => {
           {teachingStyle}
         </p>
       </section>
-      <section className="flex flex-wrap items-center gap-4 mt-4">
+      <section className="flex flex-wrap items-start gap-4 mt-4">
         <h2 className="flex items-center justify-center gap-2 p-2 text-sm font-bold text-black border-2 rounded-xl h-9 basis-1/5 border-mint-200">
           과목
         </h2>
@@ -51,7 +51,7 @@ const TeacherInfo1 = ({ teacherInfo }: props) => {
           })}
         </div>
       </section>
-      <section className="flex flex-wrap items-center gap-4 mt-4 mb-10">
+      <section className="flex flex-wrap items-start gap-4 mt-4 mb-10">
         <div className="flex items-center justify-center gap-2 p-2 text-sm font-bold text-black border-2 rounded-xl h-9 basis-1/5 border-mint-200">
           지역
         </div>
