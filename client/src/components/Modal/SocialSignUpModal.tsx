@@ -22,9 +22,9 @@ export const SocialSignupModal = () => {
   };
 
   const handleSetType = (event: ChangeEvent<HTMLInputElement>) => {
-    if (event.target.id === '강사') {
+    if (event.target.id === 'student') {
       setUserType('kakao');
-    } else if (event.target.id === 'student') {
+    } else if (event.target.id === 'teacher') {
       setUserType('kakao?state=teacher');
     }
   };
