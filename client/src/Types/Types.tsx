@@ -174,13 +174,13 @@ export type lessonGetType = Pick<User, 'regions' | 'subjects' | 'schedules'> & {
   studentEmail: string;
 };
 
-export type requestPostType = Pick<User, 'subjects' | 'regions' | 'schedules'> & {
+export type requestPostType = Pick<User, 'subjects' | 'regions'> & {
   teacherId: number;
   studentId: number;
-  isOnLine: boolean;
-  isOffLine: boolean;
+  isOnline: boolean;
   studentName: string;
   studentPhone: string;
   studentEmail: string;
-  remaks: string;
+  remarks: string;
+  schedule: { date: string; timeslots: string[] };
 };

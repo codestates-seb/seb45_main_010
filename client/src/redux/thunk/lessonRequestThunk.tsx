@@ -9,6 +9,7 @@ type id = {
   studentId: number;
 };
 const token = getAccessToken();
+console.log(token);
 
 export const lessonRequestGet = createAsyncThunk<lessonGetType, id>(
   'lessonRequestGet',
