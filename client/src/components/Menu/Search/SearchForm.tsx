@@ -2,7 +2,6 @@ import { Button, Input } from '@material-tailwind/react';
 import { search } from 'configs/Listpage/config';
 import { useAppDispatch } from 'hooks/hooks';
 import React, { ChangeEvent, FormEvent, useState } from 'react';
-import { AiOutlineSearch } from 'react-icons/ai';
 import { useNavigate } from 'react-router-dom';
 import { getData } from 'redux/thunk/ListPageThunk';
 

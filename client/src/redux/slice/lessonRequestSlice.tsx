@@ -11,9 +11,10 @@ type initialStateType = {
 const initialState: initialStateType = {
   status: '',
   value: {
-    studentId: '',
-    teacherId: '',
+    studentId: 0,
+    teacherId: 0,
     subjects: [],
+    regions: [],
     schedules: [{ date: [] }],
     sudentName: '',
     studentPhone: '',
