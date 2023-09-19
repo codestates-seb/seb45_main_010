@@ -29,7 +29,7 @@ const GetPassword: React.FC = () => {
       console.log(response.data);
       const matchingUser = response.data;
       if (matchingUser) {
-        alert(`${matchingUser.email}계정으로 인증메일을 전송했습니다.`);
+        alert(`${passwordkey}계정으로 인증메일을 전송했습니다.`);
         navigate('/login');
       } else {
         alert('가입된 계정이 아닙니다. 이메일을 정확히 입력해주세요');

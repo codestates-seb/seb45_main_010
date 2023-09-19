@@ -80,9 +80,8 @@ const Login: React.FC = () => {
       if (loginSuccess) {
         const authData = checkAuth();
         if (authData.id !== null && authData.teacher !== null) {
-          const resultAction = await dispatch(
-            fetchUserDetails({ id: authData.id, teacher: authData.teacher })
-          );
+          await dispatch(fetchUserDetails({ id: authData.id, teacher: authData.teacher }));
+          await dispatch(authenticateUser());
         }
       } else if (!loginSuccess) {
         alert('로그인에 실패했습니다. 계정을 확인하여 다시 시도하여 주세요');
