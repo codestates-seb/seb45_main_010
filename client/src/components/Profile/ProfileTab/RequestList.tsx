@@ -4,8 +4,8 @@ import InfoModal from 'components/Modal/InfoModal';
 import useStatusTranslator from 'hooks/useStatusTranslator';
 import { useState } from 'react';
 import { MatchType } from 'Types/Types';
-import { Link } from 'react-router-dom';
-import { useNavigation } from 'react-router-dom';
+
+import { useNavigate } from 'react-router-dom';
 
 type RequestListProps = {
   teacher: boolean;
@@ -19,7 +19,7 @@ const RequestList: React.FC<RequestListProps> = ({ teacher, matches }) => {
     if (teacher) {
       scrollToSchedule();
     } else {
-      navigation.navigate('/');
+      navigate('/');
     }
   };
   const scrollToSchedule = () => {
@@ -36,7 +36,7 @@ const RequestList: React.FC<RequestListProps> = ({ teacher, matches }) => {
     });
   };
   const sortedMatches = sortMatches(matches);
-  const navigation = useNavigation();
+  const navigate = useNavigate();
   return (
     <div className="py-5">
       <p className="flex-1 mb-4 text-sm font-bold">{teacher ? '강의요청목록' : '수업요청목록'}</p>
@@ -65,7 +65,7 @@ const RequestList: React.FC<RequestListProps> = ({ teacher, matches }) => {
                 onClick={() => {
                   setSelectedMatchId(match.matchId);
                 }}
-                className={`my-5 border rounded-lg w-100% ${className} cursor-pointer duration-300`}
+                className={`my-5 border rounded-lg w-100% ${className} duration-300`}
               >
                 <div className="flex flex-row items-center justify-between p-4">
                   <span className="text-[16px] font-semibold">{text}</span>
@@ -77,7 +77,6 @@ const RequestList: React.FC<RequestListProps> = ({ teacher, matches }) => {
                     </div>
                     <div>
                       <span className="flex items-center justify-center flex-1 w-20 p-2">
-                        <Link to={`/${teacher ? null : match.teacherId}`} />
                         {teacher ? match.studentName : match.teacherName}
                       </span>
                     </div>
@@ -85,6 +84,9 @@ const RequestList: React.FC<RequestListProps> = ({ teacher, matches }) => {
                 </div>
                 <div className="flex justify-end p-4 text-right">
                   <span>{match.date}</span>
+                </div>
+                <div className="flex justify-items-center w-100%">
+                  <InfoModal teacher={teacher} matchId={match.matchId} />
                 </div>
               </div>
             );
@@ -95,7 +97,9 @@ const RequestList: React.FC<RequestListProps> = ({ teacher, matches }) => {
           <NoRequestStatus teacher={teacher} onClick={NavigateUser} />
         </>
       )}
-      {selectedMatchId !== null && <InfoModal teacher={teacher} matchId={selectedMatchId} />}
+      <div className="flex justify-items-center w-100%">
+        {/* {selectedMatchId !== null && <InfoModal teacher={teacher} matchId={selectedMatchId} />} */}
+      </div>
     </div>
   );
 };

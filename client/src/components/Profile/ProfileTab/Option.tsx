@@ -21,9 +21,17 @@ const Option = ({
   const [editOptionDesc, setEditOptionDesc] = useState(initialOptionDesc);
   const [isEditing, setIsEditing] = useState(false);
   const [inputCount, setInputCount] = useState(0);
+
   const onInputHandler = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setInputCount(e.target.value.replace(/[\0-\x7f]|([0-\u07ff]|(.))/g, '$&$1$2').length);
+    const newInputValue = e.target.value;
+    if (newInputValue.length <= maxLength) {
+      setEditOptionDesc(newInputValue);
+      setInputCount(newInputValue.length);
+    } else {
+      alert(`글자수는 ${maxLength}를 넘을 수 없습니다!`);
+    }
   };
+
   const dispatch = useAppDispatch();
 
   const saveChanges = () => {
@@ -39,7 +47,7 @@ const Option = ({
       dispatch(updateIntroduction({ id: id, introduction: editOptionDesc }));
     }
   };
-  let maxLength;
+  let maxLength: number;
 
   switch (optionTitle) {
     case '강의료 ( 강사 소개에 노출됩니다 )':
@@ -49,7 +57,7 @@ const Option = ({
       maxLength = 200;
       break;
     case '수업옵션':
-      maxLength = 200;
+      maxLength = 500;
       break;
     default:
       maxLength = 200;

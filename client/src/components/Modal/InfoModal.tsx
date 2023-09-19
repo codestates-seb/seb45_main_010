@@ -38,11 +38,12 @@ const InfoModal: React.FC<InfoModalProps> = ({ teacher, matchId }) => {
     fetchDetails();
 
     return () => {};
-  }, [matchId, status]);
+  }, [matchId, status, dispatch]);
 
   const handleAccept = async () => {
     try {
       const resultAction = await dispatch(updateRequestStatus({ id: matchId, status: 'answer' }));
+      alert('요청이 수락됐습니다.');
       unwrapResult(resultAction);
       setStatus('answer');
       handleOpen();
@@ -54,6 +55,7 @@ const InfoModal: React.FC<InfoModalProps> = ({ teacher, matchId }) => {
   const handleCancel = async () => {
     try {
       const resultAction = await dispatch(updateRequestStatus({ id: matchId, status: 'cancel' }));
+      alert('요청이 취소되었습니다.');
       unwrapResult(resultAction);
       setStatus('cancel');
       handleOpen();
@@ -64,10 +66,9 @@ const InfoModal: React.FC<InfoModalProps> = ({ teacher, matchId }) => {
   return (
     <>
       <Button
+        variant="text"
         onClick={handleOpen}
-        size="sm"
-        color="gray"
-        className="w-5 h-5 rounded-full mt-[-25px] bg-gray opacity-0"
+        className="flex flex-row items-center justify-between w-[100px] h-[30px] bottom-[105px]"
       >
         {' '}
       </Button>
@@ -138,7 +139,7 @@ const InfoModal: React.FC<InfoModalProps> = ({ teacher, matchId }) => {
               <DialogFooter className="p-2">
                 {teacher ? (
                   <>
-                    {status !== 'MATCH_REQUEST' && (
+                    {status === 'MATCH_REQUEST' ? (
                       <>
                         <Button
                           variant="text"
@@ -157,7 +158,7 @@ const InfoModal: React.FC<InfoModalProps> = ({ teacher, matchId }) => {
                           <span>거절하기</span>
                         </Button>
                       </>
-                    )}
+                    ) : null}
                   </>
                 ) : (
                   <>

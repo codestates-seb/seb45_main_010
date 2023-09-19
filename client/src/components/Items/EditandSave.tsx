@@ -35,8 +35,8 @@ const EditandSave: React.FC<EditandSaveProps> = ({
             title="변경사항을 저장하시겠습니까?"
             btnCheck="확인"
             onClick={() => {
-              setIsEditing(false);
               saveChanges();
+              setIsEditing(false);
             }}
           />
         )}
