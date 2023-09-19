@@ -1,11 +1,11 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { lessonGetType, lessonPostType, requestPostType } from 'Types/Types';
+import { lessonGetType, requestPostType } from 'Types/Types';
 import axios from 'axios';
 import { URL } from 'configs/Url/config';
 
 type id = {
-  teacherId: string;
-  studentId: string;
+  teacherId: number;
+  studentId: number;
 };
 
 export const lessonRequestGet = createAsyncThunk<lessonGetType, id>(
@@ -19,7 +19,7 @@ export const lessonRequestGet = createAsyncThunk<lessonGetType, id>(
   }
 );
 
-export const lessonRequestPost = createAsyncThunk<lessonPostType, requestPostType>(
+export const lessonRequestPost = createAsyncThunk<requestPostType, requestPostType>(
   'lessonRequestPost',
   async (requestPost) => {
     const response = await axios.post(`${URL}/matches`, { requestPost });
