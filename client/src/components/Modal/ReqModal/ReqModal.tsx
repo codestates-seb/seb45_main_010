@@ -32,14 +32,20 @@ export const ReqModal = ({ teacherId, onLine, offLine }: props) => {
   const [regionsList, setRegions] = useState<string[]>([]);
   const [isOnOffLine, setIsOnOffLine] = useState<string[]>(['', '']);
   const [scheduleList, setSchedule] = useState<schedulesType>({
-    schedules: [],
+    schedules: {
+      date: '',
+      timeslots: [],
+    },
   });
   const [requestPost, setRequestPost] = useState<requestPostType>({
     teacherId,
     studentId: 0,
     subjects: [],
     regions: [],
-    schedules: [{ date: [] }],
+    schedules: {
+      date: '',
+      timeslots: [],
+    },
     isOnLine: false,
     isOffLine: false,
     studentName: '',
@@ -52,7 +58,10 @@ export const ReqModal = ({ teacherId, onLine, offLine }: props) => {
     teacherId: 0,
     subjects: [],
     regions: [],
-    schedules: [{ date: [] }],
+    schedules: {
+      date: '',
+      timeslots: [],
+    },
     sudentName: '',
     studentPhone: '',
     studentEmail: '',
@@ -83,7 +92,7 @@ export const ReqModal = ({ teacherId, onLine, offLine }: props) => {
       studentId: 1,
       subjects: subjectsList,
       regions: regionsList,
-      schedules: scheduleList,
+      schedules: scheduleList.schedules,
       isOnLine: !!isOnOffLine[0],
       isOffLine: !!isOnOffLine[1],
       studentName: studentInfo.name,
