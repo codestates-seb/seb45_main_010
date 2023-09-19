@@ -73,7 +73,7 @@ const ReqSetSchedule = ({ id, setSchedule }: props) => {
   return (
     <div className="container flex flex-col items-center justify-center gap-5 px-4">
       <DatePicker
-        className="flex items-center justify-between p-2 text-sm font-bold text-center text-black cursor-pointer w-[20rem] bg-mint-200 rounded-xl"
+        className="flex items-center caret-transparent justify-between p-2 text-sm font-bold text-center text-black cursor-pointer w-[20rem] bg-mint-300 rounded-xl"
         placeholderText="날짜 보기"
         showPopperArrow={false}
         fixedHeight
