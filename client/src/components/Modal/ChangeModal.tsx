@@ -70,7 +70,6 @@ export const ChangeModal = ({ text, warning, changeItem, userId, teacher, oauthU
       });
       {
         if (UpdateUser.changeItem === 'name') {
-          console.log(accessToken);
           dispatch(updateUserName(response.data.name));
           alert('이름이 변경됩니다');
         } else if (UpdateUser.changeItem === 'phone') {
