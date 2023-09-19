@@ -27,7 +27,10 @@ const DetailPage = () => {
     lectureFee: '',
     career: '',
     option: null,
-    schedules: [{ date: [] }],
+    schedules: {
+      date: '',
+      timeslots: [],
+    },
   });
 
   useEffect(() => {

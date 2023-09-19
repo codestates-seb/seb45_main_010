@@ -25,7 +25,10 @@ const initialState: initialStateType = {
     offLine: false,
     subjects: [],
     regions: [],
-    schedule: [],
+    schedules: {
+      date: '',
+      timeslots: [],
+    },
   },
 };
 

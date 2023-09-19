@@ -20,9 +20,11 @@ const ReqSetSchedule = ({ id, setSchedule }: props) => {
   const dispatch = useAppDispatch();
   const [isSelect, setIsSelect] = useState<boolean[]>([]);
   const [selectItem, setSelectItem] = useState<schedulesType>({
-    schedules: [{ date: [] }],
+    schedules: {
+      date: '',
+      timeslots: [],
+    },
   });
-
   const prevScheduleRef = useRef<ScheduleType[]>([]);
 
   useEffect(() => {
@@ -61,7 +63,10 @@ const ReqSetSchedule = ({ id, setSchedule }: props) => {
     newButtonStates[index] = true;
     setIsSelect(newButtonStates);
     setSelectItem({
-      schedules: [{ date: [selectDate ? selectDate : '', timeslot] }],
+      schedules: {
+        date: selectDate ? selectDate : '',
+        timeslots: [timeslot],
+      },
     });
   };
 

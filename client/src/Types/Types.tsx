@@ -17,9 +17,7 @@ export type User = {
   oauth: boolean;
   address: string;
   option: string | null;
-  schedules: {
-    date: string[] | null;
-  }[];
+  schedules: { date: string; timeslots: string[] };
 };
 
 export type TeacherType = Omit<User, 'password'>;
