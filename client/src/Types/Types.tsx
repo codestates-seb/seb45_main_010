@@ -169,7 +169,7 @@ export type footerType = {
 export type lessonGetType = Pick<User, 'regions' | 'subjects' | 'schedules'> & {
   teacherId: number;
   studentId: number;
-  sudentName: string;
+  studentName: string;
   studentPhone: string;
   studentEmail: string;
 };
