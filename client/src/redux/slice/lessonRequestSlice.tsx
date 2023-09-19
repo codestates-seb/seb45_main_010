@@ -19,7 +19,7 @@ const initialState: initialStateType = {
       date: '',
       timeslots: [],
     },
-    sudentName: '',
+    studentName: '',
     studentPhone: '',
     studentEmail: '',
   },
