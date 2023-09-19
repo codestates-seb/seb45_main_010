@@ -1,1 +1,4 @@
-export const getAccessToken = () => localStorage.getItem('access_jwt');
+export const getAccessToken = () => {
+  const token = localStorage.getItem('access_jwt');
+  return token;
+};

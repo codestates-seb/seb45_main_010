@@ -70,6 +70,7 @@ export const ChangeModal = ({ text, warning, changeItem, userId, teacher, oauthU
       });
       {
         if (UpdateUser.changeItem === 'name') {
+          console.log(accessToken);
           dispatch(updateUserName(response.data.name));
           alert('이름이 변경됩니다');
         } else if (UpdateUser.changeItem === 'phone') {
@@ -99,12 +100,12 @@ export const ChangeModal = ({ text, warning, changeItem, userId, teacher, oauthU
 
   return (
     <>
-      <Button onClick={handleOpen} size="sm" className="bg-blue-1 opacity-100">
+      <Button onClick={handleOpen} size="sm" className="opacity-100 bg-blue-1">
         변경
       </Button>
       <Dialog open={open} handler={handleOpen} size="xs" className="overflow-hidden">
         <DialogBody divider>
-          <div className="flex justify-center items-center">
+          <div className="flex items-center justify-center">
             <Input
               label={text}
               crossOrigin={undefined}

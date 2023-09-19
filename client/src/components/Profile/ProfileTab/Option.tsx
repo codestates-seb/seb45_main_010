@@ -26,13 +26,13 @@ const Option = ({
     setOptionDesc(editOptionDesc);
     setIsEditing(false);
     if (optionTitle === '강의료 ( 강사 소개에 노출됩니다 )') {
-      dispatch(updateLectureFee({ id, lectureFee: editOptionDesc }));
+      dispatch(updateLectureFee({ id: id, lectureFee: editOptionDesc }));
     } else if (optionTitle === '학력 및 경력') {
-      dispatch(updateCareer({ id, career: editOptionDesc }));
+      dispatch(updateCareer({ id: id, career: editOptionDesc }));
     } else if (optionTitle === '수업옵션') {
-      dispatch(updateOption({ id, option: editOptionDesc }));
+      dispatch(updateOption({ id: id, option: editOptionDesc }));
     } else if (!optionTitle) {
-      dispatch(updateIntroduction({ id, introduction: editOptionDesc }));
+      dispatch(updateIntroduction({ id: id, introduction: editOptionDesc }));
     }
   };
 
