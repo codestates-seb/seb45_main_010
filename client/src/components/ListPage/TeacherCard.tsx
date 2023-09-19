@@ -44,7 +44,7 @@ const TeacherCard = ({ cardList }: props) => {
                 </ul>
               </span>
 
-              <div className="flex flex-col items-center">
+              <div className="flex flex-col items-center w-14">
                 <img src={items.profileImg || ''} className="w-[25px] h-[25px] rounded-lg" />
                 <span>{items.name}</span>
               </div>
