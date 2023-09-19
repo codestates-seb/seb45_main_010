@@ -1,6 +1,5 @@
 import { FetchRegions, FetchSubjects } from 'redux/thunk/ProfilePageThunk';
 import { createSlice } from '@reduxjs/toolkit';
-import { RootState } from 'redux/store';
 
 type initialStateType = {
   status: string;
@@ -19,7 +18,6 @@ const initialState: initialStateType = {
     subjects: [],
   },
 };
-
 export const CategoriesSlice = createSlice({
   name: 'categoriesSlice',
   initialState,

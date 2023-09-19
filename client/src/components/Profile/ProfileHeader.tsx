@@ -1,18 +1,12 @@
 import { Button } from '@material-tailwind/react';
 import userExampleImage from '/assets/Image/user-example.png';
 import ProfileDropdown from './ProfileDropdown';
-import { User } from 'Types/Types';
 import { Link } from 'react-router-dom';
 import OnlineDiv from 'components/Items/OnlineDiv';
 import Option from './ProfileTab/Option';
 import { useAppDispatch, useAppSelector } from 'hooks/hooks';
 import { useEffect } from 'react';
-import {
-  FetchSubjects,
-  updateSubjects,
-  FetchRegions,
-  updateRegions,
-} from 'redux/thunk/ProfilePageThunk';
+import { FetchSubjects, FetchRegions } from 'redux/thunk/ProfilePageThunk';
 
 type ProfileHeaderProps = {
   name: string;

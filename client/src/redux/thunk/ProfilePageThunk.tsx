@@ -3,7 +3,7 @@ import axios from 'axios';
 import getAuthUserInfo from 'components/Items/GetInfoAuth';
 import { getAccessToken } from 'components/Items/GetAccessToken';
 import { authenticateUser } from 'redux/slice/OauthSlice';
-import { ScheduleObjType, ScheduleType, MatchType } from 'Types/Types';
+import { ScheduleObjType, MatchType } from 'Types/Types';
 import { URL } from 'configs/Url/config';
 const { APIUSERURL, PROFILEURL } = getAuthUserInfo();
 

@@ -1,4 +1,3 @@
-import { TeacherType } from 'Types/Types';
 import {
   FetchProfile,
   updateOnline,
