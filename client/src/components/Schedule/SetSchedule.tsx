@@ -7,6 +7,7 @@ import { ScheduleType, ScheduleObjType } from 'Types/Types';
 import { generateAvailableTimeSlots, formatDate } from './MakeDateFunctions';
 import { updateSchedule, FetchSchedule } from 'redux/thunk/ProfilePageThunk';
 import { useAppDispatch } from 'hooks/hooks';
+import SortedTimeSlots from './SortedTimeSlots';
 
 const availableTimeSlots = generateAvailableTimeSlots();
 
@@ -179,22 +180,11 @@ const SetSchedule = ({ id }: { id: number }) => {
             {selectedTimeSlots
               .filter((timeSlotObj) => timeSlotObj.date === formatSelectedDate)
               .map((timeSlotObj, index) => (
-                <div key={timeSlotObj.date + timeSlotObj.timeslots[index]}>
-                  {timeSlotObj.timeslots.map((timeslot) => (
-                    <div key={timeSlotObj.date + timeslot}>
-                      <Button
-                        className="flex items-center justify-between w-full p-2 mb-5 text-sm font-bold text-black bg-mint-200 rounded-xl border-mint-200"
-                        size="sm"
-                        onClick={handleSelectedTimeSlot(timeSlotObj, timeslot)}
-                      >
-                        <div className="flex items-center justify-center text-sm rounded-lg h-[35px] w-auto p-3 bg-mint-300">
-                          {timeSlotObj.date}
-                        </div>
-                        <span className="flex-1 text-center">{timeslot}</span>
-                      </Button>
-                    </div>
-                  ))}
-                </div>
+                <SortedTimeSlots
+                  key={timeSlotObj.date + index}
+                  timeSlotObj={timeSlotObj}
+                  handleSelectedTimeSlot={handleSelectedTimeSlot}
+                />
               ))}
           </div>
         </div>
@@ -206,7 +196,7 @@ const SetSchedule = ({ id }: { id: number }) => {
       <Button
         className="flex items-center justify-between w-[350px] mb-5 text-sm font-bold text-white bg-blue-1 rounded-xl "
         size="sm"
-        onClick={handleSave}
+        onClick={handleSaveMessages}
       >
         <span className="flex-1 text-center">저장</span>
       </Button>

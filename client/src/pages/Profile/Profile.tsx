@@ -1,6 +1,7 @@
 import ProfileTabs from 'components/Profile/ProfileTabs';
 import ProfileHeader from 'components/Profile/ProfileHeader';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ProfileType } from 'Types/Types';
 import axios from 'axios';
 import { useAppSelector, useAppDispatch } from 'hooks/hooks';
@@ -39,7 +40,15 @@ const Profile = () => {
 
   const [loading, setLoading] = useState(true);
   const userDetails = useAppSelector((state) => state.member.user);
+  const isAuthenticatedUser = useAppSelector((state) => state.auth.isAuthenticated);
+  const navigate = useNavigate();
+
   useEffect(() => {
+    if (!isAuthenticatedUser && !userDetails.id) {
+      alert('로그인 후 이용하실 수 있으며 인증이 있으시면 자동로그인됩니다');
+      navigate('/login');
+      return;
+    }
     const getUser = async () => {
       setLoading(true);
       if (userDetails) {
@@ -65,7 +74,6 @@ const Profile = () => {
         console.error('Failed to update online status:', error);
       }
     }
-    return console.log('11111');
   };
 
   const updateOfflineStatus = async (newState: boolean) => {

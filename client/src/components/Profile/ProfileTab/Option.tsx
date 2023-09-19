@@ -20,6 +20,18 @@ const Option = ({
   const [optionDesc, setOptionDesc] = useState(initialOptionDesc);
   const [editOptionDesc, setEditOptionDesc] = useState(initialOptionDesc);
   const [isEditing, setIsEditing] = useState(false);
+  const [inputCount, setInputCount] = useState(0);
+
+  const onInputHandler = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const newInputValue = e.target.value;
+    if (newInputValue.length <= maxLength) {
+      setEditOptionDesc(newInputValue);
+      setInputCount(newInputValue.length);
+    } else {
+      alert(`글자수는 ${maxLength}를 넘을 수 없습니다!`);
+    }
+  };
+
   const dispatch = useAppDispatch();
 
   const saveChanges = () => {
@@ -35,7 +47,21 @@ const Option = ({
       dispatch(updateIntroduction({ id: id, introduction: editOptionDesc }));
     }
   };
+  let maxLength: number;
 
+  switch (optionTitle) {
+    case '강의료 ( 강사 소개에 노출됩니다 )':
+      maxLength = 20;
+      break;
+    case '학력 및 경력':
+      maxLength = 200;
+      break;
+    case '수업옵션':
+      maxLength = 500;
+      break;
+    default:
+      maxLength = 200;
+  }
   return (
     <>
       {optionTitle && <p className="mb-5 text-sm font-bold">{optionTitle}</p>}
@@ -48,6 +74,9 @@ const Option = ({
           setIsEditing={setIsEditing}
           setEditOptionDesc={setEditOptionDesc}
           saveChanges={saveChanges}
+          onInputHandler={onInputHandler}
+          inputCount={inputCount}
+          maxLength={maxLength}
         />
         <div className="py-8"></div>
       </ul>

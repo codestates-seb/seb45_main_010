@@ -5,7 +5,7 @@ import { getAccessToken } from 'components/Items/GetAccessToken';
 import { authenticateUser } from 'redux/slice/OauthSlice';
 import { ScheduleObjType, MatchType } from 'Types/Types';
 import { URL } from 'configs/Url/config';
-const { APIUSERURL, PROFILEURL } = getAuthUserInfo();
+const { APIUSERURL } = getAuthUserInfo();
 
 export const FetchProfile = createAsyncThunk('FetchProfile', async (id, thunkAPI) => {
   try {
@@ -205,7 +205,6 @@ export const updateIntroduction = createAsyncThunk(
         },
       }
     );
-    console.log(response.data);
     return response.data;
   }
 );

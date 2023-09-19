@@ -63,12 +63,10 @@ export const ImageChangeModal = ({ text, warning, changeItem, userId, teacher }:
         size="sm"
         color="gray"
         className="w-5 h-5 rounded-full mt-[-25px] bg-gray opacity-0"
-      >
-        {' '}
-      </Button>
+      />
       <Dialog open={open} handler={handleOpen} size="xs" className="overflow-hidden">
         <DialogBody divider>
-          <div className="flex justify-center items-center">
+          <div className="flex items-center justify-center">
             <Input
               label={text}
               crossOrigin={undefined}

@@ -85,6 +85,11 @@ export const ProfileSlice = createSlice({
     setUserId: (state, action) => {
       state.value.userId = action.payload;
     },
+    resetProfile: (state) => {
+      state.value = initialState.value;
+      state.status = '';
+      state.error = null;
+    },
   },
 
   extraReducers: (builder) => {

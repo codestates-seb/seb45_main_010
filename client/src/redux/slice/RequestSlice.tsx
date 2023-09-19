@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { FetchRequestInfo, updateRequestStatus } from 'redux/thunk/RequestThunks';
 import { RequestInfoType } from 'Types/Types';
+import { PayloadAction } from '@reduxjs/toolkit';
 
 type initialStateType = {
   status: string;
@@ -30,7 +31,20 @@ const initialState: initialStateType = {
 export const RequestSlice = createSlice({
   name: 'request',
   initialState,
-  reducers: {},
+  reducers: {
+    setTeacherId: (
+      state,
+      action: PayloadAction<{ id: number; teacherId: number; teacherName: string }>
+    ) => {
+      state.value.teacherId = action.payload.teacherId;
+      state.value.id = action.payload.id;
+      state.value.teacherName = action.payload.teacherName;
+    },
+    resetRequests: (state) => {
+      state.value = initialState.value;
+      state.status = '';
+    },
+  },
 
   extraReducers: (builder) => {
     builder

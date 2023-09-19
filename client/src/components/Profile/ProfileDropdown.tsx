@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Menu, MenuHandler, MenuList, MenuItem, Button } from '@material-tailwind/react';
 import { BsX, BsChevronDown } from 'react-icons/bs';
-import { useAppDispatch, useAppSelector } from 'hooks/hooks';
+import { useAppDispatch } from 'hooks/hooks';
 import { useEffect } from 'react';
 import { updateSubjects, updateRegions } from 'redux/thunk/ProfilePageThunk';
 
