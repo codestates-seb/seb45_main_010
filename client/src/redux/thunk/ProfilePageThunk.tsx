@@ -73,7 +73,6 @@ export const updateSchedule = createAsyncThunk(
   'schedule/updateSchedule',
   async ({ id, date, timeslots }: { id: number; date: string; timeslots: string[] }) => {
     const token = getAccessToken();
-    console.log(token);
     const response = await axios.patch(
       `${URL}/schedules`,
       {
@@ -206,7 +205,6 @@ export const updateIntroduction = createAsyncThunk(
         },
       }
     );
-    console.log(response.data);
     return response.data;
   }
 );

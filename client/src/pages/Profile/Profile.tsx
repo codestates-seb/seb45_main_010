@@ -41,7 +41,6 @@ const Profile = () => {
   const [loading, setLoading] = useState(true);
   const userDetails = useAppSelector((state) => state.member.user);
   const isAuthenticatedUser = useAppSelector((state) => state.auth.isAuthenticated);
-  console.log(userDetails, isAuthenticatedUser);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -75,7 +74,6 @@ const Profile = () => {
         console.error('Failed to update online status:', error);
       }
     }
-    return console.log('11111');
   };
 
   const updateOfflineStatus = async (newState: boolean) => {

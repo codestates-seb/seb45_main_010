@@ -28,7 +28,6 @@ const InfoModal: React.FC<InfoModalProps> = ({ teacher, matchId }) => {
         if (response) {
           setRequestDetails(response);
           setStatus(response.status);
-          console.log('request fetched successfully:', response);
         } else console.log('request가 없는 값입니다');
       } catch (error) {
         console.error('Error fetching request:', error);
