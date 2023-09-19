@@ -4,7 +4,6 @@ import InfoModal from 'components/Modal/InfoModal';
 import useStatusTranslator from 'hooks/useStatusTranslator';
 import { useState } from 'react';
 import { MatchType } from 'Types/Types';
-
 import { useNavigate } from 'react-router-dom';
 
 type RequestListProps = {

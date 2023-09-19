@@ -18,7 +18,6 @@ const initialState: initialStateType = {
     subjects: [],
   },
 };
-
 export const CategoriesSlice = createSlice({
   name: 'categoriesSlice',
   initialState,
