@@ -1,11 +1,10 @@
 import { Button, Dialog, DialogHeader, DialogFooter } from '@material-tailwind/react';
 import CategoryDiv from 'components/Items/CategoryDiv';
 import { RequestInfoType } from 'Types/Types';
-import { useAppDispatch, useAppSelector } from 'hooks/hooks';
+import { useAppDispatch } from 'hooks/hooks';
 import { useState, useEffect } from 'react';
 import { FetchRequestInfo, updateRequestStatus } from 'redux/thunk/RequestThunks';
 import { unwrapResult } from '@reduxjs/toolkit';
-import ReactDOM from 'react-dom';
 
 type InfoModalProps = {
   teacher: boolean;

@@ -4,7 +4,7 @@ import { ko } from 'date-fns/locale';
 import { Button, Option, Select } from '@material-tailwind/react';
 import { useState, useEffect, useRef } from 'react';
 import { ScheduleType, ScheduleObjType } from 'Types/Types';
-import { generateAvailableTimeSlots, generateTimeSlots, formatDate } from './MakeDateFunctions';
+import { generateAvailableTimeSlots, formatDate } from './MakeDateFunctions';
 import { updateSchedule, FetchSchedule } from 'redux/thunk/ProfilePageThunk';
 import { useAppDispatch } from 'hooks/hooks';
 
@@ -96,7 +96,7 @@ const SetSchedule = ({ id }: { id: number }) => {
 
         const existingIndex = prevNewSchedule.findIndex((slot) => slot.date === formatSelectedDate);
 
-        let newScheduleUpdate = [...prevNewSchedule];
+        const newScheduleUpdate = [...prevNewSchedule];
         if (existingIndex !== -1) {
           newScheduleUpdate[existingIndex] = updatedSlot!;
         } else {

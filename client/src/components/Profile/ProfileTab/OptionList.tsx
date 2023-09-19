@@ -2,7 +2,6 @@ import { Checkbox } from '@material-tailwind/react';
 import Option from './Option';
 import OnlineDiv from 'components/Items/OnlineDiv';
 import { useState } from 'react';
-import { useAppDispatch } from 'hooks/hooks';
 
 type OptionListProps = {
   teacher: boolean;

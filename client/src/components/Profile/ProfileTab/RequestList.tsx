@@ -3,7 +3,7 @@ import NoRequestStatus from 'components/Items/NoRequestStatus';
 import InfoModal from 'components/Modal/InfoModal';
 import useStatusTranslator from 'hooks/useStatusTranslator';
 import { useState } from 'react';
-import { MatchType, StatusType } from 'Types/Types';
+import { MatchType } from 'Types/Types';
 import ModalPortal from 'components/Items/ModalPortal';
 
 type RequestListProps = {
