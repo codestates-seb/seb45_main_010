@@ -42,7 +42,7 @@ public class Student extends Auditable implements Member {
     @Column(columnDefinition = "TEXT")
     private String introduction;
 
-    @Column(columnDefinition = "TEXT")
+    @Column(columnDefinition = "TEXT", name = "options")
     private String option;
 
     private String phone;

@@ -50,7 +50,7 @@ public class Teacher extends Auditable implements Member {
     @Column(columnDefinition = "TEXT", nullable = true)
     private String lectureFee;
 
-    @Column(columnDefinition = "TEXT", nullable = true)
+    @Column(columnDefinition = "TEXT", nullable = true, name = "options")
     private String option;
 
     @Column(nullable = false)
