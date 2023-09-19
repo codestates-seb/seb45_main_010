@@ -1,4 +1,4 @@
-import { MatchType, StatusType } from 'Types/Types';
+import { StatusType } from 'Types/Types';
 
 import {
   FetchProfile,

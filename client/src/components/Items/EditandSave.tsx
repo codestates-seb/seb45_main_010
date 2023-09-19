@@ -13,7 +13,6 @@ type EditandSaveProps = {
 };
 
 const EditandSave: React.FC<EditandSaveProps> = ({
-  optionTitle,
   optionDesc,
   editOptionDesc,
   isEditing,

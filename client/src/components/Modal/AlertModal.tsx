@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Button, Dialog, DialogBody, DialogFooter, Input } from '@material-tailwind/react';
 
 type props = {

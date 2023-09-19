@@ -1,6 +1,5 @@
 import { FetchRegions, FetchSubjects } from 'redux/thunk/ProfilePageThunk';
 import { createSlice } from '@reduxjs/toolkit';
-import { RootState } from 'redux/store';
 
 type initialStateType = {
   status: string;

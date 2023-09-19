@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Button, Dialog, DialogBody, DialogFooter, Input } from '@material-tailwind/react';
+import { Button, Dialog, DialogBody } from '@material-tailwind/react';
 import { TfiSave } from 'react-icons/tfi';
 
 type props = {
