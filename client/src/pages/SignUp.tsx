@@ -148,11 +148,11 @@ const SignUp: React.FC = () => {
           />
 
           {userInfo.teacher === true ? (
-            <div className="pt-4 text-xxs text-gray-500">강사로 가입됩니다</div>
+            <div className="pt-4 text-xxs text-red">강사로 가입됩니다</div>
           ) : (
             <div className="pt-4 text-xxs text-gray-500">일반회원(학생)으로 가입됩니다</div>
           )}
-          <label className="flex items-center pb-2 space-x-2">
+          <div className="flex items-center pb-2 space-x-2">
             <Checkbox
               crossOrigin={undefined}
               type="checkbox"
@@ -163,7 +163,7 @@ const SignUp: React.FC = () => {
               onChange={handleUserInfo}
             />
             <span className="text-sm text-gray-700 ">강사로 가입하기</span>
-          </label>
+          </div>
           <Button
             type="submit"
             className="text-white border-2 border-blue-1 text-xl bg-blue-1 rounded-lg shadow-lg shadow-gray-900/30 p-1 h-[50px] hover:bg-blue-2"
