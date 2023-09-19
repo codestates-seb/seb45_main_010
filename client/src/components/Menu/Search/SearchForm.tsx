@@ -1,8 +1,7 @@
-import { Input } from '@material-tailwind/react';
+import { Button, Input } from '@material-tailwind/react';
 import { search } from 'configs/Listpage/config';
 import { useAppDispatch } from 'hooks/hooks';
 import React, { ChangeEvent, FormEvent, useState } from 'react';
-import { AiOutlineSearch } from 'react-icons/ai';
 import { useNavigate } from 'react-router-dom';
 import { getData } from 'redux/thunk/ListPageThunk';
 
@@ -22,8 +21,8 @@ const SearchForm = ({ regionsList, subjectList, handlerSearch }: props) => {
     e.preventDefault();
     handlerSearch();
     search.teacherName = inputText;
-    search.regionsNames = regionsList;
-    search.subjectNames = subjectList;
+    search.regions = regionsList;
+    search.subjects = subjectList;
     dispatch(getData(search));
     nav('/');
   };
@@ -43,13 +42,15 @@ const SearchForm = ({ regionsList, subjectList, handlerSearch }: props) => {
           onChange={handlerInput}
           crossOrigin={undefined}
         />
-        <button
-          className="absolute bottom-0 right-0 m-2 text-xl cursor-pointer text-gray-3"
-          type="submit"
-          onClick={handleFormSubmit}
-        >
-          <AiOutlineSearch />
-        </button>
+        <span className="flex justify-end mt-1">
+          <Button
+            type="submit"
+            onClick={handleFormSubmit}
+            className="flex items-center justify-center text-base text-black w-36 bg-mint-200"
+          >
+            검색하기
+          </Button>
+        </span>
       </div>
     </form>
   );

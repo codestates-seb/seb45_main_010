@@ -4,16 +4,13 @@ import ReqForm from './ReqForm';
 import { useAppDispatch, useAppSelector } from 'hooks/hooks';
 import { lessonRequest } from 'redux/slice/lessonRequestSlice';
 import ReqSelect from './ReqSelect';
-import { lessonGetType, requestPostType } from 'Types/Types';
-import { useLocation } from 'react-router-dom';
+import { User, lessonGetType, requestPostType } from 'Types/Types';
 import { lessonRequestGet, lessonRequestPost } from 'redux/thunk/lessonRequestThunk';
+import { SubmitModal } from './SubmitModal';
+import ReqScheduleList from './ReqScheduleList';
 
 type props = {
-  subjectNames: string[];
-  regionsNames: string[];
-  schedules: {
-    date: string[];
-  }[];
+  teacherId: number;
   onLine: boolean;
   offLine: boolean;
 };
@@ -25,18 +22,24 @@ type formType = {
   remaks: string;
 };
 
-export const ReqModal = ({ subjectNames, regionsNames, schedules, onLine, offLine }: props) => {
-  const location = useLocation();
+type schedulesType = Pick<User, 'schedules'>;
+
+export const ReqModal = ({ teacherId, onLine, offLine }: props) => {
   const dispatch = useAppDispatch();
   const lesson = useAppSelector(lessonRequest);
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [subjects, setSubjects] = useState<string[]>([]);
-  const [regions, setRegions] = useState<string[]>([]);
-  const [schedule, setSchedule] = useState<string[]>([]);
+  const [subjectsList, setSubjects] = useState<string[]>([]);
+  const [regionsList, setRegions] = useState<string[]>([]);
   const [isOnOffLine, setIsOnOffLine] = useState<string[]>(['', '']);
+  const [scheduleList, setSchedule] = useState<schedulesType>({
+    schedules: [],
+  });
   const [requestPost, setRequestPost] = useState<requestPostType>({
+    teacherId,
+    studentId: 0,
     subjects: [],
     regions: [],
+    schedules: [{ date: [] }],
     isOnLine: false,
     isOffLine: false,
     studentName: '',
@@ -44,24 +47,25 @@ export const ReqModal = ({ subjectNames, regionsNames, schedules, onLine, offLin
     studentEmail: '',
     remaks: '',
   });
+  const [matches, setMatches] = useState<lessonGetType>({
+    studentId: 0,
+    teacherId: 0,
+    subjects: [],
+    regions: [],
+    schedules: [{ date: [] }],
+    sudentName: '',
+    studentPhone: '',
+    studentEmail: '',
+  });
   const [studentInfo, setStudentInfo] = useState<formType>({
     name: '',
     phone: '',
     email: '',
     remaks: '',
   });
-  const [matches, setMatches] = useState<lessonGetType>({
-    studentId: '',
-    teacherId: '',
-    subjects: [],
-    schedules: [{ date: [] }],
-    sudentName: '',
-    studentPhone: '',
-    studentEmail: '',
-  });
 
   const onOff = onLine && offLine ? ['온라인', '오프라인'] : offLine ? ['오프라인'] : ['온라인'];
-  const id = { teacherId: location.pathname.slice(1), studentId: '6' };
+  const id = { teacherId, studentId: 1 };
 
   const handleOpen = (): void => setIsOpen(!isOpen);
 
@@ -75,8 +79,11 @@ export const ReqModal = ({ subjectNames, regionsNames, schedules, onLine, offLin
 
   useEffect(() => {
     setRequestPost({
-      subjects,
-      regions,
+      teacherId,
+      studentId: 1,
+      subjects: subjectsList,
+      regions: regionsList,
+      schedules: scheduleList,
       isOnLine: !!isOnOffLine[0],
       isOffLine: !!isOnOffLine[1],
       studentName: studentInfo.name,
@@ -84,10 +91,11 @@ export const ReqModal = ({ subjectNames, regionsNames, schedules, onLine, offLin
       studentEmail: studentInfo.email,
       remaks: studentInfo.remaks,
     });
-  }, [subjects, regions, schedule, isOnOffLine, studentInfo]);
+  }, [subjectsList, regionsList, scheduleList, isOnOffLine, studentInfo, teacherId]);
 
   const handleRequestPost = () => {
-    dispatch(lessonRequestPost({ id: id.teacherId, requestPost: requestPost }));
+    dispatch(lessonRequestPost(requestPost));
+    handleOpen();
   };
 
   return (
@@ -104,9 +112,9 @@ export const ReqModal = ({ subjectNames, regionsNames, schedules, onLine, offLin
         handler={handleOpen}
         className="p-2 overflow-y-scroll max-h-[660px] bg-mint-200 "
       >
-        <ReqSelect title={'과목 선택'} arr={subjectNames} setItems={setSubjects} />
-        <ReqSelect title={'지역 선택'} arr={regionsNames} setItems={setRegions} />
-        {/* <ReqSelect title={'스케줄 선택'} arr={schedules} setItems={setSchedule} /> */}
+        <ReqSelect title={'과목 선택'} arr={matches.subjects} setItems={setSubjects} />
+        <ReqSelect title={'지역 선택'} arr={matches.regions} setItems={setRegions} />
+        <ReqScheduleList id={teacherId} setSchedule={setSchedule} />
         <ReqSelect title={'수업방식 선택'} arr={onOff} setItems={setIsOnOffLine} />
 
         <ReqForm
@@ -115,13 +123,19 @@ export const ReqModal = ({ subjectNames, regionsNames, schedules, onLine, offLin
           email={matches.studentEmail}
           setStudentInfo={setStudentInfo}
         />
+
         <DialogFooter className="p-2">
+          <SubmitModal
+            title="신청이 완료되었습니다."
+            btnCheck="확인"
+            handleRequestPost={handleRequestPost}
+          />
           <Button
             variant="text"
             color="red"
             className="p-2 mx-3 my-1 text-black rounded-full bg-mint-300"
-            children="신청하기"
-            onClick={handleRequestPost}
+            children="취소하기"
+            onClick={handleOpen}
           />
         </DialogFooter>
       </Dialog>

@@ -18,7 +18,7 @@ export type User = {
   address: string;
   option: string | null;
   schedules: {
-    date: string[];
+    date: string[] | null;
   }[];
 };
 
@@ -168,32 +168,17 @@ export type footerType = {
   }[];
 };
 
-export type lessonGetType = Pick<User, 'subjects' | 'schedules'> & {
-  studentId: string;
-  teacherId: string;
+export type lessonGetType = Pick<User, 'regions' | 'subjects' | 'schedules'> & {
+  teacherId: number;
+  studentId: number;
   sudentName: string;
   studentPhone: string;
   studentEmail: string;
 };
 
-export type lessonPostType = {
-  id: number;
-  studentId: number;
+export type requestPostType = Pick<User, 'subjects' | 'regions' | 'schedules'> & {
   teacherId: number;
-  status: string;
-  matchSubjects: string[];
-  matchRegions: string[];
-  date: string;
-  timeslot: string;
-  studentName: string;
-  studentPhone: string;
-  studentEmail: string;
-  remarks: string;
-  teacherName: string;
-  online: boolean;
-};
-
-export type requestPostType = Pick<User, 'subjects' | 'regions'> & {
+  studentId: number;
   isOnLine: boolean;
   isOffLine: boolean;
   studentName: string;

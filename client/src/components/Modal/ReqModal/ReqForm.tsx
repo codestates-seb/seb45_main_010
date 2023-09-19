@@ -81,6 +81,7 @@ const ReqForm = ({ name, phone, email, setStudentInfo }: props) => {
       <div className="bg-mint-300">
         <Textarea
           label="특이사항"
+          color="blue-gray"
           className="flex items-center rounded-2xl"
           onChange={handlerRemaks}
         />

@@ -4,11 +4,11 @@ import axios from 'axios';
 import { URL } from 'configs/Url/config';
 
 export const getData = createAsyncThunk<ListPageType[], SearchType>('getData', async (search) => {
-  search.regionsNames = search.regionsNames.length === 0 ? ['전체'] : search.regionsNames;
-  search.subjectNames = search.subjectNames.length === 0 ? ['전체'] : search.subjectNames;
+  search.regions = search.regions.length === 0 ? ['전체'] : search.regions;
+  search.subjects = search.subjects.length === 0 ? ['전체'] : search.subjects;
 
   const response = await axios.get(
-    `${URL}/teachers?teacherName=${search.teacherName}&regionsNames=${search.regionsNames}&subjectNames=${search.subjectNames}&page=${search.page}&size=${search.size}`
+    `${URL}/teachers?teacherName=${search.teacherName}&regionNames=${search.regions}&subjectNames=${search.subjects}&page=${search.page}&size=${search.size}`
   );
   const data = response.data;
   return data;
