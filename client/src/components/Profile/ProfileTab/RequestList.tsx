@@ -4,7 +4,8 @@ import InfoModal from 'components/Modal/InfoModal';
 import useStatusTranslator from 'hooks/useStatusTranslator';
 import { useState } from 'react';
 import { MatchType } from 'Types/Types';
-import ModalPortal from 'components/Items/ModalPortal';
+import { Link } from 'react-router-dom';
+import { useNavigation } from 'react-router-dom';
 
 type RequestListProps = {
   teacher: boolean;
@@ -12,11 +13,30 @@ type RequestListProps = {
 };
 
 const RequestList: React.FC<RequestListProps> = ({ teacher, matches }) => {
-  const [showModal, setShowModal] = useState(false);
   const [selectedMatchId, setSelectedMatchId] = useState<number | null>(null);
   const translateStatus = useStatusTranslator();
-  const noFn = () => {};
-
+  const NavigateUser = () => {
+    if (teacher) {
+      scrollToSchedule();
+    } else {
+      navigation.navigate('/');
+    }
+  };
+  const scrollToSchedule = () => {
+    const element = document.getElementById('tab-schedule') as HTMLElement;
+    if (element) {
+      window.scrollTo({ top: element.offsetTop, behavior: 'smooth' });
+    }
+  };
+  const sortMatches = (matches: MatchType[]) => {
+    return matches.sort((a, b) => {
+      if (a.status === 'MATCH_REQUEST') return -1;
+      if (b.status === 'MATCH_REQUEST') return 1;
+      return 0;
+    });
+  };
+  const sortedMatches = sortMatches(matches);
+  const navigation = useNavigation();
   return (
     <div className="py-5">
       <p className="flex-1 mb-4 text-sm font-bold">{teacher ? '강의요청목록' : '수업요청목록'}</p>
@@ -36,14 +56,13 @@ const RequestList: React.FC<RequestListProps> = ({ teacher, matches }) => {
               {!teacher ? '강사' : '학생'}
             </Button>
           </div>
-          {matches.map((match) => {
+          {sortedMatches.map((match) => {
             const { text, className } = translateStatus(match.status);
 
             return (
               <div
                 key={`match number ${match.matchId}`}
                 onClick={() => {
-                  setShowModal(true);
                   setSelectedMatchId(match.matchId);
                 }}
                 className={`my-5 border rounded-lg w-100% ${className} cursor-pointer duration-300`}
@@ -58,6 +77,7 @@ const RequestList: React.FC<RequestListProps> = ({ teacher, matches }) => {
                     </div>
                     <div>
                       <span className="flex items-center justify-center flex-1 w-20 p-2">
+                        <Link to={`/${teacher ? null : match.teacherId}`} />
                         {teacher ? match.studentName : match.teacherName}
                       </span>
                     </div>
@@ -72,19 +92,10 @@ const RequestList: React.FC<RequestListProps> = ({ teacher, matches }) => {
         </>
       ) : (
         <>
-          <NoRequestStatus teacher={teacher} onClick={noFn} />
+          <NoRequestStatus teacher={teacher} onClick={NavigateUser} />
         </>
       )}
-      {selectedMatchId !== null && (
-        <ModalPortal>
-          <InfoModal
-            teacher={teacher}
-            matchId={selectedMatchId}
-            open={showModal}
-            setOpen={setShowModal}
-          />
-        </ModalPortal>
-      )}
+      {selectedMatchId !== null && <InfoModal teacher={teacher} matchId={selectedMatchId} />}
     </div>
   );
 };

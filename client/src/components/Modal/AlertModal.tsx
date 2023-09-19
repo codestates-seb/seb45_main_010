@@ -7,13 +7,29 @@ type props = {
   warning: string;
   btnName: string;
   btnCheck: string;
+  onConfirm: () => void;
+  selectedDate: string;
+  selectedTimeSlots: string[];
 };
 
-export const ChangeModal = ({ title, text, warning, btnName, btnCheck }: props) => {
+export const AlertModal = ({
+  title,
+  text,
+  warning,
+  btnName,
+  btnCheck,
+  onConfirm,
+  selectedDate,
+  selectedTimeSlots,
+}: props) => {
   const [open, setOpen] = useState<boolean>(false);
 
   const handleOpen = () => setOpen(!open);
 
+  const handleConfirm = () => {
+    onConfirm();
+    handleOpen();
+  };
   return (
     <>
       <Button onClick={handleOpen}>{btnName}</Button>
@@ -21,11 +37,19 @@ export const ChangeModal = ({ title, text, warning, btnName, btnCheck }: props) 
         <DialogBody divider>
           <p className="text-center text-black">{title}</p>
           <div className="grid grid-flow-col">
-            <Input label={text} crossOrigin={undefined} color="blue" className="text-black " />
+            <Input
+              label={text
+                .replace('{date}', selectedDate)
+                .replace('{timeslot}', selectedTimeSlots.join(', '))}
+              crossOrigin={undefined}
+              color="blue"
+              className="text-black "
+              readOnly
+            />
             <Button
               variant="outlined"
               color="red"
-              onClick={handleOpen}
+              onClick={handleConfirm}
               className="col-span-1 p-2 ml-5"
             >
               {btnCheck}
