@@ -79,7 +79,6 @@ export const ReqModal = ({ teacherId, onLine, offLine }: props) => {
     remaks: '',
   });
   const id: idType = { teacherId, studentId: userDetails.id };
-
   const onOff: string[] =
     onLine && offLine ? ['온라인', '오프라인'] : offLine ? ['오프라인'] : ['온라인'];
 
@@ -113,7 +112,9 @@ export const ReqModal = ({ teacherId, onLine, offLine }: props) => {
   };
 
   const handleRequestGet = () => {
-    if (!id.studentId || !id.teacherId) {
+    if (userDetails.teacher) {
+      alert('학생만 강의 신청 가능');
+    } else if (!id.studentId || !id.teacherId) {
       alert('로그인을 해주세요.');
     } else {
       dispatch(lessonRequestGet(id));
