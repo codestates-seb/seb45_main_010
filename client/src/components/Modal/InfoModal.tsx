@@ -67,7 +67,7 @@ const InfoModal: React.FC<InfoModalProps> = ({ teacher, matchId }) => {
       <Button
         onClick={handleOpen}
         color="white"
-        className="flex flex-row items-center justify-center w-[80px] h-[40px] p-2"
+        className="flex flex-row items-center justify-center w-[80px] h-[33px] p-2"
       >
         확인하기
       </Button>
@@ -138,7 +138,7 @@ const InfoModal: React.FC<InfoModalProps> = ({ teacher, matchId }) => {
               <DialogFooter className="p-2">
                 {teacher ? (
                   <>
-                    {status !== 'MATCH_CANCELLED' ? (
+                    {status !== 'MATCH_CANCELLED' && status !== 'MATCH_ANSWERED' ? (
                       <>
                         <Button
                           variant="text"
@@ -157,11 +157,22 @@ const InfoModal: React.FC<InfoModalProps> = ({ teacher, matchId }) => {
                           <span>거절하기</span>
                         </Button>
                       </>
-                    ) : null}
+                    ) : (
+                      status === 'MATCH_ANSWERED' && (
+                        <Button
+                          variant="gradient"
+                          color="green"
+                          onClick={handleCancel}
+                          className="p-2 mx-3 my-1 text-black rounded-full bg-mint-300"
+                        >
+                          <span>취소하기</span>
+                        </Button>
+                      )
+                    )}
                   </>
                 ) : (
                   <>
-                    {status !== 'MATCH_CANCELLED' && (
+                    {status === 'MATCH_REQUEST' && (
                       <Button
                         variant="gradient"
                         color="green"
@@ -173,6 +184,14 @@ const InfoModal: React.FC<InfoModalProps> = ({ teacher, matchId }) => {
                     )}
                   </>
                 )}
+                <Button
+                  variant="outlined"
+                  color="green"
+                  onClick={handleOpen}
+                  className="p-2 mx-3 my-1 text-black rounded-full"
+                >
+                  <span>닫기</span>
+                </Button>
               </DialogFooter>
             </Dialog>
           </>

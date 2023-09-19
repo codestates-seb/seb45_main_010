@@ -35,6 +35,11 @@ const Option = ({
   const dispatch = useAppDispatch();
 
   const saveChanges = () => {
+    if (editOptionDesc.trim().length === 0) {
+      alert('내용을 비워둘 수 없습니다.');
+      setEditOptionDesc(' ');
+      return;
+    }
     setOptionDesc(editOptionDesc);
     setIsEditing(false);
     if (optionTitle === '강의료 ( 강사 소개에 노출됩니다 )') {
