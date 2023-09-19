@@ -8,6 +8,7 @@ import { User, lessonGetType, requestPostType } from 'Types/Types';
 import { lessonRequestGet, lessonRequestPost } from 'redux/thunk/lessonRequestThunk';
 import { SubmitModal } from './SubmitModal';
 import ReqScheduleList from './ReqScheduleList';
+import { useNavigate } from 'react-router-dom';
 
 type props = {
   teacherId: number;
@@ -31,6 +32,7 @@ type schedulesType = Pick<User, 'schedules'>;
 
 export const ReqModal = ({ teacherId, onLine, offLine }: props) => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const userDetails = useAppSelector((state) => state.member.user);
   const lesson = useAppSelector(lessonRequest);
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -48,16 +50,15 @@ export const ReqModal = ({ teacherId, onLine, offLine }: props) => {
     studentId: 0,
     subjects: [],
     regions: [],
-    schedules: {
+    schedule: {
       date: '',
       timeslots: [],
     },
-    isOnLine: false,
-    isOffLine: false,
+    isOnline: false,
     studentName: '',
     studentPhone: '',
     studentEmail: '',
-    remaks: '',
+    remarks: '',
   });
   const [matches, setMatches] = useState<lessonGetType>({
     studentId: 0,
@@ -92,17 +93,16 @@ export const ReqModal = ({ teacherId, onLine, offLine }: props) => {
 
   useEffect(() => {
     setRequestPost({
-      teacherId,
       studentId: id.studentId,
+      teacherId,
+      isOnline: !!isOnOffLine[0],
       subjects: subjectsList,
       regions: regionsList,
-      schedules: scheduleList.schedules,
-      isOnLine: !!isOnOffLine[0],
-      isOffLine: !!isOnOffLine[1],
+      schedule: scheduleList.schedules,
       studentName: studentInfo.name,
       studentPhone: studentInfo.phone,
       studentEmail: studentInfo.email,
-      remaks: studentInfo.remaks,
+      remarks: studentInfo.remaks,
     });
   }, [subjectsList, regionsList, scheduleList, isOnOffLine, studentInfo, teacherId]);
 
@@ -116,6 +116,7 @@ export const ReqModal = ({ teacherId, onLine, offLine }: props) => {
       alert('학생만 강의 신청 가능');
     } else if (!id.studentId || !id.teacherId) {
       alert('로그인을 해주세요.');
+      navigate('/login');
     } else {
       dispatch(lessonRequestGet(id));
       handleOpen();
