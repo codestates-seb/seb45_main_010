@@ -65,11 +65,11 @@ const InfoModal: React.FC<InfoModalProps> = ({ teacher, matchId }) => {
   return (
     <>
       <Button
-        variant="text"
         onClick={handleOpen}
-        className="flex flex-row items-center justify-between w-[100px] h-[30px] bottom-[105px]"
+        color="white"
+        className="flex flex-row items-center justify-center w-[80px] h-[40px] p-2"
       >
-        {' '}
+        확인하기
       </Button>
       <>
         {requestDetails ? (
@@ -138,7 +138,7 @@ const InfoModal: React.FC<InfoModalProps> = ({ teacher, matchId }) => {
               <DialogFooter className="p-2">
                 {teacher ? (
                   <>
-                    {status === 'MATCH_REQUEST' ? (
+                    {status !== 'MATCH_CANCELLED' ? (
                       <>
                         <Button
                           variant="text"
@@ -161,7 +161,7 @@ const InfoModal: React.FC<InfoModalProps> = ({ teacher, matchId }) => {
                   </>
                 ) : (
                   <>
-                    {status === 'MATCH_REQUEST' && (
+                    {status !== 'MATCH_CANCELLED' && (
                       <Button
                         variant="gradient"
                         color="green"

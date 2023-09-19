@@ -45,12 +45,18 @@ const RequestList: React.FC<RequestListProps> = ({ teacher, matches }) => {
             <Button
               className="flex items-center mx-1 h-7 p-2 text-[8px] text-gray-700 bg-white rounded-xl border-mint-200"
               variant="outlined"
+              onClick={() => {
+                alert('준비 중인 기능입니다.');
+              }}
             >
               과목
             </Button>
             <Button
               className="flex items-center mx-1 h-7 p-2 text-[8px] text-gray-700 bg-white rounded-xl border-mint-200"
               variant="outlined"
+              onClick={() => {
+                alert('준비 중인 기능입니다.');
+              }}
             >
               {!teacher ? '강사' : '학생'}
             </Button>
@@ -64,7 +70,7 @@ const RequestList: React.FC<RequestListProps> = ({ teacher, matches }) => {
                 onClick={() => {
                   setSelectedMatchId(match.matchId);
                 }}
-                className={`my-5 border rounded-lg w-100% ${className} duration-300`}
+                className={`my-5 border relative rounded-lg w-100% ${className} duration-300`}
               >
                 <div className="flex flex-row items-center justify-between p-4">
                   <span className="text-[16px] font-semibold">{text}</span>
@@ -81,11 +87,9 @@ const RequestList: React.FC<RequestListProps> = ({ teacher, matches }) => {
                     </div>
                   </div>
                 </div>
-                <div className="flex justify-end p-4 text-right">
-                  <span>{match.date}</span>
-                </div>
-                <div className="flex justify-items-center w-100%">
+                <div className="flex items-center justify-between py-2 pl-2 pr-4">
                   <InfoModal teacher={teacher} matchId={match.matchId} />
+                  <span className="flex">{match.date}</span>
                 </div>
               </div>
             );
@@ -96,7 +100,7 @@ const RequestList: React.FC<RequestListProps> = ({ teacher, matches }) => {
           <NoRequestStatus teacher={teacher} onClick={NavigateUser} />
         </>
       )}
-      <div className="flex justify-items-center w-100%">
+      <div className="flex justify-items-center w-[350px] flex-row">
         {/* {selectedMatchId !== null && <InfoModal teacher={teacher} matchId={selectedMatchId} />} */}
       </div>
     </div>
