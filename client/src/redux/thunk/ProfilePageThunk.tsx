@@ -7,8 +7,6 @@ import { ScheduleObjType, ScheduleType, MatchType } from 'Types/Types';
 import { URL } from 'configs/Url/config';
 const { APIUSERURL, PROFILEURL } = getAuthUserInfo();
 
-const token = getAccessToken();
-
 export const FetchProfile = createAsyncThunk('FetchProfile', async (id, thunkAPI) => {
   try {
     const dispatch = thunkAPI.dispatch;
@@ -41,6 +39,7 @@ export const FetchSchedule = createAsyncThunk('schedule/fetchSchedule', async (i
 });
 
 export const FetchRequest = createAsyncThunk('FetchRequest', async (id: number) => {
+  const token = getAccessToken();
   const response = await axios.get<MatchType>(`${URL}/matches/${id}`, {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -53,6 +52,7 @@ export const FetchRequest = createAsyncThunk('FetchRequest', async (id: number) 
 export const updateRequestStatus = createAsyncThunk(
   'profile/updateRequestStatus',
   async ({ id, status }: { id: number; status: string }) => {
+    const token = getAccessToken();
     const response = await axios.patch(
       `${URL}/matches`,
       {
@@ -72,6 +72,7 @@ export const updateRequestStatus = createAsyncThunk(
 export const updateSchedule = createAsyncThunk(
   'schedule/updateSchedule',
   async ({ id, date, timeslots }: { id: number; date: string; timeslots: string[] }) => {
+    const token = getAccessToken();
     const response = await axios.patch(
       `${URL}/schedules`,
       {
@@ -91,6 +92,7 @@ export const updateSchedule = createAsyncThunk(
 export const updateOnline = createAsyncThunk(
   'profile/updateOnline',
   async ({ id, onLine }: { id: number; onLine: boolean }) => {
+    const token = getAccessToken();
     const response = await axios.patch(
       `${URL}/teachers/onLine`,
       {
@@ -110,6 +112,7 @@ export const updateOnline = createAsyncThunk(
 export const updateOffline = createAsyncThunk(
   'profile/updateOffline',
   async ({ id, offLine }: { id: number; offLine: boolean }) => {
+    const token = getAccessToken();
     const response = await axios.patch(
       `${URL}/teachers/offLine`,
       {
@@ -129,6 +132,7 @@ export const updateOffline = createAsyncThunk(
 export const updateLectureFee = createAsyncThunk(
   'profile/updateLectureFee',
   async ({ id, lectureFee }: { id: number; lectureFee: string }) => {
+    const token = getAccessToken();
     const response = await axios.patch(
       `${URL}/teachers/lectureFee`,
       {
@@ -148,6 +152,7 @@ export const updateLectureFee = createAsyncThunk(
 export const updateCareer = createAsyncThunk(
   'profile/updateCareer',
   async ({ id, career }: { id: number; career: string }) => {
+    const token = getAccessToken();
     const response = await axios.patch(
       `${URL}/teachers/career`,
       {
@@ -167,6 +172,7 @@ export const updateCareer = createAsyncThunk(
 export const updateOption = createAsyncThunk(
   'profile/updateOption',
   async ({ id, option }: { id: number; option: string }) => {
+    const token = getAccessToken();
     const response = await axios.patch(
       `${APIUSERURL}/option`,
       {
@@ -186,6 +192,7 @@ export const updateOption = createAsyncThunk(
 export const updateIntroduction = createAsyncThunk(
   'profile/updateIntroduction',
   async ({ id, introduction }: { id: number; introduction: string }) => {
+    const token = getAccessToken();
     const response = await axios.patch(
       `${APIUSERURL}/introduction`,
       {
@@ -206,6 +213,7 @@ export const updateIntroduction = createAsyncThunk(
 export const updateSubjects = createAsyncThunk(
   'profile/updateSubjects',
   async ({ id, subjects }: { id: number; subjects: string[] }) => {
+    const token = getAccessToken();
     const response = await axios.patch(
       `${APIUSERURL}/subjects`,
       {
@@ -225,6 +233,7 @@ export const updateSubjects = createAsyncThunk(
 export const updateRegions = createAsyncThunk(
   'profile/updateRegions',
   async ({ id, regions }: { id: number; regions: string[] }) => {
+    const token = getAccessToken();
     const response = await axios.patch(
       `${APIUSERURL}/regions`,
       {
