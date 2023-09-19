@@ -21,12 +21,14 @@ const RequestList: React.FC<RequestListProps> = ({ teacher, matches }) => {
       navigate('/');
     }
   };
+
   const scrollToSchedule = () => {
     const element = document.getElementById('tab-schedule') as HTMLElement;
     if (element) {
       window.scrollTo({ top: element.offsetTop, behavior: 'smooth' });
     }
   };
+
   const sortMatches = (matches: MatchType[]) => {
     return matches.sort((a, b) => {
       if (a.status === 'MATCH_REQUEST') return -1;
@@ -34,8 +36,10 @@ const RequestList: React.FC<RequestListProps> = ({ teacher, matches }) => {
       return 0;
     });
   };
+
   const sortedMatches = sortMatches(matches);
   const navigate = useNavigate();
+
   return (
     <div className="py-5">
       <p className="flex-1 mb-4 text-sm font-bold">{teacher ? '강의요청목록' : '수업요청목록'}</p>
