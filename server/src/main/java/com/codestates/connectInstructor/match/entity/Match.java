@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-@Entity
+@Entity(name = "Matches")
 @Getter@Setter@NoArgsConstructor
 public class Match {
     @Id
