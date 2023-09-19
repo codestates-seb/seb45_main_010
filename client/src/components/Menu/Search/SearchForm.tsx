@@ -26,33 +26,49 @@ const SearchForm = ({ regionsList, subjectList, handlerSearch }: props) => {
     dispatch(getData(search));
     nav('/');
   };
+  console.log(search);
+
   const handlerInput = (e: ChangeEvent<HTMLInputElement>) => {
     const newText = e.target.value;
     setInputText(newText);
   };
-
+  const handleInitialization = () => {
+    search.teacherName = '';
+    search.regions = [];
+    search.subjects = [];
+  };
   return (
-    <form id="myForm">
-      <div className="relative flex w-full flex-col  gap-2 w-100% mb-5">
-        <h1 className="pl-1">강사 검색</h1>
-        <Input
-          type="text"
-          label="강사의 이름을 입력해 주세요."
-          value={inputText}
-          onChange={handlerInput}
-          crossOrigin={undefined}
-        />
-        <span className="flex justify-end mt-1">
-          <Button
-            type="submit"
-            onClick={handleFormSubmit}
-            className="flex items-center justify-center text-base text-black w-36 bg-mint-200"
-          >
-            검색하기
-          </Button>
-        </span>
-      </div>
-    </form>
+    <>
+      <form id="myForm">
+        <div className="relative flex w-full flex-col  gap-2 w-100% mb-5">
+          <h1 className="pl-1">강사 검색</h1>
+          <Input
+            type="text"
+            label="강사의 이름을 입력해 주세요."
+            value={inputText}
+            onChange={handlerInput}
+            crossOrigin={undefined}
+          />
+          <span className="flex justify-centermt-2">
+            <Button
+              type="submit"
+              onClick={handleFormSubmit}
+              className="flex items-center justify-center mx-3 text-base text-black w-36 bg-mint-200"
+            >
+              검색하기
+            </Button>
+
+            <Button
+              type="submit"
+              onClick={handleInitialization}
+              className="flex items-center justify-center mx-3 text-base text-black w-36 bg-mint-200"
+            >
+              검색 초기화
+            </Button>
+          </span>
+        </div>
+      </form>
+    </>
   );
 };
 

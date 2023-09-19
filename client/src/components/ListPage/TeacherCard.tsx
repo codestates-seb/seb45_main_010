@@ -23,7 +23,7 @@ const TeacherCard = ({ cardList }: props) => {
               <span className="w-16 h-6 px-2 py-1 m-1 text-center text-black cursor-auto bg-mint-200 rounded-xl">
                 {isOnOff}
               </span>
-              <span className="flex flex-col items-center ">
+              <span className="flex flex-col items-center w-24">
                 <h1 className="mb-2">수업 종류</h1>
                 <ul className="grid grid-cols-2 m-1 text-center ">
                   {items.subjects?.slice(0, 4).map((category, index) => (
@@ -33,7 +33,7 @@ const TeacherCard = ({ cardList }: props) => {
                   ))}
                 </ul>
               </span>
-              <span className="flex flex-col items-center ">
+              <span className="flex flex-col items-center w-24">
                 <h1 className="mb-2">지역</h1>
                 <ul className="grid grid-cols-2 m-1 text-center ">
                   {items.regions?.slice(0, 4).map((area, index) => (
@@ -44,7 +44,7 @@ const TeacherCard = ({ cardList }: props) => {
                 </ul>
               </span>
 
-              <div className="flex flex-col items-center">
+              <div className="flex flex-col items-center w-14">
                 <img src={items.profileImg || ''} className="w-[25px] h-[25px] rounded-lg" />
                 <span>{items.name}</span>
               </div>

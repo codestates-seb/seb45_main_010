@@ -8,6 +8,7 @@ import { User, lessonGetType, requestPostType } from 'Types/Types';
 import { lessonRequestGet, lessonRequestPost } from 'redux/thunk/lessonRequestThunk';
 import { SubmitModal } from './SubmitModal';
 import ReqScheduleList from './ReqScheduleList';
+import { useNavigate } from 'react-router-dom';
 
 type props = {
   teacherId: number;
@@ -22,10 +23,17 @@ type formType = {
   remaks: string;
 };
 
+type idType = {
+  teacherId: number;
+  studentId: number;
+};
+
 type schedulesType = Pick<User, 'schedules'>;
 
 export const ReqModal = ({ teacherId, onLine, offLine }: props) => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const userDetails = useAppSelector((state) => state.member.user);
   const lesson = useAppSelector(lessonRequest);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [subjectsList, setSubjects] = useState<string[]>([]);
@@ -42,27 +50,26 @@ export const ReqModal = ({ teacherId, onLine, offLine }: props) => {
     studentId: 0,
     subjects: [],
     regions: [],
-    schedules: {
+    schedule: {
       date: '',
       timeslots: [],
     },
-    isOnLine: false,
-    isOffLine: false,
+    isOnline: false,
     studentName: '',
     studentPhone: '',
     studentEmail: '',
-    remaks: '',
+    remarks: '',
   });
   const [matches, setMatches] = useState<lessonGetType>({
     studentId: 0,
-    teacherId: 0,
+    teacherId,
     subjects: [],
     regions: [],
     schedules: {
       date: '',
       timeslots: [],
     },
-    sudentName: '',
+    studentName: '',
     studentPhone: '',
     studentEmail: '',
   });
@@ -72,33 +79,30 @@ export const ReqModal = ({ teacherId, onLine, offLine }: props) => {
     email: '',
     remaks: '',
   });
-
-  const onOff = onLine && offLine ? ['온라인', '오프라인'] : offLine ? ['오프라인'] : ['온라인'];
-  const id = { teacherId, studentId: 1 };
+  const id: idType = { teacherId, studentId: userDetails.id };
+  const onOff: string[] =
+    onLine && offLine ? ['온라인', '오프라인'] : offLine ? ['오프라인'] : ['온라인'];
 
   const handleOpen = (): void => setIsOpen(!isOpen);
 
   useEffect(() => {
-    dispatch(lessonRequestGet(id));
-  }, []);
-
-  useEffect(() => {
-    setMatches(lesson.value);
+    if (lesson.status === 'fulfilled') {
+      setMatches(lesson.value);
+    }
   }, [lesson]);
 
   useEffect(() => {
     setRequestPost({
+      studentId: id.studentId,
       teacherId,
-      studentId: 1,
+      isOnline: !!isOnOffLine[0],
       subjects: subjectsList,
       regions: regionsList,
-      schedules: scheduleList.schedules,
-      isOnLine: !!isOnOffLine[0],
-      isOffLine: !!isOnOffLine[1],
+      schedule: scheduleList.schedules,
       studentName: studentInfo.name,
       studentPhone: studentInfo.phone,
       studentEmail: studentInfo.email,
-      remaks: studentInfo.remaks,
+      remarks: studentInfo.remaks,
     });
   }, [subjectsList, regionsList, scheduleList, isOnOffLine, studentInfo, teacherId]);
 
@@ -107,10 +111,22 @@ export const ReqModal = ({ teacherId, onLine, offLine }: props) => {
     handleOpen();
   };
 
+  const handleRequestGet = () => {
+    if (userDetails.teacher) {
+      alert('학생만 강의 신청 가능');
+    } else if (!id.studentId || !id.teacherId) {
+      alert('로그인을 해주세요.');
+      navigate('/login');
+    } else {
+      dispatch(lessonRequestGet(id));
+      handleOpen();
+    }
+  };
+
   return (
     <>
       <Button
-        onClick={handleOpen}
+        onClick={handleRequestGet}
         variant="gradient"
         className="flex items-center h-10 text-sm"
         children="강의 신청하기"
@@ -127,7 +143,7 @@ export const ReqModal = ({ teacherId, onLine, offLine }: props) => {
         <ReqSelect title={'수업방식 선택'} arr={onOff} setItems={setIsOnOffLine} />
 
         <ReqForm
-          name={matches.sudentName}
+          name={matches.studentName}
           phone={matches.studentPhone}
           email={matches.studentEmail}
           setStudentInfo={setStudentInfo}
