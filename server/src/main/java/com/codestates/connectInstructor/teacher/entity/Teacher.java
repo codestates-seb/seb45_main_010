@@ -69,7 +69,7 @@ public class Teacher extends Auditable implements Member {
     private boolean oauth = false;
 
     @Enumerated(value = EnumType.ORDINAL)
-    private MemberStatus status = MemberStatus.ACTIVE;
+    private MemberStatus status = MemberStatus.SLEEP;
 
     @ElementCollection(fetch = FetchType.LAZY)
     @LazyCollection(LazyCollectionOption.FALSE)
