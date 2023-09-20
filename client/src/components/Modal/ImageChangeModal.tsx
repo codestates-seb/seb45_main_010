@@ -36,7 +36,6 @@ export const ImageChangeModal = ({ text, warning, changeItem, userId, teacher }:
           Authorization: `Bearer ${accessToken}`,
         },
       });
-      console.log(response.data);
       dispatch(updateUserImage(response.data.profileImg));
     } catch (error) {
       console.log(`${changeItem}`, error);
@@ -46,12 +45,10 @@ export const ImageChangeModal = ({ text, warning, changeItem, userId, teacher }:
   const handleOpen = () => {
     setOpen(!open);
   };
-
   const handleClick = () => {
     handleNameChange(inputValue);
     handleOpen();
   };
-
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
   };

@@ -46,13 +46,8 @@ export const ScheduleSlice = createSlice({
         state.error = action.error.message;
       })
       .addCase(updateSchedule.fulfilled, (state, action) => {
-        // console.log('Payload:', action.payload);
-        // console.log('State before:', state.schedule);
-
         state.status = 'fulfilled';
         state.schedule = action.payload;
-
-        // console.log('State after:', state.schedule);
       });
   },
 });

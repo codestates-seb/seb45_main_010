@@ -16,7 +16,6 @@ const SearchForm = ({ regionsList, subjectList, handlerSearch }: props) => {
 
   const nav = useNavigate();
   const dispatch = useAppDispatch();
-
   const handleFormSubmit = (e: FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
     handlerSearch();
@@ -26,8 +25,6 @@ const SearchForm = ({ regionsList, subjectList, handlerSearch }: props) => {
     dispatch(getData(search));
     nav('/');
   };
-  console.log(search);
-
   const handlerInput = (e: ChangeEvent<HTMLInputElement>) => {
     const newText = e.target.value;
     setInputText(newText);

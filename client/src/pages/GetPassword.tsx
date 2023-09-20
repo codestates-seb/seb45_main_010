@@ -26,7 +26,6 @@ const GetPassword: React.FC = () => {
 
     try {
       const response = await axios.get(`${URL}/resetPassword/${passwordkey}`);
-      console.log(response.data);
       const matchingUser = response.data;
       if (matchingUser) {
         alert(`${passwordkey}계정으로 인증메일을 전송했습니다.`);
