@@ -8,7 +8,6 @@ import Private from 'pages/Private';
 import Profile from 'pages/Profile/Profile';
 import SignUp from 'pages/SignUp';
 import { createBrowserRouter } from 'react-router-dom';
-import ProtectedRoute from 'components/Items/ProtectedRoute';
 
 export const router = createBrowserRouter([
   {
@@ -22,7 +21,6 @@ export const router = createBrowserRouter([
       {
         path: '/profile',
         element: <Profile />,
-        // element: <ProtectedRoute element={<Profile />} />,
       },
       {
         path: ':id',

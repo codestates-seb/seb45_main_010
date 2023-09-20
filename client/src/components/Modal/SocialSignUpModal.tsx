@@ -7,7 +7,6 @@ export const SocialSignupModal = () => {
   const [open, setOpen] = useState<boolean>(false);
   const [userType, setUserType] = useState<string>('');
   const handleSubmit = async () => {
-    console.log(userType);
     try {
       const response = await axios.get(`${URL}/oauth2/authorization/${userType}`);
       console.log(response.data);
@@ -39,7 +38,7 @@ export const SocialSignupModal = () => {
       </Button>
       <Dialog open={open} handler={handleOpen} size="xs" className="overflow-hidden">
         <DialogBody divider>
-          <div className="text-center border text-black bg-kakao-1 p-3">카카오로 가입하기</div>
+          <div className="p-3 text-center text-black border bg-kakao-1">카카오로 가입하기</div>
           <div className="grid grid-flow-col p-3">
             <Radio
               crossOrigin={undefined}

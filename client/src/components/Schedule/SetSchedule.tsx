@@ -111,7 +111,6 @@ const SetSchedule = ({ id }: { id: number }) => {
     });
   };
 
-  // console.log(newSchedule);
   const handleSelectedTimeSlot = (
     timeSlotObj: { date: string; timeslots: string[] },
     timeslot: string

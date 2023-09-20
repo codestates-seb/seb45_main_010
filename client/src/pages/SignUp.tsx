@@ -13,7 +13,6 @@ const SignUp: React.FC = () => {
   const [checkEmail, setCheckEmail] = useState<boolean>(false); //이메일중복확인
   const [registerable, setResiterable] = useState<boolean>(false); //등록가능여부
   const [userInfo, setUserInfo] = useState<MemberSignUp>({
-    //회원가입정보
     name: '',
     email: '',
     password: '',
@@ -149,7 +148,7 @@ const SignUp: React.FC = () => {
           {userInfo.teacher === true ? (
             <div className="pt-4 text-xxs text-red">강사로 가입됩니다</div>
           ) : (
-            <div className="pt-4 text-xxs text-gray-500">일반회원(학생)으로 가입됩니다</div>
+            <div className="pt-4 text-gray-500 text-xxs">일반회원(학생)으로 가입됩니다</div>
           )}
           <div className="flex items-center pb-2 space-x-2">
             <Checkbox

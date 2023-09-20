@@ -32,7 +32,6 @@ const GetSchedule = ({
         setAvailableDates(availableDatesArray);
         dispatch(setSchedule(payload));
 
-        // 선택된 날짜가 있으면 사용 가능한 시간대 설정
         if (selectedDate) {
           const selectedDateString = selectedDate.toISOString().split('T')[0];
           const selectedSchedule = payload.schedules.find(
@@ -66,9 +65,6 @@ const GetSchedule = ({
     const selectedDateString = selectedDate ? selectedDate.toISOString().split('T')[0] : null;
     if (onDateSelect) onDateSelect(selectedDateString, selectedTimeSlot);
   }, [selectedDate, selectedTimeSlot]);
-
-  // const selectedDateString = selectedDate ? selectedDate.toISOString().split('T')[0] : null;
-  // console.log(`${selectedDateString} / ${selectedTimeSlot}`);
 
   return (
     <>

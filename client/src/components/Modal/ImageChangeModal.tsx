@@ -45,12 +45,10 @@ export const ImageChangeModal = ({ text, warning, changeItem, userId, teacher }:
   const handleOpen = () => {
     setOpen(!open);
   };
-
   const handleClick = () => {
     handleNameChange(inputValue);
     handleOpen();
   };
-
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
   };
