@@ -449,14 +449,67 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <ul class="sectlevel2">
 <li><a href="#_회원_등록">1.1. 회원 등록</a></li>
 <li><a href="#_이메일_중복_확인">1.2. 이메일 중복 확인</a></li>
+<li><a href="#_자기_소개_수정">1.3. 자기 소개 수정</a></li>
+<li><a href="#_수업옵션_수정">1.4. 수업옵션 수정</a></li>
+<li><a href="#_학생_이름_수정">1.5. 학생 이름 수정</a></li>
+<li><a href="#_학생_비밀번호_수정">1.6. 학생 비밀번호 수정</a></li>
+<li><a href="#_학생_연락처_수정">1.7. 학생 연락처 수정</a></li>
+<li><a href="#_학생_관심_과목_수정">1.8. 학생 관심 과목 수정</a></li>
+<li><a href="#_간단한_학생_정보">1.9. 간단한 학생 정보</a></li>
+<li><a href="#_학생_지역_수정">1.10. 학생 지역 수정</a></li>
+<li><a href="#_학생_상세_정보_조회">1.11. 학생 상세 정보 조회</a></li>
 </ul>
 </li>
-<li><a href="#_teachercontroller">2. TeacherController</a>
+<li><a href="#_subjectcontroller">2. SubjectController</a>
 <ul class="sectlevel2">
-<li><a href="#_회원_등록_2">2.1. 회원 등록</a></li>
-<li><a href="#_이메일_중복_확인_2">2.2. 이메일 중복 확인</a></li>
+<li><a href="#_과목_생성">2.1. 과목 생성</a></li>
+<li><a href="#_과목_모두_조회">2.2. 과목 모두 조회</a></li>
+<li><a href="#_과목_식별자로_과목_삭제">2.3. 과목 식별자로 과목 삭제</a></li>
+<li><a href="#_과목_이름으로_과목_삭제">2.4. 과목 이름으로 과목 삭제</a></li>
 </ul>
 </li>
+<li><a href="#_regioncontroller">3. RegionController</a>
+<ul class="sectlevel2">
+<li><a href="#_지역_생성">3.1. 지역 생성</a></li>
+<li><a href="#_지역_모두_조회">3.2. 지역 모두 조회</a></li>
+<li><a href="#_지역_식별자로_지역_삭제">3.3. 지역 식별자로 지역 삭제</a></li>
+<li><a href="#_지역_이름으로_지역_삭제">3.4. 지역 이름으로 지역 삭제</a></li>
+</ul>
+</li>
+<li><a href="#_teachercontroller">4. TeacherController</a>
+<ul class="sectlevel2">
+<li><a href="#_강사_등록">4.1. 강사 등록</a></li>
+<li><a href="#_강사_정보_조회">4.2. 강사 정보 조회</a></li>
+<li><a href="#_강사_검색">4.3. 강사 검색</a></li>
+<li><a href="#_강사_과목_수정">4.4. 강사 과목 수정</a></li>
+<li><a href="#_강사_지역_수정">4.5. 강사 지역 수정</a></li>
+<li><a href="#_강사_비밀번호_수정">4.6. 강사 비밀번호 수정</a></li>
+<li><a href="#_강사_이름_수정">4.7. 강사 이름 수정</a></li>
+<li><a href="#_강사_연락처_수정">4.8. 강사 연락처 수정</a></li>
+<li><a href="#_강사_프로필_사진_수정">4.9. 강사 프로필 사진 수정</a></li>
+<li><a href="#_강사_자기소개_수정">4.10. 강사 자기소개 수정</a></li>
+<li><a href="#_강사_경력소개_수정">4.11. 강사 경력소개 수정</a></li>
+<li><a href="#_강사_수업료_관련_소개_수정">4.12. 강사 수업료 관련 소개 수정</a></li>
+<li><a href="#_강사_수업옵션_소개_수정">4.13. 강사 수업옵션 소개 수정</a></li>
+<li><a href="#_강사_온라인수업_가능여부_수정">4.14. 강사 온라인수업 가능여부 수정</a></li>
+<li><a href="#_강사_오프라인수업_가능여부_수정">4.15. 강사 오프라인수업 가능여부 수정</a></li>
+<li><a href="#_강사_주소_수정">4.16. 강사 주소 수정</a></li>
+</ul>
+</li>
+<li><a href="#_matchcontroller">5. MatchController</a>
+<ul class="sectlevel2">
+<li><a href="#_매치_생성을_위한_정보_조회">5.1. 매치 생성을 위한 정보 조회</a></li>
+<li><a href="#_매치_생성">5.2. 매치 생성</a></li>
+<li><a href="#_매치_정보_조회">5.3. 매치 정보 조회</a></li>
+<li><a href="#_매치_상태_변경">5.4. 매치 상태 변경</a></li>
+</ul>
+</li>
+<li><a href="#_schedulecontroller">6. ScheduleController</a>
+<ul class="sectlevel2">
+<li><a href="#_날짜단위_스케줄_수정">6.1. 날짜단위 스케줄 수정</a></li>
+</ul>
+</li>
+<li><a href="#_강사_아이디로_스케줄_조회">7. 강사 아이디로 스케줄 조회</a></li>
 </ul>
 </div>
 </div>
@@ -475,8 +528,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
     -d '{
   "email" : "test@example.com",
   "password" : "test1234",
-  "name" : "테스트",
-  "introduction" : "자기 소개"
+  "name" : "테스트"
 }'</code></pre>
 </div>
 </div>
@@ -486,14 +538,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <pre class="prettyprint highlight nowrap"><code data-lang="http">POST /students HTTP/1.1
 Content-Type: application/json
 Accept: application/json
-Content-Length: 126
+Content-Length: 89
 Host: localhost:8080
 
 {
   "email" : "test@example.com",
   "password" : "test1234",
-  "name" : "테스트",
-  "introduction" : "자기 소개"
+  "name" : "테스트"
 }</code></pre>
 </div>
 </div>
@@ -503,8 +554,7 @@ Host: localhost:8080
 <pre class="prettyprint highlight"><code data-lang="bash">$ echo '{
   "email" : "test@example.com",
   "password" : "test1234",
-  "name" : "테스트",
-  "introduction" : "자기 소개"
+  "name" : "테스트"
 }' | http POST 'http://localhost:8080/students' \
     'Content-Type:application/json' \
     'Accept:application/json'</code></pre>
@@ -516,8 +566,7 @@ Host: localhost:8080
 <pre class="prettyprint highlight nowrap"><code>{
   "email" : "test@example.com",
   "password" : "test1234",
-  "name" : "테스트",
-  "introduction" : "자기 소개"
+  "name" : "�뀒�뒪�듃"
 }</code></pre>
 </div>
 </div>
@@ -551,17 +600,13 @@ Host: localhost:8080
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">이름</p></td>
 </tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>introduction</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">자기소개</p></td>
-</tr>
 </tbody>
 </table>
 <div class="listingblock">
 <div class="title">http-response</div>
 <div class="content">
-<pre class="prettyprint highlight nowrap"><code data-lang="http">HTTP/1.1 201 Created</code></pre>
+<pre class="prettyprint highlight nowrap"><code data-lang="http">HTTP/1.1 201 Created
+Location: /students/1</code></pre>
 </div>
 </div>
 <div class="listingblock">
@@ -576,14 +621,16 @@ Host: localhost:8080
 <div class="listingblock">
 <div class="title">curl-request</div>
 <div class="content">
-<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/students/verify/test@example.com' -i -X GET \
+<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/students/check/test@example.com' -i -X GET \
+    -H 'Content-Type: application/json' \
     -H 'Accept: application/json'</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">http-request</div>
 <div class="content">
-<pre class="prettyprint highlight nowrap"><code data-lang="http">GET /students/verify/test@example.com HTTP/1.1
+<pre class="prettyprint highlight nowrap"><code data-lang="http">GET /students/check/test@example.com HTTP/1.1
+Content-Type: application/json
 Accept: application/json
 Host: localhost:8080</code></pre>
 </div>
@@ -591,12 +638,13 @@ Host: localhost:8080</code></pre>
 <div class="listingblock">
 <div class="title">httpie-request</div>
 <div class="content">
-<pre class="prettyprint highlight"><code data-lang="bash">$ http GET 'http://localhost:8080/students/verify/test@example.com' \
+<pre class="prettyprint highlight"><code data-lang="bash">$ http GET 'http://localhost:8080/students/check/test@example.com' \
+    'Content-Type:application/json' \
     'Accept:application/json'</code></pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 2. /students/verify/{email}</caption>
+<caption class="title">Table 2. /students/check/{email}</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -610,7 +658,7 @@ Host: localhost:8080</code></pre>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>email</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">검증하고자하는 이메일</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">중복 여부를 조회하고자하는 이메일</p></td>
 </tr>
 </tbody>
 </table>
@@ -620,6 +668,504 @@ Host: localhost:8080</code></pre>
 <pre class="prettyprint highlight nowrap"><code></code></pre>
 </div>
 </div>
+<div class="listingblock">
+<div class="title">http-response</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
+Content-Disposition: inline;filename=f.txt
+Content-Type: application/json
+Content-Length: 22
+
+{
+  "used" : false
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">response-body</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code>{
+  "used" : false
+}</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 3. response-fields</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Path</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>used</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">중복 여부. true는 중복, false는 중복X</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_자기_소개_수정">1.3. 자기 소개 수정</h3>
+<div class="listingblock">
+<div class="title">curl-request</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/students/introduction' -i -X PATCH \
+    -H 'Content-Type: application/json' \
+    -H 'Accept: application/json' \
+    -d '{
+  "id" : 1,
+  "introduction" : "자기소개"
+}'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">http-request</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">PATCH /students/introduction HTTP/1.1
+Content-Type: application/json
+Accept: application/json
+Content-Length: 52
+Host: localhost:8080
+
+{
+  "id" : 1,
+  "introduction" : "자기소개"
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">httpie-request</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">$ echo '{
+  "id" : 1,
+  "introduction" : "자기소개"
+}' | http PATCH 'http://localhost:8080/students/introduction' \
+    'Content-Type:application/json' \
+    'Accept:application/json'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">request-body</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code>{
+  "id" : 1,
+  "introduction" : "�옄湲곗냼媛�"
+}</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 4. request-fields</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Path</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">회원 식별자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>introduction</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">자기소개</p></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="title">http-response</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 52
+
+{
+  "id" : 1,
+  "introduction" : "자기소개"
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">response-body</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code>{
+  "id" : 1,
+  "introduction" : "�옄湲곗냼媛�"
+}</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 5. response-fields</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Path</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">회원 식별자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>introduction</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">자기소개 수정 후</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_수업옵션_수정">1.4. 수업옵션 수정</h3>
+<div class="listingblock">
+<div class="title">curl-request</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/students/option' -i -X PATCH \
+    -H 'Content-Type: application/json' \
+    -H 'Accept: application/json' \
+    -d '{
+  "id" : 1,
+  "option" : "수업옵션"
+}'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">http-request</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">PATCH /students/option HTTP/1.1
+Content-Type: application/json
+Accept: application/json
+Content-Length: 46
+Host: localhost:8080
+
+{
+  "id" : 1,
+  "option" : "수업옵션"
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">httpie-request</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">$ echo '{
+  "id" : 1,
+  "option" : "수업옵션"
+}' | http PATCH 'http://localhost:8080/students/option' \
+    'Content-Type:application/json' \
+    'Accept:application/json'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">request-body</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code>{
+  "id" : 1,
+  "option" : "�닔�뾽�샃�뀡"
+}</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 6. request-fields</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Path</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">회원 식별자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>option</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">수업옵션</p></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="title">http-response</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 46
+
+{
+  "id" : 1,
+  "option" : "수업옵션"
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">response-body</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code>{
+  "id" : 1,
+  "option" : "�닔�뾽�샃�뀡"
+}</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 7. response-fields</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Path</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">회원 식별자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>option</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">수업옵션 수정 후</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_학생_이름_수정">1.5. 학생 이름 수정</h3>
+<div class="listingblock">
+<div class="title">curl-request</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/students/name' -i -X PATCH \
+    -H 'Content-Type: application/json' \
+    -H 'Accept: application/json' \
+    -d '{
+  "id" : 1,
+  "name" : "수정된 이름"
+}'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">http-request</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">PATCH /students/name HTTP/1.1
+Content-Type: application/json
+Accept: application/json
+Content-Length: 48
+Host: localhost:8080
+
+{
+  "id" : 1,
+  "name" : "수정된 이름"
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">httpie-request</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">$ echo '{
+  "id" : 1,
+  "name" : "수정된 이름"
+}' | http PATCH 'http://localhost:8080/students/name' \
+    'Content-Type:application/json' \
+    'Accept:application/json'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">request-body</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code>{
+  "id" : 1,
+  "name" : "�닔�젙�맂 �씠由�"
+}</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 8. request-fields</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Path</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">회원 식별자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>name</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">이름</p></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="title">http-response</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 48
+
+{
+  "id" : 1,
+  "name" : "수정된 이름"
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">response-body</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code>{
+  "id" : 1,
+  "name" : "�닔�젙�맂 �씠由�"
+}</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 9. response-fields</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Path</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">회원 식별자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>name</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">이름 수정 후</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_학생_비밀번호_수정">1.6. 학생 비밀번호 수정</h3>
+<div class="listingblock">
+<div class="title">curl-request</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/students/password' -i -X PATCH \
+    -H 'Content-Type: application/json' \
+    -H 'Accept: application/json' \
+    -d '{
+  "id" : 1,
+  "password" : "afterpatch1"
+}'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">http-request</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">PATCH /students/password HTTP/1.1
+Content-Type: application/json
+Accept: application/json
+Content-Length: 47
+Host: localhost:8080
+
+{
+  "id" : 1,
+  "password" : "afterpatch1"
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">httpie-request</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">$ echo '{
+  "id" : 1,
+  "password" : "afterpatch1"
+}' | http PATCH 'http://localhost:8080/students/password' \
+    'Content-Type:application/json' \
+    'Accept:application/json'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">request-body</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code>{
+  "id" : 1,
+  "password" : "afterpatch1"
+}</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 10. request-fields</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Path</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">회원 식별자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>password</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">수정할 비밀번호</p></td>
+</tr>
+</tbody>
+</table>
 <div class="listingblock">
 <div class="title">http-response</div>
 <div class="content">
@@ -633,13 +1179,1425 @@ Host: localhost:8080</code></pre>
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_학생_연락처_수정">1.7. 학생 연락처 수정</h3>
+<div class="listingblock">
+<div class="title">curl-request</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/students/phone' -i -X PATCH \
+    -H 'Content-Type: application/json' \
+    -H 'Accept: application/json' \
+    -d '{
+  "id" : 1,
+  "phone" : "01012345678"
+}'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">http-request</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">PATCH /students/phone HTTP/1.1
+Content-Type: application/json
+Accept: application/json
+Content-Length: 44
+Host: localhost:8080
+
+{
+  "id" : 1,
+  "phone" : "01012345678"
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">httpie-request</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">$ echo '{
+  "id" : 1,
+  "phone" : "01012345678"
+}' | http PATCH 'http://localhost:8080/students/phone' \
+    'Content-Type:application/json' \
+    'Accept:application/json'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">request-body</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code>{
+  "id" : 1,
+  "phone" : "01012345678"
+}</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 11. request-fields</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Path</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">회원 식별자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>phone</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">연락처</p></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="title">http-response</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 44
+
+{
+  "id" : 1,
+  "phone" : "01012345678"
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">response-body</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code>{
+  "id" : 1,
+  "phone" : "01012345678"
+}</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 12. response-fields</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Path</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">회원 식별자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>phone</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">연락처 수정 후</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_학생_관심_과목_수정">1.8. 학생 관심 과목 수정</h3>
+<div class="listingblock">
+<div class="title">curl-request</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/students/subjects' -i -X PATCH \
+    -H 'Content-Type: application/json' \
+    -H 'Accept: application/json' \
+    -d '{
+  "id" : 1,
+  "subjects" : [ "국어", "영어" ]
+}'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">http-request</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">PATCH /students/subjects HTTP/1.1
+Content-Type: application/json
+Accept: application/json
+Content-Length: 56
+Host: localhost:8080
+
+{
+  "id" : 1,
+  "subjects" : [ "국어", "영어" ]
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">httpie-request</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">$ echo '{
+  "id" : 1,
+  "subjects" : [ "국어", "영어" ]
+}' | http PATCH 'http://localhost:8080/students/subjects' \
+    'Content-Type:application/json' \
+    'Accept:application/json'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">request-body</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code>{
+  "id" : 1,
+  "subjects" : [ "援��뼱", "�쁺�뼱" ]
+}</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 13. request-fields</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Path</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">회원 식별자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>subjects</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">학생의 모든 관심 과목</p></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="title">http-response</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 56
+
+{
+  "id" : 1,
+  "subjects" : [ "국어", "영어" ]
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">response-body</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code>{
+  "id" : 1,
+  "subjects" : [ "援��뼱", "�쁺�뼱" ]
+}</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 14. response-fields</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Path</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">회원 식별자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>subjects</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">학생의 모든 관심 과목</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_간단한_학생_정보">1.9. 간단한 학생 정보</h3>
+<div class="listingblock">
+<div class="title">curl-request</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/students/1' -i -X GET \
+    -H 'Content-Type: application/json' \
+    -H 'Accept: application/json'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">http-request</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">GET /students/1 HTTP/1.1
+Content-Type: application/json
+Accept: application/json
+Host: localhost:8080</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">httpie-request</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">$ http GET 'http://localhost:8080/students/1' \
+    'Content-Type:application/json' \
+    'Accept:application/json'</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 15. /students/{student-id}</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>student-id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">회원 식별자</p></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="title">request-body</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">http-response</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 220
+
+{
+  "id" : 1,
+  "email" : "test@example.com",
+  "name" : "테스트",
+  "profileImg" : "프로필 이미지. 미구현",
+  "phone" : "01012345678",
+  "teacher" : false,
+  "status" : "ACTIVE",
+  "oauth" : false
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">response-body</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code>{
+  "id" : 1,
+  "email" : "test@example.com",
+  "name" : "�뀒�뒪�듃",
+  "profileImg" : "�봽濡쒗븘 �씠誘몄�. 誘멸뎄�쁽",
+  "phone" : "01012345678",
+  "teacher" : false,
+  "status" : "ACTIVE",
+  "oauth" : false
+}</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 16. response-field</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Path</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">회원 식별자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>email</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">이메일</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>name</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">이름</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>profileImg</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">프로필 사진 링크. 미구현</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>phone</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">연락처</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>oauth</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">소셜 회원가입 여부. true면 소셜 회원, false면 자체 가입 회원</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>status</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">회원 상태</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>teacher</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">강사 여부. false면 학생</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_학생_지역_수정">1.10. 학생 지역 수정</h3>
+<div class="listingblock">
+<div class="title">curl-request</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/students/regions' -i -X PATCH \
+    -H 'Content-Type: application/json' \
+    -H 'Accept: application/json' \
+    -d '{
+  "id" : 1,
+  "regions" : [ "강남", "강서" ]
+}'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">http-request</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">PATCH /students/regions HTTP/1.1
+Content-Type: application/json
+Accept: application/json
+Content-Length: 55
+Host: localhost:8080
+
+{
+  "id" : 1,
+  "regions" : [ "강남", "강서" ]
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">httpie-request</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">$ echo '{
+  "id" : 1,
+  "regions" : [ "강남", "강서" ]
+}' | http PATCH 'http://localhost:8080/students/regions' \
+    'Content-Type:application/json' \
+    'Accept:application/json'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">request-body</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code>{
+  "id" : 1,
+  "regions" : [ "媛뺣궓", "媛뺤꽌" ]
+}</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 17. request-fields</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Path</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">회원 식별자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>regions</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">학생의 모든 지역</p></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="title">http-response</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 55
+
+{
+  "id" : 1,
+  "regions" : [ "강남", "강서" ]
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">response-body</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code>{
+  "id" : 1,
+  "regions" : [ "媛뺣궓", "媛뺤꽌" ]
+}</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 18. response-fields</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Path</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">회원 식별자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>regions</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">수정 후, 학생의 모든 지역</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_학생_상세_정보_조회">1.11. 학생 상세 정보 조회</h3>
+<div class="listingblock">
+<div class="title">curl-request</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/students/mypage/1' -i -X GET \
+    -H 'Content-Type: application/json' \
+    -H 'Accept: application/json'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">http-request</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">GET /students/mypage/1 HTTP/1.1
+Content-Type: application/json
+Accept: application/json
+Host: localhost:8080</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">httpie-request</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">$ http GET 'http://localhost:8080/students/mypage/1' \
+    'Content-Type:application/json' \
+    'Accept:application/json'</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 19. /students/mypage/{student-id}</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>student-id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">회원 식별자</p></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="title">request-body</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">http-response</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 807
+
+{
+  "id" : 1,
+  "name" : "테스트",
+  "email" : "test@example.com",
+  "profileImg" : "프로필 이미지. 미구현",
+  "introduction" : "자기소개",
+  "option" : "수업옵션",
+  "phone" : "01012345678",
+  "status" : "ACTIVE",
+  "subjects" : [ "국어", "수학" ],
+  "regions" : [ "강서", "강남" ],
+  "matches" : [ {
+    "matchId" : 1,
+    "teacherName" : "김강사",
+    "date" : "2023-09-16",
+    "timeslot" : "오후 03:00~오후 04:00",
+    "subjects" : [ "국어", "수학" ],
+    "status" : "MATCH_REQUEST"
+  }, {
+    "matchId" : 2,
+    "teacherName" : "박선생",
+    "date" : "2023-09-16",
+    "timeslot" : "오후 03:00~오후 04:00",
+    "subjects" : [ "국어", "수학" ],
+    "status" : "MATCH_ANSWERED"
+  } ],
+  "teacher" : false,
+  "oauth" : false
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">response-body</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code>{
+  "id" : 1,
+  "name" : "�뀒�뒪�듃",
+  "email" : "test@example.com",
+  "profileImg" : "�봽濡쒗븘 �씠誘몄�. 誘멸뎄�쁽",
+  "introduction" : "�옄湲곗냼媛�",
+  "option" : "�닔�뾽�샃�뀡",
+  "phone" : "01012345678",
+  "status" : "ACTIVE",
+  "subjects" : [ "援��뼱", "�닔�븰" ],
+  "regions" : [ "媛뺤꽌", "媛뺣궓" ],
+  "matches" : [ {
+    "matchId" : 1,
+    "teacherName" : "김강사",
+    "date" : "2023-09-16",
+    "timeslot" : "오후 03:00~오후 04:00",
+    "subjects" : [ "국어", "수학" ],
+    "status" : "MATCH_REQUEST"
+  }, {
+    "matchId" : 2,
+    "teacherName" : "박선생",
+    "date" : "2023-09-16",
+    "timeslot" : "오후 03:00~오후 04:00",
+    "subjects" : [ "국어", "수학" ],
+    "status" : "MATCH_ANSWERED"
+  } ],
+  "teacher" : false,
+  "oauth" : false
+}</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 20. response-field</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Path</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">회원 식별자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>email</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">이메일</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>name</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">이름</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>profileImg</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">프로필 사진 링크. 미구현</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>introduction</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">자기소개</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>option</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">수업옵션</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>oauth</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">소셜 회원 여부. true일 경우 소셜 회원</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>phone</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">연락처</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>oauth</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">소셜 회원가입 여부. true면 소셜 회원, false면 자체 가입 회원</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>status</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">회원 상태</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>subjects</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">회원 관심 과목</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>regions</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">회원 지역</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>teacher</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">강사여부. false면 학생</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>matches</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">매칭 정보</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>matches[].matchId</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">매칭 식별자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>matches[].teacherName</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">강사 이름</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>matches[].date</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">수업 날짜</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>matches[].timeslot</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">수업 시간</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>matches[].subjects</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">과목</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>matches[].status</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">매칭 상태</p></td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_teachercontroller">2. TeacherController</h2>
+<h2 id="_subjectcontroller">2. SubjectController</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_회원_등록_2">2.1. 회원 등록</h3>
+<h3 id="_과목_생성">2.1. 과목 생성</h3>
+<div class="listingblock">
+<div class="title">curl-request</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/subjects' -i -X POST \
+    -H 'Content-Type: application/json' \
+    -H 'Accept: application/json' \
+    -d '{
+  "subjectName" : "국어"
+}'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">http-request</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">POST /subjects HTTP/1.1
+Content-Type: application/json
+Accept: application/json
+Content-Length: 32
+Host: localhost:8080
+
+{
+  "subjectName" : "국어"
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">httpie-request</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">$ echo '{
+  "subjectName" : "국어"
+}' | http POST 'http://localhost:8080/subjects' \
+    'Content-Type:application/json' \
+    'Accept:application/json'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">request-body</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code>{
+  "subjectName" : "援��뼱"
+}</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 21. request-fields</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Path</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>subjectName</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">과목명</p></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="title">http-response</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">HTTP/1.1 201 Created
+Location: /subjects/1</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">response-body</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code></code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 22. response-headers</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Location</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Location header. 등록된 리소스의 URI</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_과목_모두_조회">2.2. 과목 모두 조회</h3>
+<div class="listingblock">
+<div class="title">curl-request</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/subjects' -i -X GET \
+    -H 'Accept: application/json'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">http-request</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">GET /subjects HTTP/1.1
+Accept: application/json
+Host: localhost:8080</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">httpie-request</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">$ http GET 'http://localhost:8080/subjects' \
+    'Accept:application/json'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">request-body</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">http-response</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 132
+
+{
+  "subjects" : [ {
+    "id" : 1,
+    "subjectName" : "국어"
+  }, {
+    "id" : 2,
+    "subjectName" : "한국사"
+  } ]
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">response-body</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code>{
+  "subjects" : [ {
+    "id" : 1,
+    "subjectName" : "援��뼱"
+  }, {
+    "id" : 2,
+    "subjectName" : "�븳援��궗"
+  } ]
+}</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 23. response-fields</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Path</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>subjects</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">현재 사용자가 등록/삭제 가능한 모든 정식 과목들 리스트</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>subjects[].id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">과목 식별자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>subjects[].subjectName</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">과목명</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_과목_식별자로_과목_삭제">2.3. 과목 식별자로 과목 삭제</h3>
+<div class="listingblock">
+<div class="title">curl-request</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/subjects/1' -i -X DELETE \
+    -H 'Accept: application/json'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">http-request</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">DELETE /subjects/1 HTTP/1.1
+Accept: application/json
+Host: localhost:8080</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">httpie-request</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">$ http DELETE 'http://localhost:8080/subjects/1' \
+    'Accept:application/json'</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 24. /subjects/{subject-id}</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>subject-id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">과목 식별자</p></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="title">request-body</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">http-response</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">HTTP/1.1 204 No Content</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">response-body</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code></code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_과목_이름으로_과목_삭제">2.4. 과목 이름으로 과목 삭제</h3>
+<div class="listingblock">
+<div class="title">curl-request</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/subjects?subjectName=%EA%B5%AD%EC%96%B4' -i -X DELETE \
+    -H 'Accept: application/json'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">http-request</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">DELETE /subjects?subjectName=%EA%B5%AD%EC%96%B4 HTTP/1.1
+Accept: application/json
+Host: localhost:8080</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">httpie-request</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">$ http DELETE 'http://localhost:8080/subjects?subjectName=%EA%B5%AD%EC%96%B4' \
+    'Accept:application/json'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">request-body</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code></code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 25. request-parameters</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>subjectName</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">과목 이름</p></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="title">http-response</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">HTTP/1.1 204 No Content</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">response-body</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code></code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_regioncontroller">3. RegionController</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_지역_생성">3.1. 지역 생성</h3>
+<div class="listingblock">
+<div class="title">curl-request</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/regions' -i -X POST \
+    -H 'Content-Type: application/json' \
+    -H 'Accept: application/json' \
+    -d '{
+  "regionName" : "인천"
+}'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">http-request</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">POST /regions HTTP/1.1
+Content-Type: application/json
+Accept: application/json
+Content-Length: 31
+Host: localhost:8080
+
+{
+  "regionName" : "인천"
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">httpie-request</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">$ echo '{
+  "regionName" : "인천"
+}' | http POST 'http://localhost:8080/regions' \
+    'Content-Type:application/json' \
+    'Accept:application/json'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">request-body</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code>{
+  "regionName" : "�씤泥�"
+}</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 26. request-fields</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Path</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>regionName</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">지역명</p></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="title">http-response</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">HTTP/1.1 201 Created
+Location: /regions/1</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">response-body</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code></code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 27. response-headers</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Location</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Location header. 등록된 리소스의 URI</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_지역_모두_조회">3.2. 지역 모두 조회</h3>
+<div class="listingblock">
+<div class="title">curl-request</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/regions' -i -X GET \
+    -H 'Accept: application/json'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">http-request</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">GET /regions HTTP/1.1
+Accept: application/json
+Host: localhost:8080</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">httpie-request</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">$ http GET 'http://localhost:8080/regions' \
+    'Accept:application/json'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">request-body</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">http-response</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 126
+
+{
+  "regions" : [ {
+    "id" : 1,
+    "regionName" : "인천"
+  }, {
+    "id" : 2,
+    "regionName" : "대전"
+  } ]
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">response-body</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code>{
+  "regions" : [ {
+    "id" : 1,
+    "regionName" : "�씤泥�"
+  }, {
+    "id" : 2,
+    "regionName" : "���쟾"
+  } ]
+}</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 28. response-fields</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Path</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>regions</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">현재 사용자가 등록/삭제 가능한 모든 정식 지역들 리스트</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>regions[].id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">지역 식별자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>regions[].regionName</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">지역명</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_지역_식별자로_지역_삭제">3.3. 지역 식별자로 지역 삭제</h3>
+<div class="listingblock">
+<div class="title">curl-request</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/regions/1' -i -X DELETE \
+    -H 'Accept: application/json'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">http-request</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">DELETE /regions/1 HTTP/1.1
+Accept: application/json
+Host: localhost:8080</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">httpie-request</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">$ http DELETE 'http://localhost:8080/regions/1' \
+    'Accept:application/json'</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 29. /regions/{region-id}</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>region-id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">지역 식별자</p></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="title">request-body</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">http-response</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">HTTP/1.1 204 No Content</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">response-body</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code></code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_지역_이름으로_지역_삭제">3.4. 지역 이름으로 지역 삭제</h3>
+<div class="listingblock">
+<div class="title">curl-request</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/regions?regionName=%EC%9D%B8%EC%B2%9C' -i -X DELETE \
+    -H 'Accept: application/json'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">http-request</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">DELETE /regions?regionName=%EC%9D%B8%EC%B2%9C HTTP/1.1
+Accept: application/json
+Host: localhost:8080</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">httpie-request</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">$ http DELETE 'http://localhost:8080/regions?regionName=%EC%9D%B8%EC%B2%9C' \
+    'Accept:application/json'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">request-body</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code></code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 30. request-parameters</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>regionName</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">지역 이름</p></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="title">http-response</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">HTTP/1.1 204 No Content</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">response-body</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code></code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_teachercontroller">4. TeacherController</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_강사_등록">4.1. 강사 등록</h3>
 <div class="listingblock">
 <div class="title">curl-request</div>
 <div class="content">
@@ -649,10 +2607,7 @@ Host: localhost:8080</code></pre>
     -d '{
   "email" : "test@example.com",
   "password" : "test1234",
-  "name" : "테스트",
-  "introduction" : "자기 소개",
-  "career" : "경력",
-  "address" : "주소"
+  "name" : "테스트"
 }'</code></pre>
 </div>
 </div>
@@ -662,16 +2617,13 @@ Host: localhost:8080</code></pre>
 <pre class="prettyprint highlight nowrap"><code data-lang="http">POST /teachers HTTP/1.1
 Content-Type: application/json
 Accept: application/json
-Content-Length: 175
+Content-Length: 89
 Host: localhost:8080
 
 {
   "email" : "test@example.com",
   "password" : "test1234",
-  "name" : "테스트",
-  "introduction" : "자기 소개",
-  "career" : "경력",
-  "address" : "주소"
+  "name" : "테스트"
 }</code></pre>
 </div>
 </div>
@@ -681,10 +2633,7 @@ Host: localhost:8080
 <pre class="prettyprint highlight"><code data-lang="bash">$ echo '{
   "email" : "test@example.com",
   "password" : "test1234",
-  "name" : "테스트",
-  "introduction" : "자기 소개",
-  "career" : "경력",
-  "address" : "주소"
+  "name" : "테스트"
 }' | http POST 'http://localhost:8080/teachers' \
     'Content-Type:application/json' \
     'Accept:application/json'</code></pre>
@@ -696,15 +2645,12 @@ Host: localhost:8080
 <pre class="prettyprint highlight nowrap"><code>{
   "email" : "test@example.com",
   "password" : "test1234",
-  "name" : "테스트",
-  "introduction" : "자기 소개",
-  "career" : "경력",
-  "address" : "주소"
+  "name" : "�뀒�뒪�듃"
 }</code></pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 3. request-fields</caption>
+<caption class="title">Table 31. request-fields</caption>
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 33.3333%;">
@@ -733,27 +2679,13 @@ Host: localhost:8080
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">이름</p></td>
 </tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>introduction</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">자기소개</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>career</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">경력</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>address</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">주소</p></td>
-</tr>
 </tbody>
 </table>
 <div class="listingblock">
 <div class="title">http-response</div>
 <div class="content">
-<pre class="prettyprint highlight nowrap"><code data-lang="http">HTTP/1.1 201 Created</code></pre>
+<pre class="prettyprint highlight nowrap"><code data-lang="http">HTTP/1.1 201 Created
+Location: /teachers/1</code></pre>
 </div>
 </div>
 <div class="listingblock">
@@ -762,20 +2694,39 @@ Host: localhost:8080
 <pre class="prettyprint highlight nowrap"><code></code></pre>
 </div>
 </div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 32. response-headers</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Location</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Location header. 등록된 리소스의 URI</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="sect2">
-<h3 id="_이메일_중복_확인_2">2.2. 이메일 중복 확인</h3>
+<h3 id="_강사_정보_조회">4.2. 강사 정보 조회</h3>
 <div class="listingblock">
 <div class="title">curl-request</div>
 <div class="content">
-<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/teachers/verify/test@example.com' -i -X GET \
+<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/teachers/1' -i -X GET \
     -H 'Accept: application/json'</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">http-request</div>
 <div class="content">
-<pre class="prettyprint highlight nowrap"><code data-lang="http">GET /teachers/verify/test@example.com HTTP/1.1
+<pre class="prettyprint highlight nowrap"><code data-lang="http">GET /teachers/1 HTTP/1.1
 Accept: application/json
 Host: localhost:8080</code></pre>
 </div>
@@ -783,12 +2734,12 @@ Host: localhost:8080</code></pre>
 <div class="listingblock">
 <div class="title">httpie-request</div>
 <div class="content">
-<pre class="prettyprint highlight"><code data-lang="bash">$ http GET 'http://localhost:8080/teachers/verify/test@example.com' \
+<pre class="prettyprint highlight"><code data-lang="bash">$ http GET 'http://localhost:8080/teachers/1' \
     'Accept:application/json'</code></pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 4. /teachers/verify/{email}</caption>
+<caption class="title">Table 33. /teachers/{teacher-id}</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -801,8 +2752,8 @@ Host: localhost:8080</code></pre>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>email</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">검증하고자하는 이메일</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>teacher-id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">강사 식별자</p></td>
 </tr>
 </tbody>
 </table>
@@ -812,6 +2763,789 @@ Host: localhost:8080</code></pre>
 <pre class="prettyprint highlight nowrap"><code></code></pre>
 </div>
 </div>
+<div class="listingblock">
+<div class="title">http-response</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 1268
+
+{
+  "id" : 1,
+  "email" : "hgd@gmail.com",
+  "name" : "홍길동",
+  "teacher" : true,
+  "phone" : "010-1234-5678",
+  "profileImg" : "프로필 이미지가 저장된 곳 데이터",
+  "introduction" : "안녕하세요. 저는 OO대학교를 졸업하고~~~",
+  "career" : "OO학원에서 O년을 일했고 ~~",
+  "lectureFee" : "일주일에 세시간 씩 매일 가능하고 시급은 ~~~",
+  "option" : "수학 수업의 경우는 고1 과정에서 고3과정의 ~~",
+  "onLine" : true,
+  "offLine" : false,
+  "address" : "경기도 용인시 기흥구 ~~",
+  "oauth" : false,
+  "subjects" : [ "국어", "영어" ],
+  "regions" : [ "용인시", "수원시" ],
+  "matches" : [ {
+    "matchId" : 1,
+    "studentName" : "홍길동",
+    "date" : "2023-09-16",
+    "timeslot" : "오후 03:00~오후 04:00",
+    "subjects" : [ "영어", "수학" ],
+    "status" : "MATCH_REQUEST"
+  }, {
+    "matchId" : 3,
+    "studentName" : "임꺽정",
+    "date" : "2023-09-16",
+    "timeslot" : "오후 03:00~오후 04:00",
+    "subjects" : [ "국어", "영어" ],
+    "status" : "MATCH_REQUEST"
+  } ],
+  "lastLogin" : "2023-09-15T09:36:49.3673165",
+  "lastModified" : "2023-09-15T09:36:49.3673165",
+  "createdAt" : "2023-09-08T09:36:49.3673165"
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">response-body</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code>{
+  "id" : 1,
+  "email" : "hgd@gmail.com",
+  "name" : "�솉湲몃룞",
+  "teacher" : true,
+  "phone" : "010-1234-5678",
+  "profileImg" : "�봽濡쒗븘 �씠誘몄�媛� ���옣�맂 怨� �뜲�씠�꽣",
+  "introduction" : "�븞�뀞�븯�꽭�슂. ���뒗 OO���븰援먮�� 議몄뾽�븯怨�~~~",
+  "career" : "OO�븰�썝�뿉�꽌 O�뀈�쓣 �씪�뻽怨� ~~",
+  "lectureFee" : "�씪二쇱씪�뿉 �꽭�떆媛� �뵫 留ㅼ씪 媛��뒫�븯怨� �떆湲됱� ~~~",
+  "option" : "�닔�븰 �닔�뾽�쓽 寃쎌슦�뒗 怨�1 怨쇱젙�뿉�꽌 怨�3怨쇱젙�쓽 ~~",
+  "onLine" : true,
+  "offLine" : false,
+  "address" : "寃쎄린�룄 �슜�씤�떆 湲고씎援� ~~",
+  "oauth" : false,
+  "subjects" : [ "援��뼱", "�쁺�뼱" ],
+  "regions" : [ "�슜�씤�떆", "�닔�썝�떆" ],
+  "matches" : [ {
+    "matchId" : 1,
+    "studentName" : "홍길동",
+    "date" : "2023-09-16",
+    "timeslot" : "오후 03:00~오후 04:00",
+    "subjects" : [ "영어", "수학" ],
+    "status" : "MATCH_REQUEST"
+  }, {
+    "matchId" : 3,
+    "studentName" : "임꺽정",
+    "date" : "2023-09-16",
+    "timeslot" : "오후 03:00~오후 04:00",
+    "subjects" : [ "국어", "영어" ],
+    "status" : "MATCH_REQUEST"
+  } ],
+  "lastLogin" : "2023-09-15T09:36:49.3673165",
+  "lastModified" : "2023-09-15T09:36:49.3673165",
+  "createdAt" : "2023-09-08T09:36:49.3673165"
+}</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 34. response-fields</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Path</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">강사회원 식별자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>email</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">강사의 이메일</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>name</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">강사의 이름</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>teacher</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">강사 여부</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>phone</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">강사의 전화번호</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>profileImg</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">강사의 프로필 이미지 저장 URL</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>introduction</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">강사의 자기소개</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>career</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">강사의 경력/이력</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>lectureFee</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">강사의 수업료 관련 정보</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>option</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">수업에 대한 설명. 옵션</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>onLine</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">온라인 가능 여부</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>offLine</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">오프라인 가능 여부</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>address</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">강사의 주소</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>oauth</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">OAuth 회원인지 여부</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>subjects</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">강사가 가능한 과목들</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>regions</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">강사가 가능한 지역들</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>matches</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">매칭 정보</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>matches[].matchId</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">매칭 식별자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>matches[].studentName</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">학생 이름</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>matches[].date</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">스케줄</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>matches[].timeslot</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">스케줄</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>matches[].subjects</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">과목</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>matches[].status</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">매칭 상태</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>lastLogin</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">마지막 로그인 일시</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>lastModified</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">마지막 강사회원 정보 수정 일시</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>createdAt</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">회원 가입 일시</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_강사_검색">4.3. 강사 검색</h3>
+<div class="listingblock">
+<div class="title">curl-request</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/teachers?teacherName=&amp;subjectNames=%EA%B5%AD%EC%96%B4&amp;regionNames=%EC%9A%A9%EC%9D%B8%EC%8B%9C&amp;page=1&amp;size=10' -i -X GET \
+    -H 'Accept: application/json'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">http-request</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">GET /teachers?teacherName=&amp;subjectNames=%EA%B5%AD%EC%96%B4&amp;regionNames=%EC%9A%A9%EC%9D%B8%EC%8B%9C&amp;page=1&amp;size=10 HTTP/1.1
+Accept: application/json
+Host: localhost:8080</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">httpie-request</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">$ http GET 'http://localhost:8080/teachers?teacherName=&amp;subjectNames=%EA%B5%AD%EC%96%B4&amp;regionNames=%EC%9A%A9%EC%9D%B8%EC%8B%9C&amp;page=1&amp;size=10' \
+    'Accept:application/json'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">request-body</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code></code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 35. request-parameters</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>teacherName</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">강사 이름</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>subjectNames</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">과목명들</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>regionNames</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">지역명들</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>page</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">페이지 번호</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>size</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">페이지 크기</p></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="title">http-response</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 735
+
+{
+  "data" : [ {
+    "id" : 1,
+    "onLine" : true,
+    "offLine" : false,
+    "subjects" : [ "국어", "영어" ],
+    "regions" : [ "용인시", "수원시" ],
+    "name" : "홍길동",
+    "profileImg" : "프로필 이미지가 저장된 곳 데이터",
+    "createdAt" : "2023-09-15T09:36:49.3945376"
+  }, {
+    "id" : 2,
+    "onLine" : false,
+    "offLine" : true,
+    "subjects" : [ "국어", "영어" ],
+    "regions" : [ "용인시", "수원시" ],
+    "name" : "임꺽정",
+    "profileImg" : "프로필 이미지가 저장된 곳 데이터",
+    "createdAt" : "2023-09-15T09:36:49.3945376"
+  } ],
+  "pageInfo" : {
+    "page" : 2,
+    "size" : 10,
+    "totalElements" : 12,
+    "totalPages" : 2
+  }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">response-body</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code>{
+  "data" : [ {
+    "id" : 1,
+    "onLine" : true,
+    "offLine" : false,
+    "subjects" : [ "국어", "영어" ],
+    "regions" : [ "용인시", "수원시" ],
+    "name" : "홍길동",
+    "profileImg" : "프로필 이미지가 저장된 곳 데이터",
+    "createdAt" : "2023-09-15T09:36:49.3945376"
+  }, {
+    "id" : 2,
+    "onLine" : false,
+    "offLine" : true,
+    "subjects" : [ "국어", "영어" ],
+    "regions" : [ "용인시", "수원시" ],
+    "name" : "임꺽정",
+    "profileImg" : "프로필 이미지가 저장된 곳 데이터",
+    "createdAt" : "2023-09-15T09:36:49.3945376"
+  } ],
+  "pageInfo" : {
+    "page" : 2,
+    "size" : 10,
+    "totalElements" : 12,
+    "totalPages" : 2
+  }
+}</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 36. response-fields</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Path</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">강사 객체 리스트</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data[].id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">강사 식별자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data[].onLine</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">온라인 여부</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data[].offLine</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">오프라인 여부</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data[].subjects</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">강사가 가능한 과목들</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data[].regions</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">강사가 가능한 지역들</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data[].name</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">강사 이름</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data[].profileImg</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">프로필 이미지 저장 URL</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data[].createdAt</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">강사 회원가입 일시</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>pageInfo</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Object</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">페이지 정보</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>pageInfo.page</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">현재 페이지 번호</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>pageInfo.size</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">페이지 크기</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>pageInfo.totalElements</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">총 데이터 수. 모든 강사의 수</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>pageInfo.totalPages</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">총 페이지 수</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_강사_과목_수정">4.4. 강사 과목 수정</h3>
+<div class="listingblock">
+<div class="title">curl-request</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/teachers/subjects' -i -X PATCH \
+    -H 'Content-Type: application/json' \
+    -H 'Accept: application/json' \
+    -d '{
+  "id" : 1,
+  "subjects" : [ "국어", "영어" ]
+}'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">http-request</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">PATCH /teachers/subjects HTTP/1.1
+Content-Type: application/json
+Accept: application/json
+Content-Length: 56
+Host: localhost:8080
+
+{
+  "id" : 1,
+  "subjects" : [ "국어", "영어" ]
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">httpie-request</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">$ echo '{
+  "id" : 1,
+  "subjects" : [ "국어", "영어" ]
+}' | http PATCH 'http://localhost:8080/teachers/subjects' \
+    'Content-Type:application/json' \
+    'Accept:application/json'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">request-body</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code>{
+  "id" : 1,
+  "subjects" : [ "援��뼱", "�쁺�뼱" ]
+}</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 37. request-fields</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Path</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">강사회원 식별자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>subjects</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">강사의 모든 과목</p></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="title">http-response</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 56
+
+{
+  "id" : 1,
+  "subjects" : [ "국어", "영어" ]
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">response-body</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code>{
+  "id" : 1,
+  "subjects" : [ "援��뼱", "�쁺�뼱" ]
+}</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 38. response-fields</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Path</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">강사회원 식별자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>subjects</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">강사의 모든 과목</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_강사_지역_수정">4.5. 강사 지역 수정</h3>
+<div class="listingblock">
+<div class="title">curl-request</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/teachers/regions' -i -X PATCH \
+    -H 'Content-Type: application/json' \
+    -H 'Accept: application/json' \
+    -d '{
+  "id" : 1,
+  "regions" : [ "강남", "강서" ]
+}'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">http-request</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">PATCH /teachers/regions HTTP/1.1
+Content-Type: application/json
+Accept: application/json
+Content-Length: 55
+Host: localhost:8080
+
+{
+  "id" : 1,
+  "regions" : [ "강남", "강서" ]
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">httpie-request</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">$ echo '{
+  "id" : 1,
+  "regions" : [ "강남", "강서" ]
+}' | http PATCH 'http://localhost:8080/teachers/regions' \
+    'Content-Type:application/json' \
+    'Accept:application/json'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">request-body</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code>{
+  "id" : 1,
+  "regions" : [ "媛뺣궓", "媛뺤꽌" ]
+}</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 39. request-fields</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Path</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">강사회원 식별자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>regions</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">강사의 모든 지역</p></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="title">http-response</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 55
+
+{
+  "id" : 1,
+  "regions" : [ "강남", "강서" ]
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">response-body</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code>{
+  "id" : 1,
+  "regions" : [ "媛뺣궓", "媛뺤꽌" ]
+}</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 40. response-fields</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Path</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">강사회원 식별자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>regions</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">강사의 모든 지역</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_강사_비밀번호_수정">4.6. 강사 비밀번호 수정</h3>
+<div class="listingblock">
+<div class="title">curl-request</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/teachers/password' -i -X PATCH \
+    -H 'Content-Type: application/json' \
+    -H 'Accept: application/json' \
+    -d '{
+  "id" : 1,
+  "password" : "patchPasswordOfTeacher"
+}'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">http-request</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">PATCH /teachers/password HTTP/1.1
+Content-Type: application/json
+Accept: application/json
+Content-Length: 58
+Host: localhost:8080
+
+{
+  "id" : 1,
+  "password" : "patchPasswordOfTeacher"
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">httpie-request</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">$ echo '{
+  "id" : 1,
+  "password" : "patchPasswordOfTeacher"
+}' | http PATCH 'http://localhost:8080/teachers/password' \
+    'Content-Type:application/json' \
+    'Accept:application/json'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">request-body</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code>{
+  "id" : 1,
+  "password" : "patchPasswordOfTeacher"
+}</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 41. request-fields</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Path</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">강사회원 식별자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>password</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">수정할 비밀번호</p></td>
+</tr>
+</tbody>
+</table>
 <div class="listingblock">
 <div class="title">http-response</div>
 <div class="content">
@@ -825,13 +3559,2312 @@ Host: localhost:8080</code></pre>
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_강사_이름_수정">4.7. 강사 이름 수정</h3>
+<div class="listingblock">
+<div class="title">curl-request</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/teachers/name' -i -X PATCH \
+    -H 'Content-Type: application/json' \
+    -H 'Accept: application/json' \
+    -d '{
+  "id" : 1,
+  "name" : "홍길동"
+}'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">http-request</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">PATCH /teachers/name HTTP/1.1
+Content-Type: application/json
+Accept: application/json
+Content-Length: 41
+Host: localhost:8080
+
+{
+  "id" : 1,
+  "name" : "홍길동"
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">httpie-request</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">$ echo '{
+  "id" : 1,
+  "name" : "홍길동"
+}' | http PATCH 'http://localhost:8080/teachers/name' \
+    'Content-Type:application/json' \
+    'Accept:application/json'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">request-body</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code>{
+  "id" : 1,
+  "name" : "�솉湲몃룞"
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">http-response</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 41
+
+{
+  "id" : 1,
+  "name" : "홍길동"
+}</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 42. request-fields</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Path</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">강사회원 식별자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>name</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">수정할 이름</p></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="title">response-body</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code>{
+  "id" : 1,
+  "name" : "�솉湲몃룞"
+}</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 43. response-fields</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Path</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">강사회원 식별자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>name</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">수정된 이름</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_강사_연락처_수정">4.8. 강사 연락처 수정</h3>
+<div class="listingblock">
+<div class="title">curl-request</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/teachers/phone' -i -X PATCH \
+    -H 'Content-Type: application/json' \
+    -H 'Accept: application/json' \
+    -d '{
+  "id" : 1,
+  "phone" : "010-1111-2222"
+}'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">http-request</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">PATCH /teachers/phone HTTP/1.1
+Content-Type: application/json
+Accept: application/json
+Content-Length: 46
+Host: localhost:8080
+
+{
+  "id" : 1,
+  "phone" : "010-1111-2222"
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">httpie-request</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">$ echo '{
+  "id" : 1,
+  "phone" : "010-1111-2222"
+}' | http PATCH 'http://localhost:8080/teachers/phone' \
+    'Content-Type:application/json' \
+    'Accept:application/json'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">request-body</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code>{
+  "id" : 1,
+  "phone" : "010-1111-2222"
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">http-response</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 46
+
+{
+  "id" : 1,
+  "phone" : "010-1111-2222"
+}</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 44. request-fields</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Path</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">강사회원 식별자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>phone</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">수정할 전화번호</p></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="title">response-body</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code>{
+  "id" : 1,
+  "phone" : "010-1111-2222"
+}</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 45. response-fields</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Path</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">강사회원 식별자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>phone</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">수정된 전화번호</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_강사_프로필_사진_수정">4.9. 강사 프로필 사진 수정</h3>
+<div class="listingblock">
+<div class="title">curl-request</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/teachers/profileImg' -i -X PATCH \
+    -H 'Content-Type: application/json' \
+    -H 'Accept: application/json' \
+    -d '{
+  "id" : 1,
+  "profileImg" : "프로필 이미지가 저장된 곳"
+}'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">http-request</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">PATCH /teachers/profileImg HTTP/1.1
+Content-Type: application/json
+Accept: application/json
+Content-Length: 74
+Host: localhost:8080
+
+{
+  "id" : 1,
+  "profileImg" : "프로필 이미지가 저장된 곳"
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">httpie-request</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">$ echo '{
+  "id" : 1,
+  "profileImg" : "프로필 이미지가 저장된 곳"
+}' | http PATCH 'http://localhost:8080/teachers/profileImg' \
+    'Content-Type:application/json' \
+    'Accept:application/json'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">request-body</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code>{
+  "id" : 1,
+  "profileImg" : "�봽濡쒗븘 �씠誘몄�媛� ���옣�맂 怨�"
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">http-response</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 74
+
+{
+  "id" : 1,
+  "profileImg" : "프로필 이미지가 저장된 곳"
+}</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 46. request-fields</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Path</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">강사회원 식별자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>profileImg</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">수정할 프로필사진</p></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="title">response-body</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code>{
+  "id" : 1,
+  "profileImg" : "�봽濡쒗븘 �씠誘몄�媛� ���옣�맂 怨�"
+}</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 47. response-fields</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Path</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">강사회원 식별자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>profileImg</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">수정된 프로필사진</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_강사_자기소개_수정">4.10. 강사 자기소개 수정</h3>
+<div class="listingblock">
+<div class="title">curl-request</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/teachers/introduction' -i -X PATCH \
+    -H 'Content-Type: application/json' \
+    -H 'Accept: application/json' \
+    -d '{
+  "id" : 1,
+  "introduction" : "자기소개 입니다. 저는 OO대학교를 졸업하고 ~~"
+}'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">http-request</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">PATCH /teachers/introduction HTTP/1.1
+Content-Type: application/json
+Accept: application/json
+Content-Length: 101
+Host: localhost:8080
+
+{
+  "id" : 1,
+  "introduction" : "자기소개 입니다. 저는 OO대학교를 졸업하고 ~~"
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">httpie-request</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">$ echo '{
+  "id" : 1,
+  "introduction" : "자기소개 입니다. 저는 OO대학교를 졸업하고 ~~"
+}' | http PATCH 'http://localhost:8080/teachers/introduction' \
+    'Content-Type:application/json' \
+    'Accept:application/json'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">request-body</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code>{
+  "id" : 1,
+  "introduction" : "�옄湲곗냼媛� �엯�땲�떎. ���뒗 OO���븰援먮�� 議몄뾽�븯怨� ~~"
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">http-response</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 101
+
+{
+  "id" : 1,
+  "introduction" : "자기소개 입니다. 저는 OO대학교를 졸업하고 ~~"
+}</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 48. request-fields</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Path</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">강사회원 식별자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>introduction</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">수정할 자기소개</p></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="title">response-body</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code>{
+  "id" : 1,
+  "introduction" : "�옄湲곗냼媛� �엯�땲�떎. ���뒗 OO���븰援먮�� 議몄뾽�븯怨� ~~"
+}</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 49. response-fields</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Path</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">강사회원 식별자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>introduction</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">수정된 자기소개</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_강사_경력소개_수정">4.11. 강사 경력소개 수정</h3>
+<div class="listingblock">
+<div class="title">curl-request</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/teachers/career' -i -X PATCH \
+    -H 'Content-Type: application/json' \
+    -H 'Accept: application/json' \
+    -d '{
+  "id" : 1,
+  "career" : "경력 소개입니다. 저는 OO학원에서 5년을 강사로서~~"
+}'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">http-request</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">PATCH /teachers/career HTTP/1.1
+Content-Type: application/json
+Accept: application/json
+Content-Length: 102
+Host: localhost:8080
+
+{
+  "id" : 1,
+  "career" : "경력 소개입니다. 저는 OO학원에서 5년을 강사로서~~"
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">httpie-request</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">$ echo '{
+  "id" : 1,
+  "career" : "경력 소개입니다. 저는 OO학원에서 5년을 강사로서~~"
+}' | http PATCH 'http://localhost:8080/teachers/career' \
+    'Content-Type:application/json' \
+    'Accept:application/json'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">request-body</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code>{
+  "id" : 1,
+  "career" : "寃쎈젰 �냼媛쒖엯�땲�떎. ���뒗 OO�븰�썝�뿉�꽌 5�뀈�쓣 媛뺤궗濡쒖꽌~~"
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">http-response</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 102
+
+{
+  "id" : 1,
+  "career" : "경력 소개입니다. 저는 OO학원에서 5년을 강사로서~~"
+}</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 50. request-fields</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Path</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">강사회원 식별자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>career</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">수정할 경력/이력</p></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="title">response-body</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code>{
+  "id" : 1,
+  "career" : "寃쎈젰 �냼媛쒖엯�땲�떎. ���뒗 OO�븰�썝�뿉�꽌 5�뀈�쓣 媛뺤궗濡쒖꽌~~"
+}</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 51. response-fields</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Path</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">강사회원 식별자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>career</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">수정된 경력/이력</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_강사_수업료_관련_소개_수정">4.12. 강사 수업료 관련 소개 수정</h3>
+<div class="listingblock">
+<div class="title">curl-request</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/teachers/lectureFee' -i -X PATCH \
+    -H 'Content-Type: application/json' \
+    -H 'Accept: application/json' \
+    -d '{
+  "id" : 1,
+  "lectureFee" : "수업료 관련 소개입니다. 저는 강의 시급을 4만원 정도~~~"
+}'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">http-request</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">PATCH /teachers/lectureFee HTTP/1.1
+Content-Type: application/json
+Accept: application/json
+Content-Length: 113
+Host: localhost:8080
+
+{
+  "id" : 1,
+  "lectureFee" : "수업료 관련 소개입니다. 저는 강의 시급을 4만원 정도~~~"
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">httpie-request</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">$ echo '{
+  "id" : 1,
+  "lectureFee" : "수업료 관련 소개입니다. 저는 강의 시급을 4만원 정도~~~"
+}' | http PATCH 'http://localhost:8080/teachers/lectureFee' \
+    'Content-Type:application/json' \
+    'Accept:application/json'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">request-body</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code>{
+  "id" : 1,
+  "lectureFee" : "�닔�뾽猷� 愿��젴 �냼媛쒖엯�땲�떎. ���뒗 媛뺤쓽 �떆湲됱쓣 4留뚯썝 �젙�룄~~~"
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">http-response</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 113
+
+{
+  "id" : 1,
+  "lectureFee" : "수업료 관련 소개입니다. 저는 강의 시급을 4만원 정도~~~"
+}</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 52. request-fields</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Path</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">강사회원 식별자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>lectureFee</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">수정할 수업료 관련 정보</p></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="title">response-body</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code>{
+  "id" : 1,
+  "lectureFee" : "�닔�뾽猷� 愿��젴 �냼媛쒖엯�땲�떎. ���뒗 媛뺤쓽 �떆湲됱쓣 4留뚯썝 �젙�룄~~~"
+}</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 53. response-fields</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Path</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">강사회원 식별자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>lectureFee</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">수정된 수업료 관련 정보</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_강사_수업옵션_소개_수정">4.13. 강사 수업옵션 소개 수정</h3>
+<div class="listingblock">
+<div class="title">curl-request</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/teachers/option' -i -X PATCH \
+    -H 'Content-Type: application/json' \
+    -H 'Accept: application/json' \
+    -d '{
+  "id" : 1,
+  "option" : "수업 옵션 입니다."
+}'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">http-request</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">PATCH /teachers/option HTTP/1.1
+Content-Type: application/json
+Accept: application/json
+Content-Length: 58
+Host: localhost:8080
+
+{
+  "id" : 1,
+  "option" : "수업 옵션 입니다."
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">httpie-request</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">$ echo '{
+  "id" : 1,
+  "option" : "수업 옵션 입니다."
+}' | http PATCH 'http://localhost:8080/teachers/option' \
+    'Content-Type:application/json' \
+    'Accept:application/json'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">request-body</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code>{
+  "id" : 1,
+  "option" : "�닔�뾽 �샃�뀡 �엯�땲�떎."
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">http-response</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 58
+
+{
+  "id" : 1,
+  "option" : "수업 옵션 입니다."
+}</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 54. request-fields</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Path</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">강사회원 식별자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>option</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">수정할 수업옵션, 설명</p></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="title">response-body</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code>{
+  "id" : 1,
+  "option" : "�닔�뾽 �샃�뀡 �엯�땲�떎."
+}</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 55. response-fields</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Path</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">강사회원 식별자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>option</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">수정된 수업옵션, 설명</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_강사_온라인수업_가능여부_수정">4.14. 강사 온라인수업 가능여부 수정</h3>
+<div class="listingblock">
+<div class="title">curl-request</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/teachers/onLine' -i -X PATCH \
+    -H 'Content-Type: application/json' \
+    -H 'Accept: application/json' \
+    -d '{
+  "id" : 1,
+  "onLine" : false
+}'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">http-request</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">PATCH /teachers/onLine HTTP/1.1
+Content-Type: application/json
+Accept: application/json
+Content-Length: 37
+Host: localhost:8080
+
+{
+  "id" : 1,
+  "onLine" : false
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">httpie-request</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">$ echo '{
+  "id" : 1,
+  "onLine" : false
+}' | http PATCH 'http://localhost:8080/teachers/onLine' \
+    'Content-Type:application/json' \
+    'Accept:application/json'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">request-body</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code>{
+  "id" : 1,
+  "onLine" : false
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">http-response</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 37
+
+{
+  "id" : 1,
+  "onLine" : false
+}</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 56. request-fields</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Path</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">강사회원 식별자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>onLine</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">수정할 온라인 수업 가능여부</p></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="title">response-body</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code>{
+  "id" : 1,
+  "onLine" : false
+}</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 57. response-fields</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Path</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">강사회원 식별자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>onLine</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">수정된 온라인 수업 가능여부</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_강사_오프라인수업_가능여부_수정">4.15. 강사 오프라인수업 가능여부 수정</h3>
+<div class="listingblock">
+<div class="title">curl-request</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/teachers/offLine' -i -X PATCH \
+    -H 'Content-Type: application/json' \
+    -H 'Accept: application/json' \
+    -d '{
+  "id" : 1,
+  "offLine" : true
+}'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">http-request</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">PATCH /teachers/offLine HTTP/1.1
+Content-Type: application/json
+Accept: application/json
+Content-Length: 37
+Host: localhost:8080
+
+{
+  "id" : 1,
+  "offLine" : true
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">httpie-request</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">$ echo '{
+  "id" : 1,
+  "offLine" : true
+}' | http PATCH 'http://localhost:8080/teachers/offLine' \
+    'Content-Type:application/json' \
+    'Accept:application/json'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">request-body</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code>{
+  "id" : 1,
+  "offLine" : true
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">http-response</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 37
+
+{
+  "id" : 1,
+  "offLine" : true
+}</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 58. request-fields</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Path</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">강사회원 식별자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>offLine</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">수정할 오프라인 수업 가능여부</p></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="title">response-body</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code>{
+  "id" : 1,
+  "offLine" : true
+}</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 59. response-fields</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Path</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">강사회원 식별자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>offLine</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">수정된 오프라인 수업 가능여부</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_강사_주소_수정">4.16. 강사 주소 수정</h3>
+<div class="listingblock">
+<div class="title">curl-request</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/teachers/address' -i -X PATCH \
+    -H 'Content-Type: application/json' \
+    -H 'Accept: application/json' \
+    -d '{
+  "id" : 1,
+  "address" : "경기도 수원시 팔달구 효원로307번길 20"
+}'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">http-request</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">PATCH /teachers/address HTTP/1.1
+Content-Type: application/json
+Accept: application/json
+Content-Length: 86
+Host: localhost:8080
+
+{
+  "id" : 1,
+  "address" : "경기도 수원시 팔달구 효원로307번길 20"
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">httpie-request</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">$ echo '{
+  "id" : 1,
+  "address" : "경기도 수원시 팔달구 효원로307번길 20"
+}' | http PATCH 'http://localhost:8080/teachers/address' \
+    'Content-Type:application/json' \
+    'Accept:application/json'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">request-body</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code>{
+  "id" : 1,
+  "address" : "寃쎄린�룄 �닔�썝�떆 �뙏�떖援� �슚�썝濡�307踰덇만 20"
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">http-response</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 86
+
+{
+  "id" : 1,
+  "address" : "경기도 수원시 팔달구 효원로307번길 20"
+}</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 60. request-fields</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Path</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">강사회원 식별자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>address</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">수정할 주소(강사 사는 곳)</p></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="title">response-body</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code>{
+  "id" : 1,
+  "address" : "寃쎄린�룄 �닔�썝�떆 �뙏�떖援� �슚�썝濡�307踰덇만 20"
+}</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 61. response-fields</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Path</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">강사회원 식별자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>address</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">수정된 주소(강사 사는 곳)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_matchcontroller">5. MatchController</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_매치_생성을_위한_정보_조회">5.1. 매치 생성을 위한 정보 조회</h3>
+<div class="listingblock">
+<div class="title">curl-request</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/matches?teacherId=1&amp;studentId=1' -i -X GET \
+    -H 'Accept: application/json'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">http-request</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">GET /matches?teacherId=1&amp;studentId=1 HTTP/1.1
+Accept: application/json
+Host: localhost:8080</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">httpie-request</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">$ http GET 'http://localhost:8080/matches?teacherId=1&amp;studentId=1' \
+    'Accept:application/json'</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 62. request-parameters</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>teacherId</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">매칭하고자하는 강사 식별자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>studentId</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">매칭하고자하는 학생 식별자</p></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="title">request-body</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">http-response</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 456
+
+{
+  "studentId" : 1,
+  "teacherId" : 1,
+  "subjects" : [ "국어", "영어" ],
+  "regions" : [ "강서", "강북" ],
+  "schedules" : [ {
+    "date" : "2023-09-15",
+    "timeslots" : [ "오후 02:00~오후 03:00", "오후 03:00~오후 04:00" ]
+  }, {
+    "date" : "2023-09-16",
+    "timeslots" : [ "오후 06:00~오후 07:00" ]
+  } ],
+  "studentName" : "김학생",
+  "studentPhone" : "01011112222",
+  "studentEmail" : "student@example.com"
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">response-body</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code>{
+  "studentId" : 1,
+  "teacherId" : 1,
+  "subjects" : [ "援��뼱", "�쁺�뼱" ],
+  "regions" : [ "媛뺤꽌", "媛뺣턿" ],
+  "schedules" : [ {
+    "date" : "2023-09-15",
+    "timeslots" : [ "�삤�썑 02:00~�삤�썑 03:00", "�삤�썑 03:00~�삤�썑 04:00" ]
+  }, {
+    "date" : "2023-09-16",
+    "timeslots" : [ "�삤�썑 06:00~�삤�썑 07:00" ]
+  } ],
+  "studentName" : "源��븰�깮",
+  "studentPhone" : "01011112222",
+  "studentEmail" : "student@example.com"
+}</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 63. response-field</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Path</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>studentId</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">학생 식별자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>teacherId</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">강사 식별자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>subjects</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">강사가 수업 가능한 과목</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>regions</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">강사가 수업 가능한 지역</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>schedules</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">강사가 수업 가능한 스케줄</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>schedules[].date</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">수업 가능한 날짜</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>schedules[].timeslots</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">수업 가능한 시간대</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>studentName</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">학생 이름</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>studentPhone</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">학생 연락처</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>studentEmail</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">학생 이메일</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_매치_생성">5.2. 매치 생성</h3>
+<div class="listingblock">
+<div class="title">curl-request</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/matches' -i -X POST \
+    -H 'Content-Type: application/json' \
+    -H 'Accept: application/json' \
+    -d '{
+  "studentId" : 1,
+  "teacherId" : 1,
+  "isOnline" : false,
+  "subjects" : [ "국어", "영어" ],
+  "regions" : [ "강서", "강남" ],
+  "date" : "2023-09-15",
+  "timeslot" : "오후 02:00~오후 03:00",
+  "studentName" : "김학생",
+  "studentPhone" : "01012345678",
+  "studentEmail" : "student@example.com",
+  "remarks" : "특이사항"
+}'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">http-request</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">POST /matches HTTP/1.1
+Content-Type: application/json
+Accept: application/json
+Content-Length: 357
+Host: localhost:8080
+
+{
+  "studentId" : 1,
+  "teacherId" : 1,
+  "isOnline" : false,
+  "subjects" : [ "국어", "영어" ],
+  "regions" : [ "강서", "강남" ],
+  "date" : "2023-09-15",
+  "timeslot" : "오후 02:00~오후 03:00",
+  "studentName" : "김학생",
+  "studentPhone" : "01012345678",
+  "studentEmail" : "student@example.com",
+  "remarks" : "특이사항"
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">httpie-request</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">$ echo '{
+  "studentId" : 1,
+  "teacherId" : 1,
+  "isOnline" : false,
+  "subjects" : [ "국어", "영어" ],
+  "regions" : [ "강서", "강남" ],
+  "date" : "2023-09-15",
+  "timeslot" : "오후 02:00~오후 03:00",
+  "studentName" : "김학생",
+  "studentPhone" : "01012345678",
+  "studentEmail" : "student@example.com",
+  "remarks" : "특이사항"
+}' | http POST 'http://localhost:8080/matches' \
+    'Content-Type:application/json' \
+    'Accept:application/json'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">request-body</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code>{
+  "studentId" : 1,
+  "teacherId" : 1,
+  "isOnline" : false,
+  "subjects" : [ "국어", "영어" ],
+  "regions" : [ "강서", "강남" ],
+  "date" : "2023-09-15",
+  "timeslot" : "오후 02:00~오후 03:00",
+  "studentName" : "김학생",
+  "studentPhone" : "01012345678",
+  "studentEmail" : "student@example.com",
+  "remarks" : "�듅�씠�궗�빆"
+}</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 64. request-fields</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Path</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>studentId</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">학생 식별자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>teacherId</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">강사 식별자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>isOnline</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">온라인 수업 여부. true일 경우 온라인. false일 경우 오프라인</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>subjects</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">수업 신청할 과목들</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>regions</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">수업 가능한 지역들</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>date</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">수업 날짜</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>timeslot</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">수업 시간</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>studentName</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">학생 이름</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>studentPhone</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">학생 연락처</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>studentEmail</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">학생 이메일</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>remarks</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">기타 추가사항</p></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="title">http-response</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">HTTP/1.1 201 Created
+Content-Type: application/json
+Content-Length: 441
+
+{
+  "id" : 1,
+  "studentId" : 1,
+  "teacherId" : 1,
+  "status" : "MATCH_REQUEST",
+  "matchSubjects" : [ "국어", "영어" ],
+  "matchRegions" : [ "강서", "강남" ],
+  "date" : "2023-09-15",
+  "timeslot" : "오후 02:00~오후 03:00",
+  "studentName" : "김학생",
+  "studentPhone" : "01012345678",
+  "studentEmail" : "student@example.com",
+  "remarks" : "특이사항",
+  "teacherName" : "박강사",
+  "online" : false
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">response-body</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code>{
+  "id" : 1,
+  "studentId" : 1,
+  "teacherId" : 1,
+  "status" : "MATCH_REQUEST",
+  "matchSubjects" : [ "국어", "영어" ],
+  "matchRegions" : [ "강서", "강남" ],
+  "date" : "2023-09-15",
+  "timeslot" : "오후 02:00~오후 03:00",
+  "studentName" : "김학생",
+  "studentPhone" : "01012345678",
+  "studentEmail" : "student@example.com",
+  "remarks" : "�듅�씠�궗�빆",
+  "teacherName" : "諛뺢컯�궗",
+  "online" : false
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_매치_정보_조회">5.3. 매치 정보 조회</h3>
+<div class="listingblock">
+<div class="title">curl-request</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/matches/1' -i -X GET \
+    -H 'Accept: application/json'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">http-request</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">GET /matches/1 HTTP/1.1
+Accept: application/json
+Host: localhost:8080</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">httpie-request</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">$ http GET 'http://localhost:8080/matches/1' \
+    'Accept:application/json'</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 65. /matches/{match-id}</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>match-id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">매칭 식별자</p></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="title">request-body</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">http-response</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 441
+
+{
+  "id" : 1,
+  "studentId" : 1,
+  "teacherId" : 1,
+  "status" : "MATCH_REQUEST",
+  "matchSubjects" : [ "국어", "영어" ],
+  "matchRegions" : [ "강서", "강남" ],
+  "date" : "2023-09-19",
+  "timeslot" : "오후 03:00~오후 04:00",
+  "studentName" : "김학생",
+  "studentPhone" : "01012345678",
+  "studentEmail" : "student@example.com",
+  "remarks" : "특이사항",
+  "teacherName" : "박강사",
+  "online" : false
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">response-body</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code>{
+  "id" : 1,
+  "studentId" : 1,
+  "teacherId" : 1,
+  "status" : "MATCH_REQUEST",
+  "matchSubjects" : [ "국어", "영어" ],
+  "matchRegions" : [ "강서", "강남" ],
+  "date" : "2023-09-19",
+  "timeslot" : "오후 03:00~오후 04:00",
+  "studentName" : "김학생",
+  "studentPhone" : "01012345678",
+  "studentEmail" : "student@example.com",
+  "remarks" : "�듅�씠�궗�빆",
+  "teacherName" : "諛뺢컯�궗",
+  "online" : false
+}</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 66. response-field</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Path</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">생성된 매칭의 식별자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>studentId</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">학생 식별자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>teacherId</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">강사 식별자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>status</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">매칭의 상태</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>matchSubjects</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">과목들</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>matchRegions</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">수업 가능한 지역들</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>date</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">수업 날짜</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>timeslot</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">수업 시간</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>online</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">온라인 수업 여부. true일 경우 온라인. false일 경우 오프라인</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>studentName</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">학생 이름</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>studentPhone</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">학생 연락처</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>studentEmail</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">학생 이메일</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>remarks</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">기타 추가사항</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>teacherName</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">강사 이름</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_매치_상태_변경">5.4. 매치 상태 변경</h3>
+<div class="listingblock">
+<div class="title">curl-request</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/matches' -i -X PATCH \
+    -H 'Content-Type: application/json' \
+    -H 'Accept: application/json' \
+    -d '{
+  "id" : 1,
+  "status" : "cancel"
+}'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">http-request</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">PATCH /matches HTTP/1.1
+Content-Type: application/json
+Accept: application/json
+Content-Length: 40
+Host: localhost:8080
+
+{
+  "id" : 1,
+  "status" : "cancel"
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">httpie-request</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">$ echo '{
+  "id" : 1,
+  "status" : "cancel"
+}' | http PATCH 'http://localhost:8080/matches' \
+    'Content-Type:application/json' \
+    'Accept:application/json'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">request-body</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code>{
+  "id" : 1,
+  "status" : "cancel"
+}</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 67. request-fields</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Path</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">매칭의 식별자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>status</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">변경시킬 매칭의 상태. 'cancel&#8217;의 경우는 매칭 취소, 'answer&#8217;의 경우는 답변 완료 상태</p></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="title">http-response</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 443
+
+{
+  "id" : 1,
+  "studentId" : 1,
+  "teacherId" : 1,
+  "status" : "MATCH_CANCELLED",
+  "matchSubjects" : [ "국어", "영어" ],
+  "matchRegions" : [ "강서", "강남" ],
+  "date" : "2023-09-19",
+  "timeslot" : "오후 03:00~오후 04:00",
+  "studentName" : "김학생",
+  "studentPhone" : "01012345678",
+  "studentEmail" : "student@example.com",
+  "remarks" : "특이사항",
+  "teacherName" : "박강사",
+  "online" : false
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">response-body</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code>{
+  "id" : 1,
+  "studentId" : 1,
+  "teacherId" : 1,
+  "status" : "MATCH_CANCELLED",
+  "matchSubjects" : [ "국어", "영어" ],
+  "matchRegions" : [ "강서", "강남" ],
+  "date" : "2023-09-19",
+  "timeslot" : "오후 03:00~오후 04:00",
+  "studentName" : "김학생",
+  "studentPhone" : "01012345678",
+  "studentEmail" : "student@example.com",
+  "remarks" : "�듅�씠�궗�빆",
+  "teacherName" : "諛뺢컯�궗",
+  "online" : false
+}</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 68. response-fields</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Path</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">생성된 매칭의 식별자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>studentId</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">학생 식별자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>teacherId</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">강사 식별자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>status</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">매칭의 상태</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>matchSubjects</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">과목들</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>matchRegions</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">수업 가능한 지역들</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>date</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">수업 날짜</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>timeslot</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">수업 시간</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>online</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">온라인 수업 여부. true일 경우 온라인. false일 경우 오프라인</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>studentName</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">학생 이름</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>studentPhone</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">학생 연락처</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>studentEmail</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">학생 이메일</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>remarks</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">기타 추가사항</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>teacherName</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">강사 이름</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_schedulecontroller">6. ScheduleController</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_날짜단위_스케줄_수정">6.1. 날짜단위 스케줄 수정</h3>
+<div class="listingblock">
+<div class="title">curl-request</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/schedules' -i -X PATCH \
+    -H 'Content-Type: application/json' \
+    -H 'Accept: application/json' \
+    -d '{
+  "teacherId" : 1,
+  "date" : "2023-09-15",
+  "timeslots" : [ "오후 02:00~오후 03:00", "오후 03:00~오후 04:00", "오후 06:00~오후 07:00" ]
+}'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">http-request</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">PATCH /schedules HTTP/1.1
+Content-Type: application/json
+Accept: application/json
+Content-Length: 157
+Host: localhost:8080
+
+{
+  "teacherId" : 1,
+  "date" : "2023-09-15",
+  "timeslots" : [ "오후 02:00~오후 03:00", "오후 03:00~오후 04:00", "오후 06:00~오후 07:00" ]
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">httpie-request</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">$ echo '{
+  "teacherId" : 1,
+  "date" : "2023-09-15",
+  "timeslots" : [ "오후 02:00~오후 03:00", "오후 03:00~오후 04:00", "오후 06:00~오후 07:00" ]
+}' | http PATCH 'http://localhost:8080/schedules' \
+    'Content-Type:application/json' \
+    'Accept:application/json'</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 69. request-fields</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Path</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>teacherId</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">강사 식별자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>date</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">수정하고자하는 날짜</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>timeslots</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">수정하고자하는 날짜에 포함될 모든 시간대들</p></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="title">request-body</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code>{
+  "teacherId" : 1,
+  "date" : "2023-09-15",
+  "timeslots" : [ "�삤�썑 02:00~�삤�썑 03:00", "�삤�썑 03:00~�삤�썑 04:00", "�삤�썑 06:00~�삤�썑 07:00" ]
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">http-response</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 157
+
+{
+  "teacherId" : 1,
+  "date" : "2023-09-15",
+  "timeslots" : [ "오후 02:00~오후 03:00", "오후 03:00~오후 04:00", "오후 06:00~오후 07:00" ]
+}</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 70. respons-fields</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Path</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>teacherId</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">강사 식별자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>date</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">수정된 날짜</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>timeslots</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">수정된 날짜에 포함된 모든 시간대들</p></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="title">response-body</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code>{
+  "teacherId" : 1,
+  "date" : "2023-09-15",
+  "timeslots" : [ "�삤�썑 02:00~�삤�썑 03:00", "�삤�썑 03:00~�삤�썑 04:00", "�삤�썑 06:00~�삤�썑 07:00" ]
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_강사_아이디로_스케줄_조회">7. 강사 아이디로 스케줄 조회</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="title">curl-request</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">$ curl 'http://localhost:8080/schedules?teacherId=1' -i -X GET \
+    -H 'Accept: application/json'</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 71. request-parameters</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>teacherId</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">강사 식별자</p></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="title">http-request</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">GET /schedules?teacherId=1 HTTP/1.1
+Accept: application/json
+Host: localhost:8080</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">httpie-request</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">$ http GET 'http://localhost:8080/schedules?teacherId=1' \
+    'Accept:application/json'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">request-body</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">http-response</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 305
+
+{
+  "teacherId" : 1,
+  "schedules" : [ {
+    "date" : "2023-09-15",
+    "timeslots" : [ "오후 02:00~오후 03:00", "오후 03:00~오후 04:00", "오후 06:00~오후 07:00" ]
+  }, {
+    "date" : "2023-09-16",
+    "timeslots" : [ "오후 03:00~오후 04:00", "오후 04:00~오후 05:00" ]
+  } ]
+}</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 72. response-fields</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Path</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>teacherId</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">강사 식별자</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>schedules</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">스케줄 데이터</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>schedules[].date</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">날짜</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>schedules[].timeslots</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">시간대</p></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="title">response-body</div>
+<div class="content">
+<pre class="prettyprint highlight nowrap"><code>{
+  "teacherId" : 1,
+  "schedules" : [ {
+    "date" : "2023-09-15",
+    "timeslots" : [ "�삤�썑 02:00~�삤�썑 03:00", "�삤�썑 03:00~�삤�썑 04:00", "�삤�썑 06:00~�삤�썑 07:00" ]
+  }, {
+    "date" : "2023-09-16",
+    "timeslots" : [ "�삤�썑 03:00~�삤�썑 04:00", "�삤�썑 04:00~�삤�썑 05:00" ]
+  } ]
+}</code></pre>
+</div>
+</div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
 Version 0.0.1-SNAPSHOT<br>
-Last updated 2023-08-30 11:52:12 +0900
+Last updated 2023-09-15 09:45:18 +0900
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.css">

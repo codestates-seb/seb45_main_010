@@ -1,4 +1,4 @@
-package com.codestates.connectInstructor.event;
+package com.codestates.connectInstructor.email.event;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +7,8 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.event.TransactionalEventListener;
+import org.thymeleaf.context.Context;
+import org.thymeleaf.spring5.SpringTemplateEngine;
 
 import javax.mail.internet.MimeMessage;
 
@@ -15,6 +17,8 @@ import javax.mail.internet.MimeMessage;
 public class SignupEventListener {
     @Autowired
     private JavaMailSender javaMailSender;
+    @Autowired
+    private SpringTemplateEngine templateEngine;
 
     @TransactionalEventListener
     @Async
@@ -28,12 +32,16 @@ public class SignupEventListener {
             MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true, "UTF-8");
 
             mimeMessageHelper.setTo(email);
-            mimeMessageHelper.setSubject("회원 가입을 축하합니다!");
+            mimeMessageHelper.setSubject("ConnecT 회원 가입을 축하합니다!");
 
-            String body = "<b>".concat(name).concat("</b> 님.\n")
-                    .concat("환영합니다!!");
+            Context context = new Context();
 
-            mimeMessageHelper.setText(body, true);
+            context.setVariable("name", name);
+            context.setVariable("site", "www.connect-x10.shop");
+
+            String html = templateEngine.process("Welcome", context);
+
+            mimeMessageHelper.setText(html, true);
 
             javaMailSender.send(mimeMessage);
 

@@ -13,14 +13,19 @@ import com.codestates.connectInstructor.security.oauth2.service.CustomOauth2Serv
 import com.codestates.connectInstructor.security.utils.CustomAuthorityUtils;
 import com.codestates.connectInstructor.student.repository.StudentRepository;
 import com.codestates.connectInstructor.student.service.StudentService;
+import com.codestates.connectInstructor.teacher.repository.TeacherRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
 import org.springframework.security.oauth2.client.web.OAuth2LoginAuthenticationFilter;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.cors.CorsConfiguration;
@@ -37,13 +42,21 @@ public class SecurityConfiguration {
     private final CustomAuthorityUtils authorityUtils; // 추가
     private final StudentRepository studentRepository;
     private final StudentService studentService;
+    private final ClientRegistrationRepository clientRegistrationRepository;
+    private final ApplicationEventPublisher publisher;
+    private final TeacherRepository teacherRepository;
 
+    @Autowired
     public SecurityConfiguration(JwtTokenizer jwtTokenizer,
-                                 CustomAuthorityUtils authorityUtils, StudentRepository studentRepository, StudentService studentService) {
+                                 CustomAuthorityUtils authorityUtils, StudentRepository studentRepository, StudentService studentService, ClientRegistrationRepository clientRegistrationRepository, ApplicationEventPublisher publisher, TeacherRepository teacherRepository) {
         this.jwtTokenizer = jwtTokenizer;
         this.authorityUtils = authorityUtils;
         this.studentRepository = studentRepository;
         this.studentService = studentService;
+        this.clientRegistrationRepository = clientRegistrationRepository;
+        this.publisher = publisher;
+
+        this.teacherRepository = teacherRepository;
     }
 
     @Bean
@@ -52,10 +65,10 @@ public class SecurityConfiguration {
                 .headers().frameOptions().sameOrigin()
                 .and()
                 .oauth2Login(oauth2 -> oauth2
-                        .successHandler(new OAuth2SuccessHandler(studentRepository, authorityUtils, jwtTokenizer))
+                        .successHandler(new OAuth2SuccessHandler(studentRepository, authorityUtils, jwtTokenizer, publisher, teacherRepository))
                         .failureHandler(new OAuth2FailureHandler())
                         .userInfoEndpoint(user -> user.userService(new CustomOauth2Service(studentRepository, studentService, authorityUtils)))
-                )
+                        )
                 .csrf().disable()
                 .cors(Customizer.withDefaults())
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
@@ -69,7 +82,31 @@ public class SecurityConfiguration {
                 .apply(new CustomFilterConfigurer())
                 .and()
                 .authorizeHttpRequests(authorize -> authorize
-                        .anyRequest().permitAll()
+                        .antMatchers("/h2/**").permitAll()
+                        .antMatchers("/docs/**").permitAll()
+                        .antMatchers(HttpMethod.GET, "/subjects").permitAll()
+                        .antMatchers(HttpMethod.GET, "/regions").permitAll()
+
+                        .antMatchers(HttpMethod.POST, "/teachers").permitAll()
+                        .antMatchers(HttpMethod.PATCH, "/teachers/*").hasRole("TEACHER")
+                        .antMatchers(HttpMethod.GET, "/teachers/*").permitAll()
+                        .antMatchers(HttpMethod.GET, "/teachers").permitAll()
+
+                        .antMatchers(HttpMethod.POST, "/students").permitAll()
+                        .antMatchers(HttpMethod.GET, "/students/check/*").permitAll()
+                        .antMatchers(HttpMethod.GET, "/students/*").permitAll()
+                        .antMatchers(HttpMethod.PATCH, "/students/*").hasRole("STUDENT")
+                        .antMatchers(HttpMethod.GET, "/students/mypage/*").permitAll() // students GET은 모두 permitAll 해도 될 듯.
+                        .antMatchers(HttpMethod.DELETE, "/students/*").hasRole("STUDENT")
+
+                        .antMatchers(HttpMethod.GET, "/matches").hasRole("STUDENT")
+                        .antMatchers(HttpMethod.POST, "/matches").hasRole("STUDENT")
+                        .antMatchers(HttpMethod.GET, "/matches/*").hasAnyRole("TEACHER","STUDENT")
+                        .antMatchers(HttpMethod.PATCH, "/matches").hasAnyRole("TEACHER","STUDENT")
+
+                        .antMatchers(HttpMethod.PATCH, "/schedules").hasRole("TEACHER")
+                        .antMatchers(HttpMethod.GET, "/schedules").permitAll()
+                        .anyRequest().permitAll() // denyAll()하면 되는데 h2 DB 접속이 안 되서 일단..
                 )
 
         ;
@@ -93,6 +130,14 @@ public class SecurityConfiguration {
         return source;
     }
 
+//    @Bean
+//    public OAuth2AuthorizationRequestResolver auth2AuthorizationRequestResolver() {
+//        OAuth2AuthorizationRequestResolver resolver = new DefaultOAuth2AuthorizationRequestResolver(clientRegistrationRepository,
+//                OAuth2AuthorizationRequestRedirectFilter.DEFAULT_AUTHORIZATION_REQUEST_BASE_URI);
+//
+//        return new CustomRequestResolver(resolver);
+//    }
+
 
     public class CustomFilterConfigurer extends AbstractHttpConfigurer<CustomFilterConfigurer, HttpSecurity> {
         @Override
@@ -113,4 +158,5 @@ public class SecurityConfiguration {
                     .addFilterAfter(jwtVerificationFilter, OAuth2LoginAuthenticationFilter.class);
         }
     }
+
 }

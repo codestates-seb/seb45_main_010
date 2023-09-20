@@ -1,5 +1,6 @@
 package com.codestates.connectInstructor.security.userdetails;
 
+import com.codestates.connectInstructor.common.MemberStatus;
 import com.codestates.connectInstructor.exception.BusinessLogicException;
 import com.codestates.connectInstructor.exception.ExceptionCode;
 import com.codestates.connectInstructor.security.utils.CustomAuthorityUtils;
@@ -38,11 +39,25 @@ public class MemberDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Optional<Teacher> optionalTeacher = teacherRepository.findByEmail(username);
         Optional<Student> optionalStudent = studentRepository.findByEmail(username);
+        Teacher teacher = null;
+        Student student = null;
 
-        if(optionalTeacher.isPresent())
-            return new TeacherDetails( optionalTeacher.get() );
-        else if(optionalStudent.isPresent())
-            return new StudentDetails( optionalStudent.get() );
+        if(optionalTeacher.isPresent()) {
+            teacher = optionalTeacher.get();
+
+            if(teacher.getStatus() == MemberStatus.ACTIVE)
+                return new TeacherDetails(teacher);
+            else
+                throw new BusinessLogicException(ExceptionCode.MEMBER_NOT_ACTIVE);
+        }
+        else if(optionalStudent.isPresent()) {
+            student = optionalStudent.get();
+
+            if(student.getStatus() == MemberStatus.ACTIVE)
+                return new StudentDetails(student);
+            else
+                throw new BusinessLogicException(ExceptionCode.MEMBER_NOT_ACTIVE);
+        }
         else
             throw new BusinessLogicException(ExceptionCode.MEMBER_NOT_FOUND);
     }
