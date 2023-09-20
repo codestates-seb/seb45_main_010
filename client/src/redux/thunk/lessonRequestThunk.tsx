@@ -29,6 +29,9 @@ export const lessonRequestGet = createAsyncThunk<lessonGetType, id>(
 export const lessonRequestPost = createAsyncThunk<requestPostType, requestPostType>(
   'lessonRequestPost',
   async (requestPost) => {
+    requestPost.regions = requestPost.regions.filter((item) => item !== null && item !== '');
+    requestPost.subjects = requestPost.subjects.filter((item) => item !== null && item !== '');
+
     const response = await axios.post(`${URL}/matches`, requestPost, {
       headers: {
         Authorization: `Bearer ${token}`,
