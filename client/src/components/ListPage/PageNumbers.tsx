@@ -2,22 +2,22 @@ import { IconButton } from '@material-tailwind/react';
 import React from 'react';
 
 type props = {
-  numPages: number;
-  currentPage: number;
-  setCurrentPage: (index: number) => void;
+  totalPages: number;
+  page: number;
+  setPage: (index: number) => void;
 };
 
-export const PageNumbers = ({ numPages, currentPage, setCurrentPage }: props) => {
+export const PageNumbers = ({ totalPages, page, setPage }: props) => {
   const pagesToShow = 4;
   const pageNumbers = [];
 
-  if (numPages <= pagesToShow) {
-    for (let i = 0; i < numPages; i++) {
+  if (totalPages <= pagesToShow) {
+    for (let i = 0; i < totalPages; i++) {
       pageNumbers.push(i);
     }
   } else {
-    const start = Math.max(0, currentPage - Math.floor(pagesToShow / 2));
-    const end = Math.min(numPages - 1, start + pagesToShow - 1);
+    const start = Math.max(0, page - Math.floor(pagesToShow / 2));
+    const end = Math.min(totalPages - 1, start + pagesToShow - 1);
 
     if (start > 0) {
       pageNumbers.push(-1);
@@ -27,22 +27,22 @@ export const PageNumbers = ({ numPages, currentPage, setCurrentPage }: props) =>
       pageNumbers.push(i);
     }
 
-    if (end < numPages - 1) {
-      pageNumbers.push(numPages);
+    if (end < totalPages - 1) {
+      pageNumbers.push(totalPages);
     }
   }
 
-  return pageNumbers.map((page, index) => (
+  return pageNumbers.map((item, index) => (
     <div key={index}>
-      {page === -1 || page === numPages ? (
+      {item === -1 || item === totalPages ? (
         <span className="mx-2">...</span>
       ) : (
         <IconButton
-          className={currentPage === page ? 'bg-mint-2 rounded-full text-black' : 'rounded-full'}
-          onClick={() => setCurrentPage(page)}
-          variant={currentPage === page ? 'filled' : 'text'}
+          className={page === item ? 'bg-mint-200 rounded-full text-black' : 'rounded-full'}
+          onClick={() => setPage(item)}
+          variant={page === item ? 'filled' : 'text'}
         >
-          {page + 1}
+          {item + 1}
         </IconButton>
       )}
     </div>

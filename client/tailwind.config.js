@@ -9,21 +9,20 @@ module.exports = withMT({
         serif: ['Nanum Gothic', 'sans-serif'],
         mono: ['Nanum Gothic', 'sans-serif'],
       },
-
       fontSize: {
         xxs: '8px',
         xs: '12px',
         sm: '14px',
-        base: '1rem',
+        base: '16px',
         xl: '24px',
         '2xl': '36px',
       },
       colors: {
         mint: {
-          1: '#E6F6F4',
-          2: '#E0EFF8',
-          3: '#F2FAFF',
-          4: '#E4ECF1',
+          100: '#E6F6F4',
+          200: '#E0EFF8',
+          300: '#F2FAFF',
+          400: '#E4ECF1',
         },
         blue: {
           1: '#2E93D1',
@@ -31,7 +30,7 @@ module.exports = withMT({
           3: '#BEDEF1',
         },
         green: '#008774',
-        koko: {
+        kakao: {
           1: '#FEE500',
           2: '#E8D13B',
         },

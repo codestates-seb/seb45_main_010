@@ -8,10 +8,11 @@ type OptionListProps = {
   lectureFee: string;
   career: string;
   option: string;
-  classMethod: {
-    onLine: boolean;
-    offLine: boolean;
-  };
+  onLine: boolean;
+  offLine: boolean;
+  id: number;
+  onUpdateOnline: (newState: boolean) => void;
+  onUpdateOffline: (newState: boolean) => void;
 };
 
 const OptionList: React.FC<OptionListProps> = ({
@@ -19,10 +20,27 @@ const OptionList: React.FC<OptionListProps> = ({
   lectureFee,
   career,
   option,
-  classMethod = { onLine: true, offLine: false },
+  onLine,
+  offLine,
+  id,
+  onUpdateOnline,
+  onUpdateOffline,
 }) => {
-  const [onLine, setOnLine] = useState(classMethod.onLine);
-  const [offLine, setOffLine] = useState(classMethod.offLine);
+  const [onLineState, setOnLineState] = useState(onLine);
+  const [offLineState, setOffLineState] = useState(offLine);
+
+  const handleOnLineChange = () => {
+    const newOnLineState = !onLineState;
+    setOnLineState(newOnLineState);
+    onUpdateOnline(newOnLineState);
+  };
+
+  const handleOffLineChange = () => {
+    const newOffLineState = !offLineState;
+    setOffLineState(newOffLineState);
+    onUpdateOffline(newOffLineState);
+  };
+
   return (
     <>
       {teacher ? (
@@ -32,8 +50,8 @@ const OptionList: React.FC<OptionListProps> = ({
             <Checkbox
               color="green"
               className="text-green bg-green"
-              checked={onLine}
-              onChange={() => setOnLine(!onLine)}
+              checked={onLineState}
+              onChange={handleOnLineChange}
               crossOrigin="anonymous"
             />
             <OnlineDiv onoff="온라인" />
@@ -41,19 +59,19 @@ const OptionList: React.FC<OptionListProps> = ({
             <Checkbox
               color="green"
               className="text-green bg-green"
-              checked={offLine}
-              onChange={() => setOffLine(!offLine)}
+              checked={offLineState}
+              onChange={handleOffLineChange}
               crossOrigin="anonymous"
             />
             <OnlineDiv onoff="오프라인" />
           </div>
-          <Option optionTitle="강의료 ( 강사 소개에 노출됩니다 )" optionDesc={lectureFee} />
-          <Option optionTitle="학력 및 경력" optionDesc={career} />
-          <Option optionTitle="수업옵션" optionDesc={option} />
+          <Option optionTitle="강의료 ( 강사 소개에 노출됩니다 )" optionDesc={lectureFee} id={id} />
+          <Option optionTitle="학력 및 경력" optionDesc={career} id={id} />
+          <Option optionTitle="수업옵션" optionDesc={option} id={id} />
         </div>
       ) : (
         <>
-          <Option optionTitle="수업옵션" optionDesc={option} />
+          <Option optionTitle="수업옵션" optionDesc={option} id={id} />
         </>
       )}
     </>
