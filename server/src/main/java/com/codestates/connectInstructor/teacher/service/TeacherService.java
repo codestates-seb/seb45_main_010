@@ -298,8 +298,20 @@ public class TeacherService {
     }
     public Page<Teacher> searchTeachers(String teacherName, List<String> subjectNames,
                                         List<String> regionNames, int page, int size){
+        int subjectSize = 0;
+        int regionSize = 0;
 
-        return teacherRepository.findTeachersBySubjectAndRegionAndTeacherName(teacherName, subjectNames, regionNames,
+        if(subjectNames == null)
+            subjectSize = 0;
+        else
+            subjectSize = subjectNames.size();
+        if(regionNames == null)
+            regionSize = 0;
+        else
+            regionSize = regionNames.size();
+
+        return teacherRepository.findTeachersBySubjectAndRegionAndTeacherName(teacherName,
+                subjectNames, regionNames, subjectSize, regionSize,
                 PageRequest.of(page,size, Sort.by("createdAt").descending()) );
     }
     @Transactional(readOnly = true)
