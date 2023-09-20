@@ -60,7 +60,7 @@ const Login: React.FC = () => {
     e.preventDefault();
     try {
       const response = await axios.get(`${URL}/oauth2/authorization/kakao`);
-      console.log(response); //토큰을 받아옴
+      //토큰을 받아옴
       //token을 받아오고 해석하여 Id를 추출하여 보내는 과정 API완료시 구현해야 함
     } catch (error) {
       alert('카카오 로그인에 실패하였습니다. 다시 시도해주세요');

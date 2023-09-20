@@ -36,7 +36,6 @@ export const ImageChangeModal = ({ text, warning, changeItem, userId, teacher }:
           Authorization: `Bearer ${accessToken}`,
         },
       });
-      console.log(response.data);
       dispatch(updateUserImage(response.data.profileImg));
     } catch (error) {
       console.log(`${changeItem}`, error);

@@ -32,7 +32,6 @@ const SignUp: React.FC = () => {
 
     try {
       const response = await axios.get(`${URL}/students/check/${userInfo.email}`);
-      console.log(`${URL}/students/check/${userInfo.email}`);
       const isDuplicate = response.data.used === true;
       if (isDuplicate === false) {
         setResiterable(true);
