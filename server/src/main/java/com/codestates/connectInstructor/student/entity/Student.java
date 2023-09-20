@@ -51,7 +51,7 @@ public class Student extends Auditable implements Member {
     private boolean isOauth = false;
 
     @Enumerated(value = EnumType.STRING)
-    private MemberStatus status = MemberStatus.ACTIVE;
+    private MemberStatus status = MemberStatus.SLEEP;
 
     @ElementCollection(fetch = FetchType.EAGER)
     private List<String> roles = new ArrayList<>();
