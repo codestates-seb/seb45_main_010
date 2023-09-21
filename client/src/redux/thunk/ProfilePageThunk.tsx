@@ -1,11 +1,9 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import getAuthUserInfo from 'components/Items/GetInfoAuth';
 import { getAccessToken } from 'components/Items/GetAccessToken';
 import { authenticateUser } from 'redux/slice/OauthSlice';
 import { ScheduleObjType, MatchType } from 'Types/Types';
 import { URL } from 'configs/Url/config';
-const { APIUSERURL } = getAuthUserInfo();
 
 export const FetchProfile = createAsyncThunk('FetchProfile', async (id, thunkAPI) => {
   try {
@@ -171,10 +169,10 @@ export const updateCareer = createAsyncThunk(
 
 export const updateOption = createAsyncThunk(
   'profile/updateOption',
-  async ({ id, option }: { id: number; option: string }) => {
+  async ({ id, option, teacher }: { id: number; option: string; teacher: boolean }) => {
     const token = getAccessToken();
     const response = await axios.patch(
-      `${APIUSERURL}/option`,
+      `${URL}/${teacher ? 'teachers' : 'students'}/option`,
       {
         id: id,
         option: option,
@@ -191,10 +189,10 @@ export const updateOption = createAsyncThunk(
 
 export const updateIntroduction = createAsyncThunk(
   'profile/updateIntroduction',
-  async ({ id, introduction }: { id: number; introduction: string }) => {
+  async ({ id, introduction, teacher }: { id: number; introduction: string; teacher: boolean }) => {
     const token = getAccessToken();
     const response = await axios.patch(
-      `${APIUSERURL}/introduction`,
+      `${URL}/${teacher ? 'teachers' : 'students'}/introduction`,
       {
         id: id,
         introduction: introduction,
@@ -211,10 +209,10 @@ export const updateIntroduction = createAsyncThunk(
 
 export const updateSubjects = createAsyncThunk(
   'profile/updateSubjects',
-  async ({ id, subjects }: { id: number; subjects: string[] }) => {
+  async ({ id, subjects, teacher }: { id: number; subjects: string[]; teacher: boolean }) => {
     const token = getAccessToken();
     const response = await axios.patch(
-      `${APIUSERURL}/subjects`,
+      `${URL}/${teacher ? 'teachers' : 'students'}/subjects`,
       {
         id: id,
         subjects: subjects,
@@ -231,10 +229,10 @@ export const updateSubjects = createAsyncThunk(
 
 export const updateRegions = createAsyncThunk(
   'profile/updateRegions',
-  async ({ id, regions }: { id: number; regions: string[] }) => {
+  async ({ id, regions, teacher }: { id: number; regions: string[]; teacher: boolean }) => {
     const token = getAccessToken();
     const response = await axios.patch(
-      `${APIUSERURL}/regions`,
+      `${URL}/${teacher ? 'teachers' : 'students'}/regions`,
       {
         id: id,
         regions: regions,

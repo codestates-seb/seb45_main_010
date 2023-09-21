@@ -65,13 +65,18 @@ const OptionList: React.FC<OptionListProps> = ({
             />
             <OnlineDiv onoff="오프라인" />
           </div>
-          <Option optionTitle="강의료 ( 강사 소개에 노출됩니다 )" optionDesc={lectureFee} id={id} />
-          <Option optionTitle="학력 및 경력" optionDesc={career} id={id} />
-          <Option optionTitle="수업옵션" optionDesc={option} id={id} />
+          <Option
+            optionTitle="강의료 ( 강사 소개에 노출됩니다 )"
+            optionDesc={lectureFee}
+            id={id}
+            teacher={teacher}
+          />
+          <Option optionTitle="학력 및 경력" optionDesc={career} id={id} teacher={teacher} />
+          <Option optionTitle="수업옵션" optionDesc={option} id={id} teacher={teacher} />
         </div>
       ) : (
         <>
-          <Option optionTitle="수업옵션" optionDesc={option} id={id} />
+          <Option optionTitle="수업옵션" optionDesc={option} id={id} teacher={teacher} />
         </>
       )}
     </>
