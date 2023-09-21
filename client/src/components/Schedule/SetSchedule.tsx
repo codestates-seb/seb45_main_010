@@ -8,6 +8,7 @@ import { generateAvailableTimeSlots, formatDate } from './MakeDateFunctions';
 import { updateSchedule, FetchSchedule } from 'redux/thunk/ProfilePageThunk';
 import { useAppDispatch } from 'hooks/hooks';
 import SortedTimeSlots from './SortedTimeSlots';
+import './calendar.css';
 
 const availableTimeSlots = generateAvailableTimeSlots();
 
@@ -156,6 +157,14 @@ const SetSchedule = ({ id }: { id: number }) => {
         dateFormat="yyyy-MM-dd"
         locale={ko}
         inline={selectedDate ? true : undefined}
+        popperClassName="datepicker-popper"
+        dayClassName={(date) => {
+          const formattedDate = formatDate(date);
+          if (selectedTimeSlots.some((slot) => slot.date === formattedDate)) {
+            return 'highlighted-date';
+          }
+          return '';
+        }}
       />
 
       {selectedDate ? (
