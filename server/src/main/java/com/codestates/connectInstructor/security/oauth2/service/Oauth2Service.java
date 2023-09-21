@@ -48,6 +48,10 @@ public class Oauth2Service {
     @Value("${KAKAO_CLIENT_SECRET}")
     private String clientSecret;
 
+    @Getter
+    @Value("${KAKAO_REDIRECT_URL}")
+    private String kakaoRedirectUrl;
+
     private final StudentRepository studentRepository;
     private final TeacherRepository teacherRepository;
     private final JwtTokenizer jwtTokenizer;
@@ -80,9 +84,7 @@ public class Oauth2Service {
         return jwtDto;
     }
 
-    public JwtDto signup(String code, String type) throws JsonProcessingException {
-
-        JwtDto jwtDto = new JwtDto();
+    public void signup(String code, String type) throws JsonProcessingException {
 
         String accessToken = getAccessToken(code);
 
@@ -105,10 +107,6 @@ public class Oauth2Service {
             teacherRepository.save(teacher);
             log.info("강사 회원가입 성공");
 
-            jwtDto.setAccessToken(delegateAccessToken(teacher));
-            jwtDto.setRefreshToken(delegateRefreshToken(teacher));
-
-            return jwtDto;
         } else if (type.equals("student")) {
             Student student = new Student();
             student.setName(userInfo.getName());
@@ -121,10 +119,6 @@ public class Oauth2Service {
             studentRepository.save(student);
             log.info("학생 회원가입 성공");
 
-            jwtDto.setAccessToken(delegateAccessToken(student));
-            jwtDto.setRefreshToken(delegateRefreshToken(student));
-
-            return jwtDto;
         }
 
         throw new BusinessLogicException(ExceptionCode.MEMBER_NOT_FOUND);
@@ -158,7 +152,7 @@ public class Oauth2Service {
 
         body.add("grant_type", "authorization_code");
         body.add("client_id", clientId);
-        body.add("redirect_url", "http://localhost:5173/socialsignup");
+        body.add("redirect_url", kakaoRedirectUrl);
         body.add("code", code);
         body.add("client_secret", clientSecret);
 

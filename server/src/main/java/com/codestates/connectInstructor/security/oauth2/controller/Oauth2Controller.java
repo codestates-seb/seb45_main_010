@@ -6,6 +6,7 @@ import com.codestates.connectInstructor.security.oauth2.service.Oauth2Service;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -34,12 +35,8 @@ public class Oauth2Controller {
     @SneakyThrows
     @PostMapping("/signup")
     public ResponseEntity oauth2Signup(@RequestBody KakaoDto.Signup request) {
-        JwtDto response = service.signup(request.getCode(), request.getType());
+        service.signup(request.getCode(), request.getType());
 
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("Authorization", "Bearer " + response.getAccessToken());
-        headers.add("Refresh", response.getRefreshToken());
-
-        return ResponseEntity.ok().headers(headers).build();
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 }
