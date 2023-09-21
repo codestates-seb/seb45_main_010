@@ -158,7 +158,7 @@ public class Oauth2Service {
 
         body.add("grant_type", "authorization_code");
         body.add("client_id", clientId);
-        body.add("redirect_url", "http://localhost:5173");
+        body.add("redirect_url", "http://localhost:5173/socialsignup");
         body.add("code", code);
         body.add("client_secret", clientSecret);
 
