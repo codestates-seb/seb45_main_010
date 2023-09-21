@@ -7,9 +7,6 @@ import com.codestates.connectInstructor.security.handler.MemberAuthenticationEnt
 import com.codestates.connectInstructor.security.handler.MemberAuthenticationFailureHandler;
 import com.codestates.connectInstructor.security.handler.MemberAuthenticationSuccessHandler;
 import com.codestates.connectInstructor.security.jwt.JwtTokenizer;
-import com.codestates.connectInstructor.security.oauth2.handler.OAuth2FailureHandler;
-import com.codestates.connectInstructor.security.oauth2.handler.OAuth2SuccessHandler;
-import com.codestates.connectInstructor.security.oauth2.service.CustomOauth2Service;
 import com.codestates.connectInstructor.security.utils.CustomAuthorityUtils;
 import com.codestates.connectInstructor.student.repository.StudentRepository;
 import com.codestates.connectInstructor.student.service.StudentService;
@@ -64,11 +61,11 @@ public class SecurityConfiguration {
         http
                 .headers().frameOptions().sameOrigin()
                 .and()
-                .oauth2Login(oauth2 -> oauth2
-                        .successHandler(new OAuth2SuccessHandler(studentRepository, authorityUtils, jwtTokenizer, publisher, teacherRepository))
-                        .failureHandler(new OAuth2FailureHandler())
-                        .userInfoEndpoint(user -> user.userService(new CustomOauth2Service(studentRepository, studentService, authorityUtils)))
-                        )
+//                .oauth2Login(oauth2 -> oauth2
+//                        .successHandler(new OAuth2SuccessHandler(studentRepository, authorityUtils, jwtTokenizer, publisher, teacherRepository))
+//                        .failureHandler(new OAuth2FailureHandler())
+//                        .userInfoEndpoint(user -> user.userService(new CustomOauth2Service(studentRepository, studentService, authorityUtils)))
+//                        )
                 .csrf().disable()
                 .cors(Customizer.withDefaults())
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
