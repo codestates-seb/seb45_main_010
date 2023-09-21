@@ -10,11 +10,13 @@ const ProfileDropdown = ({
   selections,
   categories,
   id,
+  teacher,
 }: {
   title: string;
   selections: string[];
   categories: string[];
   id: number;
+  teacher: boolean;
 }) => {
   const dispatch = useAppDispatch();
   const [selectedCategory, setSelectedCategory] = useState<string>('');
@@ -24,9 +26,9 @@ const ProfileDropdown = ({
   useEffect(() => {
     if (tags !== categories) {
       if (title === '과목') {
-        dispatch(updateSubjects({ id: id, subjects: tags }));
+        dispatch(updateSubjects({ id: id, teacher, subjects: tags }));
       } else if (title === '지역') {
-        dispatch(updateRegions({ id: id, regions: tags }));
+        dispatch(updateRegions({ id: id, teacher, regions: tags }));
       }
     }
   }, [tags, title]);
