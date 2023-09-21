@@ -14,9 +14,9 @@ const ReqForm = ({ name, phone, email, setStudentInfo }: props) => {
   const [currentEmail, setCurrentEmail] = useState<string>('');
   const [currentRemaks, setCurrentRemaks] = useState<string>('');
   const addStudent = {
-    name: currentName,
-    phone: currentPhone,
-    email: currentEmail,
+    name: currentName === '' ? name : currentName,
+    phone: currentPhone === '' ? phone : currentPhone,
+    email: currentEmail === '' ? email : currentEmail,
     remaks: currentRemaks,
   };
 
