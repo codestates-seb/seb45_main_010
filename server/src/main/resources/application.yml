@@ -75,3 +75,4 @@ jasypt:
 
 emailEncryptionSecretKey: ${emailEncryptionSecretKey}
 EC2_URL : ${EC2_URL}
+KAKAO_REDIRECT_URL : ${KAKAO_REDIRECT_URL}
