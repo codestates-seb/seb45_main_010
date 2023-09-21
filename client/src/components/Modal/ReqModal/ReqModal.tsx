@@ -4,7 +4,7 @@ import ReqForm from './ReqForm';
 import { useAppDispatch, useAppSelector } from 'hooks/hooks';
 import { lessonRequest } from 'redux/slice/lessonRequestSlice';
 import ReqSelect from './ReqSelect';
-import { User, lessonGetType, requestPostType } from 'Types/Types';
+import { lessonGetType, requestPostType, schedulesType } from 'Types/Types';
 import { lessonRequestGet, lessonRequestPost } from 'redux/thunk/lessonRequestThunk';
 import { SubmitModal } from './SubmitModal';
 import ReqScheduleList from './ReqScheduleList';
@@ -28,8 +28,6 @@ type idType = {
   studentId: number;
 };
 
-type schedulesType = Pick<User, 'schedules'>;
-
 export const ReqModal = ({ teacherId, onLine, offLine }: props) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -40,20 +38,16 @@ export const ReqModal = ({ teacherId, onLine, offLine }: props) => {
   const [regionsList, setRegions] = useState<string[]>([]);
   const [isOnOffLine, setIsOnOffLine] = useState<string[]>(['', '']);
   const [scheduleList, setSchedule] = useState<schedulesType>({
-    schedules: {
-      date: '',
-      timeslots: [],
-    },
+    date: '',
+    timeslot: '',
   });
   const [requestPost, setRequestPost] = useState<requestPostType>({
     teacherId,
     studentId: 0,
     subjects: [],
     regions: [],
-    schedule: {
-      date: '',
-      timeslots: [],
-    },
+    date: '',
+    timeslot: '',
     isOnline: false,
     studentName: '',
     studentPhone: '',
@@ -65,10 +59,8 @@ export const ReqModal = ({ teacherId, onLine, offLine }: props) => {
     teacherId,
     subjects: [],
     regions: [],
-    schedules: {
-      date: '',
-      timeslots: [],
-    },
+    date: '',
+    timeslot: '',
     studentName: '',
     studentPhone: '',
     studentEmail: '',
@@ -98,7 +90,8 @@ export const ReqModal = ({ teacherId, onLine, offLine }: props) => {
       isOnline: !!isOnOffLine[0],
       subjects: subjectsList,
       regions: regionsList,
-      schedule: scheduleList.schedules,
+      date: scheduleList.date,
+      timeslot: scheduleList.timeslot,
       studentName: studentInfo.name,
       studentPhone: studentInfo.phone,
       studentEmail: studentInfo.email,

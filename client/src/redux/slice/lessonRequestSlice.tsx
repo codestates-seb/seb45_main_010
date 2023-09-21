@@ -15,10 +15,8 @@ const initialState: initialStateType = {
     teacherId: 0,
     subjects: [],
     regions: [],
-    schedules: {
-      date: '',
-      timeslots: [],
-    },
+    date: '',
+    timeslot: '',
     studentName: '',
     studentPhone: '',
     studentEmail: '',

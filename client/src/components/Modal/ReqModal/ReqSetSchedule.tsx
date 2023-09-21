@@ -3,7 +3,7 @@ import DatePicker from 'react-datepicker';
 import { ko } from 'date-fns/locale';
 import { Button } from '@material-tailwind/react';
 import { useState, useEffect, useRef } from 'react';
-import { ScheduleType, ScheduleObjType, User } from 'Types/Types';
+import { ScheduleType, ScheduleObjType, schedulesType } from 'Types/Types';
 import { FetchSchedule } from 'redux/thunk/ProfilePageThunk';
 import { useAppDispatch } from 'hooks/hooks';
 import { formatDate } from 'components/Schedule/MakeDateFunctions';
@@ -12,7 +12,6 @@ type props = {
   id: number;
   setSchedule: (selectItem: schedulesType) => void;
 };
-type schedulesType = Pick<User, 'schedules'>;
 
 const ReqSetSchedule = ({ id, setSchedule }: props) => {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
@@ -20,10 +19,8 @@ const ReqSetSchedule = ({ id, setSchedule }: props) => {
   const dispatch = useAppDispatch();
   const [isSelect, setIsSelect] = useState<boolean[]>([]);
   const [selectItem, setSelectItem] = useState<schedulesType>({
-    schedules: {
-      date: '',
-      timeslots: [],
-    },
+    date: '',
+    timeslot: '',
   });
   const prevScheduleRef = useRef<ScheduleType[]>([]);
 
@@ -63,10 +60,8 @@ const ReqSetSchedule = ({ id, setSchedule }: props) => {
     newButtonStates[index] = true;
     setIsSelect(newButtonStates);
     setSelectItem({
-      schedules: {
-        date: selectDate ? selectDate : '',
-        timeslots: [timeslot],
-      },
+      date: selectDate ? selectDate : '',
+      timeslot: timeslot,
     });
   };
 
