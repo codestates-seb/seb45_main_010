@@ -12,9 +12,11 @@ import java.util.Optional;
 public interface TeacherRepository extends JpaRepository<Teacher, Long> {
     Optional<Teacher> findByEmail(String email);
 
-    @Query("SELECT DISTINCT t FROM Teacher t WHERE (t IN (SELECT t FROM Teacher t JOIN t.teacherSubjects ts WHERE ts.subject.subjectName IN :subjectNames) OR :subjectNames IS NULL) AND (t IN (SELECT t FROM Teacher t JOIN t.teacherRegions tr WHERE tr.region.regionName IN :regionNames) OR :regionNames IS NULL) AND t IN (SELECT t FROM Teacher t WHERE t.name LIKE %:teacherName%)")
+    @Query("SELECT DISTINCT t FROM Teacher t WHERE (t IN (SELECT DISTINCT t FROM Teacher t JOIN t.teacherSubjects ts WHERE ts.subject.subjectName IN :subjectNames) OR :subjectSize = 0) AND (t IN (SELECT DISTINCT t FROM Teacher t JOIN t.teacherRegions tr WHERE tr.region.regionName IN :regionNames) OR :regionSize = 0) AND t.name LIKE %:teacherName%")
     Page<Teacher> findTeachersBySubjectAndRegionAndTeacherName(String teacherName,
-                                                        List<String> subjectNames,
-                                                        List<String> regionNames,
-                                                        Pageable pageable);
+                                                               List<String> subjectNames,
+                                                               List<String> regionNames,
+                                                               int subjectSize,
+                                                               int regionSize,
+                                                               Pageable pageable);
 }
