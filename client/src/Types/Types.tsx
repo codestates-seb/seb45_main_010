@@ -166,12 +166,14 @@ export type footerType = {
   }[];
 };
 
-export type lessonGetType = Pick<User, 'regions' | 'subjects' | 'schedules'> & {
+export type lessonGetType = Pick<User, 'regions' | 'subjects'> & {
   teacherId: number;
   studentId: number;
   studentName: string;
   studentPhone: string;
   studentEmail: string;
+  date: string;
+  timeslot: string;
 };
 
 export type requestPostType = Pick<User, 'subjects' | 'regions'> & {
@@ -182,5 +184,11 @@ export type requestPostType = Pick<User, 'subjects' | 'regions'> & {
   studentPhone: string;
   studentEmail: string;
   remarks: string;
-  schedule: { date: string; timeslots: string[] };
+  date: string;
+  timeslot: string;
+};
+
+export type schedulesType = {
+  date: string;
+  timeslot: string;
 };

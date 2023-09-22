@@ -7,6 +7,7 @@ import { ScheduleType, ScheduleObjType } from 'Types/Types';
 import { FetchSchedule } from 'redux/thunk/ProfilePageThunk';
 import { useAppDispatch } from 'hooks/hooks';
 import { formatDate } from 'components/Schedule/MakeDateFunctions';
+import 'components/Schedule/calendar.css';
 
 type props = {
   id: number;
@@ -58,6 +59,13 @@ const DetailSetSchedule = ({ id }: props) => {
         dateFormat="yyyy-MM-dd"
         locale={ko}
         inline={selectedDate ? true : undefined}
+        dayClassName={(date) => {
+          const formattedDate = formatDate(date);
+          if (selectedTimeSlots.some((slot) => slot.date === formattedDate)) {
+            return 'highlighted-date';
+          }
+          return '';
+        }}
       />
 
       {selectedDate ? (

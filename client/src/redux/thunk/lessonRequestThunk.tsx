@@ -8,11 +8,11 @@ type id = {
   teacherId: number;
   studentId: number;
 };
-const token = getAccessToken();
 
 export const lessonRequestGet = createAsyncThunk<lessonGetType, id>(
   'lessonRequestGet',
   async (id) => {
+    const token = getAccessToken();
     const response = await axios.get(
       `${URL}/matches?teacherId=${id.teacherId}&studentId=${id.studentId}`,
       {
@@ -29,6 +29,10 @@ export const lessonRequestGet = createAsyncThunk<lessonGetType, id>(
 export const lessonRequestPost = createAsyncThunk<requestPostType, requestPostType>(
   'lessonRequestPost',
   async (requestPost) => {
+    const token = getAccessToken();
+    requestPost.regions = requestPost.regions.filter((item) => item !== null && item !== '');
+    requestPost.subjects = requestPost.subjects.filter((item) => item !== null && item !== '');
+
     const response = await axios.post(`${URL}/matches`, requestPost, {
       headers: {
         Authorization: `Bearer ${token}`,

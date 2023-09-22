@@ -1,16 +1,16 @@
-# MainProject
+
 
 ## 💻 프로젝트 소개
 
 #### 강의, 강사 구하기 플랫폼
 
-- 배포 주소 : [connect-x10](https://connect-x10.shop)
+- 배포 주소 : https : [connect-x10](https://connect-x10.shop) / http : [connect-x10](http://project-x10.s3-website.ap-northeast-2.amazonaws.com/)
 
-- 피그마 주소 : [figma](https://www.figma.com/file/CKlp5w3R9IhKhxYWz9E5GV/MainProject(X10)?type=design&node-id=0%3A1&mode=design&t=2O03b3ns6iaafEK3-1)
+- [피그마](https://www.figma.com/file/CKlp5w3R9IhKhxYWz9E5GV/MainProject(X10)?type=design&node-id=0%3A1&mode=design&t=2O03b3ns6iaafEK3-1)
 
-- API 명세서 : [API](https://file.notion.so/f/f/82d63a72-8254-4cde-bf1e-b2597b7c099c/726d688a-e048-4b16-9476-2817a65964e3/API%EB%AA%85%EC%84%B8%EC%84%9C.pdf?id=d72a6e2c-d8fb-498e-afc5-d3aae424f32b&table=block&spaceId=82d63a72-8254-4cde-bf1e-b2597b7c099c&expirationTimestamp=1695254400000&signature=yeqSzq7M-KVuqQHgSfs9NUi5B5z_fIkuxLbK1nFoiK0&downloadName=API%EB%AA%85%EC%84%B8%EC%84%9C.pdf)
+- [API 명세서](https://file.notion.so/f/f/82d63a72-8254-4cde-bf1e-b2597b7c099c/726d688a-e048-4b16-9476-2817a65964e3/API%EB%AA%85%EC%84%B8%EC%84%9C.pdf?id=d72a6e2c-d8fb-498e-afc5-d3aae424f32b&table=block&spaceId=82d63a72-8254-4cde-bf1e-b2597b7c099c&expirationTimestamp=1695254400000&signature=yeqSzq7M-KVuqQHgSfs9NUi5B5z_fIkuxLbK1nFoiK0&downloadName=API%EB%AA%85%EC%84%B8%EC%84%9C.pdf)
 
-- 요구사항 정의서 : [정의서](https://docs.google.com/spreadsheets/d/1BGUGI2guxmNwwuQq4aiSiWz0cubfxGLtoMSKxV6m-AU/edit#gid=1984214466)
+- [요구사항 정의서](https://docs.google.com/spreadsheets/d/1BGUGI2guxmNwwuQq4aiSiWz0cubfxGLtoMSKxV6m-AU/edit#gid=1984214466)
 
 ## 🕰️ 개발 기간
 
@@ -77,7 +77,7 @@
 
 
 ## 🛠️ 기술
-# Front End
+### Front End
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black)
 ![HTML](https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white)
 ![CSS](https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css3&logoColor=white)
@@ -98,7 +98,7 @@
 
 
 
-# Back End
+### Back End
 ![Java](https://img.shields.io/badge/Java-007396?style=flat&logo=java&logoColor=white)
 ![Spring](https://img.shields.io/badge/Spring-6DB33F?style=flat&logo=spring&logoColor=white)
 ![Spring Boot](https://img.shields.io/badge/Spring%20Boot-6DB33F?style=flat&logo=spring-boot&logoColor=white)
@@ -120,3 +120,24 @@
 ![AWS Developer Tools](https://img.shields.io/badge/AWS%20Developer%20Tools-232F3E?style=flat&logo=amazon-aws&logoColor=white)
 ![AWS Route 53](https://img.shields.io/badge/AWS%20Route%2053-232F3E?style=flat&logo=amazon-aws&logoColor=white)
 ![AWS Certificate Manager](https://img.shields.io/badge/AWS%20Certificate%20Manager-232F3E?style=flat&logo=amazon-aws&logoColor=white)
+
+### 커뮤니케이션
+![Discord](https://img.shields.io/badge/Discord-7289DA?style=flat&logo=discord&logoColor=white)
+![GitHub](https://img.shields.io/badge/GitHub-181717?style=flat&logo=github&logoColor=white)
+![Notion](https://img.shields.io/badge/Notion-000000?style=flat&logo=notion&logoColor=white)
+
+
+## 📱service
+
+| 리스트페이지     | 로그인     |
+|------------|-----------|
+| ![리스트페이지](https://github.com/codestates-seb/seb45_main_010/assets/126087336/e547a20e-4169-4ddb-b4e1-da934abbc9e6) | ![로그인](https://github.com/codestates-seb/seb45_main_010/assets/126087336/76e02b2a-7975-47db-a46a-430d5c4b4af6) |
+| 회원가입      | 비밀번호찾기     |
+| ![회원가입](https://github.com/codestates-seb/seb45_main_010/assets/126087336/42297b54-4961-452a-bdce-52d62cdd522f) | ![비밀번호찾기](https://github.com/codestates-seb/seb45_main_010/assets/126087336/24155342-c934-4bd1-9796-47b3a2ef8594) |
+| 강사세부페이지      | 강의신청     |
+| ![강사세부페이지](https://github.com/codestates-seb/seb45_main_010/assets/126087336/06e0f5c4-eb6c-4532-979e-235879ad781c) | ![강의신청](https://github.com/codestates-seb/seb45_main_010/assets/126087336/dff594a7-7648-4a61-9fb1-f7a9b0ed4daa) |
+| 강사프로필   | 학생프로필    |
+| ![강사프로필](https://github.com/codestates-seb/seb45_main_010/assets/126087336/a8696f11-67c9-4e4e-a01a-58ab0cc1a027) | ![학생프로필](https://github.com/codestates-seb/seb45_main_010/assets/126087336/1a48fd05-eedb-4618-82e6-db060b7935c7) |
+| 개인정보변경       | 검색   |
+| ![개인정보변경](https://github.com/codestates-seb/seb45_main_010/assets/126087336/17f0f26b-f4c9-44e8-8154-875bb55a8c3f) | ![검색](https://github.com/codestates-seb/seb45_main_010/assets/126087336/15a7e7ac-aa36-42da-b750-dd1015058088) |
+

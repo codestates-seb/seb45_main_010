@@ -1,0 +1,18 @@
+.highlighted-date {
+    background-color: #BEDEF1;
+    border-radius: 20%;
+}
+
+.datepicker-popper {
+    left: 15% !important;
+    transform: translateX(-50%);
+}
+
+.react-datepicker__day--selected {
+    color: black;
+    font-weight: bold;
+}
+
+.react-datepicker__day--today {
+    font-weight: normal;
+}

@@ -166,7 +166,7 @@ const SignUp: React.FC = () => {
             type="submit"
             className="text-white border-2 border-blue-1 text-xl bg-blue-1 rounded-lg shadow-lg shadow-gray-900/30 p-1 h-[50px] hover:bg-blue-2"
           >
-            이메일 회원가입
+            이메일인증 회원가입
           </Button>
         </form>
         <SocialSignupModal />

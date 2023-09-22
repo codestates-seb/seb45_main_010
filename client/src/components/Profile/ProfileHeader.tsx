@@ -74,9 +74,21 @@ const ProfileHeader: React.FC<ProfileHeaderProps> = ({
           </div>
         ) : null}
       </>
-      <ProfileDropdown title="과목" selections={subjectArray} categories={subjects} id={id} />
-      <ProfileDropdown title="지역" selections={regionArray} categories={regions} id={id} />
-      <Option optionDesc={introduction} id={id} />
+      <ProfileDropdown
+        title="과목"
+        selections={subjectArray}
+        categories={subjects}
+        id={id}
+        teacher={teacher}
+      />
+      <ProfileDropdown
+        title="지역"
+        selections={regionArray}
+        categories={regions}
+        id={id}
+        teacher={teacher}
+      />
+      <Option optionDesc={introduction} id={id} teacher={teacher} />
       <div className="mt-10 border-b-2 border-gray-1"></div>
     </div>
   );

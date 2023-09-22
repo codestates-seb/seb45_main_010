@@ -5,19 +5,39 @@ import { useAppDispatch } from 'hooks/hooks';
 import { useState, useEffect } from 'react';
 import { FetchRequestInfo, updateRequestStatus } from 'redux/thunk/RequestThunks';
 import { unwrapResult } from '@reduxjs/toolkit';
+import useStatusTranslator from 'hooks/useStatusTranslator';
 
 type InfoModalProps = {
   teacher: boolean;
   matchId: number;
+  currentStatus?: string;
+  updateMatchStatus?: (matchId: number, newStatus: string) => void;
 };
 
-const InfoModal: React.FC<InfoModalProps> = ({ teacher, matchId }) => {
+const InfoModal: React.FC<InfoModalProps> = ({
+  teacher,
+  matchId,
+  currentStatus,
+  updateMatchStatus,
+}) => {
   const dispatch = useAppDispatch();
   const [requestDetails, setRequestDetails] = useState<RequestInfoType | null>(null);
   const [status, setStatus] = useState('');
   const [open, setOpen] = useState<boolean>(false);
+  const translateStatus = useStatusTranslator();
   const handleOpen = () => {
     setOpen(!open);
+  };
+
+  const statusTranslatorKorean = (status: string) => {
+    switch (status) {
+      case 'answer':
+        return '답변완료';
+      case 'cancel':
+        return '취소완료';
+      default:
+        return status;
+    }
   };
 
   useEffect(() => {
@@ -45,6 +65,10 @@ const InfoModal: React.FC<InfoModalProps> = ({ teacher, matchId }) => {
       alert('요청이 수락됐습니다.');
       unwrapResult(resultAction);
       setStatus('answer');
+      if (updateMatchStatus) {
+        const { text } = translateStatus('MATCH_ANSWERED');
+        updateMatchStatus(matchId, text);
+      }
       handleOpen();
     } catch (error) {
       console.error('Error updating request status:', error);
@@ -57,11 +81,16 @@ const InfoModal: React.FC<InfoModalProps> = ({ teacher, matchId }) => {
       alert('요청이 취소되었습니다.');
       unwrapResult(resultAction);
       setStatus('cancel');
+      if (updateMatchStatus) {
+        const { text } = translateStatus('MATCH_CANCELLED');
+        updateMatchStatus(matchId, text);
+      }
       handleOpen();
     } catch (error) {
       console.error('Error updating request status:', error);
     }
   };
+
   return (
     <>
       <Button

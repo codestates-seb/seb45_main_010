@@ -1,6 +1,6 @@
-import { User } from 'Types/Types';
+import { schedulesType } from 'Types/Types';
 import ReqSetSchedule from './ReqSetSchedule';
-type schedulesType = Pick<User, 'schedules'>;
+
 type ScheduleListProps = {
   id: number;
   setSchedule: (selectItem: schedulesType) => void;

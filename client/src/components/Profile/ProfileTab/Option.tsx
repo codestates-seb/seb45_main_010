@@ -12,10 +12,12 @@ const Option = ({
   optionTitle,
   optionDesc: initialOptionDesc,
   id,
+  teacher,
 }: {
   optionTitle?: string;
   optionDesc: string;
   id: number;
+  teacher: boolean;
 }) => {
   const [optionDesc, setOptionDesc] = useState(initialOptionDesc);
   const [editOptionDesc, setEditOptionDesc] = useState(initialOptionDesc);
@@ -47,9 +49,9 @@ const Option = ({
     } else if (optionTitle === '학력 및 경력') {
       dispatch(updateCareer({ id: id, career: editOptionDesc }));
     } else if (optionTitle === '수업옵션') {
-      dispatch(updateOption({ id: id, option: editOptionDesc }));
+      dispatch(updateOption({ id: id, teacher, option: editOptionDesc }));
     } else if (!optionTitle) {
-      dispatch(updateIntroduction({ id: id, introduction: editOptionDesc }));
+      dispatch(updateIntroduction({ id: id, teacher, introduction: editOptionDesc }));
     }
   };
   let maxLength: number;
