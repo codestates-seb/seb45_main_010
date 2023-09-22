@@ -140,4 +140,5 @@
 | ![강사프로필](https://github.com/codestates-seb/seb45_main_010/assets/126087336/a8696f11-67c9-4e4e-a01a-58ab0cc1a027) | ![학생프로필](https://github.com/codestates-seb/seb45_main_010/assets/126087336/1a48fd05-eedb-4618-82e6-db060b7935c7) |
 | 개인정보변경       | 검색   |
 | ![개인정보변경](https://github.com/codestates-seb/seb45_main_010/assets/126087336/17f0f26b-f4c9-44e8-8154-875bb55a8c3f) | ![검색](https://github.com/codestates-seb/seb45_main_010/assets/126087336/15a7e7ac-aa36-42da-b750-dd1015058088) |
-
+| 학생강의요청현황       | 강사강의요청현황   |
+| ![학생프로필신청현황](https://github.com/codestates-seb/seb45_main_010/assets/126087336/1917e9e6-38ed-4db0-9c06-1a2fae2ed902)| ![강사강의요청목록](https://github.com/codestates-seb/seb45_main_010/assets/126087336/1df0abf3-111f-4e58-a657-f8e89981d7f2) |
