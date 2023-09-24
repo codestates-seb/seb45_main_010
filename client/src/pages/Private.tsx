@@ -1,5 +1,6 @@
 import React from 'react';
-import Thumbnail from '/assets/Image/mone.png';
+import userExampleImage from '/assets/Image/user-example.png';
+
 import { AiFillCamera } from 'react-icons/ai';
 import { useAppSelector } from 'hooks/hooks';
 import { ChangeModal } from 'components/Modal/ChangeModal';
@@ -17,7 +18,7 @@ const Private: React.FC = () => {
             {userDetails.profileImg ? (
               <img src={userDetails.profileImg} className="m-2 mx-6 rounded-lg h-14 w-14" />
             ) : (
-              <img src={Thumbnail} className="m-2 mx-6 rounded-lg h-14 w-14" />
+              <img src={userExampleImage} className="m-2 mx-6 rounded-lg h-14 w-14" />
             )}
           </div>
           {userDetails.teacher === true ? (
