@@ -22,7 +22,7 @@ const TeacherCard = ({ cardList }: props) => {
                     bg-mint-300 rounded-xl p-2 text-xs flex-row flex justify-between mb-5
                      duration-500  hover:scale-105  cursor-pointer hover:bg-mint-400"
             >
-              <span className="w-16 h-6 px-2 py-1 m-1 text-center text-black cursor-auto bg-mint-200 rounded-xl">
+              <span className="flex items-center justify-center w-16 h-6 mx-1 text-center text-black cursor-auto bg-mint-200 rounded-xl">
                 {isOnOff}
               </span>
               <CardCategory title={'수업 종류'} category={items.subjects} />
