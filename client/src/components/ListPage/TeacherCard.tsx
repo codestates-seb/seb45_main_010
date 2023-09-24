@@ -1,6 +1,7 @@
 import { ListPageType } from 'Types/Types';
 import React from 'react';
 import { Link } from 'react-router-dom';
+import userExampleImage from '/assets/Image/user-example.png';
 
 type props = {
   cardList: ListPageType[];
@@ -45,7 +46,10 @@ const TeacherCard = ({ cardList }: props) => {
               </span>
 
               <div className="flex flex-col items-center w-14">
-                <img src={items.profileImg || ''} className="w-[25px] h-[25px] rounded-lg" />
+                <img
+                  src={items.profileImg || userExampleImage}
+                  className="w-[25px] h-[25px] rounded-lg"
+                />
                 <span>{items.name}</span>
               </div>
             </section>
