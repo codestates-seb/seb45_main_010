@@ -78,22 +78,24 @@
 
 ## 🛠️ 기술
 ### Front End
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat&logo=typescript&logoColor=white)
 ![HTML](https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white)
 ![CSS](https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css3&logoColor=white)
-![Nelify](https://img.shields.io/badge/Netlify-00C7B7?style=flat&logo=netlify&logoColor=white)
-![Gabia](https://img.shields.io/badge/Gabia-FF5500?style=flat&logo=gabia&logoColor=white)
-![Material Tailwind](https://img.shields.io/badge/Material%20Tailwind-2B6CB0?style=flat&logo=tailwind-css&logoColor=white)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-38B2AC?style=flat&logo=tailwind-css&logoColor=white)
-![React](https://img.shields.io/badge/React-61DAFB?style=flat&logo=react&logoColor=white)
+![Material Tailwind](https://img.shields.io/badge/Material%20Tailwind-2B6CB0?style=flat&logo=tailwind-css&logoColor=white)
 
+![React](https://img.shields.io/badge/React-61DAFB?style=flat&logo=react&logoColor=white)
 ![React Router DOM](https://img.shields.io/badge/React%20Router%20DOM-CA4245?style=flat&logo=react-router&logoColor=white)
-![Axios](https://img.shields.io/badge/Axios-0098D4?style=flat&logo=axios&logoColor=white)
 ![Redux Toolkit](https://img.shields.io/badge/Redux%20Toolkit-764ABC?style=flat&logo=redux&logoColor=white)
-![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat&logo=typescript&logoColor=white)
+![Axios](https://img.shields.io/badge/Axios-0098D4?style=flat&logo=axios&logoColor=white)
 ![Vite](https://img.shields.io/badge/Vite-646CFF?style=flat&logo=vite&logoColor=white)
+
 ![프리티어](https://img.shields.io/badge/프리티어-000000?style=flat)
 ![ESLint](https://img.shields.io/badge/ESLint-4B32C3?style=flat&logo=eslint&logoColor=white)
 ![npm](https://img.shields.io/badge/npm-CB3837?style=flat&logo=npm&logoColor=white)
+![Nelify](https://img.shields.io/badge/Netlify-00C7B7?style=flat&logo=netlify&logoColor=white)
+![Gabia](https://img.shields.io/badge/Gabia-FF5500?style=flat&logo=gabia&logoColor=white)
+
 
 
 
@@ -105,8 +107,8 @@
 ![OAuth2](https://img.shields.io/badge/OAuth2-586CB4?style=flat&logo=oauth&logoColor=white)
 ![Spring Mail](https://img.shields.io/badge/Spring%20Mail-00A98F?style=flat&logo=spring&logoColor=white)
 ![Jasypt](https://img.shields.io/badge/Jasypt-9400D3?style=flat&logo=java&logoColor=white)
-
 ![Thymeleaf](https://img.shields.io/badge/Thymeleaf-005F0F?style=flat&logo=thymeleaf&logoColor=white)
+
 ![Spring Security](https://img.shields.io/badge/Spring%20Security-6DB33F?style=flat&logo=spring-security&logoColor=white)
 ![JWT](https://img.shields.io/badge/JWT-000000?style=flat&logo=json-web-tokens&logoColor=white)
 ![H2](https://img.shields.io/badge/H2-0046AA?style=flat&logo=h2&logoColor=white)
