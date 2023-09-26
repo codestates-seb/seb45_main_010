@@ -18,7 +18,7 @@ spring:
       hibernate:
         format_sql: true
     database: mysql
-    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    database-platform: org.hibernate.dialect.MySQL8Dialect
     defer-datasource-initialization: true
   sql:
     init:
@@ -75,3 +75,4 @@ jasypt:
 
 emailEncryptionSecretKey: ${emailEncryptionSecretKey}
 EC2_URL : ${EC2_URL}
+KAKAO_REDIRECT_URL : ${KAKAO_REDIRECT_URL}
