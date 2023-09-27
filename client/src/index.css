@@ -1,0 +1,27 @@
+@import '@fontsource/nanum-gothic';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: 'Nanum Gothic', sans-serif;
+    display: flex;
+    justify-content: center;
+    overflow-y: auto;
+    background-color: rgba(233, 254, 255, 0.15);
+    min-height: 100vh;
+  }
+
+  body {
+    position: relative;
+    padding-bottom: 200px;
+    width: 375px;
+    background-color: #feffff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-sizing: border-box;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  }
+}
